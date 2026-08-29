@@ -4,66 +4,61 @@ import { EASING, sfx } from '../../utils/animations';
 import {
   X,
   ArrowUpRight,
-  ShieldCheck,
-  Zap,
-  Globe,
   Radio,
   Volume2,
   VolumeX,
-  Flame,
-  Compass,
 } from 'lucide-react';
 
 const MENU_ITEMS = [
   {
     id: '01',
     title: 'THE FLEET',
-    subtitle: 'Cyberpunk Hypercars & Stealth Cruisers',
-    href: '#fleet',
-    tag: '4 MODELS ACTIVE',
+    subtitle: 'Apex GT, Phantom Stealth & Vortex-R',
+    href: '#models',
+    tag: '3 HYPER UNITS',
     color: '#00F0FF',
-    previewImg: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1000&q=80',
-    stat: '0-100 km/h: 1.8s',
+    previewImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFpH01unngQX9vVDPuE0etvmvcQQDNmlerQNDoNcilOAXaO203JmoHcwBMtK1jktjZZrwVOZPf5_M8g-tIK3wZS5KAFr7MPjs3vgDu82Nfckb8_dToKDWfskwEOHShrll1_6E3mCtKM16o6UWVuGHZKtmuN-Grs0c5J-qGXh73kP3ONDzYJ_n84DfauiohlWku5PxA-RrBbCWm6SAu4y0Pdv8ltIMDmTOsL9vCGpdmoXHQHL5d_HThNi7m5NQG3JsPmberNMy3O_wN',
+    stat: '0-100 KM/H: 1.78S',
   },
   {
     id: '02',
-    title: 'EXPEDITIONS',
-    subtitle: 'High-Altitude & Neon Megacity Routes',
-    href: '#expeditions',
-    tag: 'GLOBAL DESTINATIONS',
-    color: '#CCFF00',
-    previewImg: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1000&q=80',
-    stat: '14,200+ KM CHARTERED',
+    title: 'CHASSIS LAB',
+    subtitle: 'Dual Axial-Flux & Solid-State Pack',
+    href: '#chassis',
+    tag: 'BLUEPRINT TELEMETRY',
+    color: '#D4FF00',
+    previewImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhnV2PSu3Wrhp2pSeTJmEQrbziCKx-fQxnkAODMqUTFeyG6PAPQPDzGCjIbigAJ4H8UJqB-Cs04XbD-Fkw27lKIheaQuwCkmIgJCeMBDSKAtD6kButUDOWtOxW1c9-qfxDp1xWFYHsWNl8Gxdwzt2knTy6jLsTv1gR3XbfCPq7yodWZFVFEsrtNFaZV4bqPpoOJiFId5XneBdxdO6tAabu22TKkFGudQjpso-VrxcvU_hW6O_FmoFcnaxX5VvVjXqgwkSF-Bx_1ykF',
+    stat: '1,420 HP PEAK OUTPUT',
   },
   {
     id: '03',
-    title: 'NEURAL DRIVE',
-    subtitle: 'Autonomous Level-5 Intelligence',
-    href: '#technology',
-    tag: 'AI TELEMETRY',
-    color: '#FF5500',
-    previewImg: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=80',
-    stat: '99.999% LATENCY <1MS',
+    title: 'EXPEDITIONS',
+    subtitle: 'Tokyo, Alpine Pass & California Warp',
+    href: '#expeditions',
+    tag: 'SCENIC HYPER-ROUTES',
+    color: '#00F0FF',
+    previewImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD_K3c-9peX5xJ_BFu25hcxAhq7w6-QCYm_o_kWZzazSlLkWhJ_QS1ZHxNPi8tCG4dxiY6t0HTjc5gtgnFubmE92bII1phFkaU7Dx0Upq_0OojozXPCoUptLZoxmJVxFKJ_O-yszZKky_GNfxYfZJ7AJxm_Zqg9PG2NEwn_gxYdtxEq87wl1FTvHsECaUK4Y1cIRjAUUARKTt1bVeMDfmTdQZ-6SOTngy3jB9jR9Ty2ezUKiHhZC7kDlxTcM-_hd5e7A1eYmgQ4rgZs',
+    stat: '14,200+ KM CHARTERED',
   },
   {
     id: '04',
     title: 'BLACK PASS',
-    subtitle: 'Exclusive Concierge & Private Terminals',
-    href: '#membership',
-    tag: 'INVITE ONLY',
+    subtitle: 'Sovereign Tier & Dedicated Dispatch',
+    href: '#blackpass',
+    tag: 'TIER-1 CONCIERGE',
     color: '#9945FF',
-    previewImg: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80',
-    stat: 'TIER-1 ACCESS',
+    previewImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCaYdOtb3m3DlItf6bMWrsQSLzF0ewDRuD0in3cUc9oeFoogOvlWQxegI91JSRP_95yo0Pejl15YvVdgP81ZOsS1L9OM4umNFCb7nHdPcrFlLjUd5fUlwP_0Xbpp_U8AMCbUdOwz_6L1AnYCQpX0Uitg2bjBFL6jgdWfolMBrm7tz0eOVDVCFG46Qu-3xIHB3jy8a-6n59HVLtPk_y1uiZZLt6rweLp_masiWFF0NffjkNeMlfCidp4Gorv174FNafs115xv2Z3MOhp',
+    stat: 'INSTANT GUARANTEED POD',
   },
   {
     id: '05',
-    title: 'MANIFESTO',
-    subtitle: 'Next-Gen Sustainable Speed & Vision',
-    href: '#manifesto',
-    tag: 'CARBON NEGATIVE',
+    title: 'TERMINALS',
+    subtitle: 'Global Skyport Matrix & Pod Status',
+    href: '#terminals',
+    tag: '5 HUBS ACTIVE',
     color: '#00E599',
-    previewImg: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=80',
-    stat: '100% CLEAN KINETICS',
+    previewImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBFpH01unngQX9vVDPuE0etvmvcQQDNmlerQNDoNcilOAXaO203JmoHcwBMtK1jktjZZrwVOZPf5_M8g-tIK3wZS5KAFr7MPjs3vgDu82Nfckb8_dToKDWfskwEOHShrll1_6E3mCtKM16o6UWVuGHZKtmuN-Grs0c5J-qGXh73kP3ONDzYJ_n84DfauiohlWku5PxA-RrBbCWm6SAu4y0Pdv8ltIMDmTOsL9vCGpdmoXHQHL5d_HThNi7m5NQG3JsPmberNMy3O_wN',
+    stat: 'LATENCY < 0.8MS',
   },
 ];
 
@@ -77,14 +72,9 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
   const [activeItem, setActiveItem] = useState(MENU_ITEMS[0]);
   const [isMuted, setIsMuted] = useState(false);
 
-  // SVG Morphing Curve Coordinates
-  // Initial (Closed): Top flat line
-  // Mid: Hanging bezier wave curve
-  // End (Open): Full screen flat line
   const startPath = 'M 0 0 V 0 Q 50 0 100 0 V 0 Z';
   const midPath = 'M 0 0 V 70 Q 50 100 100 70 V 0 Z';
   const endPath = 'M 0 0 V 100 Q 50 100 100 100 V 0 Z';
-
   const reverseMidPath = 'M 0 0 V 100 Q 50 30 100 100 V 0 Z';
 
   useEffect(() => {
@@ -100,19 +90,19 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
 
       gsap.killTweensOf([overlay, path, content, links]);
       gsap.set(overlay, { display: 'block', pointerEvents: 'auto' });
-      gsap.set(content, { opacity: 0, y: 30 });
-      gsap.set(links, { yPercent: 120, rotateX: -30, opacity: 0 });
+      gsap.set(content, { opacity: 0, y: 20 });
+      gsap.set(links, { yPercent: 80, opacity: 0 });
 
       const tl = gsap.timeline({ defaults: { ease: EASING.curtain } });
 
       tl.to(path, {
         attr: { d: midPath },
-        duration: 0.45,
+        duration: 0.4,
         ease: 'power3.in',
       })
         .to(path, {
           attr: { d: endPath },
-          duration: 0.4,
+          duration: 0.35,
           ease: 'power3.out',
         })
         .to(
@@ -120,22 +110,21 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
           {
             opacity: 1,
             y: 0,
-            duration: 0.4,
+            duration: 0.35,
             ease: EASING.smooth,
           },
-          '-=0.3'
+          '-=0.25'
         )
         .to(
           links,
           {
             yPercent: 0,
-            rotateX: 0,
             opacity: 1,
-            stagger: 0.06,
-            duration: 0.6,
-            ease: EASING.cinematic,
+            stagger: 0.05,
+            duration: 0.45,
+            ease: EASING.smooth,
           },
-          '-=0.3'
+          '-=0.2'
         );
     } else {
       document.body.style.overflow = '';
@@ -149,48 +138,45 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
       });
 
       tl.to(links, {
-        yPercent: -80,
+        yPercent: -60,
         opacity: 0,
-        stagger: 0.03,
-        duration: 0.3,
+        stagger: 0.02,
+        duration: 0.25,
         ease: EASING.smooth,
       })
         .to(
           content,
           {
             opacity: 0,
-            y: -20,
-            duration: 0.25,
+            y: -15,
+            duration: 0.2,
             ease: 'power2.in',
           },
-          '-=0.2'
+          '-=0.15'
         )
         .to(path, {
           attr: { d: reverseMidPath },
-          duration: 0.35,
+          duration: 0.3,
           ease: 'power3.in',
         })
         .to(path, {
           attr: { d: startPath },
-          duration: 0.35,
+          duration: 0.3,
           ease: 'power3.out',
         });
     }
   }, [isOpen]);
 
-  // Preview Image Parallax Follower
   const handleMenuMouseMove = (e) => {
     if (!previewRef.current) return;
     const { clientX, clientY } = e;
-    const xRatio = (clientX / window.innerWidth - 0.5) * 30;
-    const yRatio = (clientY / window.innerHeight - 0.5) * 30;
+    const xRatio = (clientX / window.innerWidth - 0.5) * 20;
+    const yRatio = (clientY / window.innerHeight - 0.5) * 20;
 
     gsap.to(previewRef.current, {
       x: xRatio,
       y: yRatio,
-      rotateY: xRatio * 0.5,
-      rotateX: -yRatio * 0.5,
-      duration: 0.6,
+      duration: 0.5,
       ease: EASING.smooth,
     });
   };
@@ -203,6 +189,7 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
   const handleSoundToggle = () => {
     const muted = sfx.toggleMute();
     setIsMuted(muted);
+    if (!muted) sfx.playClick();
   };
 
   return (
@@ -219,121 +206,113 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
       >
         <defs>
           <linearGradient id="menuBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0a0c12" />
-            <stop offset="50%" stopColor="#08090d" />
-            <stop offset="100%" stopColor="#050608" />
+            <stop offset="0%" stopColor="#080a0f" />
+            <stop offset="50%" stopColor="#06070a" />
+            <stop offset="100%" stopColor="#030406" />
           </linearGradient>
-          <filter id="glowNoise" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
-            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.03 0" />
-            <feBlend in="SourceGraphic" mode="overlay" />
-          </filter>
         </defs>
         <path
           ref={pathRef}
           d={startPath}
           fill="url(#menuBgGrad)"
-          className="filter drop-shadow-[0_20px_50px_rgba(0,240,255,0.15)]"
+          className="filter drop-shadow-[0_20px_50px_rgba(0,240,255,0.08)]"
         />
       </svg>
 
       {/* Main Content Container */}
       <div
         ref={contentRef}
-        className="relative z-10 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-16 max-w-7xl mx-auto opacity-0"
+        className="relative z-10 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-14 max-w-6xl mx-auto opacity-0"
       >
-        {/* Top Header Bar inside Overlay */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-6">
-          <div className="flex items-center gap-3">
-            <div className="h-3 w-3 rounded-full bg-brand-accent animate-ping" />
+        {/* Header inside Overlay */}
+        <div className="flex items-center justify-between border-b border-white/[0.06] pb-5">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-accent animate-pulse" />
             <span className="font-mono text-xs text-zinc-400 tracking-widest uppercase">
-              RIDE-OUT // MAIN SYSTEM DIRECTORY
+              RIDE-OUT // DIRECTORY
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={handleSoundToggle}
               data-cursor="AUDIO"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 text-xs font-mono text-zinc-300 hover:text-white hover:border-brand-accent transition-all duration-200"
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-white hover:border-brand-accent/40 transition-all duration-200"
             >
               {isMuted ? <VolumeX className="w-3.5 h-3.5 text-zinc-500" /> : <Volume2 className="w-3.5 h-3.5 text-brand-accent" />}
-              <span>{isMuted ? 'AUDIO: MUTED' : 'AUDIO: ON'}</span>
+              <span>{isMuted ? 'MUTE' : 'AUDIO'}</span>
             </button>
 
             <button
               onClick={onClose}
               data-cursor="CLOSE"
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/15 text-white hover:bg-brand-accent hover:text-black hover:border-brand-accent transition-all duration-300 transform hover:scale-105"
+              className="flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white hover:border-white/20 transition-all duration-200"
             >
-              <span className="text-xs font-mono font-bold tracking-wider uppercase">CLOSE</span>
-              <X className="w-4 h-4 transition-transform group-hover:rotate-90 duration-300" />
+              <span className="text-xs font-mono font-medium tracking-wider uppercase">CLOSE</span>
+              <X className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Center Grid: Navigation Links + Dynamic Live Visual Spotlight */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 my-auto items-center py-6">
-          {/* Menu Items List */}
-          <div className="lg:col-span-7 flex flex-col space-y-3 sm:space-y-4">
+        {/* Center Grid: Navigation Links + Live Preview */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 my-auto items-center py-4">
+          <div className="lg:col-span-7 flex flex-col space-y-2">
             {MENU_ITEMS.map((item, idx) => {
               const isCurrent = activeItem.id === item.id;
               return (
                 <div
                   key={item.id}
                   ref={(el) => (itemsRef.current[idx] = el)}
-                  className="perspective-1000 overflow-hidden"
+                  className="overflow-hidden"
                 >
                   <a
                     href={item.href}
-                    onClick={(e) => {
+                    onClick={() => {
                       sfx.playClick();
                       onClose();
                     }}
                     onMouseEnter={() => handleLinkHover(item)}
                     data-cursor="ENTER"
-                    className={`group flex items-center justify-between py-2 sm:py-3 px-4 sm:px-6 rounded-2xl transition-all duration-300 border ${
+                    className={`group flex items-center justify-between py-2.5 px-4 rounded-xl transition-all duration-250 border ${
                       isCurrent
-                        ? 'bg-white/[0.04] border-white/20 translate-x-3 shadow-glass'
-                        : 'border-transparent hover:border-white/10 hover:translate-x-2'
+                        ? 'bg-white/[0.03] border-white/[0.12] translate-x-2'
+                        : 'border-transparent hover:border-white/[0.06] hover:translate-x-1'
                     }`}
                   >
-                    <div className="flex items-baseline gap-4 sm:gap-6">
+                    <div className="flex items-baseline gap-4">
                       <span
-                        className={`font-mono text-xs sm:text-sm transition-colors duration-300 ${
-                          isCurrent ? 'text-brand-accent font-bold' : 'text-zinc-500 group-hover:text-zinc-400'
+                        className={`font-mono text-xs transition-colors duration-200 ${
+                          isCurrent ? 'text-brand-accent font-semibold' : 'text-zinc-500'
                         }`}
                       >
                         {item.id}
                       </span>
                       <div>
                         <h2
-                          className={`font-display text-2xl sm:text-4xl md:text-5xl font-black tracking-tight transition-all duration-300 ${
-                            isCurrent
-                              ? 'text-white scale-102'
-                              : 'text-zinc-400 group-hover:text-white'
+                          className={`font-display text-2xl sm:text-3xl font-bold tracking-tight transition-all duration-200 ${
+                            isCurrent ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-200'
                           }`}
                         >
                           {item.title}
                         </h2>
-                        <p className="text-xs sm:text-sm text-zinc-400 font-sans mt-0.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <p className="text-xs text-zinc-500 font-sans mt-0.5">
                           {item.subtitle}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <span className="hidden sm:inline-block px-2.5 py-1 text-[11px] font-mono tracking-wider text-zinc-300 bg-white/5 rounded-full border border-white/10 group-hover:border-brand-accent/50 group-hover:text-brand-accent transition-all">
+                    <div className="flex items-center gap-2">
+                      <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono tracking-wider text-zinc-400 bg-white/[0.02] rounded border border-white/[0.06]">
                         {item.tag}
                       </span>
                       <div
-                        className={`h-9 w-9 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                        className={`h-7 w-7 rounded-full flex items-center justify-center border transition-all duration-200 ${
                           isCurrent
-                            ? 'bg-brand-accent text-black border-brand-accent scale-110 shadow-glow-cyan'
-                            : 'bg-white/5 text-zinc-400 border-white/10 group-hover:bg-white/20 group-hover:text-white'
+                            ? 'bg-brand-accent text-black border-brand-accent'
+                            : 'bg-white/[0.02] text-zinc-400 border-white/[0.06] group-hover:text-white'
                         }`}
                       >
-                        <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </a>
@@ -346,53 +325,41 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
           <div className="hidden lg:flex lg:col-span-5 flex-col items-center justify-center">
             <div
               ref={previewRef}
-              className="relative w-full max-w-md aspect-[4/3] rounded-3xl overflow-hidden border border-white/20 p-2 bg-zinc-900/60 backdrop-blur-2xl shadow-2xl transition-all duration-500"
-              style={{
-                boxShadow: `0 25px 60px -15px ${activeItem.color}25, inset 0 1px 0 rgba(255,255,255,0.2)`,
-              }}
+              className="relative w-full max-w-sm aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.08] p-1.5 bg-obsidian-surface/60 backdrop-blur-xl shadow-2xl transition-all duration-300"
             >
-              {/* Dynamic Image with Crossfade */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden group">
+              <div className="relative w-full h-full rounded-xl overflow-hidden group">
                 <img
                   src={activeItem.previewImg}
                   alt={activeItem.title}
-                  className="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-out brightness-90 contrast-110"
+                  className="w-full h-full object-cover brightness-90 contrast-105"
                 />
-                
-                {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                <div
-                  className="absolute inset-0 opacity-20 mix-blend-color-dodge transition-colors duration-500"
-                  style={{ backgroundColor: activeItem.color }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
 
-                {/* Badge & Telemetry pill */}
-                <div className="absolute top-4 left-4 flex items-center gap-2">
+                <div className="absolute top-3 left-3 flex items-center gap-1.5">
                   <span
-                    className="px-3 py-1 text-[11px] font-mono font-bold tracking-wider uppercase rounded-full backdrop-blur-md border text-white"
+                    className="px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider uppercase rounded backdrop-blur-md border text-white"
                     style={{
-                      backgroundColor: `${activeItem.color}30`,
-                      borderColor: activeItem.color,
+                      backgroundColor: `${activeItem.color}20`,
+                      borderColor: `${activeItem.color}50`,
                     }}
                   >
                     {activeItem.tag}
                   </span>
                 </div>
 
-                {/* Bottom Card Info */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
                   <div>
-                    <div className="text-xs font-mono uppercase tracking-widest text-zinc-400">
-                      TELEMETRY DATA
+                    <div className="text-[9px] font-mono uppercase tracking-widest text-zinc-400">
+                      TELEMETRY
                     </div>
-                    <div className="text-lg font-display font-bold text-white tracking-wide mt-0.5">
+                    <div className="text-xs font-mono font-bold text-white tracking-wide mt-0.5">
                       {activeItem.stat}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-[11px] font-mono text-zinc-300">
-                    <Radio className="w-3 h-3 text-brand-lime animate-pulse" />
-                    LIVE FEED
+                  <div className="flex items-center gap-1 px-2 py-0.5 bg-black/60 backdrop-blur-md rounded border border-white/[0.08] text-[9px] font-mono text-brand-accent">
+                    <Radio className="w-2.5 h-2.5 animate-pulse" />
+                    LIVE
                   </div>
                 </div>
               </div>
@@ -400,23 +367,15 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Bottom Footer Telemetry & Socials */}
-        <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>FLEET SYSTEM STATUS: NOMINAL</span>
-            </div>
-            <div className="hidden sm:block text-zinc-600">|</div>
-            <div className="hidden sm:flex items-center gap-3 text-zinc-400">
-              <span>LON 13:45</span>
-              <span>NYC 08:45</span>
-              <span>TYO 22:45</span>
-            </div>
+        {/* Footer */}
+        <div className="pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-zinc-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-accent animate-pulse" />
+            <span>GLOBAL PROTOCOL 2026 // NOMINAL</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            {['INSTAGRAM', 'TWITTER / X', 'DISCORD', 'GITHUB'].map((soc) => (
+          <div className="flex items-center gap-4 text-[11px]">
+            {['TWITTER', 'DISCORD', 'GITHUB'].map((soc) => (
               <a
                 key={soc}
                 href={`#${soc.toLowerCase()}`}
@@ -432,3 +391,4 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
     </div>
   );
 };
+

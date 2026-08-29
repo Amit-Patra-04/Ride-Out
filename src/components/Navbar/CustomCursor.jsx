@@ -4,9 +4,8 @@ import gsap from 'gsap';
 export const CustomCursor = () => {
   const cursorDotRef = useRef(null);
   const cursorRingRef = useRef(null);
-  const textRef = useRef(null);
   const [cursorText, setCursorText] = useState('');
-  const [cursorType, setCursorType] = useState('default'); // 'default' | 'hover' | 'text' | 'button'
+  const [cursorType, setCursorType] = useState('default'); // 'default' | 'hover' | 'text'
 
   useEffect(() => {
     // Only run on non-touch desktop devices
@@ -31,40 +30,11 @@ export const CustomCursor = () => {
     const setDotY = gsap.quickSetter(dot, 'y', 'px');
 
     // QuickTo for high-performance physics-interpolated ring trailing
-    const setRingX = gsap.quickTo(ring, 'x', { duration: 0.4, ease: 'power3.out' });
-    const setRingY = gsap.quickTo(ring, 'y', { duration: 0.4, ease: 'power3.out' });
-    const setRingRotation = gsap.quickTo(ring, 'rotation', { duration: 0.35, ease: 'power2.out' });
-    const setRingScaleX = gsap.quickTo(ring, 'scaleX', { duration: 0.35, ease: 'power2.out' });
-    const setRingScaleY = gsap.quickTo(ring, 'scaleY', { duration: 0.35, ease: 'power2.out' });
+    const setRingX = gsap.quickTo(ring, 'x', { duration: 0.35, ease: 'power3.out' });
+    const setRingY = gsap.quickTo(ring, 'y', { duration: 0.35, ease: 'power3.out' });
 
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let prevMouse = { x: mouse.x, y: mouse.y };
     let isVisible = false;
-
-    // Velocity & stretch loop
-    const ticker = gsap.ticker.add(() => {
-      // Calculate velocity
-      const vx = mouse.x - prevMouse.x;
-      const vy = mouse.y - prevMouse.y;
-      const speed = Math.sqrt(vx * vx + vy * vy);
-
-      // Clamp max deformation
-      const clampedSpeed = Math.min(speed, 90);
-      const stretch = (clampedSpeed / 90) * 0.45; // Max 45% stretch
-      const angle = Math.atan2(vy, vx) * (180 / Math.PI);
-
-      if (speed > 1.5) {
-        setRingRotation(angle);
-        setRingScaleX(1 + stretch);
-        setRingScaleY(1 - stretch * 0.5);
-      } else {
-        setRingScaleX(1);
-        setRingScaleY(1);
-      }
-
-      prevMouse.x = mouse.x;
-      prevMouse.y = mouse.y;
-    });
 
     const handlePointerMove = (e) => {
       mouse.x = e.clientX;
@@ -72,39 +42,35 @@ export const CustomCursor = () => {
 
       if (!isVisible) {
         isVisible = true;
-        gsap.to([dot, ring], { opacity: 1, duration: 0.25 });
+        gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
       }
 
-      // Zero-latency instant placement for dot
       setDotX(mouse.x);
       setDotY(mouse.y);
-
-      // Smooth physics trailing for ring
       setRingX(mouse.x);
       setRingY(mouse.y);
     };
 
     const handlePointerDown = () => {
-      gsap.to(dot, { scale: 0.5, duration: 0.15, ease: 'power2.out' });
-      gsap.to(ring, { scale: 0.75, duration: 0.15, ease: 'power2.out' });
+      gsap.to(dot, { scale: 0.7, duration: 0.12 });
+      gsap.to(ring, { scale: 0.85, duration: 0.12 });
     };
 
     const handlePointerUp = () => {
-      gsap.to(dot, { scale: 1, duration: 0.25, ease: 'elastic.out(1.2, 0.4)' });
-      gsap.to(ring, { scale: 1, duration: 0.35, ease: 'elastic.out(1.2, 0.4)' });
+      gsap.to(dot, { scale: 1, duration: 0.25, ease: 'power3.out' });
+      gsap.to(ring, { scale: 1, duration: 0.25, ease: 'power3.out' });
     };
 
     const handlePointerLeave = () => {
       isVisible = false;
-      gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
+      gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
     };
 
     const handlePointerEnter = () => {
       isVisible = true;
-      gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+      gsap.to([dot, ring], { opacity: 1, duration: 0.2 });
     };
 
-    // Contextual Hover Detection
     const handleMouseOver = (e) => {
       const targetCursor = e.target.closest('[data-cursor]');
       const clickable = e.target.closest('a, button, [role="button"], input, select, textarea');
@@ -131,7 +97,6 @@ export const CustomCursor = () => {
 
     return () => {
       document.body.classList.remove('custom-cursor-active');
-      gsap.ticker.remove(ticker);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerdown', handlePointerDown);
       window.removeEventListener('pointerup', handlePointerUp);
@@ -143,36 +108,33 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Precision Center Micro-Dot (Immediate zero-latency response) */}
+      {/* Precision Center Micro-Dot */}
       <div
         ref={cursorDotRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed top-0 left-0 z-[9999] rounded-full transition-colors duration-200 hidden md:block opacity-0 ${
+        className={`pointer-events-none fixed top-0 left-0 z-[9999] rounded-full hidden md:block opacity-0 transition-colors duration-200 ${
           cursorType === 'text'
-            ? 'h-1.5 w-1.5 bg-brand-lime shadow-glow-lime'
+            ? 'h-1.5 w-1.5 bg-brand-accent shadow-glow-cyan'
             : cursorType === 'hover'
-            ? 'h-2 w-2 bg-brand-accent shadow-glow-cyan'
-            : 'h-1.5 w-1.5 bg-white'
+            ? 'h-1.5 w-1.5 bg-brand-accent shadow-glow-cyan'
+            : 'h-1 w-1 bg-white/90'
         }`}
       />
 
-      {/* Kinetic Fluid Trailing Ring with Velocity Deformation & Dynamic Morphing */}
+      {/* Kinetic Fluid Trailing Ring */}
       <div
         ref={cursorRingRef}
         aria-hidden="true"
-        className={`pointer-events-none fixed top-0 left-0 z-[9998] flex items-center justify-center rounded-full transition-all duration-300 ease-out hidden md:flex opacity-0 will-change-transform ${
+        className={`pointer-events-none fixed top-0 left-0 z-[9998] flex items-center justify-center rounded-full hidden md:flex opacity-0 will-change-transform transition-all duration-250 ease-out ${
           cursorType === 'text'
-            ? 'h-20 w-20 bg-black/85 border border-brand-accent/70 backdrop-blur-md shadow-glow-cyan scale-100'
+            ? 'h-14 px-4 bg-obsidian-surface/90 border border-brand-accent/40 backdrop-blur-md shadow-glow-cyan/20 scale-100 rounded-full'
             : cursorType === 'hover'
-            ? 'h-12 w-12 bg-white/10 border border-brand-accent/80 backdrop-blur-xs scale-110 shadow-glow-cyan'
-            : 'h-9 w-9 border border-white/30 bg-transparent scale-100'
+            ? 'h-10 w-10 border border-brand-accent/50 bg-brand-accent/[0.04] scale-100'
+            : 'h-7 w-7 border border-white/20 bg-transparent scale-100'
         }`}
       >
         {cursorText && (
-          <span
-            ref={textRef}
-            className="text-[10px] font-mono font-bold tracking-widest text-brand-accent uppercase text-center px-2 select-none animate-pulse"
-          >
+          <span className="text-[9px] font-mono font-semibold tracking-widest text-brand-accent uppercase text-center select-none whitespace-nowrap">
             {cursorText}
           </span>
         )}
@@ -180,3 +142,4 @@ export const CustomCursor = () => {
     </>
   );
 };
+

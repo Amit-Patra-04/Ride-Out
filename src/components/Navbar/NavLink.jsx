@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { EASING, sfx } from '../../utils/animations';
 
@@ -26,23 +26,21 @@ export const NavLink = ({
     if (topChars && bottomChars) {
       gsap.to(topChars, {
         yPercent: -120,
-        rotateX: -45,
         opacity: 0,
-        stagger: 0.02,
-        duration: 0.4,
+        stagger: 0.015,
+        duration: 0.3,
         ease: EASING.smooth,
         overwrite: 'auto',
       });
 
       gsap.fromTo(
         bottomChars,
-        { yPercent: 120, rotateX: 45, opacity: 0 },
+        { yPercent: 120, opacity: 0 },
         {
           yPercent: 0,
-          rotateX: 0,
           opacity: 1,
-          stagger: 0.02,
-          duration: 0.4,
+          stagger: 0.015,
+          duration: 0.3,
           ease: EASING.smooth,
           overwrite: 'auto',
         }
@@ -57,20 +55,18 @@ export const NavLink = ({
     if (topChars && bottomChars) {
       gsap.to(topChars, {
         yPercent: 0,
-        rotateX: 0,
         opacity: 1,
-        stagger: 0.015,
-        duration: 0.35,
+        stagger: 0.01,
+        duration: 0.25,
         ease: EASING.smooth,
         overwrite: 'auto',
       });
 
       gsap.to(bottomChars, {
         yPercent: 120,
-        rotateX: 45,
         opacity: 0,
-        stagger: 0.015,
-        duration: 0.35,
+        stagger: 0.01,
+        duration: 0.25,
         ease: EASING.smooth,
         overwrite: 'auto',
       });
@@ -89,29 +85,29 @@ export const NavLink = ({
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      data-cursor="EXPLORE"
-      className={`relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-300 rounded-full select-none cursor-pointer flex items-center gap-1.5 ${
-        isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
+      data-cursor="GOTO"
+      className={`relative px-3.5 py-1.5 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full select-none cursor-pointer flex items-center gap-1.5 ${
+        isActive ? 'text-white font-medium' : 'text-zinc-400 hover:text-zinc-100'
       }`}
     >
-      <div className="relative overflow-hidden inline-block h-5 leading-5 perspective-500">
-        {/* Top layer (default visible) */}
+      <div className="relative overflow-hidden inline-block h-4 leading-4">
+        {/* Top layer */}
         <div ref={textTopRef} className="flex">
           {letters.map((char, i) => (
             <span
               key={`top-${i}`}
-              className="inline-block transition-transform duration-200"
+              className="inline-block"
             >
               {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
         </div>
 
-        {/* Bottom layer (slides in on hover with accent glow) */}
+        {/* Bottom layer */}
         <div
           ref={textBottomRef}
           aria-hidden="true"
-          className="flex absolute top-0 left-0 text-brand-accent font-semibold pointer-events-none"
+          className="flex absolute top-0 left-0 text-brand-accent font-medium pointer-events-none"
         >
           {letters.map((char, i) => (
             <span
@@ -125,10 +121,11 @@ export const NavLink = ({
       </div>
 
       {badge && (
-        <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold tracking-tight bg-brand-accent/15 text-brand-accent border border-brand-accent/30 rounded-full animate-pulse">
+        <span className="px-1.5 py-0.2 text-[8px] font-mono uppercase bg-brand-accent/15 text-brand-accent border border-brand-accent/30 rounded">
           {badge}
         </span>
       )}
     </a>
   );
 };
+

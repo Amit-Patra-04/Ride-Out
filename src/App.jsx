@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from './components/Navbar/Navbar';
 import { HeroShowcase } from './components/Hero/HeroShowcase';
-import { CustomCursor } from './components/Navbar/CustomCursor';
 import { BookingModal } from './components/BookingModal/BookingModal';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   useEffect(() => {
-    // Initialize Lenis smooth momentum scroll
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.8,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    lenis.on('scroll', ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    const tickerCb = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(tickerCb);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(tickerCb);
       lenis.destroy();
     };
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#06070A] text-white selection:bg-brand-accent selection:text-black overflow-hidden font-sans">
-      {/* Custom Interactive Follower Cursor */}
-      <CustomCursor />
-
-      {/* Awwwards Navigation Bar */}
+    <div className="relative min-h-screen bg-obsidian-void text-zinc-100 selection:bg-brand-accent selection:text-black overflow-hidden font-sans">
+      {/* Dynamic Island Floating Header */}
       <Navbar onBookRideClick={() => setIsBookingOpen(true)} />
 
       {/* Main Experience Showcase */}
@@ -53,3 +55,4 @@ export default function App() {
     </div>
   );
 }
+

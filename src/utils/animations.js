@@ -1,12 +1,13 @@
 import gsap from 'gsap';
 
-// Easing presets for luxury awwwards feel
+// Refined easing presets for luxury Awwwards feel
 export const EASING = {
   smooth: 'power3.out',
   cinematic: 'power4.out',
   elastic: 'elastic.out(1, 0.75)',
   expo: 'expo.out',
   curtain: 'power4.inOut',
+  subtle: 'sine.out',
 };
 
 /**
@@ -37,19 +38,19 @@ class SoundEffects {
       }
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(420, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(840, this.ctx.currentTime + 0.05);
 
-      gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.05);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1320, this.ctx.currentTime + 0.035);
+
+      gain.gain.setValueAtTime(0.012, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.035);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.05);
+      osc.stop(this.ctx.currentTime + 0.035);
     } catch {
       // Audio context might be restricted before gesture
     }
@@ -67,17 +68,45 @@ class SoundEffects {
       const gain = this.ctx.createGain();
 
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(600, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(150, this.ctx.currentTime + 0.08);
+      osc.frequency.setValueAtTime(720, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(240, this.ctx.currentTime + 0.06);
 
-      gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.025, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0005, this.ctx.currentTime + 0.06);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.08);
+      osc.stop(this.ctx.currentTime + 0.06);
+    } catch {
+      // Ignore audio error
+    }
+  }
+
+  playChime() {
+    if (this.muted) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(587.33, this.ctx.currentTime); // D5
+      osc.frequency.exponentialRampToValueAtTime(880, this.ctx.currentTime + 0.2); // A5
+
+      gain.gain.setValueAtTime(0.03, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.25);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.25);
     } catch {
       // Ignore audio error
     }
@@ -94,7 +123,7 @@ export const sfx = new SoundEffects();
 /**
  * Apply magnetic hover physics to a target element
  */
-export const createMagneticEffect = (element, strength = 0.35) => {
+export const createMagneticEffect = (element, strength = 0.25) => {
   if (!element) return () => {};
 
   const handleMouseMove = (e) => {
@@ -105,8 +134,8 @@ export const createMagneticEffect = (element, strength = 0.35) => {
     gsap.to(element, {
       x: x * strength,
       y: y * strength,
-      rotation: x * 0.05,
-      duration: 0.4,
+      rotation: x * 0.03,
+      duration: 0.35,
       ease: EASING.smooth,
     });
   };
@@ -116,7 +145,7 @@ export const createMagneticEffect = (element, strength = 0.35) => {
       x: 0,
       y: 0,
       rotation: 0,
-      duration: 0.7,
+      duration: 0.6,
       ease: EASING.elastic,
     });
   };
@@ -129,3 +158,4 @@ export const createMagneticEffect = (element, strength = 0.35) => {
     element.removeEventListener('mouseleave', handleMouseLeave);
   };
 };
+

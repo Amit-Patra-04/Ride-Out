@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { EASING, sfx } from '../../utils/animations';
-import { MagneticButton } from '../Navbar/MagneticButton';
 import {
   X,
   MapPin,
   Calendar,
-  Clock,
-  Sparkles,
   Zap,
   ShieldCheck,
   CheckCircle,
+  ArrowRight,
+  Radio,
 } from 'lucide-react';
 
 export const BookingModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
   const cardRef = useRef(null);
-  const [step, setStep] = useState('form'); // 'form' | 'success'
-  const [pickup, setPickup] = useState('Neo-Tokyo Central Skyport');
-  const [destination, setDestination] = useState('Mount Fuji High-Speed Hub');
+  const [step, setStep] = useState('form');
+  const [pickup, setPickup] = useState('Tokyo Skyport Terminal 01');
+  const [destination, setDestination] = useState('Mount Fuji Alpine Heliport');
+  const [selectedVehicle, setSelectedVehicle] = useState('Apex GT');
 
   useEffect(() => {
     if (isOpen) {
@@ -32,28 +32,28 @@ export const BookingModal = ({ isOpen, onClose }) => {
       gsap.fromTo(
         backdropRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: 'power2.out' }
+        { opacity: 1, duration: 0.35, ease: 'power2.out' }
       );
 
       gsap.fromTo(
         cardRef.current,
-        { y: 50, scale: 0.95, opacity: 0 },
-        { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: EASING.cinematic }
+        { y: 30, scale: 0.96, opacity: 0 },
+        { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: EASING.smooth }
       );
     } else if (modalRef.current) {
       document.body.style.overflow = '';
 
       gsap.to(cardRef.current, {
-        y: 30,
-        scale: 0.95,
+        y: 20,
+        scale: 0.96,
         opacity: 0,
-        duration: 0.3,
+        duration: 0.25,
         ease: 'power2.in',
       });
 
       gsap.to(backdropRef.current, {
         opacity: 0,
-        duration: 0.3,
+        duration: 0.25,
         ease: 'power2.in',
         onComplete: () => {
           gsap.set(modalRef.current, { display: 'none' });
@@ -64,140 +64,145 @@ export const BookingModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sfx.playClick();
+    sfx.playChime();
     setStep('success');
   };
 
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6 select-none"
     >
       {/* Backdrop */}
       <div
         ref={backdropRef}
         onClick={onClose}
-        className="absolute inset-0 bg-black/80 backdrop-blur-xl opacity-0 cursor-pointer"
+        className="absolute inset-0 bg-black/85 backdrop-blur-xl opacity-0 cursor-pointer"
       />
 
       {/* Modal Card */}
       <div
         ref={cardRef}
-        className="relative z-10 w-full max-w-lg rounded-3xl glass-panel-glow border-white/20 p-6 sm:p-8 shadow-2xl bg-[#0b0d14fa] text-white opacity-0"
+        className="relative z-10 w-full max-w-md rounded-2xl glass-panel border-white/[0.12] p-6 sm:p-7 shadow-2xl bg-obsidian-surface/95 text-zinc-100 opacity-0"
       >
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-          <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent">
-              <Zap className="w-4 h-4" />
+        <div className="flex items-center justify-between border-b border-white/[0.06] pb-4 mb-5">
+          <div className="flex items-center gap-2">
+            <div className="h-6 w-6 rounded-md bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent">
+              <Zap className="w-3.5 h-3.5 fill-current" />
             </div>
             <div>
-              <h3 className="font-display font-bold text-lg text-white">RESERVE QUANTUM TRANSIT</h3>
-              <p className="text-[11px] font-mono text-zinc-400">INSTANT DISPATCH // LEVEL-5 AUTONOMY</p>
+              <h3 className="font-display font-bold text-sm text-white">RESERVE QUANTUM TRANSIT</h3>
+              <p className="text-[9px] font-mono text-zinc-500 uppercase">INSTANT SKYPORT DISPATCH</p>
             </div>
           </div>
 
           <button
             onClick={onClose}
             data-cursor="CLOSE"
-            className="h-8 w-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/30 transition-colors"
+            className="h-7 w-7 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/20 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {step === 'form' ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
-              <label className="block text-xs font-mono uppercase text-zinc-400 mb-1.5 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-brand-accent" />
+              <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-brand-accent" />
                 Pickup Location
               </label>
               <input
                 type="text"
                 value={pickup}
                 onChange={(e) => setPickup(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors font-sans"
-                placeholder="Enter skyport or station..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-brand-accent/60 transition-colors font-sans"
+                placeholder="Enter skyport..."
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-mono uppercase text-zinc-400 mb-1.5 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-brand-lime" />
+              <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-brand-lime" />
                 Destination Terminal
               </label>
               <input
                 type="text"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-brand-lime transition-colors font-sans"
-                placeholder="Enter destination terminal..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-brand-lime/60 transition-colors font-sans"
+                placeholder="Enter destination..."
                 required
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-2 gap-3 pt-1">
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400 mb-1.5 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-zinc-400" />
-                  Date
+                <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
+                  <Calendar className="w-3 h-3 text-zinc-500" />
+                  Departure
                 </label>
                 <input
                   type="text"
-                  defaultValue="TODAY // IMMEDIATE"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-zinc-300 font-mono focus:outline-none focus:border-brand-accent"
+                  defaultValue="IMMEDIATE"
+                  className="w-full px-3 py-2 rounded-xl bg-white/[0.03] border border-white/[0.08] text-[11px] text-zinc-300 font-mono focus:outline-none focus:border-brand-accent/50"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400 mb-1.5 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                  Fleet Class
+                <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
+                  <Radio className="w-3 h-3 text-zinc-500" />
+                  Vehicle Class
                 </label>
-                <select className="w-full px-3 py-2.5 rounded-xl bg-[#11131a] border border-white/10 text-xs text-zinc-300 font-mono focus:outline-none focus:border-brand-accent">
-                  <option>APEX GT (HYPER)</option>
-                  <option>PHANTOM STEALTH (CRUISER)</option>
-                  <option>VORTEX-R (ALL-TERRAIN)</option>
+                <select
+                  value={selectedVehicle}
+                  onChange={(e) => setSelectedVehicle(e.target.value)}
+                  className="w-full px-2.5 py-2 rounded-xl bg-[#0e1118] border border-white/[0.08] text-[11px] text-zinc-300 font-mono focus:outline-none focus:border-brand-accent/50"
+                >
+                  <option>Apex GT (Hyper)</option>
+                  <option>Phantom Stealth (Cruiser)</option>
+                  <option>Vortex-R (Expedition)</option>
                 </select>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-between text-xs font-mono text-zinc-300">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-accent" />
+            <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-zinc-300">
+              <span className="flex items-center gap-1.5 text-zinc-400">
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" />
                 ENCRYPTED PROTOCOL
               </span>
-              <span className="text-brand-accent font-bold">EST. 120 RIDE CREDITS</span>
+              <span className="text-brand-accent font-semibold">120 RIDE CREDITS</span>
             </div>
 
             <div className="pt-2">
               <button
                 type="submit"
-                data-cursor="CONFIRM"
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-accent via-cyan-400 to-brand-lime text-black font-display font-bold text-sm tracking-wide shadow-glow-cyan hover:shadow-glow-lime transform hover:scale-[1.02] active:scale-[0.98] transition-all"
+                data-cursor="DISPATCH"
+                className="w-full py-3 rounded-xl bg-brand-accent hover:bg-white text-black font-mono font-bold text-xs tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2"
               >
-                CONFIRM & DISPATCH POD
+                <span>CONFIRM & DISPATCH POD</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </form>
         ) : (
-          <div className="text-center py-6 space-y-4">
-            <div className="h-16 w-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/20 animate-bounce">
-              <CheckCircle className="w-8 h-8" />
+          <div className="text-center py-5 space-y-3.5">
+            <div className="h-12 w-12 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
+              <CheckCircle className="w-6 h-6" />
             </div>
-            <h4 className="font-display font-bold text-2xl text-white">DISPATCH INITIATED</h4>
-            <p className="text-sm text-zinc-300 max-w-sm mx-auto">
-              Your Apex GT is routing to <span className="text-brand-accent font-semibold">{pickup}</span>. Estimated arrival in <strong>3 minutes</strong>.
+            <h4 className="font-display font-bold text-xl text-white">DISPATCH INITIATED</h4>
+            <p className="text-xs text-zinc-400 max-w-xs mx-auto leading-relaxed">
+              Your <span className="text-brand-accent font-medium">{selectedVehicle}</span> is routing to <span className="text-white font-medium">{pickup}</span>. Estimated arrival in <strong>3 minutes</strong>.
             </p>
-            <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-xs font-mono text-zinc-400">
-              VEHICLE ID: RO-9940 • TELEMETRY LINK ACTIVE
+            <div className="p-2.5 bg-white/[0.02] rounded-xl border border-white/[0.06] text-[10px] font-mono text-zinc-400">
+              POD ID: RO-9940 • TELEMETRY ACTIVE
             </div>
             <button
               onClick={onClose}
-              className="mt-4 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-mono tracking-wider transition-colors"
+              className="mt-2 px-5 py-2 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white text-[11px] font-mono tracking-wider transition-colors"
             >
-              CLOSE WINDOW
+              CLOSE
             </button>
           </div>
         )}
@@ -205,3 +210,4 @@ export const BookingModal = ({ isOpen, onClose }) => {
     </div>
   );
 };
+
