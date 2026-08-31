@@ -9,17 +9,21 @@ import {
   ShieldCheck,
   CheckCircle,
   ArrowRight,
-  Radio,
+  Sparkles,
+  Flame,
+  Award,
 } from 'lucide-react';
 
-export const BookingModal = ({ isOpen, onClose }) => {
+export const BookingModal = ({ isOpen, onClose, initialData = {} }) => {
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
   const cardRef = useRef(null);
   const [step, setStep] = useState('form');
-  const [pickup, setPickup] = useState('Tokyo Skyport Terminal 01');
-  const [destination, setDestination] = useState('Mount Fuji Alpine Heliport');
-  const [selectedVehicle, setSelectedVehicle] = useState('Apex GT');
+  const [dealership, setDealership] = useState('Pinarello Flagship Atelier — Treviso, Italy');
+  const [serviceType, setServiceType] = useState('Custom Dogma F Atelier Build & Fitment');
+  const [clientName, setClientName] = useState('');
+  const [clientEmail, setClientEmail] = useState('');
+  const [clientPhone, setClientPhone] = useState('');
 
   useEffect(() => {
     if (isOpen) {
@@ -83,131 +87,164 @@ export const BookingModal = ({ isOpen, onClose }) => {
       {/* Modal Card */}
       <div
         ref={cardRef}
-        className="relative z-10 w-full max-w-md rounded-2xl glass-panel border-white/[0.12] p-6 sm:p-7 shadow-2xl bg-obsidian-surface/95 text-zinc-100 opacity-0"
+        className="relative z-10 w-full max-w-lg rounded-2xl glass-panel border-white/[0.12] p-6 sm:p-8 shadow-2xl bg-obsidian-surface/95 text-zinc-100 opacity-0"
       >
-        <div className="flex items-center justify-between border-b border-white/[0.06] pb-4 mb-5">
-          <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-md bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent">
-              <Zap className="w-3.5 h-3.5 fill-current" />
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="h-7 w-7 rounded-lg bg-[#FF3B00]/10 border border-[#FF3B00]/30 flex items-center justify-center text-[#FF5E0E]">
+              <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-display font-bold text-sm text-white">RESERVE QUANTUM TRANSIT</h3>
-              <p className="text-[9px] font-mono text-zinc-500 uppercase">INSTANT SKYPORT DISPATCH</p>
+              <h3 className="font-display font-bold text-sm sm:text-base text-white uppercase tracking-wider">
+                Pinarello Atelier Treviso
+              </h3>
+              <p className="text-[10px] font-mono text-[#FF5E0E] uppercase">
+                DOGMA F ALLOCATION RESERVATION
+              </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            data-cursor="CLOSE"
-            className="h-7 w-7 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/20 transition-colors"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {step === 'form' ? (
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
+            {initialData.model && (
+              <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs">
+                <div className="text-[10px] text-zinc-500 uppercase">SELECTED BUILD</div>
+                <div className="font-display text-sm font-bold text-white mt-0.5">{initialData.model}</div>
+                <div className="text-zinc-400 text-[11px] mt-1 flex justify-between">
+                  <span>Livery: {initialData.colorway || 'Team INEOS Grenadiers'}</span>
+                  <span className="text-[#00F0FF] font-bold">{initialData.weight || '6.77 KG'}</span>
+                </div>
+              </div>
+            )}
+
             <div>
-              <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-brand-accent" />
-                Pickup Location
+              <label className="block text-[10px] text-zinc-400 uppercase tracking-wider mb-1.5">
+                Service & Experience Type
               </label>
-              <input
-                type="text"
-                value={pickup}
-                onChange={(e) => setPickup(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-brand-accent/60 transition-colors font-sans"
-                placeholder="Enter skyport..."
-                required
-              />
+              <select
+                value={serviceType}
+                onChange={(e) => setServiceType(e.target.value)}
+                className="w-full bg-[#0e1118] border border-white/15 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FF3B00]"
+              >
+                <option value="Custom Dogma F Atelier Build & Fitment">
+                  Custom Dogma F Atelier Build & Fitment
+                </option>
+                <option value="VIP Treviso Factory Delivery & Pro Fitting">
+                  VIP Treviso Factory Delivery & Pro Fitting
+                </option>
+                <option value="WorldTour Race Specification Test Ride">
+                  WorldTour Race Specification Test Ride
+                </option>
+              </select>
             </div>
 
             <div>
-              <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-brand-lime" />
-                Destination Terminal
+              <label className="block text-[10px] text-zinc-400 uppercase tracking-wider mb-1.5">
+                Preferred Pinarello Partner Lounge
               </label>
-              <input
-                type="text"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-brand-lime/60 transition-colors font-sans"
-                placeholder="Enter destination..."
-                required
-              />
+              <select
+                value={dealership}
+                onChange={(e) => setDealership(e.target.value)}
+                className="w-full bg-[#0e1118] border border-white/15 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FF3B00]"
+              >
+                <option value="Pinarello Flagship Atelier — Treviso, Italy">
+                  Pinarello Flagship Atelier — Treviso, Italy
+                </option>
+                <option value="Pinarello London Flagship — Regent St, UK">
+                  Pinarello London Flagship — Regent St, UK
+                </option>
+                <option value="Pinarello New York Boutique — Manhattan, USA">
+                  Pinarello New York Boutique — Manhattan, USA
+                </option>
+                <option value="Pinarello Tokyo Ginza — Tokyo, Japan">
+                  Pinarello Tokyo Ginza — Tokyo, Japan
+                </option>
+              </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <Calendar className="w-3 h-3 text-zinc-500" />
-                  Departure
+                <label className="block text-[10px] text-zinc-400 uppercase tracking-wider mb-1.5">
+                  Rider Full Name
                 </label>
                 <input
                   type="text"
-                  defaultValue="IMMEDIATE"
-                  className="w-full px-3 py-2 rounded-xl bg-white/[0.03] border border-white/[0.08] text-[11px] text-zinc-300 font-mono focus:outline-none focus:border-brand-accent/50"
+                  required
+                  placeholder="e.g. Filippo Ganna"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                  className="w-full bg-[#0e1118] border border-white/15 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FF3B00]"
                 />
               </div>
-
               <div>
-                <label className="text-[10px] font-mono uppercase text-zinc-400 mb-1 flex items-center gap-1.5">
-                  <Radio className="w-3 h-3 text-zinc-500" />
-                  Vehicle Class
+                <label className="block text-[10px] text-zinc-400 uppercase tracking-wider mb-1.5">
+                  Phone / WhatsApp
                 </label>
-                <select
-                  value={selectedVehicle}
-                  onChange={(e) => setSelectedVehicle(e.target.value)}
-                  className="w-full px-2.5 py-2 rounded-xl bg-[#0e1118] border border-white/[0.08] text-[11px] text-zinc-300 font-mono focus:outline-none focus:border-brand-accent/50"
-                >
-                  <option>Apex GT (Hyper)</option>
-                  <option>Phantom Stealth (Cruiser)</option>
-                  <option>Vortex-R (Expedition)</option>
-                </select>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+1 (555) 019-2834"
+                  value={clientPhone}
+                  onChange={(e) => setClientPhone(e.target.value)}
+                  className="w-full bg-[#0e1118] border border-white/15 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FF3B00]"
+                />
               </div>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-zinc-300">
-              <span className="flex items-center gap-1.5 text-zinc-400">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" />
-                ENCRYPTED PROTOCOL
-              </span>
-              <span className="text-brand-accent font-semibold">120 RIDE CREDITS</span>
+            <div>
+              <label className="block text-[10px] text-zinc-400 uppercase tracking-wider mb-1.5">
+                Official Email Dossier
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="rider@worldtour.com"
+                value={clientEmail}
+                onChange={(e) => setClientEmail(e.target.value)}
+                className="w-full bg-[#0e1118] border border-white/15 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FF3B00]"
+              />
             </div>
 
             <div className="pt-2">
               <button
                 type="submit"
-                data-cursor="DISPATCH"
-                className="w-full py-3 rounded-xl bg-brand-accent hover:bg-white text-black font-mono font-bold text-xs tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#FF3B00] via-[#FF6A00] to-[#FF3B00] text-white font-bold uppercase tracking-widest text-xs shadow-glow-crimson hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
               >
-                <span>CONFIRM & DISPATCH POD</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Confirm Dogma F Allocation</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </form>
         ) : (
-          <div className="text-center py-5 space-y-3.5">
-            <div className="h-12 w-12 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 mx-auto flex items-center justify-center shadow-lg shadow-emerald-500/10">
-              <CheckCircle className="w-6 h-6" />
+          <div className="text-center py-6 space-y-4">
+            <div className="w-14 h-14 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/40 text-[#00F0FF] flex items-center justify-center mx-auto">
+              <CheckCircle className="w-8 h-8" />
             </div>
-            <h4 className="font-display font-bold text-xl text-white">DISPATCH INITIATED</h4>
-            <p className="text-xs text-zinc-400 max-w-xs mx-auto leading-relaxed">
-              Your <span className="text-brand-accent font-medium">{selectedVehicle}</span> is routing to <span className="text-white font-medium">{pickup}</span>. Estimated arrival in <strong>3 minutes</strong>.
+            <h4 className="font-display text-2xl font-bold uppercase text-white">
+              Dogma F Allocation Confirmed
+            </h4>
+            <p className="text-xs text-zinc-400 font-mono leading-relaxed max-w-sm mx-auto">
+              An Atelier Master Builder from Treviso will contact you at <span className="text-white">{clientEmail || 'your email'}</span> to review your custom TorayCa M40X layup specifications and geometry profile.
             </p>
-            <div className="p-2.5 bg-white/[0.02] rounded-xl border border-white/[0.06] text-[10px] font-mono text-zinc-400">
-              POD ID: RO-9940 • TELEMETRY ACTIVE
+            <div className="pt-4">
+              <button
+                onClick={onClose}
+                className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase tracking-wider transition-colors"
+              >
+                Close & Return to 3D Stage
+              </button>
             </div>
-            <button
-              onClick={onClose}
-              className="mt-2 px-5 py-2 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white text-[11px] font-mono tracking-wider transition-colors"
-            >
-              CLOSE
-            </button>
           </div>
         )}
       </div>
     </div>
   );
 };
-

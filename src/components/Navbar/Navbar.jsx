@@ -5,24 +5,27 @@ import { MagneticButton } from './MagneticButton';
 import { FullscreenMenu } from './FullscreenMenu';
 import { EASING, sfx } from '../../utils/animations';
 import {
-  Zap,
   Volume2,
   VolumeX,
   ArrowRight,
+  Flame,
+  Layers,
+  Sparkles,
 } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'MODELS', href: '#models', badge: 'HYPER' },
-  { label: 'CHASSIS', href: '#chassis' },
-  { label: 'EXPEDITIONS', href: '#expeditions' },
-  { label: 'BLACK PASS', href: '#blackpass' },
-  { label: 'TERMINALS', href: '#terminals' },
+  { label: '3D AERO LAB', href: '#hero-3d', badge: '3D WEBGL' },
+  { label: 'SPECIFICATIONS', href: '#specifications' },
+  { label: 'GEOMETRY', href: '#geometry' },
+  { label: 'WIND TUNNEL', href: '#windtunnel' },
+  { label: 'CONFIGURATOR', href: '#configurator', badge: 'STUDIO' },
+  { label: 'HERITAGE', href: '#heritage' },
 ];
 
 export const Navbar = ({ onBookRideClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('MODELS');
+  const [activeLink, setActiveLink] = useState('3D AERO LAB');
   const [isMuted, setIsMuted] = useState(false);
 
   const navContainerRef = useRef(null);
@@ -98,35 +101,39 @@ export const Navbar = ({ onBookRideClick }) => {
         <div
           className={`mx-auto pointer-events-auto transition-all duration-400 ease-out flex items-center justify-between ${
             isScrolled
-              ? 'max-w-4xl rounded-full px-4 sm:px-5 py-2 glass-panel border-white/[0.08] shadow-[0_8px_30px_rgb(0,0,0,0.4)] bg-obsidian-surface/80 backdrop-blur-2xl'
-              : 'max-w-6xl rounded-full px-5 sm:px-7 py-3 glass-panel border-white/[0.06] bg-obsidian-base/60 backdrop-blur-xl'
+              ? 'max-w-5xl rounded-full px-4 sm:px-6 py-2.5 glass-panel border-white/[0.08] shadow-[0_8px_30px_rgb(0,0,0,0.5)] bg-obsidian-surface/90 backdrop-blur-2xl'
+              : 'max-w-7xl rounded-full px-5 sm:px-8 py-3.5 glass-panel border-white/[0.06] bg-obsidian-base/70 backdrop-blur-xl'
           }`}
         >
           {/* Brand Identity */}
           <a
             href="#"
-            data-cursor="HOME"
-            className="flex items-center gap-2.5 group select-none"
+            className="flex items-center gap-3 group select-none"
             onClick={() => sfx.playClick()}
           >
-            <div className="h-6 w-6 rounded-md bg-brand-accent/10 border border-brand-accent/30 flex items-center justify-center text-brand-accent group-hover:border-brand-accent transition-all duration-300">
-              <Zap className="w-3.5 h-3.5 fill-current" />
+            <div className="h-7 w-7 rounded-lg bg-[#FF3B00]/15 border border-[#FF3B00]/40 flex items-center justify-center text-[#FF5E0E] group-hover:border-[#FF3B00] group-hover:scale-105 transition-all duration-300 shadow-glow-crimson">
+              <span className="font-display font-black text-xs text-white">P</span>
             </div>
-            <span className="font-display font-bold text-sm tracking-tight text-white group-hover:text-brand-accent transition-colors duration-200">
-              RIDE<span className="text-brand-accent">·</span>OUT
-            </span>
+            <div className="flex flex-col">
+              <span className="font-display font-extrabold text-sm sm:text-base tracking-wider text-white uppercase group-hover:text-[#FF5E0E] transition-colors duration-200">
+                PINARELLO
+              </span>
+              <span className="text-[9px] font-mono text-zinc-400 tracking-widest -mt-0.5">
+                DOGMA F <span className="text-[#FF5E0E]">M40X</span>
+              </span>
+            </div>
           </a>
 
-          {/* Desktop Center Links */}
+          {/* Desktop Center Navigation Links */}
           <nav
             ref={linksContainerRef}
             onMouseLeave={handleLinksContainerLeave}
-            className="relative hidden md:flex items-center gap-0.5 px-2 py-1 rounded-full bg-white/[0.02] border border-white/[0.04]"
+            className="relative hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/[0.04]"
           >
             <div
               ref={indicatorRef}
               aria-hidden="true"
-              className="absolute left-0 top-1 bottom-1 rounded-full bg-white/[0.06] border border-white/[0.1] pointer-events-none opacity-0"
+              className="absolute left-0 top-1 bottom-1 rounded-full bg-white/[0.08] border border-white/[0.12] pointer-events-none opacity-0"
               style={{ width: 0 }}
             />
 
@@ -137,64 +144,67 @@ export const Navbar = ({ onBookRideClick }) => {
                 label={link.label}
                 badge={link.badge}
                 isActive={activeLink === link.label}
-                onClick={() => setActiveLink(link.label)}
-                onHover={handleLinkHover}
+                onClick={() => {
+                  setActiveLink(link.label);
+                  sfx.playHover();
+                }}
+                onMouseEnter={(e) => handleLinkHover(e.currentTarget)}
               />
             ))}
           </nav>
 
-          {/* Right Action Cluster */}
-          <div className="flex items-center gap-2">
-            {/* Audio Toggle with Live Waveform */}
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Audio Toggle */}
             <button
               onClick={toggleSound}
-              data-cursor={isMuted ? 'AUDIO: OFF' : 'AUDIO: ON'}
-              className="hidden sm:flex items-center justify-center h-8 w-8 rounded-full bg-white/[0.03] border border-white/[0.08] text-zinc-400 hover:text-brand-accent hover:border-brand-accent/40 transition-all duration-200"
+              className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-white hover:border-white/20 transition-all duration-200"
+              title={isMuted ? 'Unmute Mechanical Audio' : 'Mute Audio'}
             >
               {isMuted ? (
                 <VolumeX className="w-3.5 h-3.5 text-zinc-500" />
               ) : (
-                <div className="flex items-center gap-0.5">
-                  <span className="h-2 w-0.5 bg-brand-accent rounded-full animate-pulse" />
-                  <span className="h-3 w-0.5 bg-brand-accent rounded-full animate-pulse delay-75" />
-                  <span className="h-1.5 w-0.5 bg-brand-accent rounded-full animate-pulse delay-150" />
-                </div>
+                <Volume2 className="w-3.5 h-3.5 text-[#00F0FF]" />
               )}
             </button>
 
-            {/* Micro Dispatch CTA */}
-            <MagneticButton
-              onClick={() => {
-                sfx.playClick();
-                if (onBookRideClick) onBookRideClick();
-              }}
-              dataCursor="DISPATCH"
-              className="px-3.5 sm:px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/40 hover:bg-brand-accent hover:text-black text-brand-accent font-mono font-medium text-xs tracking-wider transition-all duration-300 group"
-            >
-              <span>DISPATCH</span>
-              <ArrowRight className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" />
+            {/* Atelier Reservation CTA Button */}
+            <MagneticButton strength={0.2}>
+              <button
+                onClick={() => {
+                  sfx.playClick();
+                  if (onBookRideClick) onBookRideClick();
+                }}
+                className="relative group overflow-hidden rounded-full px-4 sm:px-5 py-2 bg-gradient-to-r from-[#FF3B00] via-[#FF5E0E] to-[#FF3B00] bg-[length:200%_auto] text-white font-mono text-[11px] uppercase tracking-wider font-bold transition-all duration-300 shadow-glow-crimson hover:shadow-glow-crimson/80 flex items-center gap-2"
+              >
+                <span>RESERVE BUILD</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
             </MagneticButton>
 
-            {/* Kinetic Hamburger Menu */}
-            <MagneticButton
+            {/* Mobile Menu Button */}
+            <button
               onClick={() => {
                 sfx.playClick();
                 setIsMenuOpen(true);
               }}
-              dataCursor="MENU"
-              className="h-8 w-8 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-brand-accent/40 text-white transition-all duration-200"
+              className="flex lg:hidden items-center justify-center w-8 h-8 rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:text-white"
+              aria-label="Open Navigation"
             >
-              <div className="flex flex-col gap-1 items-center justify-center w-4">
-                <span className="w-3.5 h-0.5 bg-zinc-300 rounded-full transition-all group-hover:w-4 group-hover:bg-brand-accent" />
-                <span className="w-4 h-0.5 bg-zinc-300 rounded-full transition-all group-hover:bg-brand-accent" />
+              <div className="flex flex-col gap-1 items-end">
+                <span className="w-4 h-0.5 bg-white rounded-full"></span>
+                <span className="w-2.5 h-0.5 bg-[#FF5E0E] rounded-full"></span>
               </div>
-            </MagneticButton>
+            </button>
           </div>
         </div>
       </header>
 
-      <FullscreenMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {/* Fullscreen Curtain Menu */}
+      <FullscreenMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+      />
     </>
   );
 };
-

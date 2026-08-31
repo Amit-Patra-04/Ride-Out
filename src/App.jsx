@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [bookingData, setBookingData] = useState({});
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -37,20 +38,26 @@ export default function App() {
     };
   }, []);
 
+  const handleOpenBooking = (customData = {}) => {
+    setBookingData(customData);
+    setIsBookingOpen(true);
+  };
+
   return (
-    <div className="relative min-h-screen bg-obsidian-void text-zinc-100 selection:bg-brand-accent selection:text-black overflow-hidden font-sans">
-      {/* Dynamic Island Floating Header */}
-      <Navbar onBookRideClick={() => setIsBookingOpen(true)} />
+    <div className="relative min-h-screen bg-[#050608] text-zinc-100 selection:bg-[#FF3B00] selection:text-white overflow-hidden font-sans">
+      {/* Dynamic Floating Italian Racing Header */}
+      <Navbar onBookRideClick={() => handleOpenBooking({})} />
 
       {/* Main Experience Showcase */}
       <main>
-        <HeroShowcase onOpenBooking={() => setIsBookingOpen(true)} />
+        <HeroShowcase onOpenBooking={handleOpenBooking} />
       </main>
 
-      {/* Interactive Booking Pod Modal */}
+      {/* Pinarello Atelier Treviso Reservation Modal */}
       <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
+        initialData={bookingData}
       />
     </div>
   );
