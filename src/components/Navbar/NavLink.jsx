@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { EASING, sfx } from '../../utils/animations';
+import { sfx } from '../../utils/animations';
 
 export const NavLink = ({
   href = '#',
@@ -9,72 +8,25 @@ export const NavLink = ({
   badge,
   onClick,
   onHover,
+  onMouseEnter,
 }) => {
   const linkRef = useRef(null);
-  const textTopRef = useRef(null);
-  const textBottomRef = useRef(null);
 
-  const letters = label.split('');
-
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
     sfx.playHover();
     if (onHover) onHover(linkRef.current);
-
-    const topChars = textTopRef.current?.children;
-    const bottomChars = textBottomRef.current?.children;
-
-    if (topChars && bottomChars) {
-      gsap.to(topChars, {
-        yPercent: -120,
-        opacity: 0,
-        stagger: 0.015,
-        duration: 0.3,
-        ease: EASING.smooth,
-        overwrite: 'auto',
-      });
-
-      gsap.fromTo(
-        bottomChars,
-        { yPercent: 120, opacity: 0 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          stagger: 0.015,
-          duration: 0.3,
-          ease: EASING.smooth,
-          overwrite: 'auto',
-        }
-      );
-    }
-  };
-
-  const handleMouseLeave = () => {
-    const topChars = textTopRef.current?.children;
-    const bottomChars = textBottomRef.current?.children;
-
-    if (topChars && bottomChars) {
-      gsap.to(topChars, {
-        yPercent: 0,
-        opacity: 1,
-        stagger: 0.01,
-        duration: 0.25,
-        ease: EASING.smooth,
-        overwrite: 'auto',
-      });
-
-      gsap.to(bottomChars, {
-        yPercent: 120,
-        opacity: 0,
-        stagger: 0.01,
-        duration: 0.25,
-        ease: EASING.smooth,
-        overwrite: 'auto',
-      });
-    }
+    if (onMouseEnter) onMouseEnter(e);
   };
 
   const handleClick = (e) => {
     sfx.playClick();
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
     if (onClick) onClick(e);
   };
 
@@ -84,44 +36,23 @@ export const NavLink = ({
       href={href}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       data-cursor="GOTO"
-      className={`relative px-3.5 py-1.5 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full select-none cursor-pointer flex items-center gap-1.5 ${
-        isActive ? 'text-white font-medium' : 'text-zinc-400 hover:text-zinc-100'
+      className={`group relative px-2.5 sm:px-3 py-1 text-[11px] font-mono font-medium tracking-wider transition-all duration-200 rounded-full select-none cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+        isActive
+          ? 'text-white font-semibold'
+          : 'text-zinc-400 hover:text-white'
       }`}
     >
-      <div className="relative overflow-hidden inline-block h-4 leading-4">
-        {/* Top layer */}
-        <div ref={textTopRef} className="flex">
-          {letters.map((char, i) => (
-            <span
-              key={`top-${i}`}
-              className="inline-block"
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </div>
+      <span className="relative z-10 transition-all duration-200 group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+        {label}
+      </span>
 
-        {/* Bottom layer */}
-        <div
-          ref={textBottomRef}
-          aria-hidden="true"
-          className="flex absolute top-0 left-0 text-brand-accent font-medium pointer-events-none"
-        >
-          {letters.map((char, i) => (
-            <span
-              key={`bottom-${i}`}
-              className="inline-block transform translate-y-full opacity-0"
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </div>
-      </div>
+      {isActive && (
+        <span className="w-1 h-1 rounded-full bg-[#FF3B00] shadow-[0_0_8px_#FF3B00] animate-pulse" />
+      )}
 
       {badge && (
-        <span className="px-1.5 py-0.2 text-[8px] font-mono uppercase bg-brand-accent/15 text-brand-accent border border-brand-accent/30 rounded">
+        <span className="px-1.5 py-0.5 text-[8px] font-mono uppercase bg-[#FF3B00]/15 text-[#FF5E0E] border border-[#FF3B00]/30 rounded">
           {badge}
         </span>
       )}
