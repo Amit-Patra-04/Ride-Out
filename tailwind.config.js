@@ -9,15 +9,15 @@ export default {
     extend: {
       colors: {
         obsidian: {
-          void: '#040507',
+          void: '#030406',
           base: '#06070a',
           surface: '#0d1017',
           elevated: '#141822',
           border: 'rgba(255, 255, 255, 0.07)',
-          borderHover: 'rgba(255, 59, 0, 0.35)',
+          borderHover: 'rgba(228, 0, 43, 0.45)',
         },
         brand: {
-          accent: '#FF3B00',
+          accent: '#E4002B',
           orange: '#FF5E0E',
           gold: '#E5A93C',
           cyan: '#00F0FF',
@@ -31,16 +31,21 @@ export default {
           border: 'rgba(255, 255, 255, 0.08)',
         },
         pinarello: {
-          red: '#FF3B00',
-          blaze: '#FF5414',
-          gold: '#E6A122',
-          carbon: '#0c0e14',
-          slate: '#161a24',
+          red: '#E4002B',
+          blaze: '#FF3B00',
+          amber: '#E6A122',
+          turquoise: '#00C4D4',
+          blue: '#1E40AF',
+          carbon: '#0a0c10',
+          charcoal: '#14161c',
+          silver: '#E5E7EB',
+          dark: '#181818',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
-        display: ['Syne', 'Space Grotesk', 'sans-serif'],
+        ttnorms: ['"TT Norms Pro"', 'Outfit', 'Inter', 'sans-serif'],
+        sans: ['"TT Norms Pro"', 'Outfit', 'Inter', 'Plus Jakarta Sans', 'sans-serif'],
+        display: ['Outfit', 'Syne', 'Space Grotesk', 'sans-serif'],
         grotesk: ['Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
         cinzel: ['Cinzel', 'serif'],

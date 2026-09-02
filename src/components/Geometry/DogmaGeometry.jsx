@@ -211,6 +211,27 @@ export const DogmaGeometry = () => {
               </div>
             </div>
 
+            {/* Visual Chassis Blueprint Diagram */}
+            <div className="relative my-6 rounded-2xl bg-black/60 border border-white/10 overflow-hidden p-4 flex flex-col items-center justify-center">
+              <img
+                src="https://pinarello.com/storage/thumbs/ProductFamily/1344__resize__af22b54a27abdb3ea30f29cccb5be987.jpg"
+                alt="Dogma F Frame Architecture"
+                className="w-full h-44 sm:h-52 object-contain filter contrast-125"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between font-mono text-[10px] text-zinc-300">
+                <span className="bg-black/80 px-2.5 py-1 rounded-md border border-white/10">
+                  STACK: <strong className="text-white">{activeGeom.stack} mm</strong>
+                </span>
+                <span className="bg-black/80 px-2.5 py-1 rounded-md border border-white/10">
+                  REACH: <strong className="text-white">{activeGeom.reach} mm</strong>
+                </span>
+                <span className="bg-black/80 px-2.5 py-1 rounded-md border border-white/10 text-[#00F0FF]">
+                  FORK RAKE: <strong>47 mm</strong>
+                </span>
+              </div>
+            </div>
+
             {/* Metric Dimensions Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06]">

@@ -48,26 +48,26 @@ export const GROUPSETS = [
 
 export const WHEELSETS = [
   {
+    id: 'princeton-peak-4550',
+    name: 'Princeton Peak 4550 DB*',
+    depth: '45-50mm Sinusoidal Aero Rim',
+    tires: 'Continental Gran Prix 5000S TR 28-622',
+    weightGrams: 1340,
+    priceEuro: 3950,
+  },
+  {
     id: 'c50',
     name: 'Shimano Dura-Ace WH-R9270-C50',
     depth: '50mm Aero Carbon D2 Rim',
-    tires: 'Continental GP5000 S TR 28mm',
+    tires: 'Continental Gran Prix 5000S TR 28-622',
     weightGrams: 1461,
     priceEuro: 2400,
-  },
-  {
-    id: 'princeton-4550',
-    name: 'Princeton CarbonWorks Peak 4550',
-    depth: '45-50mm Sinusoidal Aero Rim',
-    tires: 'Continental GP5000 TT TR 28mm',
-    weightGrams: 1340,
-    priceEuro: 3950,
   },
   {
     id: 'dtswiss-1100',
     name: 'DT Swiss ARC 1100 Dicut 50',
     depth: '50mm Aero with SINC Ceramic Bearings',
-    tires: 'Schwalbe Pro One TLE 28mm',
+    tires: 'Continental Gran Prix 5000S TR 28-622',
     weightGrams: 1380,
     priceEuro: 2850,
   },
@@ -75,7 +75,7 @@ export const WHEELSETS = [
     id: 'c60',
     name: 'Shimano Dura-Ace WH-R9270-C60',
     depth: '60mm Deep Aero Sprinter Profile',
-    tires: 'Continental GP5000 S TR 28mm',
+    tires: 'Continental Gran Prix 5000S TR 28-622',
     weightGrams: 1609,
     priceEuro: 2550,
   },
@@ -88,9 +88,9 @@ export const COCKPITS = [
 ];
 
 export const SADDLES = [
-  { id: 'fizik-argo-00', name: 'Fi\'zi:k Vento Argo 00 Carbon', weightGrams: 134, priceEuro: 290 },
+  { id: 'most-lynx-ultrafast', name: 'Most Lynx Ultrafast Superflow L Carbon (145mm)', weightGrams: 129, priceEuro: 320 },
+  { id: 'fizik-argo-00', name: 'Fi\'zi:k Vento Argo 00 Carbon (140mm)', weightGrams: 134, priceEuro: 290 },
   { id: 'selle-italia-tekno', name: 'Selle Italia SLR Boost Tekno Superflow', weightGrams: 95, priceEuro: 450 },
-  { id: 'prologo-dimension', name: 'Prologo Dimension Nack Carbon Rails', weightGrams: 149, priceEuro: 240 },
 ];
 
 export const DogmaConfigurator = ({
