@@ -23,6 +23,7 @@ export const COLORWAYS = [
     roughness: 0.15,
     clearcoat: 1.0,
     badge: 'GRAND TOUR CHAMPION',
+    bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
   },
   {
     id: 'luxter-blue',
@@ -38,6 +39,7 @@ export const COLORWAYS = [
     roughness: 0.2,
     clearcoat: 1.0,
     badge: 'MY26 FLAGSHIP',
+    bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
   {
     id: 'cobalt-phantom',
@@ -53,6 +55,7 @@ export const COLORWAYS = [
     roughness: 0.18,
     clearcoat: 0.95,
     badge: 'STEALTH ATELIER',
+    bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
   {
     id: 'luxter-amber',
@@ -68,6 +71,7 @@ export const COLORWAYS = [
     roughness: 0.18,
     clearcoat: 1.0,
     badge: 'LIQUID AMBER',
+    bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
   },
   {
     id: 'luxter-turquoise',
@@ -83,6 +87,7 @@ export const COLORWAYS = [
     roughness: 0.15,
     clearcoat: 1.0,
     badge: 'SPECTRUM GLOSS',
+    bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
   },
   {
     id: 'obsidian-emerald',
@@ -98,6 +103,7 @@ export const COLORWAYS = [
     roughness: 0.22,
     clearcoat: 0.95,
     badge: 'NORDIC PEARL',
+    bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
   {
     id: 'phantom-ice',
@@ -113,6 +119,7 @@ export const COLORWAYS = [
     roughness: 0.25,
     clearcoat: 0.9,
     badge: 'RAW TORAYCA',
+    bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
   {
     id: 'gunmetal-black',
@@ -128,6 +135,7 @@ export const COLORWAYS = [
     roughness: 0.5,
     clearcoat: 0.2,
     badge: 'SATIN STEALTH',
+    bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
   },
 ];
 

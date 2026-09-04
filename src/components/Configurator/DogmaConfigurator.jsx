@@ -176,40 +176,85 @@ export const DogmaConfigurator = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Options Controls Column */}
         <div className="lg:col-span-7 space-y-8">
-          {/* 1. Paint Livery Selection */}
-          <div className="bg-obsidian-surface/80 border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
-                1. Official Paint Livery
+          {/* 1. Paint Livery Selection with Live Dynamic Cycle Preview */}
+          <div className="bg-obsidian-surface/80 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <div>
+                <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
+                  1. Official Paint Livery & Real-Time Stage
+                </span>
+                <div className="font-display text-lg font-bold text-white uppercase mt-0.5">
+                  {colorway.name}
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-[#E4002B]/15 border border-[#E4002B]/30 text-[#FF5E0E] text-[10px] font-mono font-bold uppercase">
+                {colorway.badge}
               </span>
-              <span className="text-xs font-mono text-[#FF5E0E]">{colorway.name}</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {COLORWAYS.map((c) => {
-                const isSelected = colorway.id === c.id;
-                return (
-                  <button
-                    key={c.id}
-                    onClick={() => handleSelectColor(c)}
-                    className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${
-                      isSelected
-                        ? 'border-[#FF3B00] bg-[#FF3B00]/10 shadow-glow-crimson'
-                        : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.05]'
-                    }`}
-                  >
-                    <div
-                      className="w-7 h-7 rounded-full border border-white/20 shrink-0"
-                      style={{
-                        background: `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
-                      }}
-                    />
-                    <div className="overflow-hidden">
-                      <div className="font-display text-xs font-bold text-white truncate">{c.name}</div>
-                      <div className="text-[10px] font-mono text-zinc-400 truncate">{c.edition}</div>
-                    </div>
-                  </button>
-                );
-              })}
+
+            {/* Side-by-Side Grid: Color Swatches & Live Cycle Preview */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              {/* Left Side: Colorway Selector Buttons */}
+              <div className="md:col-span-6 grid grid-cols-1 gap-2.5 max-h-[320px] overflow-y-auto pr-1">
+                {COLORWAYS.map((c) => {
+                  const isSelected = colorway.id === c.id;
+                  return (
+                    <button
+                      key={c.id}
+                      onClick={() => handleSelectColor(c)}
+                      className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${
+                        isSelected
+                          ? 'border-[#E4002B] bg-[#E4002B]/15 shadow-[0_0_15px_rgba(228,0,43,0.35)] scale-[1.02]'
+                          : 'border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20'
+                      }`}
+                    >
+                      <div
+                        className="w-7 h-7 rounded-full border border-white/20 shrink-0 shadow-inner"
+                        style={{
+                          background: `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+                        }}
+                      />
+                      <div className="overflow-hidden flex-1">
+                        <div className="font-display text-xs font-bold text-white truncate">{c.name}</div>
+                        <div className="text-[10px] font-mono text-zinc-400 truncate">{c.edition}</div>
+                      </div>
+                      {isSelected && (
+                        <span className="w-2 h-2 rounded-full bg-[#E4002B] shadow-[0_0_6px_#E4002B]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Right Side: Live Dynamic Cycle Image Showcase */}
+              <div className="md:col-span-6 relative flex flex-col items-center justify-center p-6 rounded-2xl bg-black/70 border border-white/10 overflow-hidden min-h-[260px] group shadow-inner">
+                {/* Dynamic Aura Glow matching selected bike color */}
+                <div
+                  className="absolute w-48 h-48 rounded-full blur-[80px] opacity-40 transition-all duration-700 pointer-events-none"
+                  style={{ backgroundColor: colorway.primaryColor }}
+                />
+
+                {/* Bike Image with smooth transition */}
+                <img
+                  src={colorway.bikeImage || 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png'}
+                  alt={colorway.name}
+                  key={colorway.id}
+                  className="relative z-10 w-full max-w-[280px] sm:max-w-[320px] object-contain drop-shadow-[0_15px_20px_rgba(0,0,0,0.85)] transition-all duration-500 transform group-hover:scale-105"
+                />
+
+                {/* Shadow & Reflection */}
+                <div className="w-3/4 h-3 bg-black/80 rounded-full blur-md mt-2 pointer-events-none" />
+
+                {/* Bottom Color Details Overlay */}
+                <div className="mt-3 text-center">
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                    FINISH: <strong className="text-white">{colorway.name}</strong>
+                  </div>
+                  <div className="text-[9px] font-mono text-[#00F0FF] uppercase mt-0.5">
+                    {colorway.edition}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

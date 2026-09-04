@@ -113,6 +113,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Shimano Dura Ace FC-R9200, HollowTech 2, 12s',
         role: 'Hollow Forged Aluminum Power Transfer Arms',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICCrankset/cg4SHICCrankset/FC-R9200-52-36T-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
         material: 'HollowTech II Alloy Structure',
         highlight: 'Optimum Balance of Stiffness & Ultralight Weight',
       },
@@ -121,6 +122,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Shimano Dura Ace Di2 RD-R9200 12s',
         role: 'Shadow Electronic Rear Mech with Wireless Charging',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICRearDerailleur/cg4SHICRearDerailleur/RD-R9250-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
         material: 'Carbon Composite Cage & Alloy Body',
         highlight: 'Direct Mount Integration • 58% Faster Shift',
       },
@@ -129,6 +131,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Shimano Dura Ace Di2 FD-9200 12S',
         role: 'Compact Braze-on Front Electronic Shifter',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICFrontDerailleur/cg4SHICFrontDerailleur/FD-R9250-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/MenuVoice/6b745595e72deddea3b7a81c89d1fb6d.jpg',
         material: 'Cold-Forged CNC Linkage',
         highlight: 'Auto-Trimming Zero Chain-Rub Logic',
       },
@@ -137,6 +140,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Shimano Dura Ace CS-R9200 12S',
         role: 'Wide-Range Hyperglide+ Cog Cluster',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICCassetteSprocket/cg4SHICCassetteSprocket/CS-R9200-12-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/MenuVoice/c7dbb829185a4b712cb6103e57a4fcd5.jpg',
         material: 'Titanium & Nickel-Plated Steel Cogs',
         highlight: 'Continuous Smooth Power Shifts Under Load',
       },
@@ -145,6 +149,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Shimano Dura Ace CN-HG 12S',
         role: 'Asymmetric 12-Speed Sil-Tec Coated Drive Link',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICChain/cg4SHICChain/CN-M9100-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/MenuVoice/6b745595e72deddea3b7a81c89d1fb6d.jpg',
         material: 'Chromized Roller Link Plates',
         highlight: 'Sil-Tec Ultra-Low Friction Coating',
       },
@@ -162,6 +167,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Dura Ace BR-R9200, 2 pistons caliper, 160mm rotor',
         role: 'Flat-Mount Hydraulic Disc with Servo Wave Action',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICBrake/cg4SHICBrakeCaliper/BR-R9270-F-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
         material: 'Mono-block Aluminum Caliper',
         highlight: '160mm CenterLock Ice-Tech Freeza Rotor',
       },
@@ -169,8 +175,9 @@ export const OFFICIAL_SPECS_DATA = [
         name: 'Rear Brake System',
         spec: 'Dura Ace BR-R9200, 2 pistons caliper, 140mm rotor',
         role: 'Flat-Mount Hydraulic Disc Integrated Rear Assembly',
-        image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICBrake/cg4SHICBrakeCaliper/BR-R9270-R-shic219-primary_1.jpg',
-        material: 'Mono-block Aluminum Caliper',
+        image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICDiscBrakeRotor/cg4SHICDiscBrakeRotor/RT-CL900-140-shic219-primary_1.jpg',
+        fallbackImage: 'https://pinarello.com/storage/Technology/1ba269b3ed1e43d8c63613770cbfd2d6.mp4',
+        material: 'Mono-block Aluminum Caliper & RT-CL900 Rotor',
         highlight: '140mm Low-Profile Rotor for Modulated Control',
       },
       {
@@ -178,6 +185,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'PRINCETON PEAK 4550 DB*',
         role: 'Sinusoidal Aerodynamic High-Power Wheelset',
         image: 'https://roadbikeaction.com/wp-content/uploads/2021/06/Princeton-Carbonworks-Peak-4550-cross-scaled.jpg',
+        fallbackImage: 'https://pinarello.com/storage/MenuVoice/c7dbb829185a4b712cb6103e57a4fcd5.jpg',
         material: 'Variable-Depth Full Carbon Rim',
         highlight: '45-50mm Wave Depth • Disc Brake Optimized',
       },
@@ -186,6 +194,7 @@ export const OFFICIAL_SPECS_DATA = [
         spec: 'Continental Grand Prix 5000S TR 28-622',
         role: 'Tubeless-Ready WorldTour Racing Rubber',
         image: 'https://www.continental-tires.com/adobe/dynamicmedia/deliver/dm-aid--1d78b7a8-16ea-4800-b280-7897c9676b22/Continental_Grand-Prix-5000-S-TR_ChristopherLanaway_Lifestyle_32.jpg?width=600',
+        fallbackImage: 'https://pinarello.com/storage/ProductGallery/3fe908c0936aaa74d1a46f442d24b09f.jpg',
         material: 'BlackChili Compound + Vectran Breaker',
         highlight: '700x28c Width • Unsurpassed Cornering Grip',
       },
@@ -329,14 +338,14 @@ export const DogmaSpecs = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {selectedCategory.components.map((comp, idx) => (
               <div
                 key={idx}
-                className="group relative rounded-3xl overflow-hidden bg-obsidian-surface/80 border border-white/10 hover:border-white/25 backdrop-blur-xl transition-all duration-300 flex flex-col shadow-2xl"
+                className="group relative rounded-3xl overflow-hidden bg-obsidian-surface/80 border border-white/10 hover:border-white/25 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-2xl"
               >
-                {/* Visual Image Header for each option */}
-                <div className="relative w-full h-48 sm:h-56 bg-black/90 overflow-hidden flex items-center justify-center p-4 border-b border-white/10">
+                {/* Visual Square Image Header (1:1 Ratio) */}
+                <div className="relative w-full aspect-square bg-gradient-to-b from-black/95 via-black/80 to-obsidian-surface/90 overflow-hidden flex items-center justify-center p-6 border-b border-white/10">
                   <img
                     src={comp.image}
                     alt={comp.name}
@@ -344,12 +353,12 @@ export const DogmaSpecs = () => {
                       if (comp.fallbackImage && e.currentTarget.src !== comp.fallbackImage) {
                         e.currentTarget.src = comp.fallbackImage;
                       } else {
-                        e.currentTarget.src = 'https://pinarello.com/storage/thumbs/ProductFamily/1344__resize__af22b54a27abdb3ea30f29cccb5be987.jpg';
+                        e.currentTarget.src = 'https://pinarello.com/storage/thumbs/ProductFamily/2832__resize__af22b54a27abdb3ea30f29cccb5be987.jpg';
                       }
                     }}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
                   {/* Top Badge */}
                   <div className="absolute top-4 left-4">
@@ -359,27 +368,27 @@ export const DogmaSpecs = () => {
                   </div>
 
                   <div className="absolute bottom-3 left-4 right-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#FF5E0E] font-mono text-[10px] font-bold uppercase backdrop-blur-md">
-                      <Zap className="w-3 h-3" />
-                      {comp.highlight}
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#FF5E0E] font-mono text-[9px] font-bold uppercase backdrop-blur-md truncate max-w-full">
+                      <Zap className="w-3 h-3 shrink-0" />
+                      <span className="truncate">{comp.highlight}</span>
                     </span>
                   </div>
                 </div>
 
                 {/* Technical Details */}
-                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest mb-1">
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-1 truncate">
                       {comp.role}
                     </div>
-                    <h4 className="font-display text-lg sm:text-xl font-extrabold text-white uppercase group-hover:text-[#FF5E0E] transition-colors">
+                    <h4 className="font-display text-base font-extrabold text-white uppercase group-hover:text-[#FF5E0E] transition-colors leading-snug line-clamp-2">
                       {comp.spec}
                     </h4>
                   </div>
 
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-xs">
-                    <span className="text-zinc-500 uppercase">MATERIAL / STRUCT</span>
-                    <span className="text-zinc-200 font-semibold">{comp.material}</span>
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px]">
+                    <span className="text-zinc-500 uppercase">MATERIAL</span>
+                    <span className="text-zinc-300 font-semibold text-right truncate max-w-[150px]">{comp.material}</span>
                   </div>
                 </div>
               </div>
