@@ -18,6 +18,7 @@ const MENU_ITEMS = [
     tag: '3D WEBGL ENGINE',
     color: '#E4002B',
     stat: '6.77 KG TOTAL WEIGHT',
+    previewImg: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
   {
     id: '02',
@@ -27,6 +28,7 @@ const MENU_ITEMS = [
     tag: 'FACTORY LINEUP',
     color: '#00C4D4',
     stat: '5 FLAGSHIP BUILDS',
+    previewImg: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
   },
   {
     id: '03',
@@ -36,6 +38,7 @@ const MENU_ITEMS = [
     tag: 'VIDEO TELEMETRY',
     color: '#FF5E0E',
     stat: '+12% BB STIFFNESS',
+    previewImg: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
   },
   {
     id: '04',
@@ -45,6 +48,7 @@ const MENU_ITEMS = [
     tag: 'WORLDTOUR BLUEPRINT',
     color: '#00F0FF',
     stat: 'DISC CHASSIS',
+    previewImg: 'https://pinarello.com/storage/ProductGallery/aa365cb48c17536181742afbc801f4f0.jpg',
   },
   {
     id: '05',
@@ -54,6 +58,7 @@ const MENU_ITEMS = [
     tag: 'CFD FLOW ANALYSIS',
     color: '#D4FF00',
     stat: '-3.2W AT 40 KM/H',
+    previewImg: 'https://pinarello.com/storage/MenuVoice/9bfdf4bef5901b428c3974d2ece02754.jpg',
   },
   {
     id: '06',
@@ -63,6 +68,7 @@ const MENU_ITEMS = [
     tag: 'BESPOKE BUILD POD',
     color: '#E5A93C',
     stat: '100% ITALIAN ATELIER',
+    previewImg: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
   },
   {
     id: '07',
@@ -72,6 +78,7 @@ const MENU_ITEMS = [
     tag: 'PHOTO ARCHIVE',
     color: '#FFD166',
     stat: '5 PRO PASSES',
+    previewImg: 'https://pinarello.com/storage/ProductGallery/3fe908c0936aaa74d1a46f442d24b09f.jpg',
   },
   {
     id: '08',
@@ -81,6 +88,7 @@ const MENU_ITEMS = [
     tag: 'PALMARES RECORD',
     color: '#E4002B',
     stat: '56.792 KM/H RECORD',
+    previewImg: 'https://pinarello.com/storage/MenuVoice/c7dbb829185a4b712cb6103e57a4fcd5.jpg',
   },
 ];
 
