@@ -40,6 +40,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/thumbs/ProductFamily/2832__resize__af22b54a27abdb3ea30f29cccb5be987.jpg',
         material: 'Carbon (TorayCa M40X Composite)',
         highlight: '392 GPa Tensile Modulus • +12% Stiffness',
+        fit: 'cover',
       },
       {
         name: 'Fork',
@@ -48,6 +49,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
         material: 'Carbon (eTICR Integrated)',
         highlight: '47mm Rake • Caliper Vortex Elimination',
+        fit: 'cover',
       },
       {
         name: 'Bottom Bracket',
@@ -57,6 +59,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/thumbs/ProductFamily/1344__resize__af22b54a27abdb3ea30f29cccb5be987.jpg',
         material: 'Precision Sealed Bearings',
         highlight: 'Aero-Keel 3.5° Rotated Air Channel',
+        fit: 'contain',
       },
       {
         name: 'Seatpost & Clamp',
@@ -65,6 +68,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/ProductGallery/aa365cb48c17536181742afbc801f4f0.jpg',
         material: 'Carbon Aero Blade + 3D Ti Clamp',
         highlight: 'Fully Integrated Internal Wedge',
+        fit: 'cover',
       },
     ],
   },
@@ -82,6 +86,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/MenuVoice/9bfdf4bef5901b428c3974d2ece02754.jpg',
         material: 'High-Modulus Carbon Fiber',
         highlight: 'Twisted Lever Position • 7° Sprint Flare',
+        fit: 'cover',
       },
       {
         name: 'Grips / Bartape',
@@ -90,6 +95,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/MenuVoice/d4c208a96afbf783bbafa84b1b0b5cd1.jpg',
         material: 'Microfiber PU with Gel Dampening',
         highlight: 'Tactile Wet & Dry Grip Transfer',
+        fit: 'cover',
       },
       {
         name: 'Saddle',
@@ -98,6 +104,7 @@ export const OFFICIAL_SPECS_DATA = [
         image: 'https://pinarello.com/storage/MenuVoice/2aa61ef07d8042e8467de2f425044954.jpg',
         material: 'Carbon Reinforced Shell & CarboKeramic Rails',
         highlight: 'Superflow Central Cut-out • 145mm Width',
+        fit: 'cover',
       },
     ],
   },
@@ -116,6 +123,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
         material: 'HollowTech II Alloy Structure',
         highlight: 'Optimum Balance of Stiffness & Ultralight Weight',
+        fit: 'contain',
       },
       {
         name: 'Rear Derailleur',
@@ -125,6 +133,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
         material: 'Carbon Composite Cage & Alloy Body',
         highlight: 'Direct Mount Integration • 58% Faster Shift',
+        fit: 'contain',
       },
       {
         name: 'Front Derailleur',
@@ -134,6 +143,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/MenuVoice/6b745595e72deddea3b7a81c89d1fb6d.jpg',
         material: 'Cold-Forged CNC Linkage',
         highlight: 'Auto-Trimming Zero Chain-Rub Logic',
+        fit: 'contain',
       },
       {
         name: 'Cassette',
@@ -143,6 +153,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/MenuVoice/c7dbb829185a4b712cb6103e57a4fcd5.jpg',
         material: 'Titanium & Nickel-Plated Steel Cogs',
         highlight: 'Continuous Smooth Power Shifts Under Load',
+        fit: 'contain',
       },
       {
         name: 'Chain',
@@ -152,6 +163,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/MenuVoice/6b745595e72deddea3b7a81c89d1fb6d.jpg',
         material: 'Chromized Roller Link Plates',
         highlight: 'Sil-Tec Ultra-Low Friction Coating',
+        fit: 'contain',
       },
     ],
   },
@@ -170,15 +182,17 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
         material: 'Mono-block Aluminum Caliper',
         highlight: '160mm CenterLock Ice-Tech Freeza Rotor',
+        fit: 'contain',
       },
       {
         name: 'Rear Brake System',
         spec: 'Dura Ace BR-R9200, 2 pistons caliper, 140mm rotor',
         role: 'Flat-Mount Hydraulic Disc Integrated Rear Assembly',
         image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICDiscBrakeRotor/cg4SHICDiscBrakeRotor/RT-CL900-140-shic219-primary_1.jpg',
-        fallbackImage: 'https://pinarello.com/storage/Technology/1ba269b3ed1e43d8c63613770cbfd2d6.mp4',
+        fallbackImage: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
         material: 'Mono-block Aluminum Caliper & RT-CL900 Rotor',
         highlight: '140mm Low-Profile Rotor for Modulated Control',
+        fit: 'contain',
       },
       {
         name: 'Front & Rear Wheelset',
@@ -188,6 +202,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/MenuVoice/c7dbb829185a4b712cb6103e57a4fcd5.jpg',
         material: 'Variable-Depth Full Carbon Rim',
         highlight: '45-50mm Wave Depth • Disc Brake Optimized',
+        fit: 'cover',
       },
       {
         name: 'Tires',
@@ -197,6 +212,7 @@ export const OFFICIAL_SPECS_DATA = [
         fallbackImage: 'https://pinarello.com/storage/ProductGallery/3fe908c0936aaa74d1a46f442d24b09f.jpg',
         material: 'BlackChili Compound + Vectran Breaker',
         highlight: '700x28c Width • Unsurpassed Cornering Grip',
+        fit: 'cover',
       },
     ],
   },
@@ -344,32 +360,52 @@ export const DogmaSpecs = () => {
                 key={idx}
                 className="group relative rounded-3xl overflow-hidden bg-obsidian-surface/80 border border-white/10 hover:border-white/25 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-2xl"
               >
-                {/* Visual Square Image Header (1:1 Ratio) */}
-                <div className="relative w-full aspect-square bg-gradient-to-b from-black/95 via-black/80 to-obsidian-surface/90 overflow-hidden flex items-center justify-center p-6 border-b border-white/10">
-                  <img
-                    src={comp.image}
-                    alt={comp.name}
-                    onError={(e) => {
-                      if (comp.fallbackImage && e.currentTarget.src !== comp.fallbackImage) {
-                        e.currentTarget.src = comp.fallbackImage;
-                      } else {
-                        e.currentTarget.src = 'https://pinarello.com/storage/thumbs/ProductFamily/2832__resize__af22b54a27abdb3ea30f29cccb5be987.jpg';
-                      }
-                    }}
-                    className="w-full h-full object-contain filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                {/* Visual Square Image Header (1:1 Ratio - Fully Fitted) */}
+                <div className="relative w-full aspect-square bg-[#0a0c12] overflow-hidden flex items-center justify-center border-b border-white/10 group-hover:border-white/20 transition-colors">
+                  {comp.fit === 'cover' ? (
+                    <img
+                      src={comp.image}
+                      alt={comp.name}
+                      onError={(e) => {
+                        if (comp.fallbackImage && e.currentTarget.src !== comp.fallbackImage) {
+                          e.currentTarget.src = comp.fallbackImage;
+                        } else {
+                          e.currentTarget.src = 'https://pinarello.com/storage/thumbs/ProductFamily/2832__resize__af22b54a27abdb3ea30f29cccb5be987.jpg';
+                        }
+                      }}
+                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                    />
+                  ) : (
+                    <div className="w-full h-full p-6 sm:p-7 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/40 via-zinc-950/90 to-[#07090e]">
+                      <img
+                        src={comp.image}
+                        alt={comp.name}
+                        onError={(e) => {
+                          if (comp.fallbackImage && e.currentTarget.src !== comp.fallbackImage) {
+                            e.currentTarget.src = comp.fallbackImage;
+                          } else {
+                            e.currentTarget.src = 'https://pinarello.com/storage/thumbs/ProductFamily/2832__resize__af22b54a27abdb3ea30f29cccb5be987.jpg';
+                          }
+                        }}
+                        className="w-full h-full max-h-[92%] max-w-[92%] object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                  )}
+
+                  {/* Ambient Lighting Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/30 pointer-events-none" />
 
                   {/* Top Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-black/80 border border-white/15 text-white font-mono text-[10px] uppercase font-bold backdrop-blur-md">
+                  <div className="absolute top-3.5 left-3.5 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-black/80 border border-white/20 text-white font-mono text-[9.5px] sm:text-[10px] uppercase font-bold backdrop-blur-md shadow-md">
                       {comp.name}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-3 left-4 right-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#FF5E0E] font-mono text-[9px] font-bold uppercase backdrop-blur-md truncate max-w-full">
-                      <Zap className="w-3 h-3 shrink-0" />
+                  {/* Bottom Technical Highlight Badge */}
+                  <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/85 border border-[#E4002B]/40 text-[#FF5E0E] font-mono text-[9px] sm:text-[9.5px] font-bold uppercase backdrop-blur-md shadow-lg truncate max-w-full">
+                      <Zap className="w-3 h-3 text-[#E4002B] shrink-0" />
                       <span className="truncate">{comp.highlight}</span>
                     </span>
                   </div>
