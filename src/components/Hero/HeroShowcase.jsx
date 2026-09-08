@@ -77,9 +77,15 @@ export const HeroShowcase = ({ onOpenBooking }) => {
         id="hero-3d"
         className="relative min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto flex flex-col justify-between"
       >
-        {/* Subtle Ambient Background Lighting */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#E4002B]/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/2 right-10 w-[450px] h-[450px] bg-[#00F0FF]/8 rounded-full blur-[130px] pointer-events-none" />
+        {/* Subtle Ambient Background Lighting matching cycle color */}
+        <div
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-25 transition-all duration-700"
+          style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
+        />
+        <div
+          className="absolute top-1/2 right-10 w-[450px] h-[450px] rounded-full blur-[130px] pointer-events-none opacity-20 transition-all duration-700"
+          style={{ backgroundColor: selectedColorway.accentColor || '#00F0FF' }}
+        />
 
         {/* Hero Headline & Editorial Subtitle */}
         <div className="relative z-10 text-center max-w-4xl mx-auto mt-4 mb-6">
@@ -87,9 +93,17 @@ export const HeroShowcase = ({ onOpenBooking }) => {
             ref={subtitleRef}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4 backdrop-blur-md"
           >
-            <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
+            <span
+              className="w-2 h-2 rounded-full animate-pulse transition-colors duration-500"
+              style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
+            />
             <span>DESIGN THE EXCEPTIONAL</span>
-            <span className="text-[#FF5E0E] font-bold">• TORAYCA M40X</span>
+            <span
+              className="font-bold transition-colors duration-500"
+              style={{ color: selectedColorway.accentColor || '#FF5E0E' }}
+            >
+              • {selectedColorway.name.toUpperCase()}
+            </span>
           </div>
 
           <h1
@@ -97,7 +111,9 @@ export const HeroShowcase = ({ onOpenBooking }) => {
             className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.95]"
           >
             PINARELLO <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E5A93C]">
+            <span
+              className={`text-transparent bg-clip-text bg-gradient-to-r ${selectedColorway.gradient || 'from-[#E4002B] via-[#FF5E0E] to-[#E5A93C]'} transition-all duration-700`}
+            >
               DOGMA F
             </span>
           </h1>

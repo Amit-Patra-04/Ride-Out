@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SlidersHorizontal,
   Layers,
@@ -104,6 +104,13 @@ export const DogmaConfigurator = ({
   const [selectedCockpit, setSelectedCockpit] = useState(COCKPITS[1]);
   const [selectedSaddle, setSelectedSaddle] = useState(SADDLES[0]);
   const [customInitials, setCustomInitials] = useState('INEOS-PRO');
+
+  // Sync with external selectedColorway prop
+  useEffect(() => {
+    if (selectedColorway && selectedColorway.id !== colorway.id) {
+      setColorway(selectedColorway);
+    }
+  }, [selectedColorway]);
 
   const baseFrameWeight = 865; // grams (Size 530 raw)
   const forkWeight = 390;
@@ -211,7 +218,7 @@ export const DogmaConfigurator = ({
                       <div
                         className="w-7 h-7 rounded-full border border-white/20 shrink-0 shadow-inner"
                         style={{
-                          background: `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+                          background: c.swatchGradient || `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
                         }}
                       />
                       <div className="overflow-hidden flex-1">
@@ -230,7 +237,7 @@ export const DogmaConfigurator = ({
               <div className="md:col-span-6 relative flex flex-col items-center justify-center p-6 rounded-2xl bg-black/70 border border-white/10 overflow-hidden min-h-[260px] group shadow-inner">
                 {/* Dynamic Aura Glow matching selected bike color */}
                 <div
-                  className="absolute w-48 h-48 rounded-full blur-[80px] opacity-40 transition-all duration-700 pointer-events-none"
+                  className="absolute w-48 h-48 rounded-full blur-[80px] opacity-50 transition-all duration-700 pointer-events-none"
                   style={{ backgroundColor: colorway.primaryColor }}
                 />
 
@@ -460,10 +467,13 @@ export const DogmaConfigurator = ({
           {/* Action Buttons */}
           <div className="space-y-3 pt-2">
             <button
-              onClick={handleReserveBuild}
+              onClick={() => {
+                sfx.playClick();
+                alert(`Atelier Build Configuration #${customInitials} saved to your Pinarello dossier.`);
+              }}
               className="w-full py-4 rounded-xl bg-gradient-to-r from-[#FF3B00] via-[#FF6A00] to-[#FF3B00] text-white font-mono text-xs uppercase tracking-widest font-bold shadow-glow-crimson hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
             >
-              <span>Reserve Atelier Build Allocation</span>
+              <span>Confirm Atelier Build Specification</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 

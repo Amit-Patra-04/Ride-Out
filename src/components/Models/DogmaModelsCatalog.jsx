@@ -25,34 +25,39 @@ export const PINARELLO_MODELS = [
     mainImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
     colorways: [
       {
-        name: 'Cobalt Phantom',
+        name: 'Luxter Red Gold',
         swatchImg: 'https://pinarello.com/storage/Variant/d77b58f160312ec04b79445406ad6f35.png',
-        colorHex: '#1d2c4d',
+        colorHex: '#9E0018',
+        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
       },
       {
-        name: 'Luxter Blue Shiny',
-        swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
-        colorHex: '#2563eb',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
-      },
-      {
-        name: 'Phantom Ice',
+        name: 'Edge Crystal White',
         swatchImg: 'https://pinarello.com/storage/Variant/c5cd77a628a14f18680ca72f652a5da0.png',
-        colorHex: '#e2e8f0',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        colorHex: '#FFFFFF',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
       },
       {
-        name: 'Molten Sand',
+        name: 'Luxter Venice Blue',
+        swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
+        colorHex: '#0B3C95',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+      },
+      {
+        name: 'Bob Black Stealth',
         swatchImg: 'https://pinarello.com/storage/Variant/17db459feed7d8f6df8ed77e9ae51fde.png',
-        colorHex: '#d4a373',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        colorHex: '#27272A',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
       },
       {
-        name: 'Obsidian Emerald',
+        name: 'INEOS Team WorldTour',
         swatchImg: 'https://pinarello.com/storage/Variant/6b721202ab0c4aae8912aade70116fd5.png',
-        colorHex: '#064e3b',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        colorHex: '#E4002B',
+        swatchGradient: 'linear-gradient(135deg, #E4002B 0%, #FF5E0E 45%, #0A0C10 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
       },
     ],
     badge: 'WORLDTOUR FLAGSHIP',
@@ -69,28 +74,32 @@ export const PINARELLO_MODELS = [
     mainImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
     colorways: [
       {
-        name: 'Luxter Turquoise',
+        name: 'Edge Crystal White',
         swatchImg: 'https://pinarello.com/storage/Variant/5117db936fc89c5e8cc58dcc6cd6732e.png',
-        colorHex: '#06b6d4',
+        colorHex: '#FFFFFF',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
       },
       {
-        name: 'Luxter Amber',
+        name: 'Luxter Red Gold',
         swatchImg: 'https://pinarello.com/storage/Variant/03b1418abfed338beab8bf35420c0244.png',
-        colorHex: '#f59e0b',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+        colorHex: '#9E0018',
+        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
       },
       {
-        name: 'Luxter Grey Matt',
+        name: 'Luxter Venice Blue',
         swatchImg: 'https://pinarello.com/storage/Variant/037cbd714e3db532413d5938c16af10e.png',
-        colorHex: '#64748b',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+        colorHex: '#0B3C95',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
       },
       {
-        name: 'Obsidian Emerald',
+        name: 'Bob Stealth Matt',
         swatchImg: 'https://pinarello.com/storage/Variant/df5eeaa085bb24be276d3d38207715cc.png',
-        colorHex: '#047857',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+        colorHex: '#27272A',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
       },
     ],
     badge: 'WIRELESS REVOLUTION',
@@ -104,13 +113,21 @@ export const PINARELLO_MODELS = [
     wheels: 'Shimano Dura-Ace C50 Tubular / Tubeless Ready',
     weight: '6.75 kg',
     priceEur: '€16,500',
-    mainImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+    mainImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
     colorways: [
       {
-        name: 'INEOS Team Livery',
+        name: 'INEOS WorldTour Team',
         swatchImg: 'https://pinarello.com/storage/Variant/94f31784affde4307c160af60a57e597.png',
-        colorHex: '#e4002b',
-        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+        colorHex: '#E4002B',
+        swatchGradient: 'linear-gradient(135deg, #E4002B 0%, #FF5E0E 45%, #0A0C10 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+      },
+      {
+        name: 'Luxter Red Gold Edition',
+        swatchImg: 'https://pinarello.com/storage/Variant/d77b58f160312ec04b79445406ad6f35.png',
+        colorHex: '#9E0018',
+        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
       },
     ],
     badge: 'GRAND TOUR CHAMPION',
@@ -127,10 +144,18 @@ export const PINARELLO_MODELS = [
     mainImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
     colorways: [
       {
-        name: 'Team PQ3 Replica',
+        name: 'Team PQ3 Bob Edition',
         swatchImg: 'https://pinarello.com/storage/Variant/4d11fb7aaf25c7f20cf5e68d8214b890.png',
-        colorHex: '#3b82f6',
+        colorHex: '#27272A',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
+      },
+      {
+        name: 'Luxter Venice Blue Edition',
+        swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
+        colorHex: '#0B3C95',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
       },
     ],
     badge: 'LIMITED EDITION',
@@ -144,31 +169,35 @@ export const PINARELLO_MODELS = [
     wheels: 'Campagnolo Bora Ultra WTO 45 DB',
     weight: '6.82 kg',
     priceEur: '€16,200',
-    mainImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+    mainImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
     colorways: [
       {
-        name: 'Gunmetal Black',
+        name: 'Bob Stealth Carbon',
         swatchImg: 'https://pinarello.com/storage/Variant/f3a1926a6e7015ea40b34125443c9a8a.png',
-        colorHex: '#27272a',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+        colorHex: '#27272A',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
       },
       {
-        name: 'Luxter Turquoise',
+        name: 'Edge Crystal White',
         swatchImg: 'https://pinarello.com/storage/Variant/c192a5a1d4a6f6227ff8e791caf5c20a.png',
-        colorHex: '#06b6d4',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+        colorHex: '#FFFFFF',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
       },
       {
-        name: 'Luxter Blue Shiny',
+        name: 'Luxter Venice Blue',
         swatchImg: 'https://pinarello.com/storage/Variant/55cf0e9736eb3f3f500f33e17b821c1c.png',
-        colorHex: '#1e40af',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+        colorHex: '#0B3C95',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
       },
       {
-        name: 'Luxter Amber',
+        name: 'Luxter Red Gold',
         swatchImg: 'https://pinarello.com/storage/Variant/e8f92cc34a0941669914faaebb6a0377.png',
-        colorHex: '#f59e0b',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+        colorHex: '#9E0018',
+        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
       },
     ],
     badge: 'ALL-ITALIAN HERITAGE',
@@ -183,38 +212,35 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
   const currentColorway = currentModel.colorways[selectedColorwayIndex] || currentModel.colorways[0];
 
   const handleSelectModel = (idx) => {
-    sfx.playClick();
     setSelectedModelIndex(idx);
     setSelectedColorwayIndex(0);
+    sfx.playClick();
   };
 
   const handleSelectColorway = (cIdx) => {
-    sfx.playClick();
     setSelectedColorwayIndex(cIdx);
+    sfx.playClick();
   };
 
   return (
     <section id="models" className="relative py-28 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-      {/* Background Section Glows */}
-      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-[#E4002B]/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#00C4D4]/6 rounded-full blur-[130px] pointer-events-none" />
+      {/* Background Lighting */}
+      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/3 translate-x-1/2 w-96 h-96 bg-[#E4002B]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Editorial Header Section */}
-      <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between mb-12 pb-8 border-b border-white/10 gap-6">
+      {/* Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#E4002B] text-xs font-mono tracking-widest uppercase mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#00F0FF] text-xs font-mono tracking-widest uppercase mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Official Dogma F Lineup</span>
+            <span>Official Factory Lineup</span>
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-none">
-            MODELS & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E5A93C]">CONFIGURATIONS</span>
+            DOGMA F <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-[#FF5E0E] to-[#E4002B]">MODELS</span>
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-zinc-400 max-w-2xl font-sans">
-            Explore the flagship configurations engineered in Treviso. Equipped with TorayCa M40X carbon monocoque chasses, electronic groupsets, and integrated TiCR cockpits.
-          </p>
         </div>
 
-        {/* Model Selector Tabs */}
+        {/* Model Tabs Selector */}
         <div className="flex flex-wrap gap-2">
           {PINARELLO_MODELS.map((model, idx) => (
             <button
@@ -236,8 +262,11 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-obsidian-surface/70 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-2xl shadow-2xl overflow-hidden">
         {/* Left Side: High-Res Studio Bike Cutout */}
         <div className="lg:col-span-7 relative flex flex-col items-center justify-center min-h-[380px] sm:min-h-[460px]">
-          {/* Subtle Stage Lighting & Halo */}
-          <div className="absolute inset-0 bg-radial-fade opacity-80 pointer-events-none" />
+          {/* Dynamic Ambient Aura Glow matching selected bike color */}
+          <div
+            className="absolute w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-[100px] opacity-40 transition-all duration-700 pointer-events-none"
+            style={{ backgroundColor: currentColorway.colorHex || '#E4002B' }}
+          />
           <div className="absolute bottom-6 w-3/4 h-8 bg-black/80 rounded-full blur-xl pointer-events-none" />
 
           {/* Badge */}
@@ -255,9 +284,9 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
           {/* Cutout Image with Smooth Fade Transition */}
           <img
             src={currentColorway.bikeImage || currentModel.mainImage}
-            alt={currentModel.name}
-            key={`${currentModel.id}-${currentColorway.name}`}
-            className="relative z-10 w-full max-w-2xl object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.8)] transition-all duration-500 hover:scale-[1.02]"
+            alt={`${currentModel.name} - ${currentColorway.name}`}
+            key={`${currentModel.id}-${currentColorway.name}-${selectedColorwayIndex}`}
+            className="relative z-10 w-full max-w-2xl object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] transition-all duration-500 hover:scale-[1.02]"
             loading="eager"
           />
 
@@ -267,29 +296,38 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               FINISH: <strong className="text-white">{currentColorway.name}</strong>
             </span>
             <div className="flex items-center gap-2">
-              {currentModel.colorways.map((c, cIdx) => (
-                <button
-                  key={c.name}
-                  onClick={() => handleSelectColorway(cIdx)}
-                  className={`relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all duration-300 ${
-                    selectedColorwayIndex === cIdx
-                      ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.6)]'
-                      : 'border-white/20 hover:border-white/60 opacity-80 hover:opacity-100'
-                  }`}
-                  title={c.name}
-                >
-                  {c.swatchImg ? (
-                    <img src={c.swatchImg} alt={c.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="w-full h-full block" style={{ backgroundColor: c.colorHex }} />
-                  )}
-                  {selectedColorwayIndex === cIdx && (
-                    <span className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <Check className="w-3 h-3 text-white stroke-[3]" />
-                    </span>
-                  )}
-                </button>
-              ))}
+              {currentModel.colorways.map((c, cIdx) => {
+                const isSelected = selectedColorwayIndex === cIdx;
+                return (
+                  <button
+                    key={cIdx}
+                    onClick={() => handleSelectColorway(cIdx)}
+                    className={`relative group w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-white/20 flex items-center justify-center transition-all duration-300 shadow-inner ${
+                      isSelected
+                        ? 'scale-110 ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black opacity-100'
+                        : 'opacity-70 hover:opacity-100 hover:scale-105'
+                    }`}
+                    style={{ background: c.swatchGradient || c.colorHex || '#18181b' }}
+                    title={c.name}
+                  >
+                    {c.swatchImg && (
+                      <img
+                        src={c.swatchImg}
+                        alt={c.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    )}
+                    {isSelected && (
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[1px]">
+                        <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -350,30 +388,22 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
 
             <div className="flex items-center gap-2.5">
               <a
-                href="#configurator"
+                href="#specifications"
                 onClick={() => sfx.playClick()}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono text-xs uppercase font-bold transition-all"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-300 hover:text-white font-mono text-xs uppercase font-bold transition-all"
               >
-                <Sliders className="w-3.5 h-3.5 text-[#00F0FF]" />
-                <span>3D ATELIER</span>
+                <span>SPECIFICATIONS</span>
               </a>
 
-              <button
-                onClick={() => {
-                  sfx.playClick();
-                  if (onOpenBooking) {
-                    onOpenBooking({
-                      model: currentModel.name,
-                      color: currentColorway.name,
-                      price: currentModel.priceEur,
-                    });
-                  }
-                }}
+              <a
+                href="#configurator"
+                onClick={() => sfx.playClick()}
                 className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase font-bold shadow-[0_0_20px_rgba(228,0,43,0.4)] hover:shadow-[0_0_30px_rgba(228,0,43,0.65)] hover:scale-[1.02] transition-all"
               >
-                <span>RESERVE</span>
+                <Sliders className="w-3.5 h-3.5 text-white" />
+                <span>CUSTOMIZE IN ATELIER</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { NavLink } from './NavLink';
-import { MagneticButton } from './MagneticButton';
 import { FullscreenMenu } from './FullscreenMenu';
 import { EASING, sfx } from '../../utils/animations';
 import {
   Volume2,
   VolumeX,
-  ArrowRight,
 } from 'lucide-react';
 
 const NAV_LINKS = [
@@ -203,19 +201,6 @@ export const Navbar = ({ onBookRideClick }) => {
                 <Volume2 className="w-3.5 h-3.5 text-[#00F0FF]" />
               )}
             </button>
-
-            {/* Atelier Reservation CTA Button */}
-            <MagneticButton
-              strength={0.15}
-              onClick={() => {
-                sfx.playClick();
-                if (onBookRideClick) onBookRideClick();
-              }}
-              className="rounded-full px-2.5 sm:px-3.5 py-1 bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] bg-[length:200%_auto] text-white font-mono text-[10px] sm:text-[10.5px] uppercase tracking-wider font-bold shadow-[0_0_12px_rgba(228,0,43,0.35)] hover:shadow-[0_0_18px_rgba(228,0,43,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-            >
-              <span>RESERVE</span>
-              <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </MagneticButton>
 
             {/* Menu Directory Button */}
             <button
