@@ -247,8 +247,8 @@ export const DogmaBike3D = ({
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x050608);
-    scene.fog = new THREE.FogExp2(0x050608, 0.12);
+    scene.background = null;
+    scene.fog = new THREE.FogExp2(0x07090e, 0.06);
 
     // Camera
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 50);
@@ -969,72 +969,48 @@ export const DogmaBike3D = ({
 
   return (
     <div
-      className={`relative w-full rounded-2xl overflow-hidden border border-white/10 bg-[#06070a] shadow-2xl backdrop-blur-xl h-[600px] sm:h-[680px] lg:h-[760px] ${className}`}
+      className={`relative w-full rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#0c0f16]/90 via-[#07090e]/95 to-[#040508] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl h-[600px] sm:h-[680px] lg:h-[760px] ${className}`}
     >
+      {/* Studio Top Rim Light Highlight */}
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none z-10" />
+
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
-      {/* Top Left HUD */}
-      <div className="absolute top-6 left-6 z-20 flex flex-col gap-2 pointer-events-none">
-        <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/70 border border-white/10 backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF3B00] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF3B00]"></span>
-          </span>
-          <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-300">
-            3D WebGL Aero Engine
-          </span>
-          <span className="font-mono text-[10px] text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/20">
-            {fps} FPS
+      {/* Top Left: Atelier Stage Badge & Active Finish */}
+      <div className="absolute top-5 left-5 z-20 flex flex-col gap-1.5 pointer-events-none">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl">
+          <span className="w-2 h-2 rounded-full bg-[#E4002B]" />
+          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-300 uppercase">
+            ATELIER TREVISO • 360° STAGE
           </span>
         </div>
-
-        <div className="bg-black/60 border border-white/10 p-3.5 rounded-xl backdrop-blur-lg max-w-[280px]">
-          <div className="flex items-center justify-between text-xs mb-1">
-            <span className="font-display font-bold uppercase tracking-wider text-white">
-              {selectedColor.name}
-            </span>
-            <span className="text-[9px] font-mono text-[#FF5E0E]">
-              {selectedColor.badge}
-            </span>
+        <div className="px-3 py-1.5 rounded-xl bg-black/40 border border-white/5 backdrop-blur-md">
+          <div className="font-display text-xs font-bold text-white uppercase tracking-wider">
+            {selectedColor.name}
           </div>
-          <p className="text-[11px] text-zinc-400 leading-tight">
-            TorayCa M40X Carbon • Onda ForkFlap™ • Shimano Dura-Ace Di2 12S
-          </p>
-
-          <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-white/10 text-center font-mono">
-            <div>
-              <div className="text-[9px] text-zinc-500 uppercase">WEIGHT</div>
-              <div className="text-xs font-bold text-white">6.77 KG</div>
-            </div>
-            <div>
-              <div className="text-[9px] text-zinc-500 uppercase">DRAG (CdA)</div>
-              <div className="text-xs font-bold text-[#00F0FF]">0.048</div>
-            </div>
-            <div>
-              <div className="text-[9px] text-zinc-500 uppercase">SAVINGS</div>
-              <div className="text-xs font-bold text-[#FF5E0E]">-3.2 W</div>
-            </div>
+          <div className="font-mono text-[9px] text-[#FF5E0E] uppercase">
+            {selectedColor.edition}
           </div>
         </div>
       </div>
 
-      {/* Top Right HUD */}
-      <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-3">
-        <div className="flex items-center gap-2 p-1.5 rounded-xl bg-black/70 border border-white/10 backdrop-blur-md">
+      {/* Top Right: Minimal Luxury Controls */}
+      <div className="absolute top-5 right-5 z-20 flex flex-col items-end gap-2.5">
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl">
           <button
             onClick={() => {
               setIsWindTunnel(!isWindTunnel);
               sfx.playHover();
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
               isWindTunnel
-                ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 shadow-glow-cyan'
-                : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]'
+                : 'text-zinc-400 hover:text-white'
             }`}
-            title="Toggle Wind Tunnel Aero Particles"
+            title="Wind Tunnel CFD Streamlines"
           >
             <Wind className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Wind Tunnel</span>
+            <span className="hidden sm:inline">WIND TUNNEL</span>
           </button>
 
           <button
@@ -1042,15 +1018,15 @@ export const DogmaBike3D = ({
               setIsXRayMode(!isXRayMode);
               sfx.playHover();
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
               isXRayMode
                 ? 'bg-[#FF3B00]/20 text-[#FF5E0E] border border-[#FF3B00]/40'
-                : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                : 'text-zinc-400 hover:text-white'
             }`}
-            title="Toggle TorayCa M40X Carbon X-Ray"
+            title="TorayCa M40X Carbon Layup X-Ray"
           >
             <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">X-Ray Layup</span>
+            <span className="hidden sm:inline">X-RAY LAYUP</span>
           </button>
 
           <button
@@ -1058,35 +1034,33 @@ export const DogmaBike3D = ({
               setIsSpinning(!isSpinning);
               sfx.playHover();
             }}
-            className={`p-1.5 rounded-lg text-xs transition-all ${
+            className={`p-1.5 rounded-full text-[11px] transition-all ${
               isSpinning ? 'text-[#D4FF00] bg-[#D4FF00]/10' : 'text-zinc-400 hover:text-white'
             }`}
-            title="Toggle Spin"
+            title="Toggle Auto Spin"
           >
             <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
           </button>
 
           <button
             onClick={resetCamera}
-            className="p-1.5 rounded-lg text-xs text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+            className="p-1.5 rounded-full text-zinc-400 hover:text-white transition-all"
             title="Reset Camera View"
           >
             <Compass className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        <div className="flex flex-col gap-1 p-2 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md max-w-[170px] hidden sm:flex">
-          <span className="font-mono text-[9px] uppercase tracking-wider text-zinc-400 px-2 py-0.5">
-            CAMERA INSPECT
-          </span>
+        {/* Camera View Selector Pills */}
+        <div className="flex items-center gap-1 p-1 rounded-full bg-black/50 border border-white/5 backdrop-blur-md hidden sm:flex font-mono text-[10px]">
           {CAMERA_VIEWS.map((cam) => (
             <button
               key={cam.id}
               onClick={() => setCameraPreset(cam.id)}
-              className={`text-left px-2.5 py-1.5 rounded-lg text-[11px] font-mono transition-all ${
+              className={`px-2.5 py-1 rounded-full transition-all ${
                 activeCameraView === cam.id
-                  ? 'bg-white/15 text-white font-semibold border-l-2 border-[#FF3B00]'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5'
+                  ? 'bg-white text-black font-bold shadow'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               {cam.label}
@@ -1143,10 +1117,10 @@ export const DogmaBike3D = ({
       ))}
 
       {/* Bottom Center: Paint Finish / Colorway Switcher */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-black/75 border border-white/15 backdrop-blur-xl shadow-2xl">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-400 mr-1 hidden sm:inline">
-            LIVERY:
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+        <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 mr-1 hidden sm:inline">
+            OFFICIAL FINISH:
           </span>
 
           {COLORWAYS.map((c) => {
@@ -1155,31 +1129,33 @@ export const DogmaBike3D = ({
               <button
                 key={c.id}
                 onClick={() => handleSelectColorway(c)}
-                className={`relative group flex items-center justify-center p-1 rounded-full transition-all duration-300 ${
-                  isSelected ? 'scale-110 ring-2 ring-[#FF3B00] ring-offset-2 ring-offset-black' : 'opacity-70 hover:opacity-100'
+                className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 ${
+                  isSelected
+                    ? 'scale-115 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_15px_rgba(255,255,255,0.4)]'
+                    : 'opacity-70 hover:opacity-100 hover:scale-105'
                 }`}
-                title={c.name}
+                title={`${c.name} — ${c.edition}`}
               >
                 <div
-                  className="w-6 h-6 rounded-full border border-white/20 shadow-inner"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-white/30 shadow-inner"
                   style={{
                     background: c.swatchGradient || `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
                   }}
                 />
                 {isSelected && (
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#00F0FF] rounded-full border border-black shadow" />
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#00F0FF] rounded-full border-2 border-black shadow" />
                 )}
               </button>
             );
           })}
         </div>
 
-        <div className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+        <div className="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.25em] flex items-center gap-2">
           <span>DRAG 360°</span>
           <span>•</span>
           <span>SCROLL ZOOM</span>
           <span>•</span>
-          <span>CLICK PINS</span>
+          <span>CLICK HOTSPOTS</span>
         </div>
       </div>
     </div>

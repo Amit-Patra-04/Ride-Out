@@ -77,124 +77,194 @@ export const HeroShowcase = ({ onOpenBooking }) => {
         id="hero-3d"
         className="relative min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto flex flex-col justify-between"
       >
-        {/* Subtle Ambient Background Lighting matching cycle color */}
+        {/* Layer 1: Atmospheric Studio Spotlights (Color-Responsive) */}
         <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none opacity-25 transition-all duration-700"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[650px] rounded-full blur-[160px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
           style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
         />
         <div
-          className="absolute top-1/2 right-10 w-[450px] h-[450px] rounded-full blur-[130px] pointer-events-none opacity-20 transition-all duration-700"
+          className="absolute top-1/3 right-4 sm:right-16 w-[550px] h-[550px] rounded-full blur-[150px] pointer-events-none opacity-20 transition-all duration-1000 ease-out"
           style={{ backgroundColor: selectedColorway.accentColor || '#00F0FF' }}
         />
+        <div
+          className="absolute top-1/2 left-4 sm:left-16 w-[450px] h-[450px] rounded-full blur-[140px] pointer-events-none opacity-15 transition-all duration-1000 ease-out"
+          style={{ backgroundColor: selectedColorway.rearColor || '#07080A' }}
+        />
 
-        {/* Hero Headline & Editorial Subtitle */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto mt-4 mb-6">
+        {/* Layer 2: Precision Engineering Grid & Carbon Weave Lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_80%_65%_at_50%_45%,black_30%,transparent_80%)] pointer-events-none" />
+
+        {/* Layer 3: Colossal Watermark Architectural Typography */}
+        <div className="absolute top-28 left-1/2 -translate-x-1/2 w-full select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.035] leading-none font-display font-black tracking-tighter">
+          <span className="text-[15vw] whitespace-nowrap text-white">PINARELLO</span>
+          <span className="text-[13vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white to-transparent -mt-[4vw]">DOGMA F</span>
+        </div>
+
+        {/* Layer 4: Italian Geographic & Technical Side Coordinates */}
+        <div className="absolute top-44 left-6 hidden 2xl:flex flex-col gap-8 font-mono text-[9.5px] text-zinc-600 tracking-[0.25em] uppercase select-none pointer-events-none">
+          <div className="space-y-1">
+            <span className="block text-zinc-500 font-bold text-[10px]">ORIGIN</span>
+            <span>45°40&apos;19&quot;N 12°14&apos;34&quot;E</span>
+            <span className="block text-zinc-600">TREVISO, ITALIA</span>
+          </div>
+          <div className="space-y-1">
+            <span className="block text-zinc-500 font-bold text-[10px]">CARBON COMPOSITE</span>
+            <span>TORAYCA® M40X</span>
+            <span className="block text-zinc-600">392 GPA TENSILE</span>
+          </div>
+        </div>
+
+        <div className="absolute top-44 right-6 hidden 2xl:flex flex-col gap-8 font-mono text-[9.5px] text-zinc-600 tracking-[0.25em] uppercase text-right select-none pointer-events-none">
+          <div className="space-y-1">
+            <span className="block text-zinc-500 font-bold text-[10px]">AERO HOMOLOGATION</span>
+            <span>ONDA FORKFLAP™ 47MM</span>
+            <span className="block text-zinc-600">UCI APPROVED 700C</span>
+          </div>
+          <div className="space-y-1">
+            <span className="block text-zinc-500 font-bold text-[10px]">INTEGRATION</span>
+            <span>TICR™ 100% INTERNAL</span>
+            <span className="block text-zinc-600">TALON ULTRA FAST</span>
+          </div>
+        </div>
+
+        {/* Editorial Luxury Hero Header */}
+        <div className="relative z-10 text-center max-w-5xl mx-auto mt-6 mb-8">
+          {/* Top Heritage Kicker */}
           <div
             ref={subtitleRef}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest mb-4 backdrop-blur-md"
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase tracking-[0.2em] mb-6 backdrop-blur-md shadow-inner"
           >
             <span
               className="w-2 h-2 rounded-full animate-pulse transition-colors duration-500"
               style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
             />
-            <span>DESIGN THE EXCEPTIONAL</span>
-            <span
-              className="font-bold transition-colors duration-500"
-              style={{ color: selectedColorway.accentColor || '#FF5E0E' }}
-            >
-              • {selectedColorway.name.toUpperCase()}
-            </span>
+            <span>CICLI PINARELLO</span>
+            <span className="text-zinc-600">•</span>
+            <span>TREVISO, ITALIA</span>
+            <span className="text-zinc-600 hidden sm:inline">•</span>
+            <span className="text-[#FF5E0E] font-bold hidden sm:inline">WORLDTOUR BENCHMARK</span>
           </div>
 
-          <h1
-            ref={titleRef}
-            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.95]"
-          >
-            PINARELLO <br />
-            <span
-              className={`text-transparent bg-clip-text bg-gradient-to-r ${selectedColorway.gradient || 'from-[#E4002B] via-[#FF5E0E] to-[#E5A93C]'} transition-all duration-700`}
-            >
-              DOGMA F
+          {/* Grand Architectural Headline */}
+          <div className="space-y-1">
+            <span className="block font-mono text-xs sm:text-sm tracking-[0.35em] text-zinc-400 font-semibold uppercase">
+              THE ALL-NEW MONOCOQUE RACING CHASSIS
             </span>
-          </h1>
+            <h1
+              ref={titleRef}
+              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white uppercase leading-[0.9] drop-shadow-2xl"
+            >
+              PINARELLO <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400">
+                DOGMA F
+              </span>
+            </h1>
+          </div>
 
-          <p className="mt-5 text-sm sm:text-base md:text-lg text-zinc-400 font-sans max-w-2xl mx-auto leading-relaxed">
-            Form over function is a constant source of discussion between our head designers. The new Dogma F achieves the perfect blend of both—re-engineered with TorayCa M40X carbon, Onda 47mm rake, and TiCR total integration.
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-400 font-sans max-w-3xl mx-auto leading-relaxed font-light">
+            Form over function is not a debate — it is pure equilibrium. Re-engineered in TorayCa® M40X carbon composite, Onda 47mm rake fork, and TiCR total integration.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          {/* Luxury Action Row */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 font-mono text-xs uppercase tracking-wider">
             <a
               href="#models"
               onClick={() => sfx.playClick()}
-              className="px-6 py-2.5 rounded-full bg-white text-black font-mono text-xs uppercase font-bold tracking-wider hover:bg-zinc-200 transition-all"
+              className="px-8 py-3.5 rounded-full bg-white text-black font-bold hover:bg-zinc-200 shadow-[0_0_30px_rgba(255,255,255,0.25)] hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
-              VIEW MODELS
+              <span>EXPLORE MODELS</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
+
+            <a
+              href="#configurator"
+              onClick={() => sfx.playClick()}
+              className="px-7 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white font-semibold backdrop-blur-md hover:border-white/30 hover:scale-105 transition-all duration-300 flex items-center gap-2"
+            >
+              <Sliders className="w-3.5 h-3.5 text-[#FF5E0E]" />
+              <span>BESPOKE ATELIER</span>
+            </a>
+
             <a
               href="#innovations"
               onClick={() => sfx.playClick()}
-              className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-mono text-xs uppercase font-bold tracking-wider transition-all"
+              className="px-6 py-3.5 rounded-full text-zinc-400 hover:text-white transition-colors duration-200 flex items-center gap-2"
             >
-              WATCH R&D BREAKTHROUGHS
+              <span>R&D BREAKTHROUGHS</span>
+              <ChevronDown className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
         {/* --- INTERACTIVE 3D BIKE STAGE --- */}
-        <div className="relative z-10 my-2">
+        <div className="relative z-10 my-4">
           <DogmaBike3D
             activeColorway={selectedColorway}
             onColorChange={handleColorChange}
           />
         </div>
 
-        {/* --- HERO BOTTOM HUD TELEMETRY BAR --- */}
+        {/* --- GRAND ARCHITECTURAL SPEC RIBBON --- */}
         <div
           ref={hudRef}
-          className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-8"
+          className="relative z-10 mt-10 bg-obsidian-surface/85 border border-white/10 rounded-2xl backdrop-blur-2xl shadow-2xl overflow-hidden"
         >
-          <div className="bg-obsidian-surface/75 border border-white/10 p-4 sm:p-5 rounded-2xl backdrop-blur-xl flex flex-col justify-between">
-            <div className="flex justify-between items-center text-zinc-500 font-mono text-[10px] uppercase">
-              <span>WEIGHT (SIZE 53)</span>
-              <Activity className="w-3.5 h-3.5 text-[#E4002B]" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+            {/* Stat 1 */}
+            <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+              <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span>CHASSIS WEIGHT</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E4002B] group-hover:scale-150 transition-transform" />
+              </div>
+              <div className="mt-3">
+                <div className="font-display text-3xl sm:text-4xl font-black text-white">
+                  6.77 <span className="text-sm font-mono text-[#FF5E0E]">KG</span>
+                </div>
+                <div className="text-xs text-zinc-400 font-mono mt-1">Race-Ready Dura-Ace Spec (Size 53)</div>
+              </div>
             </div>
-            <div className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-white">
-              6.77 <span className="text-xs font-mono text-[#FF5E0E]">KG</span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-1 font-mono">Race-Ready Dura-Ace Build</p>
-          </div>
 
-          <div className="bg-obsidian-surface/75 border border-white/10 p-4 sm:p-5 rounded-2xl backdrop-blur-xl flex flex-col justify-between">
-            <div className="flex justify-between items-center text-zinc-500 font-mono text-[10px] uppercase">
-              <span>AERO DRAG (CdA)</span>
-              <Wind className="w-3.5 h-3.5 text-[#00F0FF]" />
+            {/* Stat 2 */}
+            <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+              <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span>AERO DRAG (CdA)</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] group-hover:scale-150 transition-transform" />
+              </div>
+              <div className="mt-3">
+                <div className="font-display text-3xl sm:text-4xl font-black text-white">
+                  -4.8% <span className="text-sm font-mono text-[#00F0FF]">CdA</span>
+                </div>
+                <div className="text-xs text-zinc-400 font-mono mt-1">-3.2 Watts Saved at 40 km/h</div>
+              </div>
             </div>
-            <div className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-white">
-              -4.8% <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-1 font-mono">-3.2W Saved at 40 km/h</p>
-          </div>
 
-          <div className="bg-obsidian-surface/75 border border-white/10 p-4 sm:p-5 rounded-2xl backdrop-blur-xl flex flex-col justify-between">
-            <div className="flex justify-between items-center text-zinc-500 font-mono text-[10px] uppercase">
-              <span>BB LATERAL STIFFNESS</span>
-              <Zap className="w-3.5 h-3.5 text-[#D4FF00]" />
+            {/* Stat 3 */}
+            <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+              <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span>LATERAL STIFFNESS</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] group-hover:scale-150 transition-transform" />
+              </div>
+              <div className="mt-3">
+                <div className="font-display text-3xl sm:text-4xl font-black text-white">
+                  392 <span className="text-sm font-mono text-[#D4FF00]">GPa</span>
+                </div>
+                <div className="text-xs text-zinc-400 font-mono mt-1">TorayCa M40X Nanoalloy Carbon</div>
+              </div>
             </div>
-            <div className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-white">
-              +12% <span className="text-xs font-mono text-[#D4FF00]">POWER</span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-1 font-mono">TorayCa M40X Nanoalloy</p>
-          </div>
 
-          <div className="bg-obsidian-surface/75 border border-white/10 p-4 sm:p-5 rounded-2xl backdrop-blur-xl flex flex-col justify-between">
-            <div className="flex justify-between items-center text-zinc-500 font-mono text-[10px] uppercase">
-              <span>TOUR DE FRANCE DYNASTY</span>
-              <Crown className="w-3.5 h-3.5 text-[#E5A93C]" />
+            {/* Stat 4 */}
+            <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+              <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                <span>TOUR DE FRANCE DYNASTY</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E5A93C] group-hover:scale-150 transition-transform" />
+              </div>
+              <div className="mt-3">
+                <div className="font-display text-3xl sm:text-4xl font-black text-white">
+                  15× <span className="text-sm font-mono text-[#E5A93C]">TITLES</span>
+                </div>
+                <div className="text-xs text-zinc-400 font-mono mt-1">Most Victorious Brand in History</div>
+              </div>
             </div>
-            <div className="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-white">
-              15× <span className="text-xs font-mono text-[#E5A93C]">TITLES</span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-1 font-mono">Most Victorious Brand</p>
           </div>
         </div>
       </section>
