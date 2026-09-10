@@ -49,8 +49,13 @@ export const PALMARES = [
 
 export const DogmaHeritage = () => {
   return (
-    <section id="heritage" className="relative py-28 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
-      <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="heritage" className="relative w-full py-28 overflow-hidden">
+      {/* Background Lighting */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#FFD166]/6 rounded-full blur-[180px] pointer-events-none" />
+
+      {/* Inner Centered Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FFD166] text-xs font-mono tracking-widest uppercase mb-4">
           <Trophy className="w-3.5 h-3.5" />
           <span>Palmarès & WorldTour Dynasty</span>
@@ -116,6 +121,7 @@ export const DogmaHeritage = () => {
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

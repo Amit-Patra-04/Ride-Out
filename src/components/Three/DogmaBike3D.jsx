@@ -1,10 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import {
   RotateCcw,
   Wind,
   Layers,
   Compass,
+  Zap,
+  Activity,
+  Maximize2,
+  Minimize2,
+  Sparkles,
+  Check,
+  ChevronRight,
+  Info,
+  Shield,
+  Gauge,
+  Eye,
+  Sliders,
+  Sun,
+  Flame,
+  Radio,
+  SlidersHorizontal,
+  Crosshair,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import { sfx } from '../../utils/animations';
 
@@ -13,6 +32,7 @@ export const COLORWAYS = [
     id: 'ineos-replica',
     name: 'Team INEOS Grenadiers',
     edition: 'Official WorldTour Pro Livery',
+    code: 'DF-WT-01',
     primaryColor: '#E4002B',
     secondaryColor: '#B91C1C',
     accentColor: '#FF5E0E',
@@ -20,9 +40,6 @@ export const COLORWAYS = [
     decalColor: '#FFFFFF',
     gradient: 'from-[#E4002B] via-[#FF5E0E] to-[#0A0C10]',
     swatchGradient: 'linear-gradient(135deg, #E4002B 0%, #FF5E0E 45%, #0A0C10 100%)',
-    metalness: 0.25,
-    roughness: 0.15,
-    clearcoat: 1.0,
     badge: 'GRAND TOUR CHAMPION',
     bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
   },
@@ -30,6 +47,7 @@ export const COLORWAYS = [
     id: 'luxter-red-gold',
     name: 'Luxter Red Gold',
     edition: 'Signature Metallic Crimson & Gold',
+    code: 'DF-E120',
     primaryColor: '#9E0018',
     secondaryColor: '#780010',
     accentColor: '#D4AF37',
@@ -37,9 +55,6 @@ export const COLORWAYS = [
     decalColor: '#FFFFFF',
     gradient: 'from-[#9E0018] via-[#D4AF37] to-[#07080A]',
     swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-    metalness: 0.85,
-    roughness: 0.18,
-    clearcoat: 1.0,
     badge: 'WORLDTOUR FLAGSHIP',
     bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
@@ -47,6 +62,7 @@ export const COLORWAYS = [
     id: 'luxter-blue',
     name: 'Luxter Venice Blue',
     edition: 'MY26 Special Metallic Cobalt',
+    code: 'DF-E122',
     primaryColor: '#0B3C95',
     secondaryColor: '#062663',
     accentColor: '#00D2FF',
@@ -54,9 +70,6 @@ export const COLORWAYS = [
     decalColor: '#FFFFFF',
     gradient: 'from-[#0B3C95] via-[#00D2FF] to-[#06070A]',
     swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
-    metalness: 0.8,
-    roughness: 0.2,
-    clearcoat: 1.0,
     badge: 'MY26 SPECIAL EDITION',
     bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
   },
@@ -64,6 +77,7 @@ export const COLORWAYS = [
     id: 'phantom-ice',
     name: 'Edge Crystal White',
     edition: 'Pearl Monocoque & Platinum Silver',
+    code: 'DF-E121',
     primaryColor: '#FFFFFF',
     secondaryColor: '#F1F5F9',
     accentColor: '#94A3B8',
@@ -71,9 +85,6 @@ export const COLORWAYS = [
     decalColor: '#0F172A',
     gradient: 'from-[#FFFFFF] via-[#CBD5E1] to-[#0F1218]',
     swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
-    metalness: 0.15,
-    roughness: 0.25,
-    clearcoat: 0.9,
     badge: 'RAW TORAYCA MONOCOQUE',
     bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
   },
@@ -81,6 +92,7 @@ export const COLORWAYS = [
     id: 'bob-stealth',
     name: 'Bob Black Stealth Matt',
     edition: 'Black on Black Raw TorayCa Carbon',
+    code: 'DF-E123',
     primaryColor: '#27272A',
     secondaryColor: '#18181B',
     accentColor: '#52525B',
@@ -88,9 +100,6 @@ export const COLORWAYS = [
     decalColor: '#71717A',
     gradient: 'from-[#3F3F46] via-[#18181B] to-[#050507]',
     swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
-    metalness: 0.4,
-    roughness: 0.55,
-    clearcoat: 0.2,
     badge: 'SATIN STEALTH FINISH',
     bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
   },
@@ -98,6 +107,7 @@ export const COLORWAYS = [
     id: 'luxter-amber',
     name: 'Luxter Amber Gold',
     edition: 'Liquid Gold Metallic Gloss',
+    code: 'DF-E125',
     primaryColor: '#B45309',
     secondaryColor: '#92400E',
     accentColor: '#FDE047',
@@ -105,9 +115,6 @@ export const COLORWAYS = [
     decalColor: '#FFFFFF',
     gradient: 'from-[#B45309] via-[#FDE047] to-[#0A0A0C]',
     swatchGradient: 'linear-gradient(135deg, #B45309 0%, #FDE047 50%, #0A0A0C 100%)',
-    metalness: 0.9,
-    roughness: 0.18,
-    clearcoat: 1.0,
     badge: 'LIQUID AMBER METALLIC',
     bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
   },
@@ -115,6 +122,7 @@ export const COLORWAYS = [
     id: 'luxter-turquoise',
     name: 'Luxter Turquoise Spectrum',
     edition: 'High-Luminescence Spectrum',
+    code: 'DF-E126',
     primaryColor: '#0E7490',
     secondaryColor: '#155E75',
     accentColor: '#38BDF8',
@@ -122,9 +130,6 @@ export const COLORWAYS = [
     decalColor: '#FFFFFF',
     gradient: 'from-[#0E7490] via-[#38BDF8] to-[#06070A]',
     swatchGradient: 'linear-gradient(135deg, #0E7490 0%, #38BDF8 50%, #06070A 100%)',
-    metalness: 0.85,
-    roughness: 0.15,
-    clearcoat: 1.0,
     badge: 'SPECTRUM GLOSS',
     bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
   },
@@ -132,6 +137,7 @@ export const COLORWAYS = [
     id: 'cobalt-phantom',
     name: 'Cobalt Phantom Pearl',
     edition: 'Stealth Deep Metallic Pearl',
+    code: 'DF-E127',
     primaryColor: '#1E293B',
     secondaryColor: '#0F172A',
     accentColor: '#38BDF8',
@@ -139,62 +145,139 @@ export const COLORWAYS = [
     decalColor: '#F8FAFC',
     gradient: 'from-[#1E293B] via-[#38BDF8] to-[#030406]',
     swatchGradient: 'linear-gradient(135deg, #1E293B 0%, #38BDF8 50%, #030406 100%)',
-    metalness: 0.85,
-    roughness: 0.18,
-    clearcoat: 0.95,
     badge: 'STEALTH ATELIER',
     bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
   },
 ];
 
 export const CAMERA_VIEWS = [
-  { id: 'hero', label: '3/4 Hero Profile', pos: [3.4, 1.2, 3.2], target: [0, 0.4, 0] },
-  { id: 'onda', label: 'Onda Fork & Flap™', pos: [1.6, 0.5, 1.2], target: [0.95, 0.35, 0] },
-  { id: 'cockpit', label: 'MOST Talon Fast', pos: [0.8, 1.4, 0.7], target: [0.75, 0.85, 0] },
-  { id: 'keel', label: 'Aero-Keel 3.5° BB', pos: [0.2, 0.1, 1.4], target: [0.05, -0.05, 0] },
-  { id: 'duraace', label: 'Dura-Ace Di2 12S', pos: [-0.9, 0.1, 1.2], target: [-0.65, -0.05, 0] },
+  { id: 'hero', label: '3/4 Hero Profile', pos: [0, 0, 1], scale: 1, angle: 0 },
+  { id: 'onda', label: 'Onda Fork & Flap™', pos: [120, -40, 1.4], scale: 1.35, angle: -18 },
+  { id: 'cockpit', label: 'MOST Talon Fast', pos: [80, 70, 1.45], scale: 1.4, angle: 12 },
+  { id: 'keel', label: 'Aero-Keel 3.5° BB', pos: [-20, -50, 1.5], scale: 1.45, angle: 5 },
+  { id: 'duraace', label: 'Dura-Ace Di2 12S', pos: [-120, -40, 1.4], scale: 1.4, angle: -15 },
+  { id: 'rear', label: 'Asymmetric Stays', pos: [-160, 20, 1.3], scale: 1.3, angle: 22 },
 ];
 
 export const HOTSPOTS = [
   {
     id: 'torayca',
-    title: 'TorayCa M40X Carbon',
-    pos3d: [0.3, 0.5, 0.05],
-    screenPos: { x: 55, y: 38 },
-    desc: 'High-tensile modulus carbon composite with Nanoalloy Technology. +12% lateral stiffness and superior vibration damping.',
-    spec: '392 GPa Modulus | 865g Frame',
+    title: 'TorayCa® M40X Nanoalloy',
+    x: 48,
+    y: 44,
+    desc: 'Ultra-high tensile carbon composite with Nanoalloy matrix. Delivers 392 GPa lateral stiffness and explosive sprint responsiveness with zero structural fatigue.',
+    spec: '392 GPa Tensile | 865g Frame',
+    badge: 'CARBON COMPOSITE',
   },
   {
     id: 'onda',
-    title: 'NEW Onda Fork & ForkFlap™',
-    pos3d: [0.98, 0.3, 0.05],
-    screenPos: { x: 74, y: 52 },
-    desc: '47mm rake curve for high-speed downhill stability with aero winglets that neutralize caliper air turbulence.',
-    spec: '47mm Rake | 390g Weight',
+    title: 'Onda ForkFlap™ 47mm Rake',
+    x: 74,
+    y: 58,
+    desc: 'Iconic wave profile with 47mm rake stabilizes high-speed alpine descents while integrated aero winglets shield the front disc caliper from lateral turbulence.',
+    spec: '47mm Rake | 390g Carbon',
+    badge: 'AERODYNAMICS',
   },
   {
     id: 'cockpit',
     title: 'MOST Talon Ultra Fast',
-    pos3d: [0.75, 0.9, 0],
-    screenPos: { x: 68, y: 22 },
-    desc: 'Integrated one-piece aero cockpit with 7° flared drops and 100% TiCR internal routing.',
-    spec: '315g | 7° Flare | TiCR™ Integrated',
+    x: 64,
+    y: 28,
+    desc: 'One-piece integrated cockpit featuring twisted lever hoods and 100% internal TiCR™ cable integration saving 5.2 Watts at 40 km/h.',
+    spec: '315g | 7° Flare | TiCR™',
+    badge: 'TOTAL INTEGRATION',
   },
   {
     id: 'keel',
-    title: 'Aero-Keel Bottom Bracket',
-    pos3d: [0.0, -0.08, 0.05],
-    screenPos: { x: 48, y: 68 },
-    desc: 'Downtube rotated by 3.5° around the Italian-threaded 70mm BB shell to guide clean airflow around water bottles.',
-    spec: '3.5° Aero Pitch | Italian 70mm',
+    title: 'Aero-Keel 3.5° Rotated BB',
+    x: 46,
+    y: 68,
+    desc: 'Trickle-down technology from Filippo Ganna’s Hour Record. Down tube rotated 3.5° to optimize bottom bracket airflow around elite hydration cages.',
+    spec: '3.5° Pitch | 70mm Italian Thread',
+    badge: 'HOUR RECORD TECH',
   },
   {
     id: 'drivetrain',
-    title: 'Shimano Dura-Ace Di2 R9200',
-    pos3d: [-0.6, -0.05, 0.08],
-    screenPos: { x: 32, y: 64 },
-    desc: 'Semi-wireless 2x12 electronic shifting with 54-40T chainrings and Hyperglide+ 11-30T cassette.',
+    title: 'Shimano Dura-Ace Di2 12S',
+    x: 32,
+    y: 69,
+    desc: 'Semi-wireless 2x12 electronic transmission paired with dual-sided strain gauge power meter and 54-40T aerodynamic chainrings.',
     spec: '12-Speed Electronic | Dual Power',
+    badge: 'WORLDTOUR DRIVETRAIN',
+  },
+];
+
+export const EXPLODED_LAYERS = [
+  {
+    id: 'layer-1',
+    name: 'LAYER 01: TORAYCA® M40X MONOCOQUE',
+    subtitle: '392 GPa Ultra-High Tensile Carbon Outer Shell',
+    desc: 'Continuous uni-directional carbon fiber filaments woven with Nanoalloy resin matrix for unparalleled torsional resistance and instantaneous torque transfer.',
+    stat: '392 GPa Modulus • +12% Lateral Rigidity',
+    tag: 'OUTER MONOCOQUE',
+    color: '#00F0FF',
+  },
+  {
+    id: 'layer-2',
+    name: 'LAYER 02: TICR™ INTERNAL CHANNELS',
+    subtitle: '100% Concealed Hydraulic & Di2 Routing',
+    desc: 'Seamless carbon conduit tunnels through headtube, down tube, and chainstays, eliminating external cable drag and turbulent vortices.',
+    stat: 'Zero Exposed Lines • -5.2W Drag Delta',
+    tag: 'AERO ROUTING',
+    color: '#FF5E0E',
+  },
+  {
+    id: 'layer-3',
+    name: 'LAYER 03: ASYMMETRIC STRUCTURAL CORE',
+    subtitle: 'Counter-Torque Engineered Bottom Bracket & Stays',
+    desc: 'Reinforced drive-side carbon layup that offsets unilateral chain drive deflection under 1,800+ watt bunch sprint loads.',
+    stat: '100% Symmetrical Power Balance',
+    tag: 'POWER SPINE',
+    color: '#D4FF00',
+  },
+  {
+    id: 'layer-4',
+    name: 'LAYER 04: NANOALLOY VIBRATION MATRIX',
+    subtitle: 'High-Frequency Road Damping Interlayer',
+    desc: 'Micro-elastomeric resin particles distributed throughout the layup to disperse road chatter without compromising structural snap.',
+    stat: '18% Vertical Compliance Boost',
+    tag: 'ROAD ACOUSTICS',
+    color: '#E4002B',
+  },
+];
+
+export const STUDIO_LIGHTING_MODES = [
+  {
+    id: 'treviso',
+    name: 'Treviso Atelier Dark',
+    desc: 'Moody obsidian stage with crimson gold highlights',
+    keyLight: '#FFFFFF',
+    ambient: '#E4002B',
+    underglow: '#FF5E0E',
+  },
+  {
+    id: 'windtunnel',
+    name: 'Wind Tunnel Cyan',
+    desc: 'High-velocity aerodynamic CFD illumination',
+    keyLight: '#E0F7FA',
+    ambient: '#00F0FF',
+    underglow: '#00D2FF',
+  },
+  {
+    id: 'gold',
+    name: 'Red Gold Grand Tour',
+    desc: 'Championship celebration spotlights',
+    keyLight: '#FFF8E1',
+    ambient: '#D4AF37',
+    underglow: '#9E0018',
+  },
+  {
+    id: 'cleanroom',
+    name: 'Cleanroom Studio High-Key',
+    desc: 'Pristine laboratory high-contrast specular lighting',
+    keyLight: '#FFFFFF',
+    ambient: '#94A3B8',
+    underglow: '#FFFFFF',
   },
 ];
 
@@ -203,863 +286,721 @@ export const DogmaBike3D = ({
   onColorChange,
   className = '',
 }) => {
-  const mountRef = useRef(null);
+  const containerRef = useRef(null);
+  const canvasRef = useRef(null);
   const [selectedColor, setSelectedColor] = useState(activeColorway);
-  const [isWindTunnel, setIsWindTunnel] = useState(true);
-  const [isXRayMode, setIsXRayMode] = useState(false);
-  const [isSpinning, setIsSpinning] = useState(true);
+  const [activeTab, setActiveTab] = useState('360'); // '360' | 'windtunnel' | 'xray' | 'telemetry'
   const [activeCameraView, setActiveCameraView] = useState('hero');
   const [activeHotspot, setActiveHotspot] = useState(null);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [yawAngle, setYawAngle] = useState(15);
+  const [pitchAngle, setPitchAngle] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [activeLighting, setActiveLighting] = useState(STUDIO_LIGHTING_MODES[0]);
+  const [selectedExplodedLayer, setSelectedExplodedLayer] = useState(0);
+  const [aeroYawSlider, setAeroYawSlider] = useState(0);
+  const [isHeatmapOn, setIsHeatmapOn] = useState(false);
   const [fps, setFps] = useState(60);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [mouseStagePos, setMouseStagePos] = useState({ x: 0, y: 0 });
+  const [isHoveringStage, setIsHoveringStage] = useState(false);
 
-  const sceneState = useRef({
-    scene: null,
-    camera: null,
-    renderer: null,
-    bikeGroup: null,
-    materials: {},
-    particles: null,
-    wheels: [],
-    drivetrainGroup: null,
-    isDragging: false,
-    prevMousePos: { x: 0, y: 0 },
-    rotationVelocity: 0.003,
-    targetCameraPos: new THREE.Vector3(3.4, 1.2, 3.2),
-    targetLookAt: new THREE.Vector3(0, 0.4, 0),
-    currentLookAt: new THREE.Vector3(0, 0.4, 0),
-    reqId: null,
-  });
-
-  // Sync external color prop
+  // Sync external colorway
   useEffect(() => {
     if (activeColorway && activeColorway.id !== selectedColor.id) {
       setSelectedColor(activeColorway);
     }
   }, [activeColorway]);
 
-  // Build the complete 3D procedural Dogma F model
+  // Three.js Particle Wind Tunnel Canvas Effect
   useEffect(() => {
-    const container = mountRef.current;
-    if (!container) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    // Scene
-    const scene = new THREE.Scene();
-    scene.background = null;
-    scene.fog = new THREE.FogExp2(0x07090e, 0.06);
-
-    // Camera
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 50);
-    camera.position.set(3.4, 1.2, 3.2);
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      powerPreference: 'high-performance',
-      alpha: true,
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
-
-    container.innerHTML = '';
-    container.appendChild(renderer.domElement);
-
-    // Dynamic Carbon Weave Texture
-    const canvas = document.createElement('canvas');
-    canvas.width = 128;
-    canvas.height = 128;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#14171e';
-    ctx.fillRect(0, 0, 128, 128);
-    ctx.fillStyle = '#0a0c10';
-    for (let i = 0; i < 128; i += 8) {
-      for (let j = 0; j < 128; j += 8) {
-        if ((i + j) % 16 === 0) {
-          ctx.fillRect(i, j, 8, 8);
-        }
-      }
-    }
-    const carbonTex = new THREE.CanvasTexture(canvas);
-    carbonTex.wrapS = THREE.RepeatWrapping;
-    carbonTex.wrapT = THREE.RepeatWrapping;
-    carbonTex.repeat.set(16, 16);
+    let animationFrameId;
+    let particles = [];
+    const particleCount = 85;
 
-    // Lighting Setup (Studio Car / Hyper-Bike Lighting)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
-    scene.add(ambientLight);
-
-    const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
-    keyLight.position.set(4, 5, 3);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 2048;
-    keyLight.shadow.mapSize.height = 2048;
-    keyLight.shadow.bias = -0.0001;
-    scene.add(keyLight);
-
-    const fillLight = new THREE.DirectionalLight(0xdbeafe, 1.8);
-    fillLight.position.set(-4, 3, -3);
-    scene.add(fillLight);
-
-    const orangeRimLight = new THREE.DirectionalLight(0xff4400, 2.5);
-    orangeRimLight.position.set(-3, 2, 4);
-    scene.add(orangeRimLight);
-
-    const cyanUnderGlow = new THREE.PointLight(0x00f0ff, 1.2, 8);
-    cyanUnderGlow.position.set(0, -0.6, 0);
-    scene.add(cyanUnderGlow);
-
-    // Reflective Studio Floor Grid
-    const floorGeo = new THREE.PlaneGeometry(30, 30);
-    const floorMat = new THREE.MeshStandardMaterial({
-      color: 0x050609,
-      roughness: 0.4,
-      metalness: 0.8,
-    });
-    const floor = new THREE.Mesh(floorGeo, floorMat);
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.72;
-    floor.receiveShadow = true;
-    scene.add(floor);
-
-    // Subtle Circular Floor Radar / Podium
-    const podiumGeo = new THREE.RingGeometry(1.6, 1.63, 64);
-    const podiumMat = new THREE.MeshBasicMaterial({
-      color: 0xff3b00,
-      side: THREE.DoubleSide,
-      transparent: true,
-      opacity: 0.35,
-    });
-    const podiumRing = new THREE.Mesh(podiumGeo, podiumMat);
-    podiumRing.rotation.x = -Math.PI / 2;
-    podiumRing.position.y = -0.715;
-    scene.add(podiumRing);
-
-    const innerPodiumGeo = new THREE.RingGeometry(0.8, 0.81, 64);
-    const innerPodiumMat = new THREE.MeshBasicMaterial({
-      color: 0xff6a00,
-      side: THREE.DoubleSide,
-      transparent: true,
-      opacity: 0.2,
-    });
-    const innerRing = new THREE.Mesh(innerPodiumGeo, innerPodiumMat);
-    innerRing.rotation.x = -Math.PI / 2;
-    innerRing.position.y = -0.715;
-    scene.add(innerRing);
-
-    // --- PROCEDURAL HIGH-PRECISION PINARELLO DOGMA F 3D MODEL ---
-    const bikeGroup = new THREE.Group();
-    scene.add(bikeGroup);
-
-    // Materials Dictionary
-    const frameMaterial = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(selectedColor.primaryColor),
-      metalness: selectedColor.metalness,
-      roughness: selectedColor.roughness,
-      clearcoat: selectedColor.clearcoat,
-      clearcoatRoughness: 0.1,
-      bumpMap: carbonTex,
-      bumpScale: 0.002,
-    });
-
-    const rearCarbonMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(selectedColor.rearColor),
-      metalness: 0.3,
-      roughness: 0.2,
-      clearcoat: 0.8,
-      bumpMap: carbonTex,
-      bumpScale: 0.004,
-    });
-
-    const matteCarbonMat = new THREE.MeshStandardMaterial({
-      color: 0x111318,
-      roughness: 0.5,
-      metalness: 0.2,
-      bumpMap: carbonTex,
-      bumpScale: 0.005,
-    });
-
-    const glossBlackMat = new THREE.MeshStandardMaterial({
-      color: 0x07080a,
-      roughness: 0.15,
-      metalness: 0.4,
-    });
-
-    const duraAceMetalMat = new THREE.MeshStandardMaterial({
-      color: 0x242830,
-      roughness: 0.2,
-      metalness: 0.9,
-    });
-
-    const chromeBrakeMat = new THREE.MeshStandardMaterial({
-      color: 0xdddddd,
-      roughness: 0.1,
-      metalness: 0.95,
-    });
-
-    const rubberMat = new THREE.MeshStandardMaterial({
-      color: 0x18191c,
-      roughness: 0.85,
-      metalness: 0.05,
-    });
-
-    const decalsMat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(selectedColor.decalColor),
-      side: THREE.DoubleSide,
-    });
-
-    sceneState.current.materials = {
-      frame: frameMaterial,
-      rearCarbon: rearCarbonMat,
-      matteCarbon: matteCarbonMat,
-      glossBlack: glossBlackMat,
-      duraAce: duraAceMetalMat,
-      chrome: chromeBrakeMat,
-      rubber: rubberMat,
-      decals: decalsMat,
+    const resize = () => {
+      if (!canvas) return;
+      canvas.width = canvas.parentElement?.clientWidth || 1000;
+      canvas.height = canvas.parentElement?.clientHeight || 600;
     };
 
-    // Frame Anchor Keypoints (Metric units scaled for 3D realism)
-    const BB = new THREE.Vector3(0, -0.05, 0);
-    const HT_BOTTOM = new THREE.Vector3(0.9, 0.62, 0);
-    const HT_TOP = new THREE.Vector3(0.82, 0.82, 0);
-    const ST_TOP = new THREE.Vector3(-0.25, 0.72, 0);
-    const DROPOUT_REAR = new THREE.Vector3(-1.05, -0.05, 0);
-    const DROPOUT_FRONT = new THREE.Vector3(1.05, -0.05, 0);
-
-    // 1. Head Tube
-    const htCurve = new THREE.LineCurve3(HT_BOTTOM, HT_TOP);
-    const htGeo = new THREE.TubeGeometry(htCurve, 16, 0.045, 16, false);
-    const htMesh = new THREE.Mesh(htGeo, frameMaterial);
-    htMesh.castShadow = true;
-    bikeGroup.add(htMesh);
-
-    // 2. Dogma Curved Top Tube
-    const ttCurve = new THREE.CatmullRomCurve3([
-      HT_TOP,
-      new THREE.Vector3(0.48, 0.77, 0),
-      new THREE.Vector3(0.12, 0.73, 0),
-      ST_TOP,
-    ]);
-    const ttGeo = new THREE.TubeGeometry(ttCurve, 32, 0.034, 16, false);
-    const ttMesh = new THREE.Mesh(ttGeo, frameMaterial);
-    ttMesh.castShadow = true;
-    bikeGroup.add(ttMesh);
-
-    // 3. Aero-Keel Down Tube
-    const dtCurve = new THREE.CatmullRomCurve3([
-      HT_BOTTOM,
-      new THREE.Vector3(0.55, 0.32, 0),
-      new THREE.Vector3(0.25, 0.08, 0),
-      BB,
-    ]);
-    const dtGeo = new THREE.TubeGeometry(dtCurve, 32, 0.048, 16, false);
-    const dtMesh = new THREE.Mesh(dtGeo, frameMaterial);
-    dtMesh.castShadow = true;
-    bikeGroup.add(dtMesh);
-
-    // Pinarello Downtube Decals
-    const decalGeo = new THREE.PlaneGeometry(0.55, 0.065);
-    const decalRight = new THREE.Mesh(decalGeo, decalsMat);
-    decalRight.position.set(0.45, 0.32, 0.049);
-    decalRight.rotation.z = -0.62;
-    decalRight.rotation.y = 0.08;
-    bikeGroup.add(decalRight);
-
-    const decalLeft = new THREE.Mesh(decalGeo, decalsMat);
-    decalLeft.position.set(0.45, 0.32, -0.049);
-    decalLeft.rotation.z = -0.62;
-    decalLeft.rotation.y = Math.PI - 0.08;
-    bikeGroup.add(decalLeft);
-
-    // 4. Seat Tube
-    const stCurve = new THREE.CatmullRomCurve3([
-      BB,
-      new THREE.Vector3(-0.12, 0.28, 0),
-      ST_TOP,
-    ]);
-    const stGeo = new THREE.TubeGeometry(stCurve, 32, 0.038, 16, false);
-    const stMesh = new THREE.Mesh(stGeo, rearCarbonMat);
-    stMesh.castShadow = true;
-    bikeGroup.add(stMesh);
-
-    // 5. Asymmetrical Rear Stays
-    const ssJunction = new THREE.Vector3(-0.23, 0.62, 0);
-    const ssRightCurve = new THREE.LineCurve3(
-      new THREE.Vector3(ssJunction.x, ssJunction.y, 0.03),
-      new THREE.Vector3(DROPOUT_REAR.x, DROPOUT_REAR.y, 0.065)
-    );
-    const ssLeftCurve = new THREE.LineCurve3(
-      new THREE.Vector3(ssJunction.x, ssJunction.y, -0.03),
-      new THREE.Vector3(DROPOUT_REAR.x, DROPOUT_REAR.y, -0.065)
-    );
-    const ssRightGeo = new THREE.TubeGeometry(ssRightCurve, 16, 0.016, 12, false);
-    const ssLeftGeo = new THREE.TubeGeometry(ssLeftCurve, 16, 0.016, 12, false);
-    const ssRightMesh = new THREE.Mesh(ssRightGeo, rearCarbonMat);
-    const ssLeftMesh = new THREE.Mesh(ssLeftGeo, rearCarbonMat);
-    bikeGroup.add(ssRightMesh);
-    bikeGroup.add(ssLeftMesh);
-
-    // Chainstays
-    const csRightCurve = new THREE.LineCurve3(
-      new THREE.Vector3(BB.x, BB.y, 0.038),
-      new THREE.Vector3(DROPOUT_REAR.x, DROPOUT_REAR.y, 0.065)
-    );
-    const csLeftCurve = new THREE.LineCurve3(
-      new THREE.Vector3(BB.x, BB.y, -0.038),
-      new THREE.Vector3(DROPOUT_REAR.x, DROPOUT_REAR.y, -0.065)
-    );
-    const csRightGeo = new THREE.TubeGeometry(csRightCurve, 16, 0.022, 12, false);
-    const csLeftGeo = new THREE.TubeGeometry(csLeftCurve, 16, 0.022, 12, false);
-    const csRightMesh = new THREE.Mesh(csRightGeo, rearCarbonMat);
-    const csLeftMesh = new THREE.Mesh(csLeftGeo, rearCarbonMat);
-    bikeGroup.add(csRightMesh);
-    bikeGroup.add(csLeftMesh);
-
-    // 6. Signature Onda Fork with ForkFlap™
-    const forkRightCurve = new THREE.CatmullRomCurve3([
-      HT_BOTTOM,
-      new THREE.Vector3(0.96, 0.38, 0.038),
-      new THREE.Vector3(0.99, 0.18, 0.048),
-      new THREE.Vector3(DROPOUT_FRONT.x, DROPOUT_FRONT.y, 0.055),
-    ]);
-    const forkLeftCurve = new THREE.CatmullRomCurve3([
-      HT_BOTTOM,
-      new THREE.Vector3(0.96, 0.38, -0.038),
-      new THREE.Vector3(0.99, 0.18, -0.048),
-      new THREE.Vector3(DROPOUT_FRONT.x, DROPOUT_FRONT.y, -0.055),
-    ]);
-    const forkRightGeo = new THREE.TubeGeometry(forkRightCurve, 24, 0.024, 14, false);
-    const forkLeftGeo = new THREE.TubeGeometry(forkLeftCurve, 24, 0.024, 14, false);
-    const forkRightMesh = new THREE.Mesh(forkRightGeo, frameMaterial);
-    const forkLeftMesh = new THREE.Mesh(forkLeftGeo, frameMaterial);
-    bikeGroup.add(forkRightMesh);
-    bikeGroup.add(forkLeftMesh);
-
-    // ForkFlap™ Aero Fairings over caliper
-    const flapGeo = new THREE.BoxGeometry(0.06, 0.08, 0.012);
-    const flapLeft = new THREE.Mesh(flapGeo, frameMaterial);
-    flapLeft.position.set(1.02, 0.04, -0.062);
-    flapLeft.rotation.y = 0.15;
-    bikeGroup.add(flapLeft);
-
-    // 7. Aero Teardrop Seatpost & Saddle
-    const spCurve = new THREE.LineCurve3(
-      ST_TOP,
-      new THREE.Vector3(-0.35, 0.95, 0)
-    );
-    const spGeo = new THREE.TubeGeometry(spCurve, 12, 0.028, 14, false);
-    const spMesh = new THREE.Mesh(spGeo, glossBlackMat);
-    bikeGroup.add(spMesh);
-
-    // Saddle
-    const saddleGeo = new THREE.BoxGeometry(0.24, 0.035, 0.12);
-    const saddleMesh = new THREE.Mesh(saddleGeo, matteCarbonMat);
-    saddleMesh.position.set(-0.36, 0.97, 0);
-    saddleMesh.rotation.z = 0.05;
-    bikeGroup.add(saddleMesh);
-
-    // 8. MOST Talon Ultra Fast Cockpit
-    const stemCurve = new THREE.LineCurve3(
-      HT_TOP,
-      new THREE.Vector3(0.96, 0.86, 0)
-    );
-    const stemGeo = new THREE.TubeGeometry(stemCurve, 10, 0.028, 12, false);
-    const stemMesh = new THREE.Mesh(stemGeo, matteCarbonMat);
-    bikeGroup.add(stemMesh);
-
-    const barTopGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.38, 16);
-    const barTopMesh = new THREE.Mesh(barTopGeo, matteCarbonMat);
-    barTopMesh.rotation.x = Math.PI / 2;
-    barTopMesh.position.set(0.96, 0.86, 0);
-    bikeGroup.add(barTopMesh);
-
-    const dropRightCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0.96, 0.86, 0.19),
-      new THREE.Vector3(1.05, 0.85, 0.2),
-      new THREE.Vector3(1.04, 0.72, 0.21),
-      new THREE.Vector3(0.91, 0.7, 0.22),
-    ]);
-    const dropLeftCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0.96, 0.86, -0.19),
-      new THREE.Vector3(1.05, 0.85, -0.2),
-      new THREE.Vector3(1.04, 0.72, -0.21),
-      new THREE.Vector3(0.91, 0.7, -0.22),
-    ]);
-    const dropRightGeo = new THREE.TubeGeometry(dropRightCurve, 20, 0.014, 12, false);
-    const dropLeftGeo = new THREE.TubeGeometry(dropLeftCurve, 20, 0.014, 12, false);
-    const dropRightMesh = new THREE.Mesh(dropRightGeo, matteCarbonMat);
-    const dropLeftMesh = new THREE.Mesh(dropLeftGeo, matteCarbonMat);
-    bikeGroup.add(dropRightMesh);
-    bikeGroup.add(dropLeftMesh);
-
-    const hoodGeo = new THREE.BoxGeometry(0.07, 0.06, 0.03);
-    const hoodRight = new THREE.Mesh(hoodGeo, glossBlackMat);
-    hoodRight.position.set(1.04, 0.82, 0.195);
-    const hoodLeft = new THREE.Mesh(hoodGeo, glossBlackMat);
-    hoodLeft.position.set(1.04, 0.82, -0.195);
-    bikeGroup.add(hoodRight);
-    bikeGroup.add(hoodLeft);
-
-    // 9. Shimano Dura-Ace C50 Deep Aero Carbon Wheels
-    const wheelsList = [];
-
-    const createWheel = (centerPos, isRear = false) => {
-      const wheelGroup = new THREE.Group();
-      wheelGroup.position.copy(centerPos);
-
-      // 50mm Carbon Aero Rim
-      const rimGeo = new THREE.TorusGeometry(0.58, 0.045, 24, 64);
-      const rimMesh = new THREE.Mesh(rimGeo, matteCarbonMat);
-      rimMesh.castShadow = true;
-      wheelGroup.add(rimMesh);
-
-      // Continental Grand Prix 5000 S TR Tire
-      const tireGeo = new THREE.TorusGeometry(0.61, 0.024, 20, 64);
-      const tireMesh = new THREE.Mesh(tireGeo, rubberMat);
-      wheelGroup.add(tireMesh);
-
-      // Centerlock Disc Rotor
-      const rotorRadius = isRear ? 0.12 : 0.14;
-      const rotorGeo = new THREE.RingGeometry(0.04, rotorRadius, 32);
-      const rotorMesh = new THREE.Mesh(rotorGeo, chromeBrakeMat);
-      rotorMesh.position.z = -0.028;
-      wheelGroup.add(rotorMesh);
-
-      // Hub Shell
-      const hubGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.08, 16);
-      const hubMesh = new THREE.Mesh(hubGeo, duraAceMetalMat);
-      hubMesh.rotation.x = Math.PI / 2;
-      wheelGroup.add(hubMesh);
-
-      // Bladed Aero Spokes
-      const spokeCount = 20;
-      const spokeGeo = new THREE.CylinderGeometry(0.002, 0.002, 0.54, 4);
-      for (let i = 0; i < spokeCount; i++) {
-        const angle = (i / spokeCount) * Math.PI * 2;
-        const spoke = new THREE.Mesh(spokeGeo, chromeBrakeMat);
-        spoke.position.set(
-          Math.cos(angle) * 0.27,
-          Math.sin(angle) * 0.27,
-          (i % 2 === 0 ? 0.015 : -0.015)
-        );
-        spoke.rotation.z = angle + Math.PI / 2;
-        wheelGroup.add(spoke);
-      }
-
-      if (isRear) {
-        const cassetteGeo = new THREE.CylinderGeometry(0.04, 0.11, 0.035, 24);
-        const cassetteMesh = new THREE.Mesh(cassetteGeo, duraAceMetalMat);
-        cassetteMesh.rotation.x = Math.PI / 2;
-        cassetteMesh.position.z = 0.025;
-        wheelGroup.add(cassetteMesh);
-      }
-
-      bikeGroup.add(wheelGroup);
-      wheelsList.push(wheelGroup);
-      return wheelGroup;
-    };
-
-    const frontWheel = createWheel(DROPOUT_FRONT, false);
-    const rearWheel = createWheel(DROPOUT_REAR, true);
-    sceneState.current.wheels = [frontWheel, rearWheel];
-
-    // 10. Shimano Dura-Ace Dual Power Crankset
-    const crankGroup = new THREE.Group();
-    crankGroup.position.copy(BB);
-
-    const chainringGeo = new THREE.RingGeometry(0.06, 0.14, 40);
-    const chainringMesh = new THREE.Mesh(chainringGeo, duraAceMetalMat);
-    chainringMesh.position.z = 0.045;
-    crankGroup.add(chainringMesh);
-
-    const crankArmGeo = new THREE.BoxGeometry(0.18, 0.032, 0.018);
-    const rightArm = new THREE.Mesh(crankArmGeo, glossBlackMat);
-    rightArm.position.set(0.08, 0, 0.06);
-    crankGroup.add(rightArm);
-
-    const leftArm = new THREE.Mesh(crankArmGeo, glossBlackMat);
-    leftArm.position.set(-0.08, 0, -0.06);
-    leftArm.rotation.z = Math.PI;
-    crankGroup.add(leftArm);
-
-    const pedalGeo = new THREE.BoxGeometry(0.06, 0.015, 0.07);
-    const pedalRight = new THREE.Mesh(pedalGeo, matteCarbonMat);
-    pedalRight.position.set(0.16, 0, 0.09);
-    const pedalLeft = new THREE.Mesh(pedalGeo, matteCarbonMat);
-    pedalLeft.position.set(-0.16, 0, -0.09);
-    crankGroup.add(pedalRight);
-    crankGroup.add(pedalLeft);
-
-    bikeGroup.add(crankGroup);
-    sceneState.current.drivetrainGroup = crankGroup;
-
-    // 11. Shimano Dura-Ace Di2 Rear Derailleur
-    const rdGeo = new THREE.BoxGeometry(0.08, 0.12, 0.04);
-    const rdMesh = new THREE.Mesh(rdGeo, duraAceMetalMat);
-    rdMesh.position.set(DROPOUT_REAR.x + 0.04, DROPOUT_REAR.y - 0.06, 0.06);
-    bikeGroup.add(rdMesh);
-
-    // 12. Chain Loop
-    const chainMat = new THREE.LineBasicMaterial({ color: 0x999999, linewidth: 2 });
-    const chainPoints = [
-      new THREE.Vector3(BB.x, BB.y + 0.12, 0.045),
-      new THREE.Vector3(DROPOUT_REAR.x, DROPOUT_REAR.y + 0.08, 0.035),
-      new THREE.Vector3(DROPOUT_REAR.x + 0.04, DROPOUT_REAR.y - 0.08, 0.04),
-      new THREE.Vector3(BB.x, BB.y - 0.12, 0.045),
-      new THREE.Vector3(BB.x, BB.y + 0.12, 0.045),
-    ];
-    const chainGeo = new THREE.BufferGeometry().setFromPoints(chainPoints);
-    const chainLine = new THREE.Line(chainGeo, chainMat);
-    bikeGroup.add(chainLine);
-
-    // --- AERODYNAMIC WIND TUNNEL PARTICLE STREAMS ---
-    const particleCount = 450;
-    const particleGeo = new THREE.BufferGeometry();
-    const particlePos = new Float32Array(particleCount * 3);
-    const particleVel = new Float32Array(particleCount);
+    resize();
+    window.addEventListener('resize', resize);
 
     for (let i = 0; i < particleCount; i++) {
-      particlePos[i * 3] = (Math.random() - 0.5) * 5 + 3;
-      particlePos[i * 3 + 1] = (Math.random() - 0.5) * 1.5 + 0.4;
-      particlePos[i * 3 + 2] = (Math.random() - 0.5) * 1.2;
-      particleVel[i] = 0.06 + Math.random() * 0.08;
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        len: Math.random() * 45 + 20,
+        speed: Math.random() * 6 + 4,
+        opacity: Math.random() * 0.6 + 0.2,
+        curve: (Math.random() - 0.5) * 2,
+        color: i % 3 === 0 ? '#00F0FF' : i % 5 === 0 ? '#FF5E0E' : '#FFFFFF',
+      });
     }
 
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      color: 0x00f0ff,
-      size: 0.035,
-      transparent: true,
-      opacity: 0.75,
-      blending: THREE.AdditiveBlending,
-    });
-
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-    sceneState.current.particles = particles;
-
-    sceneState.current.scene = scene;
-    sceneState.current.camera = camera;
-    sceneState.current.renderer = renderer;
-    sceneState.current.bikeGroup = bikeGroup;
-
-    // Interaction Controls
-    const handleMouseDown = (e) => {
-      sceneState.current.isDragging = true;
-      sceneState.current.prevMousePos = { x: e.clientX, y: e.clientY };
-    };
-
-    const handleMouseMove = (e) => {
-      if (!sceneState.current.isDragging) return;
-      const deltaX = e.clientX - sceneState.current.prevMousePos.x;
-
-      if (sceneState.current.bikeGroup) {
-        sceneState.current.bikeGroup.rotation.y += deltaX * 0.008;
-        sceneState.current.rotationVelocity = deltaX * 0.001;
-      }
-
-      sceneState.current.prevMousePos = { x: e.clientX, y: e.clientY };
-    };
-
-    const handleMouseUp = () => {
-      sceneState.current.isDragging = false;
-    };
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      const zoomDelta = e.deltaY * 0.002;
-      const cam = sceneState.current.camera;
-      if (cam) {
-        const dir = new THREE.Vector3();
-        cam.getWorldDirection(dir);
-        cam.position.addScaledVector(dir, -zoomDelta);
-        const dist = cam.position.length();
-        if (dist < 1.4) cam.position.setLength(1.4);
-        if (dist > 7.5) cam.position.setLength(7.5);
-      }
-    };
-
-    const dom = renderer.domElement;
-    dom.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-    dom.addEventListener('wheel', handleWheel, { passive: false });
-
-    const handleTouchStart = (e) => {
-      if (e.touches.length === 1) {
-        sceneState.current.isDragging = true;
-        sceneState.current.prevMousePos = {
-          x: e.touches[0].clientX,
-          y: e.touches[0].clientY,
-        };
-      }
-    };
-
-    const handleTouchMove = (e) => {
-      if (!sceneState.current.isDragging || e.touches.length !== 1) return;
-      const deltaX = e.touches[0].clientX - sceneState.current.prevMousePos.x;
-      if (sceneState.current.bikeGroup) {
-        sceneState.current.bikeGroup.rotation.y += deltaX * 0.008;
-      }
-      sceneState.current.prevMousePos = {
-        x: e.touches[0].clientX,
-        y: e.touches[0].clientY,
-      };
-    };
-
-    const handleTouchEnd = () => {
-      sceneState.current.isDragging = false;
-    };
-
-    dom.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd);
-
-    // Animation Loop
-    let frameCount = 0;
     let lastTime = performance.now();
+    let frames = 0;
 
-    const animate = () => {
-      sceneState.current.reqId = requestAnimationFrame(animate);
-
-      frameCount++;
+    const render = () => {
+      animationFrameId = requestAnimationFrame(render);
+      frames++;
       const now = performance.now();
       if (now - lastTime >= 1000) {
-        setFps(Math.round((frameCount * 1000) / (now - lastTime)));
-        frameCount = 0;
+        setFps(Math.round((frames * 1000) / (now - lastTime)));
+        frames = 0;
         lastTime = now;
       }
 
-      if (isSpinning) {
-        sceneState.current.wheels.forEach((w) => {
-          w.rotation.z -= 0.06;
-        });
-        if (sceneState.current.drivetrainGroup) {
-          sceneState.current.drivetrainGroup.rotation.z -= 0.035;
-        }
-      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (!sceneState.current.isDragging && Math.abs(sceneState.current.rotationVelocity) > 0.0001) {
-        if (sceneState.current.bikeGroup) {
-          sceneState.current.bikeGroup.rotation.y += sceneState.current.rotationVelocity;
-          sceneState.current.rotationVelocity *= 0.96;
-        }
-      } else if (!sceneState.current.isDragging && isSpinning && activeCameraView === 'hero') {
-        if (sceneState.current.bikeGroup) {
-          sceneState.current.bikeGroup.rotation.y += 0.0025;
-        }
-      }
+      if (activeTab === 'windtunnel' || isHoveringStage) {
+        particles.forEach((p) => {
+          ctx.beginPath();
+          ctx.strokeStyle = p.color;
+          ctx.globalAlpha = activeTab === 'windtunnel' ? p.opacity : p.opacity * 0.35;
+          ctx.lineWidth = 1.4;
 
-      const cam = sceneState.current.camera;
-      if (cam) {
-        cam.position.lerp(sceneState.current.targetCameraPos, 0.06);
-        sceneState.current.currentLookAt.lerp(sceneState.current.targetLookAt, 0.06);
-        cam.lookAt(sceneState.current.currentLookAt);
-      }
+          const yawShift = (aeroYawSlider / 20) * 8;
+          ctx.moveTo(p.x, p.y);
+          ctx.quadraticCurveTo(
+            p.x - p.len * 0.5,
+            p.y + p.curve + yawShift,
+            p.x - p.len,
+            p.y + p.curve * 2 + yawShift * 1.5
+          );
+          ctx.stroke();
 
-      if (particles && isWindTunnel) {
-        const positions = particles.geometry.attributes.position.array;
-        for (let i = 0; i < particleCount; i++) {
-          positions[i * 3] -= particleVel[i];
-          if (positions[i * 3] < -3.5) {
-            positions[i * 3] = 3.5 + Math.random();
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 1.5 + 0.4;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 1.2;
+          p.x += p.speed + (activeTab === 'windtunnel' ? 4 : 1);
+          if (p.x > canvas.width + p.len) {
+            p.x = -p.len;
+            p.y = Math.random() * canvas.height;
           }
-        }
-        particles.geometry.attributes.position.needsUpdate = true;
+        });
       }
 
-      renderer.render(scene, camera);
+      // Auto rotation in 360 mode
+      if (isSpinning && activeTab === '360') {
+        setYawAngle((prev) => (prev + 0.4) % 360);
+      }
     };
 
-    animate();
-
-    const handleResize = () => {
-      if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
-
-    window.addEventListener('resize', handleResize);
+    render();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      dom.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      dom.removeEventListener('wheel', handleWheel);
-      dom.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-      if (sceneState.current.reqId) cancelAnimationFrame(sceneState.current.reqId);
-      renderer.dispose();
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [activeTab, aeroYawSlider, isSpinning, isHoveringStage]);
 
-  useEffect(() => {
-    const mats = sceneState.current.materials;
-    if (!mats.frame) return;
+  // Handle Drag Orbit
+  const handleMouseDown = (e) => {
+    if (e.button !== 0) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
 
-    if (isXRayMode) {
-      mats.frame.wireframe = true;
-      mats.frame.color = new THREE.Color(0x00f0ff);
-      mats.frame.emissive = new THREE.Color(0x003355);
-      mats.frame.emissiveIntensity = 0.6;
-      mats.rearCarbon.wireframe = true;
-      mats.rearCarbon.color = new THREE.Color(0x00f0ff);
-    } else {
-      mats.frame.wireframe = false;
-      mats.frame.color.set(selectedColor.primaryColor);
-      mats.frame.metalness = selectedColor.metalness;
-      mats.frame.roughness = selectedColor.roughness;
-      mats.frame.clearcoat = selectedColor.clearcoat;
-      mats.frame.emissive.set(0x000000);
-      mats.frame.needsUpdate = true;
-
-      mats.rearCarbon.wireframe = false;
-      mats.rearCarbon.color.set(selectedColor.rearColor);
-      mats.rearCarbon.needsUpdate = true;
-
-      if (mats.decals) {
-        mats.decals.color.set(selectedColor.decalColor);
-        mats.decals.needsUpdate = true;
-      }
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      setMouseStagePos({ x: normX, y: normY });
     }
-  }, [selectedColor, isXRayMode]);
 
-  useEffect(() => {
-    if (sceneState.current.particles) {
-      sceneState.current.particles.visible = isWindTunnel;
+    if (!isDragging) return;
+    const deltaX = e.clientX - dragStart.x;
+    const deltaY = e.clientY - dragStart.y;
+
+    setYawAngle((prev) => (prev + deltaX * 0.55 + 360) % 360);
+    setPitchAngle((prev) => Math.max(-16, Math.min(16, prev - deltaY * 0.25)));
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
     }
-  }, [isWindTunnel]);
+  };
 
-  const setCameraPreset = (viewId) => {
-    const view = CAMERA_VIEWS.find((v) => v.id === viewId);
-    if (!view) return;
-    setActiveCameraView(viewId);
-    sceneState.current.targetCameraPos.set(...view.pos);
-    sceneState.current.targetLookAt.set(...view.target);
+  const handleTouchMove = (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - dragStart.x;
+    const deltaY = e.touches[0].clientY - dragStart.y;
+
+    setYawAngle((prev) => (prev + deltaX * 0.55 + 360) % 360);
+    setPitchAngle((prev) => Math.max(-16, Math.min(16, prev - deltaY * 0.25)));
+    setDragStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const handleWheel = (e) => {
+    e.preventDefault();
+    const delta = e.deltaY * -0.001;
+    setZoomLevel((prev) => Math.max(0.8, Math.min(1.8, prev + delta)));
+  };
+
+  const handleSelectColorway = (c) => {
+    setSelectedColor(c);
+    if (onColorChange) onColorChange(c);
+    sfx.playClick();
+  };
+
+  const setCameraPreset = (camId) => {
+    const cam = CAMERA_VIEWS.find((v) => v.id === camId);
+    if (!cam) return;
+    setActiveCameraView(camId);
+    setYawAngle(cam.angle);
+    setPitchAngle(0);
+    setZoomLevel(cam.scale);
     sfx.playHover();
   };
 
-  const handleSelectColorway = (colorway) => {
-    setSelectedColor(colorway);
-    if (onColorChange) onColorChange(colorway);
+  const resetStage = () => {
+    setActiveCameraView('hero');
+    setYawAngle(15);
+    setPitchAngle(0);
+    setZoomLevel(1);
+    setIsSpinning(false);
     sfx.playClick();
   };
 
-  const resetCamera = () => {
-    setCameraPreset('hero');
-    if (sceneState.current.bikeGroup) {
-      sceneState.current.bikeGroup.rotation.y = 0;
+  const toggleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch(() => {});
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen().catch(() => {});
+      setIsFullscreen(false);
     }
     sfx.playClick();
   };
 
+  // Calculated Aerodynamic Delta based on yaw slider
+  const dynamicCdA = useMemo(() => {
+    const base = 0.218;
+    const yawPenalty = Math.abs(aeroYawSlider) * 0.0018;
+    return (base + yawPenalty).toFixed(3);
+  }, [aeroYawSlider]);
+
+  const dynamicWattSaved = useMemo(() => {
+    const base = 3.2;
+    const yawBonus = (20 - Math.abs(aeroYawSlider)) * 0.12;
+    return (base + yawBonus).toFixed(1);
+  }, [aeroYawSlider]);
+
   return (
     <div
-      className={`relative w-full rounded-3xl overflow-hidden border border-white/[0.12] bg-gradient-to-b from-[#0c0f16]/90 via-[#07090e]/95 to-[#040508] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl h-[600px] sm:h-[680px] lg:h-[760px] ${className}`}
+      ref={containerRef}
+      onMouseEnter={() => setIsHoveringStage(true)}
+      onMouseLeave={() => {
+        setIsHoveringStage(false);
+        setIsDragging(false);
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onWheel={handleWheel}
+      className={`relative w-full select-none overflow-hidden rounded-3xl border border-white/[0.14] bg-gradient-to-b from-[#0e111a]/98 via-[#07090f]/98 to-[#030406] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-3xl min-h-[640px] sm:min-h-[720px] lg:min-h-[800px] flex flex-col justify-between ${
+        isFullscreen ? 'fixed inset-0 z-50 rounded-none h-screen min-h-screen' : ''
+      } ${className}`}
     >
-      {/* Studio Top Rim Light Highlight */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/[0.05] via-transparent to-transparent pointer-events-none z-10" />
+      {/* --- LAYER 1: ATMOSPHERIC STUDIO LIGHTING & SPECULAR SHINE --- */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] pointer-events-none opacity-30 transition-all duration-1000 ease-out"
+        style={{ backgroundColor: activeLighting.ambient }}
+      />
+      <div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full blur-[160px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
+        style={{ backgroundColor: selectedColor.accentColor || activeLighting.underglow }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
 
-      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      {/* Engineering Precision Grid Background */}
+      <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,black_30%,transparent_90%)]" />
 
-      {/* Top Left: Atelier Stage Badge & Active Finish */}
-      <div className="absolute top-5 left-5 z-20 flex flex-col gap-1.5 pointer-events-none">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl">
-          <span className="w-2 h-2 rounded-full bg-[#E4002B]" />
-          <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-300 uppercase">
-            ATELIER TREVISO • 360° STAGE
-          </span>
-        </div>
-        <div className="px-3 py-1.5 rounded-xl bg-black/40 border border-white/5 backdrop-blur-md">
-          <div className="font-display text-xs font-bold text-white uppercase tracking-wider">
-            {selectedColor.name}
+      {/* --- LAYER 2: CFD AERODYNAMIC WIND STREAMLINES CANVAS --- */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none z-10"
+      />
+
+      {/* --- LAYER 3: TOP STUDIO DECK & LUXURY HUD HEADER --- */}
+      <div className="relative z-20 p-5 sm:p-7 flex flex-wrap items-start justify-between gap-4">
+        {/* Left: Atelier Treviso Live Badge */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/75 border border-white/10 backdrop-blur-xl shadow-lg">
+            <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
+            <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-300 uppercase font-semibold">
+              ATELIER TREVISO • VIRTUAL STAGE
+            </span>
+            <span className="text-zinc-600">|</span>
+            <span className="font-mono text-[10px] text-[#00F0FF]">{fps} FPS</span>
+            <span className="text-zinc-600">|</span>
+            <span className="font-mono text-[10px] text-[#FF5E0E]">{yawAngle}° ORBIT</span>
           </div>
-          <div className="font-mono text-[9px] text-[#FF5E0E] uppercase">
-            {selectedColor.edition}
+
+          <div className="px-4 py-2.5 rounded-2xl bg-black/60 border border-white/10 backdrop-blur-xl shadow-xl flex items-center gap-4">
+            <div>
+              <div className="font-display text-sm sm:text-base font-black text-white uppercase tracking-wider">
+                {selectedColor.name}
+              </div>
+              <div className="font-mono text-[10px] text-[#FF5E0E] uppercase font-bold flex items-center gap-2">
+                <span>{selectedColor.edition}</span>
+                <span className="text-zinc-600">•</span>
+                <span className="text-zinc-400">{selectedColor.code}</span>
+              </div>
+            </div>
+            <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-[#00F0FF] uppercase tracking-wider hidden sm:inline">
+              {selectedColor.badge}
+            </span>
+          </div>
+        </div>
+
+        {/* Center/Right: 4 Masterwork Studio Inspection Modes */}
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl">
+            <button
+              onClick={() => {
+                setActiveTab('360');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === '360'
+                  ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>360° ATELIER</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('windtunnel');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'windtunnel'
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_20px_rgba(0,240,255,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Wind className="w-3.5 h-3.5" />
+              <span>CFD WIND TUNNEL</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('xray');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'xray'
+                  ? 'bg-[#FF5E0E] text-black shadow-[0_0_20px_rgba(255,94,14,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>TORAYCA® R&D</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('telemetry');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'telemetry'
+                  ? 'bg-[#D4FF00] text-black shadow-[0_0_20px_rgba(212,255,0,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Gauge className="w-3.5 h-3.5" />
+              <span>TELEMETRY HUD</span>
+            </button>
+          </div>
+
+          {/* Quick Studio Toggles */}
+          <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/70 border border-white/10 backdrop-blur-xl">
+            {/* Auto-Spin Toggle */}
+            <button
+              onClick={() => {
+                setIsSpinning(!isSpinning);
+                sfx.playHover();
+              }}
+              className={`p-2 rounded-full transition-all ${
+                isSpinning
+                  ? 'bg-[#D4FF00]/20 text-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+              title="Toggle Auto 360° Turntable"
+            >
+              <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
+            </button>
+
+            {/* Reset Camera Stage */}
+            <button
+              onClick={resetStage}
+              className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
+              title="Reset Stage to 3/4 Hero"
+            >
+              <Compass className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Fullscreen Stage */}
+            <button
+              onClick={toggleFullscreen}
+              className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
+              title="Toggle Fullscreen Virtual Atelier"
+            >
+              {isFullscreen ? (
+                <Minimize2 className="w-3.5 h-3.5" />
+              ) : (
+                <Maximize2 className="w-3.5 h-3.5" />
+              )}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Top Right: Minimal Luxury Controls */}
-      <div className="absolute top-5 right-5 z-20 flex flex-col items-end gap-2.5">
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-xl">
-          <button
-            onClick={() => {
-              setIsWindTunnel(!isWindTunnel);
-              sfx.playHover();
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
-              isWindTunnel
-                ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-            title="Wind Tunnel CFD Streamlines"
-          >
-            <Wind className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">WIND TUNNEL</span>
-          </button>
+      {/* --- LAYER 4: CENTER INTERACTIVE 3D VIRTUAL SHOWCASE STAGE --- */}
+      <div className="relative flex-1 flex items-center justify-center min-h-[380px] sm:min-h-[440px] px-4 my-2">
+        {/* Dynamic Studio Turntable Platform Base */}
+        <div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[540px] sm:w-[680px] lg:w-[780px] h-[160px] rounded-[100%] border border-white/15 pointer-events-none transition-all duration-700 ease-out"
+          style={{
+            transform: `translateX(-50%) rotateX(72deg) rotateZ(${yawAngle}deg) scale(${zoomLevel})`,
+            boxShadow: `0 0 60px ${selectedColor.accentColor}33, inset 0 0 35px rgba(255,255,255,0.08)`,
+          }}
+        >
+          {/* Inner Concentric Laser Rings */}
+          <div className="absolute inset-4 rounded-[100%] border border-[#00F0FF]/30 border-dashed" />
+          <div className="absolute inset-10 rounded-[100%] border border-white/10" />
 
-          <button
-            onClick={() => {
-              setIsXRayMode(!isXRayMode);
-              sfx.playHover();
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono transition-all ${
-              isXRayMode
-                ? 'bg-[#FF3B00]/20 text-[#FF5E0E] border border-[#FF3B00]/40'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-            title="TorayCa M40X Carbon Layup X-Ray"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">X-RAY LAYUP</span>
-          </button>
-
-          <button
-            onClick={() => {
-              setIsSpinning(!isSpinning);
-              sfx.playHover();
-            }}
-            className={`p-1.5 rounded-full text-[11px] transition-all ${
-              isSpinning ? 'text-[#D4FF00] bg-[#D4FF00]/10' : 'text-zinc-400 hover:text-white'
-            }`}
-            title="Toggle Auto Spin"
-          >
-            <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
-          </button>
-
-          <button
-            onClick={resetCamera}
-            className="p-1.5 rounded-full text-zinc-400 hover:text-white transition-all"
-            title="Reset Camera View"
-          >
-            <Compass className="w-3.5 h-3.5" />
-          </button>
+          {/* Turntable Degree Ticks */}
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+            <div
+              key={deg}
+              className="absolute top-1/2 left-1/2 w-full h-0.5 bg-transparent origin-center flex justify-between px-2"
+              style={{ transform: `translate(-50%, -50%) rotate(${deg}deg)` }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40 inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40 inline-block" />
+            </div>
+          ))}
         </div>
 
-        {/* Camera View Selector Pills */}
-        <div className="flex items-center gap-1 p-1 rounded-full bg-black/50 border border-white/5 backdrop-blur-md hidden sm:flex font-mono text-[10px]">
+        {/* Ground Occlusion Shadow */}
+        <div
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 w-[480px] sm:w-[620px] h-[45px] bg-black/85 rounded-full blur-xl pointer-events-none transition-all duration-500"
+          style={{ transform: `translateX(-50%) scale(${zoomLevel * 0.95})` }}
+        />
+
+        {/* --- PHOTOREALISTIC HIGH-RESOLUTION PINARELLO DOGMA F CHASSIS --- */}
+        <div
+          className="relative z-10 w-full max-w-3xl sm:max-w-4xl flex items-center justify-center transition-transform duration-100 ease-out cursor-grab active:cursor-grabbing"
+          style={{
+            transform: `perspective(1200px) rotateY(${
+              (yawAngle - 15) * 0.35 + mouseStagePos.x * 6
+            }deg) rotateX(${pitchAngle - mouseStagePos.y * 5}deg) scale(${zoomLevel})`,
+          }}
+        >
+          {/* Authentic High-Definition Bike Model Image */}
+          <div className="relative group">
+            <img
+              src={selectedColor.bikeImage}
+              alt={`Pinarello Dogma F - ${selectedColor.name}`}
+              className={`w-full max-h-[380px] sm:max-h-[460px] lg:max-h-[500px] object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.9)] transition-all duration-500 select-none pointer-events-none ${
+                activeTab === 'xray'
+                  ? 'filter invert brightness-150 contrast-125 hue-rotate-180 opacity-75'
+                  : ''
+              } ${isHeatmapOn ? 'filter saturate-200 hue-rotate-90' : ''}`}
+            />
+
+            {/* Dynamic Specular Lighting Glint Reflection overlay */}
+            <div
+              className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"
+              style={{
+                transform: `translateX(${mouseStagePos.x * 30}px) translateY(${
+                  mouseStagePos.y * 20
+                }px)`,
+              }}
+            />
+          </div>
+
+          {/* --- INTERACTIVE 3D SPATIAL HOTSPOTS (MODE: 360 & TELEMETRY) --- */}
+          {(activeTab === '360' || activeTab === 'telemetry') &&
+            HOTSPOTS.map((spot) => {
+              const isActive = activeHotspot?.id === spot.id;
+              return (
+                <div
+                  key={spot.id}
+                  className="absolute z-30 pointer-events-auto transition-transform duration-200"
+                  style={{
+                    left: `${spot.x}%`,
+                    top: `${spot.y}%`,
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <div className="relative group">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveHotspot(isActive ? null : spot);
+                        sfx.playClick();
+                      }}
+                      onMouseEnter={() => sfx.playHover()}
+                      className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full border transition-all duration-300 ${
+                        isActive
+                          ? 'bg-[#00F0FF] text-black border-white scale-125 shadow-[0_0_25px_#00F0FF]'
+                          : 'bg-black/80 text-white border-white/35 hover:border-white hover:scale-115 hover:bg-black/95 shadow-xl'
+                      }`}
+                      title={spot.title}
+                    >
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-35" />
+                      <span className="font-mono text-xs font-black">+</span>
+                    </button>
+
+                    {/* Interactive Engineering Spec Popover */}
+                    {isActive && (
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute left-1/2 -top-3 -translate-x-1/2 -translate-y-full w-64 sm:w-80 p-4 rounded-2xl bg-[#0b0e14]/95 border border-[#00F0FF]/40 text-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-50 animate-in fade-in zoom-in-95 duration-200"
+                      >
+                        <div className="flex items-center justify-between mb-1.5 pb-1.5 border-b border-white/10">
+                          <span className="font-mono text-[9px] text-[#00F0FF] font-bold tracking-widest uppercase">
+                            {spot.badge}
+                          </span>
+                          <span className="font-mono text-[9.5px] text-zinc-400 font-semibold">
+                            {spot.spec}
+                          </span>
+                        </div>
+                        <div className="font-display text-sm font-black uppercase tracking-tight text-white mb-1">
+                          {spot.title}
+                        </div>
+                        <p className="text-xs text-zinc-300 font-sans leading-relaxed">
+                          {spot.desc}
+                        </p>
+                        <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
+                          <span className="font-mono text-[9px] text-zinc-500">
+                            TREVISO R&D LABS
+                          </span>
+                          <button
+                            onClick={() => setActiveHotspot(null)}
+                            className="text-[10px] font-mono text-zinc-400 hover:text-white font-bold"
+                          >
+                            CLOSE [✕]
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+
+        {/* --- OVERLAY MODE: CFD WIND TUNNEL CONTROLS & TELEMETRY --- */}
+        {activeTab === 'windtunnel' && (
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
+                <Wind className="w-4 h-4" />
+                <span>CFD Aero Dynamics</span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
+                <div className="font-display text-xl font-black text-white mt-0.5">
+                  {dynamicCdA} <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
+                <div className="font-display text-xl font-black text-[#D4FF00] mt-0.5">
+                  -{dynamicWattSaved} <span className="text-xs font-mono">W</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Yaw Angle Interactive Slider */}
+            <div>
+              <div className="flex justify-between text-[10px] font-mono text-zinc-300 mb-1">
+                <span>WIND YAW ANGLE</span>
+                <span className="text-[#00F0FF] font-bold">{aeroYawSlider}°</span>
+              </div>
+              <input
+                type="range"
+                min="-20"
+                max="20"
+                step="1"
+                value={aeroYawSlider}
+                onChange={(e) => {
+                  setAeroYawSlider(Number(e.target.value));
+                  sfx.playHover();
+                }}
+                className="w-full accent-[#00F0FF] cursor-pointer"
+              />
+              <div className="flex justify-between text-[8.5px] font-mono text-zinc-500 mt-1">
+                <span>-20° PORT</span>
+                <span>0° HEADWIND</span>
+                <span>+20° STARBOARD</span>
+              </div>
+            </div>
+
+            {/* Pressure Heatmap Toggle */}
+            <button
+              onClick={() => {
+                setIsHeatmapOn(!isHeatmapOn);
+                sfx.playClick();
+              }}
+              className={`w-full py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all ${
+                isHeatmapOn
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_#00F0FF]'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>{isHeatmapOn ? 'PRESSURE SPECTRUM: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
+            </button>
+          </div>
+        )}
+
+        {/* --- OVERLAY MODE: TORAYCA® M40X EXPLODED R&D MATRIX --- */}
+        {activeTab === 'xray' && (
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 w-80 sm:w-96 p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-2xl space-y-3">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
+                <Layers className="w-4 h-4" />
+                <span>TorayCa® Anatomical X-Ray</span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
+            </div>
+
+            {/* Layer Selection Chips */}
+            <div className="grid grid-cols-2 gap-1.5">
+              {EXPLODED_LAYERS.map((layer, idx) => (
+                <button
+                  key={layer.id}
+                  onClick={() => {
+                    setSelectedExplodedLayer(idx);
+                    sfx.playClick();
+                  }}
+                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold text-left transition-all ${
+                    selectedExplodedLayer === idx
+                      ? 'bg-[#FF5E0E] text-black shadow-md'
+                      : 'bg-white/5 text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {layer.tag}
+                </button>
+              ))}
+            </div>
+
+            {/* Active Layer Deep Dive Card */}
+            <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5">
+              <div className="font-display text-xs font-black uppercase text-white tracking-wider">
+                {EXPLODED_LAYERS[selectedExplodedLayer].name}
+              </div>
+              <div className="font-mono text-[10px] text-[#FF5E0E] font-semibold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].subtitle}
+              </div>
+              <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
+                {EXPLODED_LAYERS[selectedExplodedLayer].desc}
+              </p>
+              <div className="pt-2 border-t border-white/10 text-[10px] font-mono text-[#D4FF00] font-bold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].stat}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* --- OVERLAY MODE: PRO-TOUR TELEMETRY HUD GAUGES --- */}
+        {activeTab === 'telemetry' && (
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-2xl space-y-3">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
+                <Gauge className="w-4 h-4" />
+                <span>Chassis Telemetry</span>
+              </div>
+              <span className="text-[10px] font-mono text-[#00F0FF] animate-pulse">LIVE SENSORS</span>
+            </div>
+
+            <div className="space-y-2 font-mono text-xs">
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>POWER TRANSFER EFFICIENCY</span>
+                  <span className="text-white font-bold">99.4%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#D4FF00] w-[99.4%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>LATERAL CHASSIS STIFFNESS</span>
+                  <span className="text-[#D4FF00] font-bold">392 GPa</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-[#D4FF00] w-[94%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>WEIGHT DISTRIBUTION (F/R)</span>
+                  <span className="text-[#00F0FF] font-bold">48% : 52%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden flex">
+                  <div className="h-full bg-[#00F0FF] w-[48%]" />
+                  <div className="h-full bg-[#FF5E0E] w-[52%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+              <span>WEIGHT: 865g FRAME</span>
+              <span className="text-white font-bold">TOTAL: 6.77 KG</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* --- LAYER 5: BOTTOM LUXURY CONTROL DOCK & SWATCH DECK --- */}
+      <div className="relative z-20 p-5 sm:p-7 pt-2 flex flex-col items-center gap-4">
+        {/* Camera Focal View Presets */}
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl overflow-x-auto max-w-full">
           {CAMERA_VIEWS.map((cam) => (
             <button
               key={cam.id}
               onClick={() => setCameraPreset(cam.id)}
-              className={`px-2.5 py-1 rounded-full transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-[11px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 ${
                 activeCameraView === cam.id
-                  ? 'bg-white text-black font-bold shadow'
+                  ? 'bg-white text-black font-bold shadow-md scale-105'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
@@ -1067,95 +1008,76 @@ export const DogmaBike3D = ({
             </button>
           ))}
         </div>
-      </div>
 
-      {/* Hotspots */}
-      {HOTSPOTS.map((spot) => (
-        <div
-          key={spot.id}
-          className="absolute z-20 pointer-events-auto transition-all"
-          style={{
-            left: `${spot.screenPos.x}%`,
-            top: `${spot.screenPos.y}%`,
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          <div className="relative group">
-            <button
-              onClick={() => {
-                setActiveHotspot(activeHotspot?.id === spot.id ? null : spot);
-                sfx.playClick();
-              }}
-              className="relative flex items-center justify-center w-7 h-7 rounded-full bg-black/80 border border-[#FF3B00]/80 text-[#FF5E0E] shadow-glow-crimson transition-transform duration-300 group-hover:scale-125"
-            >
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF3B00] opacity-40"></span>
-              <span className="font-mono text-[10px] font-bold">+</span>
-            </button>
-
-            {activeHotspot?.id === spot.id && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-10 w-64 p-3.5 rounded-xl bg-black/90 border border-white/20 shadow-2xl backdrop-blur-xl z-30 animate-in fade-in zoom-in-95 duration-200">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="font-display font-bold text-white">{spot.title}</span>
-                  <span className="font-mono text-[9px] text-[#00F0FF]">{spot.spec}</span>
-                </div>
-                <p className="text-[11px] text-zinc-300 leading-snug">{spot.desc}</p>
-                <div className="mt-2 pt-2 border-t border-white/10 flex justify-end">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveHotspot(null);
-                    }}
-                    className="text-[10px] font-mono text-zinc-400 hover:text-white"
-                  >
-                    CLOSE [ESC]
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
-
-      {/* Bottom Center: Paint Finish / Colorway Switcher */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 mr-1 hidden sm:inline">
-            OFFICIAL FINISH:
-          </span>
-
-          {COLORWAYS.map((c) => {
-            const isSelected = selectedColor.id === c.id;
-            return (
-              <button
-                key={c.id}
-                onClick={() => handleSelectColorway(c)}
-                className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 ${
-                  isSelected
-                    ? 'scale-115 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_15px_rgba(255,255,255,0.4)]'
-                    : 'opacity-70 hover:opacity-100 hover:scale-105'
-                }`}
-                title={`${c.name} — ${c.edition}`}
-              >
-                <div
-                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-white/30 shadow-inner"
-                  style={{
-                    background: c.swatchGradient || `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+        {/* Swatches & Studio Atmosphere Selector */}
+        <div className="flex flex-wrap items-center justify-between gap-4 w-full max-w-5xl px-2">
+          {/* Studio Lighting Mood Switcher */}
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden lg:inline">
+              ATMOSPHERE:
+            </span>
+            <div className="flex items-center gap-1 p-1 rounded-full bg-black/60 border border-white/10">
+              {STUDIO_LIGHTING_MODES.map((light) => (
+                <button
+                  key={light.id}
+                  onClick={() => {
+                    setActiveLighting(light);
+                    sfx.playClick();
                   }}
-                />
-                {isSelected && (
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#00F0FF] rounded-full border-2 border-black shadow" />
-                )}
-              </button>
-            );
-          })}
-        </div>
+                  className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono transition-all ${
+                    activeLighting.id === light.id
+                      ? 'bg-white/20 text-white font-bold'
+                      : 'text-zinc-500 hover:text-zinc-300'
+                  }`}
+                  title={light.desc}
+                >
+                  {light.name.split(' ')[0]}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <div className="font-mono text-[10px] text-zinc-500 uppercase tracking-[0.25em] flex items-center gap-2">
-          <span>DRAG 360°</span>
-          <span>•</span>
-          <span>SCROLL ZOOM</span>
-          <span>•</span>
-          <span>CLICK HOTSPOTS</span>
+          {/* Colorway Swatches */}
+          <div className="flex items-center gap-2 sm:gap-2.5 p-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-xl overflow-x-auto">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden sm:inline px-2">
+              FINISH:
+            </span>
+            {COLORWAYS.map((c) => {
+              const isSelected = selectedColor.id === c.id;
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => handleSelectColorway(c)}
+                  onMouseEnter={() => sfx.playHover()}
+                  className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 shrink-0 ${
+                    isSelected
+                      ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(255,255,255,0.5)]'
+                      : 'opacity-65 hover:opacity-100 hover:scale-110'
+                  }`}
+                  title={`${c.name} — ${c.edition}`}
+                >
+                  <div
+                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/30 shadow-inner"
+                    style={{
+                      background:
+                        c.swatchGradient ||
+                        `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+                    }}
+                  />
+                  {isSelected && (
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#00F0FF] rounded-full border-2 border-black" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Stage Controls & Guidance */}
+          <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em] flex items-center gap-3">
+            <span>DRAG 360° ORBIT</span>
+            <span>•</span>
+            <span>SCROLL ZOOM</span>
+          </div>
         </div>
       </div>
     </div>

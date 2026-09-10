@@ -233,10 +233,13 @@ export const DogmaSpecs = () => {
     OFFICIAL_SPECS_DATA.find((c) => c.id === activeTab) || OFFICIAL_SPECS_DATA[0];
 
   return (
-    <section id="specifications" className="relative py-28 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+    <section id="specifications" className="relative w-full py-28 overflow-hidden">
       {/* Background Accent Lighting */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-96 h-96 bg-[#E4002B]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[600px] h-[600px] bg-[#E4002B]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[600px] h-[600px] bg-[#00F0FF]/10 rounded-full blur-[160px] pointer-events-none" />
+
+      {/* Inner Centered Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 
       {/* --- OFFICIAL QUOTE BANNER --- */}
       <div className="relative mb-16 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-white/[0.04] via-[#E4002B]/10 to-white/[0.02] border border-white/10 backdrop-blur-xl shadow-2xl">
@@ -531,6 +534,7 @@ export const DogmaSpecs = () => {
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 };

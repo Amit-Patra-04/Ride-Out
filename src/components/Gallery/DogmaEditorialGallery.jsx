@@ -76,11 +76,13 @@ export const DogmaEditorialGallery = () => {
   };
 
   return (
-    <section id="gallery" className="relative py-28 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+    <section id="gallery" className="relative w-full py-28 overflow-hidden">
       {/* Ambient Section Lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#E4002B]/6 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[#E4002B]/8 rounded-full blur-[180px] pointer-events-none" />
 
-      {/* Header */}
+      {/* Inner Centered Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-8 border-b border-white/10 gap-6">
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#E5A93C] text-xs font-mono tracking-widest uppercase mb-4">
@@ -210,6 +212,7 @@ export const DogmaEditorialGallery = () => {
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 };

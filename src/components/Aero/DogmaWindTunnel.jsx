@@ -241,12 +241,14 @@ export const DogmaWindTunnel = () => {
   }, [dogmaSpeed]);
 
   return (
-    <section id="windtunnel" className="relative py-28 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+    <section id="windtunnel" className="relative w-full py-28 overflow-hidden">
       {/* Background Lighting */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-96 h-96 bg-[#E4002B]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[600px] h-[600px] bg-[#00F0FF]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[600px] h-[600px] bg-[#E4002B]/10 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Section Header */}
+      {/* Inner Centered Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-14">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FF5E0E] text-xs font-mono tracking-widest uppercase mb-4">
           <Wind className="w-3.5 h-3.5" />
@@ -530,6 +532,7 @@ export const DogmaWindTunnel = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
