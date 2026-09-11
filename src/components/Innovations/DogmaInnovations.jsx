@@ -13,6 +13,9 @@ import {
   ChevronRight,
   Activity,
   Compass,
+  ArrowRight,
+  Eye,
+  Flame,
 } from 'lucide-react';
 import { sfx } from '../../utils/animations';
 
@@ -166,66 +169,165 @@ export const DogmaInnovations = () => {
     }
   };
 
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+    sfx.playHover();
+  };
+
   return (
-    <section id="innovations" className="relative w-full py-28 overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute top-1/4 right-0 w-[700px] h-[700px] bg-[#E4002B]/8 rounded-full blur-[170px] pointer-events-none" />
+    <section
+      id="innovations"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#090d18] via-[#160d20] to-[#0c1326]"
+    >
+      {/* --- LAYER 1: VIBRANT ANIMATED ATMOSPHERIC AURORAS --- */}
+      <div className="absolute top-1/4 -right-20 w-[1150px] h-[1150px] bg-[#E4002B]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
+      <div className="absolute bottom-1/4 -left-20 w-[1050px] h-[1050px] bg-[#00F0FF]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#FF5E0E]/22 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
 
-      {/* Inner Centered Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#00F0FF] text-xs font-mono tracking-widest uppercase mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Official Pinarello R&D Innovations</span>
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-none">
-            ENGINEERING <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E5A93C]">BREAKTHROUGHS</span>
-          </h2>
-          <p className="mt-4 text-sm sm:text-base md:text-lg text-zinc-400 font-sans">
-            Discover how Pinarello Treviso re-imagined every square millimeter of the Dogma F with carbon M40X, Hour Record aerodynamics, and computational frame geometry.
-          </p>
+      {/* Bespoke Dynamic Energy Streamlines & Precision Vector Guides */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-50">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-100,200 C300,100 800,300 1400,150 C1800,50 2100,250 2500,180" fill="none" stroke="rgba(228,0,43,0.35)" strokeWidth="2" className="aero-streamline" />
+          <path d="M-100,600 C400,500 900,700 1500,550 C1900,450 2200,650 2600,580" fill="none" stroke="rgba(0,240,255,0.35)" strokeWidth="2" className="aero-streamline-fast" />
+          <circle cx="20%" cy="30%" r="320" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 8" />
+          <circle cx="80%" cy="70%" r="360" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="6 12" />
+        </svg>
+      </div>
+
+      {/* Contained Architectural Watermark */}
+      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
+        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">INNOVATIONS</span>
+        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-300 to-transparent -mt-[1.5vw]">
+          R&D TREVISO
+        </span>
+      </div>
+
+      {/* Side Technical & Geographic Calibration Labels */}
+      <div className="absolute top-36 left-8 hidden 2xl:flex flex-col gap-6 font-mono text-[9px] text-zinc-400 tracking-[0.25em] uppercase select-none pointer-events-none z-10">
+        <div className="space-y-1">
+          <span className="block text-red-400 font-bold text-[9.5px]">LABORATORIO R&D</span>
+          <span className="text-zinc-300">TREVISO // ITALIA</span>
+          <span className="block text-zinc-400">VILLORBA RACING ARCHIVE</span>
         </div>
+      </div>
 
-        {/* Interactive Innovation Stage */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-obsidian-surface/80 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">
-          {/* Navigation Feature List */}
-          <div className="lg:col-span-4 flex flex-col justify-between space-y-2 pr-0 lg:pr-4 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0">
-            <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest mb-2">
-              SELECT R&D COMPONENT
+      <div className="absolute top-36 right-8 hidden 2xl:flex flex-col gap-6 font-mono text-[9px] text-zinc-400 tracking-[0.25em] uppercase text-right select-none pointer-events-none z-10">
+        <div className="space-y-1">
+          <span className="block text-cyan-400 font-bold text-[9.5px]">COMPOSITE MATRIX</span>
+          <span className="text-zinc-300">TORAYCA® M40X</span>
+          <span className="block text-zinc-400">392 GPA TENSILE</span>
+        </div>
+      </div>
+
+      {/* --- LAYER 2: INNER CENTERED CONTAINER --- */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        {/* Section Header: Grand Editorial Flagship */}
+        <div className="relative z-10 mb-14 sm:mb-16">
+          {/* Top Kicker Registry Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)]">
+                03
+              </span>
+              <span className="text-[#FF5E0E] font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#FF5E0E] animate-pulse" />
+                R&D BREAKTHROUGHS
+              </span>
+              <span className="text-zinc-500">//</span>
+              <span className="text-zinc-200">PATENTED CHASSIS DYNAMICS</span>
             </div>
 
-            <div className="space-y-1.5 max-h-[480px] overflow-y-auto pr-1">
+            <div className="flex items-center gap-4 text-zinc-300 font-mono text-[10px]">
+              <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white font-bold backdrop-blur-md">
+                INNOVATION 0{activeIndex + 1} / 09
+              </span>
+              <span className="text-zinc-500 hidden sm:inline">•</span>
+              <span className="text-[#00F0FF] font-bold hidden sm:inline">
+                TORAYCA M40X COMPOSITE
+              </span>
+            </div>
+          </div>
+
+          {/* Master Grand Headline & Editorial Description */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="max-w-3xl space-y-2">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.35em] text-[#FF5E0E] font-bold">
+                NINE REVOLUTIONARY ENGINEERING MILESTONES
+              </span>
+              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.92] drop-shadow-2xl">
+                ENGINEERING <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 via-40% to-[#E4002B] drop-shadow-lg">
+                  BREAKTHROUGHS.
+                </span>
+              </h2>
+            </div>
+
+            <div className="max-w-md lg:pb-2 space-y-4">
+              <p className="text-sm sm:text-base text-zinc-200 font-sans font-normal leading-relaxed">
+                Discover how Pinarello Treviso re-imagined every square millimeter of the Dogma F with carbon M40X, Hour Record aerodynamics, and computational frame geometry.
+              </p>
+              <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-zinc-300">
+                <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/15 font-semibold text-white">
+                  9 PATENTED SYSTEMS
+                </span>
+                <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/15 font-semibold text-white">
+                  HOUR RECORD TECH
+                </span>
+                <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/15 font-semibold text-white">
+                  TICR™ INTERNAL
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* --- MAIN INTERACTIVE INNOVATION STAGE --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0c0e16]/90 border border-white/15 rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
+          {/* Navigation Feature List (Left 4 cols) */}
+          <div className="lg:col-span-4 flex flex-col justify-between space-y-3 pr-0 lg:pr-6 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0">
+            <div className="flex items-center justify-between font-mono text-[11px] text-zinc-300 uppercase tracking-widest pb-3 border-b border-white/10 font-bold">
+              <span>SELECT R&D COMPONENT</span>
+              <span className="text-[#00F0FF] font-black">0{activeIndex + 1}/09</span>
+            </div>
+
+            <div className="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar">
               {OFFICIAL_INNOVATIONS.map((item, idx) => {
                 const isSelected = activeIndex === idx;
                 return (
                   <button
                     key={item.id}
                     onClick={() => handleSelectTab(idx)}
-                    className={`w-full text-left p-3.5 rounded-2xl transition-all duration-300 flex items-center justify-between border ${
+                    onMouseEnter={() => sfx.playHover()}
+                    className={`w-full text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border backdrop-blur-md ${
                       isSelected
-                        ? 'bg-white/10 border-white/30 text-white shadow-[0_0_20px_rgba(228,0,43,0.2)]'
-                        : 'bg-white/[0.02] border-white/[0.05] text-zinc-400 hover:text-white hover:bg-white/[0.05] hover:border-white/15'
+                        ? 'bg-gradient-to-r from-red-600/30 via-white/[0.12] to-white/[0.06] border-red-500/60 text-white shadow-[0_10px_25px_rgba(0,0,0,0.5),0_0_25px_rgba(228,0,43,0.35)] scale-[1.02]'
+                        : 'bg-white/[0.03] border-white/10 text-zinc-300 hover:text-white hover:bg-white/[0.08] hover:border-white/25'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <span
-                        className={`w-2 h-2 rounded-full transition-colors ${
-                          isSelected ? 'bg-[#E4002B] shadow-[0_0_8px_#E4002B]' : 'bg-zinc-600'
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          isSelected
+                            ? 'bg-[#E4002B] scale-125 shadow-[0_0_12px_#E4002B]'
+                            : 'bg-zinc-500'
                         }`}
                       />
                       <div>
-                        <div className="font-display text-sm font-bold uppercase tracking-wide">
+                        <div className="font-display text-sm font-black uppercase tracking-wide text-white">
                           {item.title}
                         </div>
-                        <div className="text-[10px] font-mono text-zinc-500 uppercase">
+                        <div className="text-[10px] font-mono text-zinc-400 uppercase mt-0.5">
                           {item.statLabel}
                         </div>
                       </div>
                     </div>
                     <span
-                      className={`font-mono text-xs font-bold ${
-                        isSelected ? 'text-[#00F0FF]' : 'text-zinc-500'
+                      className={`font-mono text-xs font-bold px-2.5 py-1 rounded-lg ${
+                        isSelected
+                          ? 'bg-[#00F0FF]/25 text-[#00F0FF] border border-[#00F0FF]/50 shadow-[0_0_10px_rgba(0,240,255,0.3)]'
+                          : 'text-zinc-400 bg-white/5'
                       }`}
                     >
                       {item.stat}
@@ -235,16 +337,16 @@ export const DogmaInnovations = () => {
               })}
             </div>
 
-            <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-              <span>TOTAL INNOVATIONS: 9</span>
-              <span className="text-[#E4002B] font-semibold">TORAYCA M40X</span>
+            <div className="pt-4 mt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-300 font-bold">
+              <span>9 OFFICIAL PATENTS</span>
+              <span className="text-[#FF5E0E]">TORAYCA M40X</span>
             </div>
           </div>
 
-          {/* Video & Editorial Presentation Area */}
+          {/* Video & Editorial Presentation Area (Right 8 cols) */}
           <div className="lg:col-span-8 flex flex-col justify-between space-y-6">
             {/* Main Media Player (Video or Hi-Res Image) */}
-            <div className="relative w-full aspect-video sm:aspect-[16/10] rounded-2xl overflow-hidden bg-black/90 border border-white/15 shadow-2xl flex items-center justify-center group">
+            <div className="relative w-full aspect-video sm:aspect-[16/10] rounded-2xl overflow-hidden bg-black/90 border border-white/20 shadow-2xl flex items-center justify-center group">
               {activeItem.mediaType === 'video' ? (
                 <video
                   ref={videoRef}
@@ -267,8 +369,8 @@ export const DogmaInnovations = () => {
               )}
 
               {/* Video Watermark & Tag */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/70 border border-white/15 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
+              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/85 border border-white/20 backdrop-blur-xl shadow-lg">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#E4002B] animate-pulse" />
                 <span className="font-mono text-[10px] text-white uppercase tracking-widest font-bold">
                   {activeItem.highlight}
                 </span>
@@ -278,11 +380,19 @@ export const DogmaInnovations = () => {
               {activeItem.mediaType === 'video' && (
                 <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
                   <button
+                    onClick={toggleMute}
+                    className="p-3 rounded-full bg-black/85 hover:bg-black border border-white/20 text-white backdrop-blur-xl transition-all hover:scale-110 shadow-lg"
+                    aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+                  >
+                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00F0FF]" />}
+                  </button>
+
+                  <button
                     onClick={togglePlayPause}
-                    className="p-2 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 text-white backdrop-blur-md transition-all"
+                    className="p-3 rounded-full bg-black/85 hover:bg-black border border-white/20 text-white backdrop-blur-xl transition-all hover:scale-110 shadow-lg"
                     aria-label={isPlaying ? 'Pause Video' : 'Play Video'}
                   >
-                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                    {isPlaying ? <Pause className="w-4 h-4 text-[#FF5E0E]" /> : <Play className="w-4 h-4 text-[#00F0FF]" />}
                   </button>
                 </div>
               )}
@@ -290,8 +400,8 @@ export const DogmaInnovations = () => {
 
             {/* Editorial Description & Metric Callouts */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-2">
-              <div className="max-w-xl">
-                <div className="text-[11px] font-mono text-[#E4002B] uppercase tracking-widest mb-1 font-bold">
+              <div className="max-w-xl space-y-2">
+                <div className="text-[11px] font-mono text-[#FF5E0E] uppercase tracking-widest font-bold">
                   {activeItem.subtitle}
                 </div>
 
@@ -301,21 +411,21 @@ export const DogmaInnovations = () => {
                   <span>{activeItem.titleBold}</span>
                 </h3>
 
-                <p className="mt-3 text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-200 font-sans leading-relaxed font-normal">
                   {activeItem.desc}
                 </p>
               </div>
 
               {/* Large Prominent Engineering Metric Badge */}
-              <div className="shrink-0 p-5 rounded-2xl bg-white/[0.04] border border-white/10 text-center md:text-right min-w-[170px]">
-                <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+              <div className="shrink-0 p-6 rounded-2xl bg-gradient-to-b from-white/[0.12] to-white/[0.04] border border-white/20 text-center md:text-right min-w-[200px] backdrop-blur-xl shadow-xl">
+                <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest font-bold">
                   {activeItem.statLabel}
                 </div>
-                <div className="font-display text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-white mt-1">
+                <div className="font-display text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white to-[#D4FF00] mt-1 drop-shadow-md">
                   {activeItem.stat}
                 </div>
-                <div className="text-[10px] font-mono text-[#E4002B] uppercase mt-1 font-semibold">
-                  UCI Homologated
+                <div className="text-[10px] font-mono text-[#FF5E0E] uppercase mt-1 font-bold">
+                  UCI HOMOLOGATED
                 </div>
               </div>
             </div>
@@ -325,4 +435,3 @@ export const DogmaInnovations = () => {
     </section>
   );
 };
-

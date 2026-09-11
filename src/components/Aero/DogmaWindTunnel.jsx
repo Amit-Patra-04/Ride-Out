@@ -12,10 +12,15 @@ import {
   Layers,
   ChevronRight,
   Info,
+  Maximize2,
+  Sliders,
+  Flame,
+  ArrowUpRight,
+  RotateCcw,
 } from 'lucide-react';
 import { sfx } from '../../utils/animations';
 
-const WIND_TUNNEL_LIVERIES = [
+export const WIND_TUNNEL_LIVERIES = [
   {
     id: 'luxter-red-gold',
     name: 'Luxter Red Gold',
@@ -58,13 +63,14 @@ const WIND_TUNNEL_LIVERIES = [
   },
 ];
 
-const AERO_HOTSPOTS = [
+export const AERO_HOTSPOTS = [
   {
     id: 'forkflap',
     title: 'Onda ForkFlap™',
     saving: '-1.2 W',
     position: { top: '62%', left: '76%' },
     desc: 'Shields the front disc caliper from incoming air vortices, stabilizing the front hub airflow.',
+    category: 'VORTEX SUPPRESSION',
   },
   {
     id: 'aero-keel',
@@ -72,6 +78,7 @@ const AERO_HOTSPOTS = [
     saving: '-0.8 W',
     position: { top: '64%', left: '46%' },
     desc: '3.5° rotated bottom bracket surface generates a high-velocity low-pressure channel beneath the chassis.',
+    category: 'VENTURI TUNNEL',
   },
   {
     id: 'ticr-cockpit',
@@ -79,6 +86,7 @@ const AERO_HOTSPOTS = [
     saving: '-5.0 W',
     position: { top: '26%', left: '72%' },
     desc: '100% total internal cable integration eliminates exposed wiring turbulence across the head tube.',
+    category: 'TOTAL INTEGRATION',
   },
   {
     id: 'princeton-rim',
@@ -86,6 +94,7 @@ const AERO_HOTSPOTS = [
     saving: '-2.4 W',
     position: { top: '65%', left: '22%' },
     desc: 'Variable-depth 45-50mm wave profiles suppress crosswind torque and reduce side-load stalling.',
+    category: 'YAW STABILIZATION',
   },
 ];
 
@@ -101,23 +110,22 @@ export const DogmaWindTunnel = () => {
   const canvasRef = useRef(null);
 
   // Physics calculation
-  // Total Bike Weight: Dogma F ~ 6.77kg
   const totalMass = riderWeightKg + 6.77;
   const gravity = 9.81;
-  const rollingResistanceCoeff = 0.003; // Continental GP5000 S TR
-  const airDensity = 1.225; // kg/m^3 standard sea level
-  const baseCdA = 0.048; // Pinarello Dogma F aerodynamic drag area
-  const competitorCdA = 0.052; // Standard race frame
+  const rollingResistanceCoeff = 0.003;
+  const airDensity = 1.225;
+  const baseCdA = 0.048;
+  const competitorCdA = 0.052;
 
   // Effective CdA with yaw angle penalty
   const yawFactor = 1 + Math.abs(yawAngle) * 0.004;
   const effectiveDogmaCdA = baseCdA * yawFactor;
   const effectiveCompCdA = competitorCdA * yawFactor;
 
-  // Approximate speed in km/h based on wattage & slope
+  // Speed in km/h
   const computeSpeedKmh = (watts, cda) => {
     let low = 1;
-    let high = 30; // m/s (up to 108 km/h)
+    let high = 30;
     const theta = Math.atan(gradientPercent / 100);
 
     for (let i = 0; i < 25; i++) {
@@ -133,7 +141,7 @@ export const DogmaWindTunnel = () => {
         high = v;
       }
     }
-    return ((low + high) / 2) * 3.6; // convert m/s to km/h
+    return ((low + high) / 2) * 3.6;
   };
 
   const dogmaSpeed = computeSpeedKmh(riderPowerWatts, effectiveDogmaCdA);
@@ -146,7 +154,7 @@ export const DogmaWindTunnel = () => {
   const timeSavedSec = Math.max(0, timeCompSec - timeDogmaSec).toFixed(1);
 
   // Wattage saved at equivalent speed (40 km/h baseline)
-  const speedMps = 40 / 3.6; // 11.11 m/s
+  const speedMps = 40 / 3.6;
   const aeroPowerDogma = 0.5 * airDensity * effectiveDogmaCdA * Math.pow(speedMps, 3);
   const aeroPowerComp = 0.5 * airDensity * effectiveCompCdA * Math.pow(speedMps, 3);
   const wattsSaved = (aeroPowerComp - aeroPowerDogma).toFixed(1);
@@ -159,66 +167,58 @@ export const DogmaWindTunnel = () => {
     let animId;
 
     const width = (canvas.width = canvas.parentElement.clientWidth);
-    const height = (canvas.height = canvas.parentElement.clientHeight || 460);
+    const height = (canvas.height = canvas.parentElement.clientHeight || 500);
 
     const streams = [];
-    const count = 65;
+    const count = 80;
 
     for (let i = 0; i < count; i++) {
       streams.push({
         x: Math.random() * width,
         y: 20 + Math.random() * (height - 40),
-        length: 50 + Math.random() * 100,
-        speed: 4 + Math.random() * 6,
-        opacity: 0.15 + Math.random() * 0.75,
-        thickness: 1.2 + Math.random() * 1.6,
+        length: 70 + Math.random() * 140,
+        speed: 4.5 + Math.random() * 7.5,
+        opacity: 0.25 + Math.random() * 0.75,
+        thickness: 1.4 + Math.random() * 2.0,
       });
     }
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Bike bounding profile for airflow deflection
       const cx = width * 0.5;
       const cy = height * 0.52;
 
       streams.forEach((st) => {
         const speedScale = Math.max(0.6, dogmaSpeed / 35);
         st.x += st.speed * speedScale;
-        if (st.x > width + 120) {
-          st.x = -120;
+        if (st.x > width + 150) {
+          st.x = -150;
           st.y = 20 + Math.random() * (height - 40);
         }
 
-        // Realistic flow deflection around the authentic Dogma F contours
         let deflectionY = 0;
         const dx = st.x - cx;
         const dy = st.y - cy;
 
-        // Front Cockpit & Headtube deflection
         if (st.x > cx + 80 && st.x < cx + 220 && st.y < cy) {
           deflectionY = -Math.sin((st.x - (cx + 80)) * 0.03) * 16;
-        }
-        // Bottom Bracket & Down Tube Aero-Keel deflection
-        else if (st.x > cx - 80 && st.x < cx + 120 && st.y > cy - 20 && st.y < cy + 80) {
+        } else if (st.x > cx - 80 && st.x < cx + 120 && st.y > cy - 20 && st.y < cy + 80) {
           deflectionY = Math.sin((st.x - (cx - 80)) * 0.03) * 18;
-        }
-        // Rear Wheel wake low-drag slipstream
-        else if (st.x < cx - 100) {
+        } else if (st.x < cx - 100) {
           deflectionY = Math.sin(st.x * 0.04) * 5;
         }
 
         const grad = ctx.createLinearGradient(st.x, st.y, st.x + st.length, st.y + deflectionY);
-        
-        // Color transition: Cyan laminar front -> Low-drag Amber/Crimson slipstream
+
         if (st.x > cx + 50) {
           grad.addColorStop(0, 'rgba(0, 240, 255, 0)');
-          grad.addColorStop(0.6, `rgba(0, 240, 255, ${st.opacity})`);
+          grad.addColorStop(0.5, `rgba(0, 240, 255, ${st.opacity})`);
           grad.addColorStop(1, 'rgba(0, 240, 255, 0)');
         } else {
           grad.addColorStop(0, 'rgba(0, 240, 255, 0)');
-          grad.addColorStop(0.4, `rgba(0, 240, 255, ${st.opacity * 0.8})`);
-          grad.addColorStop(0.8, `rgba(255, 94, 14, ${st.opacity * 0.9})`);
+          grad.addColorStop(0.3, `rgba(0, 240, 255, ${st.opacity * 0.85})`);
+          grad.addColorStop(0.7, `rgba(255, 94, 14, ${st.opacity * 0.95})`);
           grad.addColorStop(1, 'rgba(228, 0, 43, 0)');
         }
 
@@ -240,301 +240,389 @@ export const DogmaWindTunnel = () => {
     };
   }, [dogmaSpeed]);
 
-  return (
-    <section id="windtunnel" className="relative w-full py-28 overflow-hidden">
-      {/* Background Lighting */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[600px] h-[600px] bg-[#00F0FF]/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[600px] h-[600px] bg-[#E4002B]/10 rounded-full blur-[160px] pointer-events-none" />
+  const handleResetTelemetry = () => {
+    sfx.playClick();
+    setRiderPowerWatts(320);
+    setGradientPercent(0);
+    setYawAngle(0);
+    setRiderWeightKg(68);
+  };
 
-      {/* Inner Centered Container */}
+  return (
+    <section
+      id="windtunnel"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#08182b] via-[#071d33] to-[#121124]"
+    >
+      {/* 1. Volumetric Atmospheric Multi-tier Spotlights - Seamless Diffuse Blend */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1250px] h-[1250px] bg-[#00F0FF]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[1150px] h-[1150px] bg-[#FF5E0E]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#00F0FF]/18 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+
+      {/* 2. Bespoke Dynamic Aerodynamic Flow Curves & Telemetry Rings */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-50">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-50,250 Q400,180 800,260 T1600,220 T2400,260" fill="none" stroke="rgba(0,240,255,0.35)" strokeWidth="2" className="aero-streamline" />
+          <path d="M-50,650 Q500,580 900,660 T1700,620 T2500,660" fill="none" stroke="rgba(255,94,14,0.3)" strokeWidth="2" className="aero-streamline-fast" />
+          <circle cx="50%" cy="50%" r="480" fill="none" stroke="rgba(0,240,255,0.08)" strokeWidth="1" strokeDasharray="5 10" />
+        </svg>
+      </div>
+
+      {/* 3. Contained Architectural Watermark Typography */}
+      <div className="absolute top-10 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
+        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">
+          WIND TUNNEL
+        </span>
+        <span className="text-[7.5vw] sm:text-[6.5vw] md:text-[5.5vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-300 to-transparent -mt-[1.5vw]">
+          CFD TELEMETRY
+        </span>
+      </div>
+
+      {/* --- INNER CENTERED CONTENT CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FF5E0E] text-xs font-mono tracking-widest uppercase mb-4">
-          <Wind className="w-3.5 h-3.5" />
-          <span>Aero Telemetry & Wind Tunnel Simulator</span>
-        </div>
-        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-none">
-          DYNAMIC AERODYNAMIC <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-[#FF5E0E] to-[#E4002B]">TELEMETRY</span>
-        </h2>
-        <p className="mt-4 text-sm sm:text-base text-zinc-400 font-sans">
-          Simulate real-world speed gains, CFD streamline flow, and watt savings generated by the authentic Pinarello Dogma F aerodynamic profile.
-        </p>
-      </div>
-
-      {/* Main Simulator Console Card */}
-      <div className="bg-obsidian-surface/90 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-2xl shadow-2xl">
-        {/* Top Visualizer Chamber */}
-        <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/60 via-black to-[#050608] border-b border-white/10 flex items-center justify-center overflow-hidden">
-          
-          {/* Wind Tunnel Grid Environment */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-          
-          {/* Ambient Lighting Gradients */}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
-          <div className="absolute top-0 left-0 w-64 h-full bg-gradient-to-r from-[#00F0FF]/10 to-transparent pointer-events-none" />
-          <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-[#E4002B]/10 to-transparent pointer-events-none" />
-
-          {/* CFD Particles Canvas (Background Layer) */}
-          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-
-          {/* Authentic Pinarello Dogma F Interactive Model Container */}
-          <div
-            className="relative z-10 w-[82%] max-w-[620px] aspect-[16/10] flex items-center justify-center transition-transform duration-500 ease-out"
-            style={{
-              transform: `perspective(1000px) rotateY(${yawAngle * 0.75}deg) rotateZ(${-gradientPercent * 0.3}deg)`,
-            }}
-          >
-            {/* Real Official Dogma F High-Res Cutout */}
-            <img
-              src={activeLivery.image}
-              alt={`Pinarello Dogma F - ${activeLivery.name}`}
-              key={activeLivery.id}
-              className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.95)] select-none pointer-events-none transition-all duration-500"
-            />
-
-            {/* Realistic Ground Floor Reflection Shadow */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[90%] h-8 bg-black/80 rounded-full blur-xl pointer-events-none" />
-
-            {/* Interactive Aerodynamic Hotspots on the Authentic Frame */}
-            {showHotspots &&
-              AERO_HOTSPOTS.map((spot) => {
-                const isSelected = selectedHotspot?.id === spot.id;
-                return (
-                  <button
-                    key={spot.id}
-                    onClick={() => {
-                      setSelectedHotspot(spot);
-                      sfx.playClick();
-                    }}
-                    onMouseEnter={() => sfx.playHover()}
-                    style={{ top: spot.position.top, left: spot.position.left }}
-                    className={`absolute -translate-x-1/2 -translate-y-1/2 group z-20 focus:outline-none`}
-                    title={spot.title}
-                  >
-                    <span className="relative flex h-6 w-6 items-center justify-center">
-                      <span
-                        className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                          isSelected ? 'bg-[#00F0FF]' : 'bg-[#FF5E0E]'
-                        }`}
-                      />
-                      <span
-                        className={`relative inline-flex rounded-full h-3.5 w-3.5 border-2 border-white transition-transform ${
-                          isSelected
-                            ? 'bg-[#00F0FF] scale-125 shadow-[0_0_12px_#00F0FF]'
-                            : 'bg-[#FF5E0E] group-hover:scale-125'
-                        }`}
-                      />
-                    </span>
-                  </button>
-                );
-              })}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-500/35 text-cyan-300 text-[11px] font-mono tracking-[0.2em] uppercase mb-5 backdrop-blur-md shadow-inner font-bold">
+            <Wind className="w-3.5 h-3.5 animate-pulse text-[#00F0FF]" />
+            <span>04 // AERODYNAMICS // CFD VIRTUAL TUNNEL // TREVISO R&D</span>
           </div>
 
-          {/* Top-Left Telemetry Badges */}
-          <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20 flex flex-wrap items-center gap-2 font-mono text-xs">
-            <div className="flex items-center gap-2 bg-black/80 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
-              <span className="text-zinc-200">CFD: Laminar Flow Active</span>
+          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white uppercase leading-[0.92]">
+            DYNAMIC CFD{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white via-40% to-[#FF5E0E]">
+              AERO TELEMETRY
+            </span>
+          </h2>
+
+          <p className="mt-5 text-base sm:text-lg text-zinc-200 font-sans max-w-2xl mx-auto leading-relaxed font-normal">
+            Simulate real-world speed gains, CFD streamline flow, and watt savings generated by the authentic Pinarello Dogma F aerodynamic profile.
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 font-mono text-xs">
+            <span className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/20 text-white font-bold">
+              CdA: <strong className="text-cyan-300">0.048 m²</strong>
+            </span>
+            <span className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/20 text-white font-bold">
+              Yaw Window: <strong className="text-cyan-300">-20° to +20°</strong>
+            </span>
+            <span className="px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/20 text-white font-bold">
+              Rolling Road: <strong className="text-amber-300">Continuous 40 km/h</strong>
+            </span>
+          </div>
+        </div>
+
+        {/* Main Simulator Console Card */}
+        <div className="bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#081522]/90 border border-white/15 rounded-3xl overflow-hidden backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
+          {/* Top Visualizer Chamber */}
+          <div className="relative w-full h-[460px] sm:h-[520px] md:h-[580px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/80 via-[#061422] to-[#030a12] border-b border-white/15 flex items-center justify-center overflow-hidden">
+            {/* Wind Tunnel Grid Environment */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00f0ff08_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff08_1px,transparent_1px)] bg-[size:44px_44px] pointer-events-none" />
+
+            {/* Ambient Lighting Gradients */}
+            <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
+            <div className="absolute top-0 left-0 w-96 h-full bg-gradient-to-r from-[#00F0FF]/20 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-[#E4002B]/20 to-transparent pointer-events-none" />
+
+            {/* CFD Particles Canvas (Background Layer) */}
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
+
+            {/* Authentic Pinarello Dogma F Interactive Model Container */}
+            <div
+              className="relative z-10 w-[84%] max-w-[660px] aspect-[16/10] flex items-center justify-center transition-transform duration-500 ease-out"
+              style={{
+                transform: `perspective(1000px) rotateY(${yawAngle * 0.75}deg) rotateZ(${-gradientPercent * 0.3}deg)`,
+              }}
+            >
+              {/* Real Official Dogma F High-Res Cutout */}
+              <img
+                src={activeLivery.image}
+                alt={`Pinarello Dogma F - ${activeLivery.name}`}
+                key={activeLivery.id}
+                className="w-full h-full object-contain filter drop-shadow-[0_25px_40px_rgba(0,0,0,0.98)] select-none pointer-events-none transition-all duration-500"
+              />
+
+              {/* Realistic Ground Floor Reflection Shadow */}
+              <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 w-[92%] h-10 bg-black/90 rounded-full blur-xl pointer-events-none" />
+
+              {/* Interactive Aerodynamic Hotspots on the Authentic Frame */}
+              {showHotspots &&
+                AERO_HOTSPOTS.map((spot) => {
+                  const isSelected = selectedHotspot?.id === spot.id;
+                  return (
+                    <button
+                      key={spot.id}
+                      onClick={() => {
+                        setSelectedHotspot(spot);
+                        sfx.playClick();
+                      }}
+                      onMouseEnter={() => sfx.playHover()}
+                      style={{ top: spot.position.top, left: spot.position.left }}
+                      className="absolute -translate-x-1/2 -translate-y-1/2 group z-20 focus:outline-none"
+                      title={spot.title}
+                    >
+                      <span className="relative flex h-7 w-7 items-center justify-center">
+                        <span
+                          className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                            isSelected ? 'bg-[#00F0FF]' : 'bg-[#FF5E0E]'
+                          }`}
+                        />
+                        <span
+                          className={`relative inline-flex rounded-full h-4 w-4 border-2 border-white transition-transform duration-300 ${
+                            isSelected
+                              ? 'bg-[#00F0FF] scale-125 shadow-[0_0_15px_#00F0FF]'
+                              : 'bg-[#FF5E0E] group-hover:scale-125 shadow-[0_0_10px_#FF5E0E]'
+                          }`}
+                        />
+                      </span>
+                    </button>
+                  );
+                })}
             </div>
 
-            <button
-              onClick={() => {
-                setShowHotspots(!showHotspots);
-                sfx.playClick();
-              }}
-              className="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] text-zinc-300 transition-colors"
-            >
-              {showHotspots ? 'HIDE HOTSPOTS' : 'SHOW AERO HOTSPOTS'}
-            </button>
-          </div>
+            {/* Top-Left Telemetry Badges */}
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20 flex flex-wrap items-center gap-2 font-mono text-xs">
+              <div className="flex items-center gap-2 bg-black/90 border border-cyan-500/40 px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] animate-pulse shadow-[0_0_10px_#00F0FF]" />
+                <span className="text-white text-[11px] font-bold">CFD: Laminar Flow Active</span>
+              </div>
 
-          {/* Top-Right Livery Quick Switcher */}
-          <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-20 flex items-center gap-2 bg-black/85 border border-white/15 p-1.5 rounded-full backdrop-blur-md shadow-xl">
-            {WIND_TUNNEL_LIVERIES.map((liv) => (
               <button
-                key={liv.id}
                 onClick={() => {
-                  setActiveLivery(liv);
+                  setShowHotspots(!showHotspots);
                   sfx.playClick();
                 }}
-                className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 transition-all duration-300 ${
-                  activeLivery.id === liv.id
-                    ? 'scale-110 border-white shadow-[0_0_12px_rgba(255,255,255,0.9)] ring-2 ring-[#00F0FF]/60 ring-offset-1 ring-offset-black'
-                    : 'border-white/20 opacity-70 hover:opacity-100 hover:scale-105'
-                }`}
-                style={{ background: liv.swatchGradient || liv.colorHex }}
-                title={`${liv.name} (${liv.code})`}
-              />
-            ))}
-          </div>
-
-          {/* Selected Hotspot Detail Overlay Card */}
-          {selectedHotspot && showHotspots && (
-            <div className="absolute bottom-20 sm:bottom-24 left-4 sm:left-6 z-20 max-w-xs sm:max-w-sm p-3.5 rounded-2xl bg-black/85 border border-white/15 backdrop-blur-xl shadow-2xl transition-all">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="font-display text-sm font-bold text-white uppercase">
-                  {selectedHotspot.title}
-                </span>
-                <span className="px-2 py-0.5 rounded bg-[#00F0FF]/15 border border-[#00F0FF]/30 text-[#00F0FF] font-mono text-[10px] font-bold">
-                  {selectedHotspot.saving}
-                </span>
-              </div>
-              <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
-                {selectedHotspot.desc}
-              </p>
-            </div>
-          )}
-
-          {/* Bottom Speed & Telemetry Summary Strip */}
-          <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 z-20 flex flex-wrap items-center justify-between gap-4 bg-black/80 border border-white/10 p-3.5 sm:p-4 rounded-2xl backdrop-blur-xl">
-            <div>
-              <div className="text-[9px] sm:text-[10px] font-mono text-zinc-400 uppercase">
-                SIMULATED DOGMA F SPEED
-              </div>
-              <div className="font-display text-2xl sm:text-3xl font-black text-white">
-                {dogmaSpeed.toFixed(1)}{' '}
-                <span className="text-xs sm:text-sm font-mono text-[#00F0FF]">KM/H</span>
-                <span className="text-xs font-mono text-zinc-500 ml-2">
-                  ({(dogmaSpeed * 0.621371).toFixed(1)} MPH)
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 sm:gap-6 font-mono text-xs">
-              <div>
-                <div className="text-[9px] text-zinc-500 uppercase">DELTA VS COMPETITOR</div>
-                <div className="text-sm sm:text-base font-bold text-[#D4FF00]">
-                  +{speedDelta} KM/H
-                </div>
-              </div>
-              <div>
-                <div className="text-[9px] text-zinc-500 uppercase">TIME SAVED / 40KM</div>
-                <div className="text-sm sm:text-base font-bold text-[#FF5E0E]">
-                  -{timeSavedSec} SEC
-                </div>
-              </div>
-              <div>
-                <div className="text-[9px] text-zinc-500 uppercase">WATT SAVING @ 40KM/H</div>
-                <div className="text-sm sm:text-base font-bold text-[#00F0FF]">
-                  -{wattsSaved} W
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Interactive Telemetry Controls */}
-        <div className="p-6 sm:p-8 lg:p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-obsidian-surface/60">
-          {/* Rider Wattage Slider */}
-          <div className="bg-white/[0.02] border border-white/[0.06] p-4 rounded-2xl">
-            <div className="flex justify-between items-center text-xs font-mono mb-2">
-              <span className="text-zinc-400">RIDER POWER</span>
-              <span className="text-white font-bold">{riderPowerWatts} W</span>
-            </div>
-            <input
-              type="range"
-              min="150"
-              max="700"
-              step="10"
-              value={riderPowerWatts}
-              onChange={(e) => {
-                setRiderPowerWatts(Number(e.target.value));
-                sfx.playHover();
-              }}
-              className="w-full accent-[#FF3B00] bg-white/10 h-2 rounded-lg cursor-pointer"
-            />
-            <div className="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
-              <span>150W (Tempo)</span>
-              <span>700W (Sprint)</span>
-            </div>
-          </div>
-
-          {/* Road Gradient Slider */}
-          <div className="bg-white/[0.02] border border-white/[0.06] p-4 rounded-2xl">
-            <div className="flex justify-between items-center text-xs font-mono mb-2">
-              <span className="text-zinc-400">ROAD GRADIENT</span>
-              <span
-                className={`font-bold ${
-                  gradientPercent > 0
-                    ? 'text-[#FF5E0E]'
-                    : gradientPercent < 0
-                    ? 'text-[#00F0FF]'
-                    : 'text-white'
-                }`}
+                className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] text-white font-semibold transition-colors shadow-md backdrop-blur-md"
               >
-                {gradientPercent > 0 ? `+${gradientPercent}` : gradientPercent}%
-              </span>
+                {showHotspots ? 'HIDE AERO HOTSPOTS' : 'SHOW AERO HOTSPOTS'}
+              </button>
             </div>
-            <input
-              type="range"
-              min="-8"
-              max="15"
-              step="1"
-              value={gradientPercent}
-              onChange={(e) => {
-                setGradientPercent(Number(e.target.value));
-                sfx.playHover();
-              }}
-              className="w-full accent-[#00F0FF] bg-white/10 h-2 rounded-lg cursor-pointer"
-            />
-            <div className="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
-              <span>-8% (Descent)</span>
-              <span>+15% (Alpe d&apos;Huez)</span>
+
+            {/* Top-Right Livery Quick Switcher */}
+            <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-20 flex items-center gap-2 bg-black/90 border border-white/25 p-2 rounded-full backdrop-blur-md shadow-2xl">
+              {WIND_TUNNEL_LIVERIES.map((liv) => (
+                <button
+                  key={liv.id}
+                  onClick={() => {
+                    setActiveLivery(liv);
+                    sfx.playClick();
+                  }}
+                  className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 transition-all duration-300 ${
+                    activeLivery.id === liv.id
+                      ? 'scale-110 border-white shadow-[0_0_16px_rgba(255,255,255,1)] ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black'
+                      : 'border-white/20 opacity-70 hover:opacity-100 hover:scale-105'
+                  }`}
+                  style={{ background: liv.swatchGradient || liv.colorHex }}
+                  title={`${liv.name} (${liv.code})`}
+                />
+              ))}
+            </div>
+
+            {/* Selected Hotspot Detail Overlay Card */}
+            {selectedHotspot && showHotspots && (
+              <div className="absolute bottom-28 sm:bottom-32 left-4 sm:left-6 z-20 max-w-xs sm:max-w-sm p-5 rounded-2xl bg-black/90 border border-cyan-500/40 backdrop-blur-2xl shadow-2xl transition-all animate-fadeIn">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <div className="flex flex-col">
+                    <span className="text-[9.5px] font-mono text-cyan-300 font-bold tracking-wider uppercase">
+                      {selectedHotspot.category}
+                    </span>
+                    <span className="font-display text-base font-black text-white uppercase">
+                      {selectedHotspot.title}
+                    </span>
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-[#00F0FF]/20 border border-[#00F0FF]/50 text-[#00F0FF] font-mono text-xs font-black shadow-[0_0_12px_rgba(0,240,255,0.35)]">
+                    {selectedHotspot.saving}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-200 font-sans leading-relaxed">
+                  {selectedHotspot.desc}
+                </p>
+              </div>
+            )}
+
+            {/* Bottom Speed & Telemetry Summary Strip */}
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 z-20 flex flex-wrap items-center justify-between gap-4 bg-gradient-to-r from-black/95 via-zinc-950/95 to-black/95 border border-white/20 p-4 sm:p-5 rounded-2xl backdrop-blur-2xl shadow-2xl">
+              <div>
+                <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
+                  <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>SIMULATED DOGMA F SPEED</span>
+                </div>
+                <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5">
+                  {dogmaSpeed.toFixed(1)}{' '}
+                  <span className="text-sm font-mono text-[#00F0FF]">KM/H</span>
+                  <span className="text-xs font-mono text-zinc-400 ml-2.5 font-bold">
+                    ({(dogmaSpeed * 0.621371).toFixed(1)} MPH)
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 sm:gap-6 lg:gap-8 font-mono text-xs">
+                <div className="border-l border-white/15 pl-4 sm:pl-6">
+                  <div className="text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">DELTA VS STANDARD</div>
+                  <div className="text-sm sm:text-lg font-black text-[#D4FF00] mt-0.5">
+                    +{speedDelta} KM/H
+                  </div>
+                </div>
+                <div className="border-l border-white/15 pl-4 sm:pl-6">
+                  <div className="text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">TIME SAVED / 40KM</div>
+                  <div className="text-sm sm:text-lg font-black text-[#FF5E0E] mt-0.5">
+                    -{timeSavedSec} SEC
+                  </div>
+                </div>
+                <div className="border-l border-white/15 pl-4 sm:pl-6">
+                  <div className="text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">WATT SAVING @ 40KM/H</div>
+                  <div className="text-sm sm:text-lg font-black text-[#00F0FF] mt-0.5">
+                    -{wattsSaved} W
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Crosswind Yaw Angle */}
-          <div className="bg-white/[0.02] border border-white/[0.06] p-4 rounded-2xl">
-            <div className="flex justify-between items-center text-xs font-mono mb-2">
-              <span className="text-zinc-400">CROSSWIND YAW</span>
-              <span className="text-white font-bold">{yawAngle}°</span>
+          {/* Bottom Interactive Telemetry Controls */}
+          <div className="p-6 sm:p-8 lg:p-10 bg-black/40 border-t border-white/15">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/15">
+              <div className="flex items-center gap-2">
+                <Sliders className="w-4 h-4 text-cyan-300" />
+                <span className="font-mono text-xs uppercase tracking-widest text-zinc-200 font-bold">
+                  Virtual CFD Telemetry Inputs
+                </span>
+              </div>
+              <button
+                onClick={handleResetTelemetry}
+                className="flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors font-bold"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>RESET BASELINE</span>
+              </button>
             </div>
-            <input
-              type="range"
-              min="-20"
-              max="20"
-              step="2"
-              value={yawAngle}
-              onChange={(e) => {
-                setYawAngle(Number(e.target.value));
-                sfx.playHover();
-              }}
-              className="w-full accent-[#D4FF00] bg-white/10 h-2 rounded-lg cursor-pointer"
-            />
-            <div className="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
-              <span>-20° (Port)</span>
-              <span>+20° (Starboard)</span>
-            </div>
-          </div>
 
-          {/* Rider Weight */}
-          <div className="bg-white/[0.02] border border-white/[0.06] p-4 rounded-2xl">
-            <div className="flex justify-between items-center text-xs font-mono mb-2">
-              <span className="text-zinc-400">RIDER WEIGHT</span>
-              <span className="text-white font-bold">{riderWeightKg} KG</span>
-            </div>
-            <input
-              type="range"
-              min="50"
-              max="100"
-              step="1"
-              value={riderWeightKg}
-              onChange={(e) => {
-                setRiderWeightKg(Number(e.target.value));
-                sfx.playHover();
-              }}
-              className="w-full accent-[#FF5E0E] bg-white/10 h-2 rounded-lg cursor-pointer"
-            />
-            <div className="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
-              <span>50 KG (Climber)</span>
-              <span>100 KG (Rouleur)</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Rider Wattage Slider */}
+              <div className="bg-white/[0.05] border border-white/15 p-5 rounded-2xl hover:border-white/25 transition-colors">
+                <div className="flex justify-between items-center text-xs font-mono mb-3">
+                  <span className="text-zinc-300 font-bold flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-[#FF5E0E]" />
+                    <span>RIDER POWER</span>
+                  </span>
+                  <span className="text-white font-black text-sm bg-white/10 px-2.5 py-0.5 rounded-lg border border-white/15">
+                    {riderPowerWatts} W
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="150"
+                  max="700"
+                  step="10"
+                  value={riderPowerWatts}
+                  onChange={(e) => {
+                    setRiderPowerWatts(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#FF5E0E] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-zinc-400 mt-2 font-semibold">
+                  <span>150W (Tempo)</span>
+                  <span>700W (Sprint)</span>
+                </div>
+              </div>
+
+              {/* Road Gradient Slider */}
+              <div className="bg-white/[0.05] border border-white/15 p-5 rounded-2xl hover:border-white/25 transition-colors">
+                <div className="flex justify-between items-center text-xs font-mono mb-3">
+                  <span className="text-zinc-300 font-bold flex items-center gap-1.5">
+                    <TrendingDown className="w-3.5 h-3.5 text-[#00F0FF]" />
+                    <span>ROAD GRADIENT</span>
+                  </span>
+                  <span
+                    className={`font-black text-sm px-2.5 py-0.5 rounded-lg border border-white/15 ${
+                      gradientPercent > 0
+                        ? 'text-[#FF5E0E] bg-[#FF5E0E]/10'
+                        : gradientPercent < 0
+                        ? 'text-[#00F0FF] bg-[#00F0FF]/10'
+                        : 'text-white bg-white/10'
+                    }`}
+                  >
+                    {gradientPercent > 0 ? `+${gradientPercent}` : gradientPercent}%
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="-8"
+                  max="15"
+                  step="1"
+                  value={gradientPercent}
+                  onChange={(e) => {
+                    setGradientPercent(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#00F0FF] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-zinc-400 mt-2 font-semibold">
+                  <span>-8% (Descent)</span>
+                  <span>+15% (Alpe d&apos;Huez)</span>
+                </div>
+              </div>
+
+              {/* Crosswind Yaw Angle */}
+              <div className="bg-white/[0.05] border border-white/15 p-5 rounded-2xl hover:border-white/25 transition-colors">
+                <div className="flex justify-between items-center text-xs font-mono mb-3">
+                  <span className="text-zinc-300 font-bold flex items-center gap-1.5">
+                    <Compass className="w-3.5 h-3.5 text-[#D4FF00]" />
+                    <span>CROSSWIND YAW</span>
+                  </span>
+                  <span className="text-white font-black text-sm bg-white/10 px-2.5 py-0.5 rounded-lg border border-white/15">
+                    {yawAngle}°
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="-20"
+                  max="20"
+                  step="2"
+                  value={yawAngle}
+                  onChange={(e) => {
+                    setYawAngle(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#D4FF00] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-zinc-400 mt-2 font-semibold">
+                  <span>-20° (Port)</span>
+                  <span>+20° (Starboard)</span>
+                </div>
+              </div>
+
+              {/* Rider Weight */}
+              <div className="bg-white/[0.05] border border-white/15 p-5 rounded-2xl hover:border-white/25 transition-colors">
+                <div className="flex justify-between items-center text-xs font-mono mb-3">
+                  <span className="text-zinc-300 font-bold flex items-center gap-1.5">
+                    <Gauge className="w-3.5 h-3.5 text-[#E4002B]" />
+                    <span>RIDER WEIGHT</span>
+                  </span>
+                  <span className="text-white font-black text-sm bg-white/10 px-2.5 py-0.5 rounded-lg border border-white/15">
+                    {riderWeightKg} KG
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="50"
+                  max="100"
+                  step="1"
+                  value={riderWeightKg}
+                  onChange={(e) => {
+                    setRiderWeightKg(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-zinc-400 mt-2 font-semibold">
+                  <span>50 KG (Climber)</span>
+                  <span>100 KG (Rouleur)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
 };
-

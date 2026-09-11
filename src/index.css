@@ -48,10 +48,20 @@
 /* Custom smooth styling */
 body {
   font-family: "TT Norms Pro", "Outfit", "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #040507;
+  background-color: #07090e;
   color: #e5e2e1;
   overflow-x: hidden;
-  user-select: none;
+}
+
+/* Custom Pinarello Red Brand Text Selection */
+::selection {
+  background: #E4002B;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #E4002B;
+  color: #ffffff;
 }
 
 /* Pinarello Stroke / Outline Titles */
@@ -238,5 +248,44 @@ input[type=range]::-webkit-slider-runnable-track {
   animation: aeroFlow 2s linear infinite;
 }
 
+/* Awwwards SOTY Luminous Dynamic Aurora & Volumetric Light Animations */
+@keyframes auroraFloatSlow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -25px) scale(1.08);
+  }
+}
 
+@keyframes auroraFloatReverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 30px) scale(1.06);
+  }
+}
 
+@keyframes breathingGlow {
+  0%, 100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.48;
+    transform: scale(1.05);
+  }
+}
+
+.aurora-blob-1 {
+  animation: auroraFloatSlow 18s ease-in-out infinite;
+}
+
+.aurora-blob-2 {
+  animation: auroraFloatReverse 22s ease-in-out infinite;
+}
+
+.aurora-breathing {
+  animation: breathingGlow 7s ease-in-out infinite;
+}

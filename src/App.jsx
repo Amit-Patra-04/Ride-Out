@@ -44,7 +44,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050608] text-zinc-100 selection:bg-[#FF3B00] selection:text-white overflow-hidden font-sans">
+    <div className="relative min-h-screen bg-[#07090e] text-zinc-100 selection:bg-[#FF3B00] selection:text-white overflow-hidden font-sans">
       {/* Dynamic Floating Italian Racing Header */}
       <Navbar onBookRideClick={() => handleOpenBooking({})} />
 
