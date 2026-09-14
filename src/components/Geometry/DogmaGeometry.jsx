@@ -125,13 +125,13 @@ export const DogmaGeometry = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-3xl space-y-2">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.35em] text-[#FF5E0E] font-bold">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold">
                 NO GENERIC S/M/L COMPROMISES
               </span>
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.92] drop-shadow-2xl">
-                9-SIZE RACE <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+                9-SIZE RACE{' '}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg mt-1">
                   GEOMETRY MATRIX.
                 </span>
               </h2>

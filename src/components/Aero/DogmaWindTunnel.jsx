@@ -267,16 +267,6 @@ export const DogmaWindTunnel = () => {
         </svg>
       </div>
 
-      {/* 3. Contained Architectural Watermark Typography */}
-      <div className="absolute top-10 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
-        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">
-          WIND TUNNEL
-        </span>
-        <span className="text-[7.5vw] sm:text-[6.5vw] md:text-[5.5vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-300 to-transparent -mt-[1.5vw]">
-          CFD TELEMETRY
-        </span>
-      </div>
-
       {/* --- INNER CENTERED CONTENT CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
@@ -286,9 +276,9 @@ export const DogmaWindTunnel = () => {
             <span>04 // AERODYNAMICS // CFD VIRTUAL TUNNEL // TREVISO R&D</span>
           </div>
 
-          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white uppercase leading-[0.92]">
+          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
             DYNAMIC CFD{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white via-40% to-[#FF5E0E]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white via-40% to-[#FF5E0E] mt-1">
               AERO TELEMETRY
             </span>
           </h2>

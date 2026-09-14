@@ -212,21 +212,21 @@ export const OFFICIAL_SPECS_DATA = [
         name: 'Front Brake System',
         spec: 'Dura Ace BR-R9200, 2 pistons caliper, 160mm rotor',
         role: 'Flat-Mount Hydraulic Disc with Servo Wave Action',
-        image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICBrake/cg4SHICBrakeCaliper/BR-R9270-F-shic219-primary_1.jpg',
-        fallbackImage: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
+        image: '/assets/specs/front_brake.jpg',
+        fallbackImage: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICBrake/cg4SHICBrakeCaliper/BR-R9270-F-shic219-primary_1.jpg',
         material: 'Mono-block Aluminum Caliper',
         highlight: '160mm CenterLock Ice-Tech Freeza Rotor',
-        fit: 'contain',
+        fit: 'cover',
       },
       {
         name: 'Rear Brake System',
         spec: 'Dura Ace BR-R9200, 2 pistons caliper, 140mm rotor',
         role: 'Flat-Mount Hydraulic Disc Integrated Rear Assembly',
-        image: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICDiscBrakeRotor/cg4SHICDiscBrakeRotor/RT-CL900-140-shic219-primary_1.jpg',
-        fallbackImage: 'https://pinarello.com/storage/Technology/663e6ff8cbedabf2e2c307ac0457dfd5.jpg',
+        image: '/assets/specs/rear_brake.jpg',
+        fallbackImage: 'https://dassets.shimano.com/content/dam/global/cg1SHICCycling/final/products/cg2SHICComponent/cg3SHICDiscBrakeRotor/cg4SHICDiscBrakeRotor/RT-CL900-140-shic219-primary_1.jpg',
         material: 'Mono-block Aluminum Caliper & RT-CL900 Rotor',
         highlight: '140mm Low-Profile Rotor for Modulated Control',
-        fit: 'contain',
+        fit: 'cover',
       },
       {
         name: 'Front & Rear Wheelset',
@@ -304,12 +304,12 @@ export const DogmaSpecs = () => {
               <span>PINARELLO DESIGN PHILOSOPHY // TREVISO, ITALIA</span>
             </div>
 
-            <blockquote className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white leading-relaxed italic drop-shadow-lg">
-              “We’ve always stood out from the crowd and created bikes that are totally unique, both in terms of how they look, but more importantly, how they perform. Form over function is a constant source of discussion between our head designers and we believe the DOGMA F achieves the perfect blend of the two.”
-            </blockquote>
+            <p className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
+              &ldquo;We don&rsquo;t distinguish between all-round and aero bikes. The Dogma F is designed to win on all terrains, combining unmatched stiffness with aerodynamic supremacy.&rdquo;
+            </p>
 
-            <div className="font-mono text-xs text-zinc-300 uppercase tracking-widest font-semibold pt-2">
-              — Cicli Pinarello Head of R&D, Treviso, Italy
+            <div className="font-mono text-xs text-zinc-300 tracking-wider uppercase font-semibold">
+              <span className="text-[#00F0FF]">Fausto Pinarello</span> — Chairman & Master Frame Builder
             </div>
           </div>
 
@@ -340,36 +340,36 @@ export const DogmaSpecs = () => {
         <div className="relative z-10 mb-14 sm:mb-16">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-[10px] border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-[10px] border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
                 04
               </span>
               <span className="text-[#00F0FF] font-bold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
                 TECHNICAL BLUEPRINT
               </span>
               <span className="text-zinc-500">//</span>
-              <span className="text-zinc-200">MINUTE COMPONENT ARCHITECTURE</span>
+              <span className="text-zinc-200">EXHAUSTIVE FRAME SPECIFICATIONS</span>
             </div>
 
             <div className="flex items-center gap-4 text-zinc-300 font-mono text-[10px]">
               <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white font-bold backdrop-blur-md">
-                ISO 4210 CERTIFIED
+                12 FACTORY CATEGORIES
               </span>
               <span className="text-zinc-500 hidden sm:inline">•</span>
-              <span className="text-[#E4002B] font-bold hidden sm:inline">
+              <span className="text-[#00F0FF] font-bold hidden sm:inline">
                 UCI HOMOLOGATED 700C
               </span>
             </div>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-3xl space-y-2">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.35em] text-[#00F0FF] font-bold">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#00F0FF] font-bold">
                 FACTORY TOLERANCES & METRIC SPECIFICATIONS
               </span>
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.92] drop-shadow-2xl">
-                MINUTE SPECS & <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+                MINUTE SPECS &{' '}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg mt-1">
                   ARCHITECTURE.
                 </span>
               </h2>

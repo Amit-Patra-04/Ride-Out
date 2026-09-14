@@ -112,16 +112,6 @@ export const DogmaEditorialGallery = () => {
         </svg>
       </div>
 
-      {/* 3. Contained Architectural Watermark Typography */}
-      <div className="absolute top-10 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.06] sm:opacity-[0.07] leading-none font-display font-black tracking-tight">
-        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">
-          EDITORIAL
-        </span>
-        <span className="text-[7.5vw] sm:text-[6.5vw] md:text-[5.5vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-amber-300 to-transparent -mt-[1.5vw]">
-          DOGMA F GALLERY
-        </span>
-      </div>
-
       {/* --- INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
@@ -131,9 +121,9 @@ export const DogmaEditorialGallery = () => {
               <Camera className="w-3.5 h-3.5 text-[#E5A93C]" />
               <span>06 // EDITORIAL ARCHIVE // OFFICIAL DOGMA F ARCHIVE</span>
             </div>
-            <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl tracking-tight text-white uppercase leading-[0.92]">
+            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
               EDITORIAL{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-white via-40% to-[#E5A93C]">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-white via-40% to-[#E5A93C] mt-1 sm:mt-2">
                 PHOTOGRAPHY
               </span>
             </h2>

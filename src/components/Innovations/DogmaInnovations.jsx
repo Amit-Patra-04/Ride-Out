@@ -196,31 +196,6 @@ export const DogmaInnovations = () => {
         </svg>
       </div>
 
-      {/* Contained Architectural Watermark */}
-      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
-        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">INNOVATIONS</span>
-        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-300 to-transparent -mt-[1.5vw]">
-          R&D TREVISO
-        </span>
-      </div>
-
-      {/* Side Technical & Geographic Calibration Labels */}
-      <div className="absolute top-36 left-8 hidden 2xl:flex flex-col gap-6 font-mono text-[9px] text-zinc-400 tracking-[0.25em] uppercase select-none pointer-events-none z-10">
-        <div className="space-y-1">
-          <span className="block text-red-400 font-bold text-[9.5px]">LABORATORIO R&D</span>
-          <span className="text-zinc-300">TREVISO // ITALIA</span>
-          <span className="block text-zinc-400">VILLORBA RACING ARCHIVE</span>
-        </div>
-      </div>
-
-      <div className="absolute top-36 right-8 hidden 2xl:flex flex-col gap-6 font-mono text-[9px] text-zinc-400 tracking-[0.25em] uppercase text-right select-none pointer-events-none z-10">
-        <div className="space-y-1">
-          <span className="block text-cyan-400 font-bold text-[9.5px]">COMPOSITE MATRIX</span>
-          <span className="text-zinc-300">TORAYCA® M40X</span>
-          <span className="block text-zinc-400">392 GPA TENSILE</span>
-        </div>
-      </div>
-
       {/* --- LAYER 2: INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header: Grand Editorial Flagship */}
@@ -252,13 +227,13 @@ export const DogmaInnovations = () => {
 
           {/* Master Grand Headline & Editorial Description */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-3xl space-y-2">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.35em] text-[#FF5E0E] font-bold">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold">
                 NINE REVOLUTIONARY ENGINEERING MILESTONES
               </span>
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.92] drop-shadow-2xl">
-                ENGINEERING <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 via-40% to-[#E4002B] drop-shadow-lg">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+                ENGINEERING{' '}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 via-40% to-[#E4002B] drop-shadow-lg mt-1">
                   BREAKTHROUGHS.
                 </span>
               </h2>

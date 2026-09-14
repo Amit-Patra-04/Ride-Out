@@ -137,13 +137,13 @@ export const HeroShowcase = ({ onOpenBooking }) => {
         </div>
 
         {/* --- INNER CENTERED CONTENT CONTAINER --- */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full flex flex-col justify-between flex-1">
-          {/* Editorial Luxury Hero Header */}
-          <div className="text-center max-w-5xl mx-auto mt-4 mb-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full flex flex-col items-center justify-between flex-1">
+          {/* Editorial Luxury Hero Header (Centered Above Box) */}
+          <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto mt-4 mb-8 w-full">
             {/* Top Heritage Kicker */}
             <div
               ref={subtitleRef}
-              className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase tracking-[0.2em] mb-6 backdrop-blur-md shadow-inner"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-300 uppercase tracking-[0.2em] mb-6 backdrop-blur-md shadow-inner text-center"
             >
               <span
                 className="w-2 h-2 rounded-full animate-pulse transition-colors duration-500"
@@ -159,13 +159,13 @@ export const HeroShowcase = ({ onOpenBooking }) => {
             </div>
 
             {/* Grand Architectural Headline */}
-            <div className="space-y-1">
-              <span className="block font-mono text-xs sm:text-sm tracking-[0.35em] text-zinc-400 font-semibold uppercase">
+            <div className="space-y-1 text-center flex flex-col items-center justify-center w-full">
+              <span className="block font-mono text-xs sm:text-sm tracking-[0.35em] text-zinc-400 font-semibold uppercase text-center">
                 THE ALL-NEW MONOCOQUE RACING CHASSIS
               </span>
               <h1
                 ref={titleRef}
-                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white uppercase leading-[0.9] drop-shadow-2xl"
+                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white uppercase leading-[0.9] drop-shadow-2xl text-center"
               >
                 PINARELLO <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400">
@@ -174,13 +174,13 @@ export const HeroShowcase = ({ onOpenBooking }) => {
               </h1>
             </div>
 
-            <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-400 font-sans max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-400 font-sans max-w-3xl mx-auto leading-relaxed font-light text-center">
               Form over function is not a debate — it is pure equilibrium. Re-engineered in
               TorayCa® M40X carbon composite, Onda 47mm rake fork, and TiCR total integration.
             </p>
 
             {/* Luxury Action Row */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 font-mono text-xs uppercase tracking-wider">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 font-mono text-xs uppercase tracking-wider text-center">
               <a
                 href="#models"
                 onClick={() => sfx.playClick()}

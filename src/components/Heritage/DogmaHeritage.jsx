@@ -79,16 +79,6 @@ export const DogmaHeritage = () => {
         </svg>
       </div>
 
-      {/* 3. Contained Architectural Watermark Typography */}
-      <div className="absolute top-10 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.06] sm:opacity-[0.07] leading-none font-display font-black tracking-tight">
-        <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">
-          PALMARÈS
-        </span>
-        <span className="text-[7.5vw] sm:text-[6.5vw] md:text-[5.5vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-yellow-300 to-transparent -mt-[1.5vw]">
-          GRAND TOUR DYNASTY
-        </span>
-      </div>
-
       {/* --- INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
@@ -98,9 +88,9 @@ export const DogmaHeritage = () => {
             <span>07 // HERITAGE // GRAND TOUR DYNASTY SINCE 1952</span>
           </div>
 
-          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white uppercase leading-[0.92]">
+          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
             BORN IN TREVISO.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-white via-40% to-[#FF3B00]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FFD166] via-white via-40% to-[#FF3B00] mt-1 sm:mt-2">
               REVERED WORLDWIDE.
             </span>
           </h2>
