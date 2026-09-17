@@ -288,21 +288,24 @@ export const DogmaGeometry = () => {
               </div>
 
               {/* Visual Chassis Blueprint Diagram */}
-              <div className="relative my-6 rounded-2xl bg-black/60 border border-white/10 overflow-hidden p-6 flex flex-col items-center justify-center shadow-inner">
+              <div className="relative my-6 rounded-2xl bg-[#06101c] border border-cyan-500/25 overflow-hidden flex flex-col items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
                 <img
-                  src="https://pinarello.com/storage/thumbs/ProductFamily/1344__resize__af22b54a27abdb3ea30f29cccb5be987.jpg"
-                  alt="Dogma F Frame Architecture"
-                  className="w-full h-44 sm:h-56 object-contain filter contrast-125 drop-shadow-2xl"
+                  src="/assets/geometry/dogma_f_blueprint_53.jpg"
+                  alt={`Dogma F Size ${activeGeom.size} Engineering Blueprint`}
+                  className="w-full h-52 sm:h-64 md:h-72 object-contain filter drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06101c]/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-4 right-4 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-200">
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow">
+                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
+                    SELECTED SIZE: <strong className="text-[#00F0FF]">{activeGeom.size}</strong>
+                  </span>
+                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
                     STACK: <strong className="text-white">{activeGeom.stack} mm</strong>
                   </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow">
+                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
                     REACH: <strong className="text-white">{activeGeom.reach} mm</strong>
                   </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-cyan-500/40 text-[#00F0FF] shadow">
+                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-cyan-500/40 text-[#00F0FF] shadow backdrop-blur-md">
                     FORK RAKE: <strong>47 mm</strong>
                   </span>
                 </div>
