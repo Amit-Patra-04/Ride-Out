@@ -251,19 +251,18 @@ export const DogmaWindTunnel = () => {
   return (
     <section
       id="windtunnel"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#08182b] via-[#071d33] to-[#121124]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* 1. Volumetric Atmospheric Multi-tier Spotlights - Seamless Diffuse Blend */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1250px] h-[1250px] bg-[#00F0FF]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[1150px] h-[1150px] bg-[#FF5E0E]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#00F0FF]/18 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* 1. Refined Luxury Studio Ambient Spotlights */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
 
       {/* 2. Bespoke Dynamic Aerodynamic Flow Curves & Telemetry Rings */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-50">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-50,250 Q400,180 800,260 T1600,220 T2400,260" fill="none" stroke="rgba(0,240,255,0.35)" strokeWidth="2" className="aero-streamline" />
-          <path d="M-50,650 Q500,580 900,660 T1700,620 T2500,660" fill="none" stroke="rgba(255,94,14,0.3)" strokeWidth="2" className="aero-streamline-fast" />
-          <circle cx="50%" cy="50%" r="480" fill="none" stroke="rgba(0,240,255,0.08)" strokeWidth="1" strokeDasharray="5 10" />
+          <path d="M-50,250 Q400,180 800,260 T1600,220 T2400,260" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" className="aero-streamline" />
+          <path d="M-50,650 Q500,580 900,660 T1700,620 T2500,660" fill="none" stroke="rgba(228,0,43,0.2)" strokeWidth="1.5" className="aero-streamline-fast" />
+          <circle cx="50%" cy="50%" r="480" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="5 10" />
         </svg>
       </div>
 
@@ -271,14 +270,14 @@ export const DogmaWindTunnel = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-500/35 text-cyan-300 text-[11px] font-mono tracking-[0.2em] uppercase mb-5 backdrop-blur-md shadow-inner font-bold">
-            <Wind className="w-3.5 h-3.5 animate-pulse text-[#00F0FF]" />
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[11px] font-mono tracking-[0.2em] uppercase mb-5 backdrop-blur-md shadow-inner font-bold">
+            <Wind className="w-3.5 h-3.5 animate-pulse text-[#E4002B]" />
             <span>04 // AERODYNAMICS // CFD VIRTUAL TUNNEL // TREVISO R&D</span>
           </div>
 
           <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
             DYNAMIC CFD{' '}
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-white via-40% to-[#FF5E0E] mt-1">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] mt-1">
               AERO TELEMETRY
             </span>
           </h2>

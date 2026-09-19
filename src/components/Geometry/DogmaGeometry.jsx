@@ -72,26 +72,25 @@ export const DogmaGeometry = () => {
   return (
     <section
       id="geometry"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0a1628] via-[#091f34] to-[#08182b]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* --- LAYER 1: VIBRANT ANIMATED ATMOSPHERIC AURORAS --- */}
-      <div className="absolute top-1/3 -left-20 w-[1200px] h-[1200px] bg-[#00F0FF]/32 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/3 -right-20 w-[1150px] h-[1150px] bg-[#D4FF00]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#00F0FF]/20 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
+      <div className="absolute top-1/3 -left-20 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/3 -right-20 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke CAD Frame Alignment Guides & Biomechanical Vectors */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-45">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50%" cy="50%" r="520" fill="none" stroke="rgba(0,240,255,0.12)" strokeWidth="1.5" strokeDasharray="6 12" />
-          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="rgba(212,255,0,0.08)" strokeWidth="1" strokeDasharray="4 8" />
-          <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgba(0,240,255,0.08)" strokeWidth="1" strokeDasharray="4 8" />
+          <circle cx="50%" cy="50%" r="520" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" strokeDasharray="6 12" />
+          <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4 8" />
+          <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4 8" />
         </svg>
       </div>
 
       {/* Contained Architectural Watermark */}
-      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
+      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.025] sm:opacity-[0.03] leading-none font-display font-black tracking-tight">
         <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">GEOMETRY</span>
-        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-300 to-transparent -mt-[1.5vw]">
+        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-400 to-transparent -mt-[1.5vw]">
           9 PRO SIZES
         </span>
       </div>
@@ -102,11 +101,11 @@ export const DogmaGeometry = () => {
         <div className="relative z-10 mb-14 sm:mb-16">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase">
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 font-bold text-[10px] border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)]">
                 05
               </span>
-              <span className="text-[#00F0FF] font-bold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+              <span className="text-[#FF5E0E] font-bold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E0E] animate-pulse" />
                 PINARELLO FIT ENGINE
               </span>
               <span className="text-zinc-500">//</span>
@@ -118,7 +117,7 @@ export const DogmaGeometry = () => {
                 DISCRETE SIZES: 9
               </span>
               <span className="text-zinc-500 hidden sm:inline">•</span>
-              <span className="text-[#D4FF00] font-bold hidden sm:inline">
+              <span className="text-zinc-300 font-bold hidden sm:inline">
                 ONDA 47MM RAKE
               </span>
             </div>
@@ -131,7 +130,7 @@ export const DogmaGeometry = () => {
               </span>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
                 9-SIZE RACE{' '}
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg mt-1">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] drop-shadow-lg mt-1">
                   GEOMETRY MATRIX.
                 </span>
               </h2>
@@ -159,10 +158,10 @@ export const DogmaGeometry = () => {
         {/* Main Two-Column Layout: Interactive Fit Calculator & Geometry Inspector */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
           {/* Left Column: Interactive Rider Fit Engine */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0d1624]/90 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
+          <div className="lg:col-span-5 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
             <div>
               <div className="flex items-center gap-2.5 pb-4 border-b border-white/10 mb-6">
-                <UserCheck className="w-5 h-5 text-[#FF5E0E]" />
+                <UserCheck className="w-5 h-5 text-[#E4002B]" />
                 <h3 className="font-display text-xl font-black uppercase text-white tracking-wider">
                   Rider Biomechanical Sizing
                 </h3>
@@ -186,7 +185,7 @@ export const DogmaGeometry = () => {
                       setHeightCm(Number(e.target.value));
                       sfx.playHover();
                     }}
-                    className="w-full accent-[#FF5E0E] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                    className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
                   />
                 </div>
 
@@ -206,7 +205,7 @@ export const DogmaGeometry = () => {
                       setInseamCm(Number(e.target.value));
                       sfx.playHover();
                     }}
-                    className="w-full accent-[#00F0FF] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                    className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
                   />
                 </div>
               </div>
@@ -217,10 +216,10 @@ export const DogmaGeometry = () => {
                   OPTIMAL DOGMA F FRAME FITMENT
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <span className="font-display text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FF5E0E] to-[#E4002B]">
+                  <span className="font-display text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B]">
                     SIZE {fitResults.recSize}
                   </span>
-                  <span className="text-xs font-mono text-[#00F0FF] bg-[#00F0FF]/20 px-3 py-1 rounded-full border border-[#00F0FF]/40 font-black shadow-[0_0_12px_rgba(0,240,255,0.3)]">
+                  <span className="text-xs font-mono text-white bg-white/10 px-3 py-1 rounded-full border border-white/20 font-black shadow-[0_0_12px_rgba(255,255,255,0.15)]">
                     MATCH: 99.4%
                   </span>
                 </div>
@@ -232,11 +231,11 @@ export const DogmaGeometry = () => {
                   </div>
                   <div className="p-2.5 rounded-xl bg-black/50 border border-white/5">
                     <div className="text-[9.5px] text-zinc-400 uppercase font-bold">CRANK ARM</div>
-                    <div className="text-xs font-black text-[#D4FF00] mt-0.5">{fitResults.crankLength} mm</div>
+                    <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.crankLength} mm</div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-black/50 border border-white/5">
                     <div className="text-[9.5px] text-zinc-400 uppercase font-bold">TALON STEM</div>
-                    <div className="text-xs font-black text-[#00F0FF] mt-0.5">{fitResults.stemLength} mm</div>
+                    <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.stemLength} mm</div>
                   </div>
                 </div>
               </div>
@@ -254,7 +253,7 @@ export const DogmaGeometry = () => {
           </div>
 
           {/* Right Column: Size Inspector Visual Card */}
-          <div className="lg:col-span-7 bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0d1624]/90 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
+          <div className="lg:col-span-7 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-6">
                 <div>
@@ -262,7 +261,7 @@ export const DogmaGeometry = () => {
                     Dogma F Size {activeGeom.size} Blueprint
                   </h3>
                   <p className="text-xs text-zinc-300 font-mono mt-0.5">
-                    Recommended Rider Height: <strong className="text-[#FF5E0E]">{activeGeom.recHeight}</strong>
+                    Recommended Rider Height: <strong className="text-[#E4002B]">{activeGeom.recHeight}</strong>
                   </p>
                 </div>
 
@@ -277,7 +276,7 @@ export const DogmaGeometry = () => {
                       }}
                       className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${
                         selectedSize === g.size
-                          ? 'bg-[#00F0FF] text-black scale-110 shadow-[0_0_15px_#00F0FF]'
+                          ? 'bg-[#E4002B] text-white scale-110 shadow-[0_0_15px_rgba(228,0,43,0.4)]'
                           : 'bg-white/10 text-zinc-300 hover:text-white hover:bg-white/20 border border-white/10'
                       }`}
                     >
@@ -288,16 +287,16 @@ export const DogmaGeometry = () => {
               </div>
 
               {/* Visual Chassis Blueprint Diagram */}
-              <div className="relative my-6 rounded-2xl bg-[#06101c] border border-cyan-500/25 overflow-hidden flex flex-col items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+              <div className="relative my-6 rounded-2xl bg-[#0a0c10] border border-white/10 overflow-hidden flex flex-col items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
                 <img
                   src="/assets/geometry/dogma_f_blueprint_53.jpg"
                   alt={`Dogma F Size ${activeGeom.size} Engineering Blueprint`}
                   className="w-full h-52 sm:h-64 md:h-72 object-contain filter drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#06101c]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07080a]/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-4 right-4 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-200">
                   <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
-                    SELECTED SIZE: <strong className="text-[#00F0FF]">{activeGeom.size}</strong>
+                    SELECTED SIZE: <strong className="text-[#E4002B]">{activeGeom.size}</strong>
                   </span>
                   <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
                     STACK: <strong className="text-white">{activeGeom.stack} mm</strong>
@@ -305,7 +304,7 @@ export const DogmaGeometry = () => {
                   <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
                     REACH: <strong className="text-white">{activeGeom.reach} mm</strong>
                   </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-cyan-500/40 text-[#00F0FF] shadow backdrop-blur-md">
+                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/20 text-zinc-200 shadow backdrop-blur-md">
                     FORK RAKE: <strong>47 mm</strong>
                   </span>
                 </div>
@@ -329,13 +328,13 @@ export const DogmaGeometry = () => {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                  <div className="text-[10px] font-mono text-cyan-400 uppercase font-bold">HEAD TUBE ANGLE</div>
-                  <div className="font-display text-xl font-black text-[#00F0FF] mt-1">{activeGeom.headAngle}</div>
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase font-bold">HEAD TUBE ANGLE</div>
+                  <div className="font-display text-xl font-black text-white mt-1">{activeGeom.headAngle}</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                  <div className="text-[10px] font-mono text-lime-400 uppercase font-bold">SEAT TUBE ANGLE</div>
-                  <div className="font-display text-xl font-black text-[#D4FF00] mt-1">{activeGeom.seatAngle}</div>
+                  <div className="text-[10px] font-mono text-zinc-400 uppercase font-bold">SEAT TUBE ANGLE</div>
+                  <div className="font-display text-xl font-black text-white mt-1">{activeGeom.seatAngle}</div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
@@ -355,8 +354,8 @@ export const DogmaGeometry = () => {
               </div>
             </div>
 
-            <div className="mt-6 p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/25 flex items-center gap-3 text-xs text-zinc-200">
-              <Info className="w-4 h-4 text-[#00F0FF] shrink-0" />
+            <div className="mt-6 p-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center gap-3 text-xs text-zinc-200">
+              <Info className="w-4 h-4 text-[#E4002B] shrink-0" />
               <span>
                 All Pinarello frames feature Onda Fork 47mm rake and Italian 70mm threaded bottom bracket tolerance.
               </span>
@@ -365,7 +364,7 @@ export const DogmaGeometry = () => {
         </div>
 
         {/* Full 9-Size Master Geometry Table */}
-        <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0d1624]/90 backdrop-blur-3xl overflow-x-auto shadow-2xl p-1">
+        <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 backdrop-blur-3xl overflow-x-auto shadow-2xl p-1">
           <table className="w-full text-left font-mono text-xs">
             <thead className="bg-white/10 border-b border-white/10 text-zinc-300 uppercase tracking-wider">
               <tr>

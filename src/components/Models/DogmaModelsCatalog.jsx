@@ -532,16 +532,14 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
   return (
     <section
       id="models"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#090b12] via-[#090e1a] to-[#090d18]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#0a0c10] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* --- LAYER 1: CINEMATIC DYNAMIC AMBIENT BACKDROP --- */}
-      {/* Color-Responsive Atmospheric Volumetric Spotlights */}
+      {/* --- LAYER 1: CINEMATIC REFINED STUDIO BACKDROP --- */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] rounded-full blur-[200px] pointer-events-none opacity-40 transition-all duration-1000 ease-out aurora-blob-1"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-15 transition-all duration-1000 ease-out"
         style={{ backgroundColor: currentColorway.colorHex || '#E4002B' }}
       />
-      <div className="absolute top-1/2 -left-24 w-[850px] h-[850px] rounded-full blur-[200px] pointer-events-none opacity-28 bg-[#00F0FF] transition-all duration-1000 aurora-blob-2" />
-      <div className="absolute bottom-1/4 -right-24 w-[900px] h-[900px] rounded-full blur-[220px] pointer-events-none opacity-25 bg-[#FF5E0E] transition-all duration-1000 aurora-breathing" />
+      <div className="absolute bottom-1/4 right-1/4 w-[750px] h-[500px] bg-white/[0.02] rounded-full blur-[160px] pointer-events-none" />
 
       {/* Bespoke Precision Telemetry Axis & Dynamic Flow Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">

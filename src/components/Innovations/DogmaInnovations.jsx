@@ -179,12 +179,11 @@ export const DogmaInnovations = () => {
   return (
     <section
       id="innovations"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#090d18] via-[#160d20] to-[#0c1326]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* --- LAYER 1: VIBRANT ANIMATED ATMOSPHERIC AURORAS --- */}
-      <div className="absolute top-1/4 -right-20 w-[1150px] h-[1150px] bg-[#E4002B]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/4 -left-20 w-[1050px] h-[1050px] bg-[#00F0FF]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#FF5E0E]/22 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
+      <div className="absolute top-1/4 -right-20 w-[1000px] h-[600px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-20 w-[900px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none" />
 
       {/* Bespoke Dynamic Energy Streamlines & Precision Vector Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-50">

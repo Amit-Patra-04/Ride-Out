@@ -71,25 +71,18 @@ export const HeroShowcase = ({ onOpenBooking }) => {
   };
 
   return (
-    <div ref={heroRef} className="relative w-full overflow-hidden bg-gradient-to-b from-[#090b12] via-[#0b101c] via-30% via-[#0d1424] via-60% to-[#080a10]">
+    <div ref={heroRef} className="relative w-full overflow-hidden bg-[#0b0e14]">
       {/* --- HERO 3D SECTION (Full-Bleed 100vw Stage) --- */}
       <section
         id="hero-3d"
-        className="relative w-full min-h-screen overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-16"
+        className="relative w-full min-h-screen overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-16 bg-gradient-to-b from-[#0b0e14] via-[#10141f] to-[#0b0e14]"
       >
-        {/* Layer 1: Full-Width Atmospheric Studio Spotlights (Color-Responsive) */}
+        {/* Layer 1: Refined Luxury Studio Rim Light (Color-Responsive) */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[750px] rounded-full blur-[180px] pointer-events-none opacity-35 transition-all duration-1000 ease-out aurora-blob-1"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full blur-[180px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
           style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
         />
-        <div
-          className="absolute top-1/4 -right-20 w-[750px] h-[750px] rounded-full blur-[180px] pointer-events-none opacity-30 transition-all duration-1000 ease-out aurora-blob-2"
-          style={{ backgroundColor: selectedColorway.accentColor || '#00F0FF' }}
-        />
-        <div
-          className="absolute top-1/2 -left-20 w-[650px] h-[650px] rounded-full blur-[170px] pointer-events-none opacity-25 transition-all duration-1000 ease-out aurora-breathing"
-          style={{ backgroundColor: selectedColorway.rearColor || '#07080A' }}
-        />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.04] rounded-full blur-[160px] pointer-events-none" />
 
         {/* Layer 2: Precision Engineering Telemetry & Aerodynamic Vector Guides */}
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-40">
@@ -321,10 +314,10 @@ export const HeroShowcase = ({ onOpenBooking }) => {
       <DogmaHeritage />
 
       {/* --- OFFICIAL TREVISO MEGA-FOOTER --- */}
-      <footer className="relative w-full bg-gradient-to-b from-[#150f0c] via-[#10121d] to-[#070910] py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
-        {/* Radiant Ambient Bottom Lighting */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1250px] h-[500px] bg-[#E4002B]/22 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-        <div className="absolute bottom-0 right-1/4 w-[1000px] h-[500px] bg-[#FFD166]/18 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
+      <footer className="relative w-full bg-gradient-to-b from-[#0b0e14] via-[#0e111a] to-[#080a0f] border-t border-white/[0.08] py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+        {/* Subtle Ambient Bottom Accent Lighting */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[400px] bg-[#E4002B]/[0.08] rounded-full blur-[180px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[800px] h-[300px] bg-white/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto space-y-16">
           {/* Top Brand Crest & VIP Concierge Row */}

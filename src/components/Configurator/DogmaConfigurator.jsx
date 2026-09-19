@@ -176,19 +176,18 @@ export const DogmaConfigurator = ({
   return (
     <section
       id="configurator"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#121124] via-[#1f0f1c] to-[#1a111a]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* 1. Volumetric Atmospheric Multi-tier Spotlights - Seamless Diffuse Blend */}
-      <div className="absolute top-1/4 right-0 w-[1200px] h-[1200px] bg-[#E4002B]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/4 left-0 w-[1150px] h-[1150px] bg-[#00F0FF]/25 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#E5A93C]/28 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* 1. Refined Atelier Studio Spotlight */}
+      <div className="absolute top-1/4 right-0 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
 
       {/* 2. Bespoke Atelier Turntable Studio Geometry & Micro-Crosshairs */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-45">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="50%" cy="55%" rx="580" ry="240" fill="none" stroke="rgba(229,169,60,0.15)" strokeWidth="2" strokeDasharray="6 12" />
-          <ellipse cx="50%" cy="55%" rx="800" ry="340" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          <line x1="15%" y1="55%" x2="85%" y2="55%" stroke="rgba(229,169,60,0.1)" strokeWidth="1" strokeDasharray="4 8" />
+          <ellipse cx="50%" cy="55%" rx="580" ry="240" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeDasharray="6 12" />
+          <ellipse cx="50%" cy="55%" rx="800" ry="340" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+          <line x1="15%" y1="55%" x2="85%" y2="55%" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 8" />
         </svg>
       </div>
 
@@ -196,14 +195,14 @@ export const DogmaConfigurator = ({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-[#FF5E0E]/15 border border-[#FF5E0E]/35 text-[#FF5E0E] text-[11px] font-mono tracking-[0.2em] uppercase mb-5 backdrop-blur-md shadow-inner font-bold">
-            <SlidersHorizontal className="w-3.5 h-3.5 animate-pulse text-[#FF5E0E]" />
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[11px] font-mono tracking-[0.2em] uppercase mb-5 backdrop-blur-md shadow-inner font-bold">
+            <SlidersHorizontal className="w-3.5 h-3.5 animate-pulse text-[#E4002B]" />
             <span>05 // BESPOKE ATELIER // PINARELLO CUSTOM WORKSHOP</span>
           </div>
 
           <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
             BESPOKE ATELIER{' '}
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF3B00] via-white via-40% to-[#E5A93C] mt-1">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] mt-1">
               BUILD STUDIO
             </span>
           </h2>
@@ -229,18 +228,18 @@ export const DogmaConfigurator = ({
           {/* Left Options Controls Column */}
           <div className="lg:col-span-7 space-y-8">
             {/* 1. Paint Livery Selection with Live Dynamic Cycle Preview */}
-            <div className="bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-[#140e15]/95 border border-white/20 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)] space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-white/15">
+            <div className="bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)] space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div>
                   <span className="font-mono text-xs text-zinc-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                    <Palette className="w-3.5 h-3.5 text-[#FF5E0E]" />
+                    <Palette className="w-3.5 h-3.5 text-[#E4002B]" />
                     <span>1. OFFICIAL PAINT LIVERY & REAL-TIME STAGE</span>
                   </span>
                   <div className="font-display text-xl font-black text-white uppercase mt-1">
                     {colorway.name}
                   </div>
                 </div>
-                <span className="px-4 py-1 rounded-full bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#FF5E0E] text-[10px] font-mono font-bold uppercase shadow-sm">
+                <span className="px-4 py-1 rounded-full bg-white/10 border border-white/20 text-zinc-200 text-[10px] font-mono font-bold uppercase shadow-sm">
                   {colorway.badge}
                 </span>
               </div>
@@ -295,10 +294,10 @@ export const DogmaConfigurator = ({
                 </div>
 
                 {/* Right Side: Live Dynamic Cycle Image Showcase */}
-                <div className="md:col-span-6 relative flex flex-col items-center justify-center p-6 rounded-2xl bg-black/60 border border-white/20 overflow-hidden min-h-[290px] group shadow-inner">
+                <div className="md:col-span-6 relative flex flex-col items-center justify-center p-6 rounded-2xl bg-black/60 border border-white/10 overflow-hidden min-h-[290px] group shadow-inner">
                   {/* Dynamic Aura Glow matching selected bike color */}
                   <div
-                    className="absolute w-60 h-60 rounded-full blur-[90px] opacity-70 transition-all duration-700 pointer-events-none"
+                    className="absolute w-60 h-60 rounded-full blur-[90px] opacity-40 transition-all duration-700 pointer-events-none"
                     style={{ backgroundColor: colorway.primaryColor }}
                   />
 
@@ -321,7 +320,7 @@ export const DogmaConfigurator = ({
                     <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider">
                       FINISH: <strong className="text-white">{colorway.name}</strong>
                     </div>
-                    <div className="text-[9px] font-mono text-[#00F0FF] uppercase mt-0.5 font-bold">
+                    <div className="text-[9px] font-mono text-zinc-400 uppercase mt-0.5 font-bold">
                       {colorway.edition}
                     </div>
                   </div>
@@ -330,13 +329,13 @@ export const DogmaConfigurator = ({
             </div>
 
             {/* 2. Drivetrain & Groupset */}
-            <div className="bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-[#140e15]/95 border border-white/20 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)]">
-              <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/15">
+            <div className="bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)]">
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
                 <span className="font-mono text-xs text-zinc-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                  <Cpu className="w-3.5 h-3.5 text-cyan-300" />
+                  <Cpu className="w-3.5 h-3.5 text-[#E4002B]" />
                   <span>2. ELECTRONIC DRIVETRAIN GROUPSET</span>
                 </span>
-                <span className="text-xs font-mono font-black text-[#00F0FF]">
+                <span className="text-xs font-mono font-black text-white">
                   {selectedGroupset.name}
                 </span>
               </div>
@@ -353,7 +352,7 @@ export const DogmaConfigurator = ({
                       onMouseEnter={() => sfx.playHover()}
                       className={`w-full flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:p-5 rounded-2xl border text-left transition-all gap-3 ${
                         isSelected
-                          ? 'border-[#00F0FF] bg-cyan-500/15 shadow-[0_0_20px_rgba(0,240,255,0.3)]'
+                          ? 'border-[#E4002B] bg-[#E4002B]/15 shadow-[0_0_20px_rgba(228,0,43,0.3)]'
                           : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.08]'
                       }`}
                     >
@@ -369,7 +368,7 @@ export const DogmaConfigurator = ({
                         <p className="text-xs text-zinc-300 mt-1">{g.powerMeter}</p>
                       </div>
                       <div className="text-left sm:text-right sm:shrink-0 font-mono">
-                        <div className="text-sm font-black text-[#D4FF00]">
+                        <div className="text-sm font-black text-white">
                           +€{g.priceEuro.toLocaleString()}
                         </div>
                         <div className="text-[10px] text-zinc-400 font-semibold">{g.weightGrams}g total</div>
@@ -381,13 +380,13 @@ export const DogmaConfigurator = ({
             </div>
 
             {/* 3. Wheelset */}
-            <div className="bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-[#140e15]/95 border border-white/20 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)]">
-              <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/15">
+            <div className="bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)]">
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
                 <span className="font-mono text-xs text-zinc-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                  <Layers className="w-3.5 h-3.5 text-[#D4FF00]" />
+                  <Layers className="w-3.5 h-3.5 text-[#E4002B]" />
                   <span>3. HIGH-MODULUS AERO WHEELSET</span>
                 </span>
-                <span className="text-xs font-mono font-black text-[#D4FF00]">
+                <span className="text-xs font-mono font-black text-white">
                   {selectedWheelset.name}
                 </span>
               </div>
@@ -404,7 +403,7 @@ export const DogmaConfigurator = ({
                       onMouseEnter={() => sfx.playHover()}
                       className={`p-4 sm:p-5 rounded-2xl border text-left transition-all flex flex-col justify-between ${
                         isSelected
-                          ? 'border-[#D4FF00] bg-lime-500/15 shadow-[0_0_20px_rgba(212,255,0,0.3)]'
+                          ? 'border-[#E4002B] bg-[#E4002B]/15 shadow-[0_0_20px_rgba(228,0,43,0.3)]'
                           : 'border-white/10 bg-white/[0.03] hover:bg-white/[0.08]'
                       }`}
                     >
@@ -421,7 +420,7 @@ export const DogmaConfigurator = ({
                           {w.depth}
                         </div>
                       </div>
-                      <div className="flex justify-between items-center mt-4 pt-2.5 border-t border-white/15 font-mono text-xs">
+                      <div className="flex justify-between items-center mt-4 pt-2.5 border-t border-white/10 font-mono text-xs">
                         <span className="text-zinc-400 font-semibold">{w.weightGrams}g</span>
                         <span className="text-white font-black">
                           +€{w.priceEuro.toLocaleString()}
@@ -434,7 +433,7 @@ export const DogmaConfigurator = ({
             </div>
 
             {/* 4. Cockpit & Custom Engraving */}
-            <div className="bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-[#140e15]/95 border border-white/20 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)] grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.7)] grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <span className="font-mono text-xs text-zinc-300 uppercase tracking-wider block mb-3 font-bold">
                   4. MOST TALON ULTRA FAST COCKPIT
@@ -449,7 +448,7 @@ export const DogmaConfigurator = ({
                       }}
                       className={`w-full flex justify-between items-center p-3 rounded-xl border text-xs font-mono transition-all ${
                         selectedCockpit.id === cp.id
-                          ? 'border-[#FF3B00] bg-[#FF3B00]/20 text-white font-bold shadow-[0_0_12px_rgba(255,59,0,0.3)]'
+                          ? 'border-[#E4002B] bg-[#E4002B]/20 text-white font-bold shadow-[0_0_12px_rgba(228,0,43,0.3)]'
                           : 'border-white/10 bg-white/[0.03] text-zinc-300 hover:text-white hover:bg-white/[0.08]'
                       }`}
                     >
@@ -473,10 +472,10 @@ export const DogmaConfigurator = ({
                     value={customInitials}
                     onChange={(e) => setCustomInitials(e.target.value.toUpperCase())}
                     placeholder="CUSTOM NAME / ID"
-                    className="w-full bg-white/10 border border-white/25 rounded-xl px-4 py-3 text-xs font-mono text-white uppercase focus:outline-none focus:border-[#FF5E0E] shadow-inner font-bold placeholder:text-zinc-500"
+                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-xs font-mono text-white uppercase focus:outline-none focus:border-[#E4002B] shadow-inner font-bold placeholder:text-zinc-500"
                   />
-                  <div className="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-[10px] font-mono text-amber-200 flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 shrink-0 text-amber-400" />
+                  <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 text-[10px] font-mono text-zinc-300 flex items-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5 shrink-0 text-[#E4002B]" />
                     <span>Laser-etched in Italian gold serif font on top-tube.</span>
                   </div>
                 </div>
@@ -485,7 +484,7 @@ export const DogmaConfigurator = ({
           </div>
 
           {/* Right Live Spec Summary & Order Card Column */}
-          <div className="lg:col-span-5 sticky top-28 bg-gradient-to-b from-white/[0.12] via-white/[0.05] to-[#140e15]/98 border border-white/25 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.8)] space-y-6">
+          <div className="lg:col-span-5 sticky top-28 bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-[#07080a]/98 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.8)] space-y-6">
             <div className="pb-5 border-b border-white/15">
               <div className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase text-[#FF5E0E] bg-[#FF3B00]/15 px-3 py-1 rounded-full border border-[#FF3B00]/30 mb-3 font-bold">
                 <Sparkles className="w-3 h-3" />
@@ -507,7 +506,7 @@ export const DogmaConfigurator = ({
                 </span>
                 <div className="text-right">
                   <span className="font-display text-3xl sm:text-4xl font-black text-white">
-                    {totalWeightKg} <span className="text-sm text-[#00F0FF] font-mono">KG</span>
+                    {totalWeightKg} <span className="text-sm text-zinc-400 font-mono">KG</span>
                   </span>
                   <div className="text-[10px] text-zinc-400 font-semibold">
                     ({totalCalculatedWeightGrams}g complete build)
@@ -517,8 +516,8 @@ export const DogmaConfigurator = ({
 
               <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs">
                 <span className="text-zinc-300">UCI Minimum (6.80 kg)</span>
-                <span className="text-[#D4FF00] font-bold flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4" />
+                <span className="text-white font-bold flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#E4002B]" />
                   <span>WorldTour Compliant</span>
                 </span>
               </div>
@@ -552,7 +551,7 @@ export const DogmaConfigurator = ({
               </div>
               <div className="flex justify-between text-zinc-300">
                 <span>Laser Monogram ({customInitials}):</span>
-                <span className="text-[#FF5E0E] font-bold">COMPLIMENTARY</span>
+                <span className="text-[#E4002B] font-bold">COMPLIMENTARY</span>
               </div>
             </div>
 
@@ -561,7 +560,7 @@ export const DogmaConfigurator = ({
               <span className="font-mono text-xs text-zinc-300 uppercase tracking-wider font-bold">
                 ATELIER TREVISO ESTIMATE
               </span>
-              <span className="font-display text-3xl sm:text-4xl font-black text-[#D4FF00]">
+              <span className="font-display text-3xl sm:text-4xl font-black text-white">
                 €{totalPriceEuro.toLocaleString()}
               </span>
             </div>
@@ -570,7 +569,7 @@ export const DogmaConfigurator = ({
             <div className="space-y-3 pt-2">
               <button
                 onClick={handleReserveBuild}
-                className="w-full py-4 sm:py-5 rounded-2xl bg-gradient-to-r from-[#FF3B00] via-[#FF6A00] to-[#FF3B00] text-white font-mono text-xs uppercase tracking-widest font-black shadow-[0_0_35px_rgba(255,59,0,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-4 sm:py-5 rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase tracking-widest font-black shadow-[0_0_35px_rgba(228,0,43,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
               >
                 <span>CONFIRM ATELIER SPECIFICATION</span>
                 <ArrowRight className="w-4 h-4" />

@@ -257,27 +257,26 @@ export const DogmaSpecs = () => {
   return (
     <section
       id="specifications"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0c1326] via-[#0e1b38] to-[#0a1628]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#0b0d12] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* --- LAYER 1: VIBRANT ANIMATED ATMOSPHERIC AURORAS --- */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1200px] h-[1200px] bg-[#00F0FF]/30 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[1150px] h-[1150px] bg-[#3B82F6]/35 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[900px] bg-[#00F0FF]/20 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Blueprint Precision Calipers & Telemetry Guides */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-45">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50%" cy="40%" r="480" fill="none" stroke="rgba(0,240,255,0.12)" strokeWidth="1.5" strokeDasharray="4 8" />
-          <circle cx="50%" cy="40%" r="720" fill="none" stroke="rgba(59,130,246,0.1)" strokeWidth="1" />
-          <line x1="5%" y1="40%" x2="95%" y2="40%" stroke="rgba(0,240,255,0.08)" strokeWidth="1" strokeDasharray="8 16" />
-          <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="rgba(0,240,255,0.08)" strokeWidth="1" strokeDasharray="8 16" />
+          <circle cx="50%" cy="40%" r="480" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" strokeDasharray="4 8" />
+          <circle cx="50%" cy="40%" r="720" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+          <line x1="5%" y1="40%" x2="95%" y2="40%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="8 16" />
+          <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="8 16" />
         </svg>
       </div>
 
       {/* Contained Architectural Watermark */}
-      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.05] sm:opacity-[0.06] leading-none font-display font-black tracking-tight">
+      <div className="absolute top-12 inset-x-0 max-w-7xl mx-auto px-6 sm:px-12 md:px-16 select-none pointer-events-none overflow-hidden flex flex-col items-center justify-center opacity-[0.025] sm:opacity-[0.03] leading-none font-display font-black tracking-tight">
         <span className="text-[9.5vw] sm:text-[8.5vw] md:text-[7.5vw] whitespace-nowrap text-white">BLUEPRINT</span>
-        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-300 to-transparent -mt-[1.5vw]">
+        <span className="text-[8vw] sm:text-[7vw] md:text-[6vw] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-400 to-transparent -mt-[1.5vw]">
           SPECIFICATIONS
         </span>
       </div>
@@ -285,10 +284,10 @@ export const DogmaSpecs = () => {
       {/* --- LAYER 2: INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* --- OFFICIAL QUOTE BANNER: ITALIAN HAUTE COUTURE --- */}
-        <div className="relative mb-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-white/[0.08] via-cyan-950/25 to-white/[0.04] border border-cyan-500/25 backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.6)] overflow-hidden">
+        <div className="relative mb-16 p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-white/[0.04] via-white/[0.02] to-white/[0.03] border border-white/10 backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.6)] overflow-hidden">
           <div className="max-w-4xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-xs font-mono text-cyan-300 uppercase tracking-widest backdrop-blur-md shadow-sm">
-              <Award className="w-3.5 h-3.5 text-[#00F0FF]" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300 uppercase tracking-widest backdrop-blur-md shadow-sm">
+              <Award className="w-3.5 h-3.5 text-[#E4002B]" />
               <span>PINARELLO DESIGN PHILOSOPHY // TREVISO, ITALIA</span>
             </div>
 
@@ -352,12 +351,12 @@ export const DogmaSpecs = () => {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div className="max-w-2xl xl:max-w-3xl space-y-3">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#00F0FF] font-bold">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#E4002B] font-bold">
                 FACTORY TOLERANCES & METRIC SPECIFICATIONS
               </span>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
                 MINUTE SPECS &{' '}
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 via-40% to-[#00F0FF] drop-shadow-lg mt-1">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] drop-shadow-lg mt-1">
                   ARCHITECTURE.
                 </span>
               </h2>
@@ -384,25 +383,25 @@ export const DogmaSpecs = () => {
 
         {/* --- QUICK SPEC SUMMARY BAR --- */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-12">
-          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
             <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">INTENDED USE</span>
             <span className="font-display text-lg sm:text-xl font-black text-white mt-1">Road Racing</span>
           </div>
-          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
             <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">WHEEL SIZE</span>
-            <span className="font-display text-lg sm:text-xl font-black text-[#00F0FF] mt-1">700c (30mm max)</span>
+            <span className="font-display text-lg sm:text-xl font-black text-white mt-1">700c (30mm max)</span>
           </div>
-          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
             <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">BRAKING SYSTEM</span>
             <span className="font-display text-lg sm:text-xl font-black text-white mt-1">Hydraulic Disc</span>
           </div>
-          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 backdrop-blur-xl shadow-lg flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between">
             <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">FRAME MATERIAL</span>
             <span className="font-display text-lg sm:text-xl font-black text-[#E4002B] mt-1">TorayCa M40X</span>
           </div>
-          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/15 backdrop-blur-xl shadow-lg flex flex-col justify-between col-span-2 sm:col-span-1">
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 backdrop-blur-xl shadow-lg flex flex-col justify-between col-span-2 sm:col-span-1">
             <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest font-bold">FORK PROFILE</span>
-            <span className="font-display text-lg sm:text-xl font-black text-[#D4FF00] mt-1">Onda 47mm Rake</span>
+            <span className="font-display text-lg sm:text-xl font-black text-zinc-200 mt-1">Onda 47mm Rake</span>
           </div>
         </div>
 
@@ -421,7 +420,7 @@ export const DogmaSpecs = () => {
                 onMouseEnter={() => sfx.playHover()}
                 className={`flex items-center gap-2.5 px-6 py-4 rounded-2xl font-mono text-xs uppercase tracking-wider transition-all duration-300 border backdrop-blur-xl ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#00F0FF] via-[#3B82F6] to-[#E4002B] text-white font-black border-transparent shadow-[0_0_30px_rgba(0,240,255,0.45)] scale-105'
+                    ? 'bg-[#E4002B] text-white font-bold border-[#E4002B] shadow-[0_0_25px_rgba(228,0,43,0.4)] scale-105'
                     : 'bg-white/[0.04] text-zinc-300 hover:text-white hover:bg-white/[0.08] border-white/10'
                 }`}
               >
@@ -442,7 +441,7 @@ export const DogmaSpecs = () => {
                 </h3>
                 <p className="text-xs text-zinc-300 font-mono mt-0.5">{selectedCategory.desc}</p>
               </div>
-              <span className="px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-500/35 font-mono text-xs text-cyan-300 font-bold shadow-md">
+              <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 font-mono text-xs text-zinc-200 font-bold shadow-md">
                 {selectedCategory.badge}
               </span>
             </div>
@@ -451,10 +450,10 @@ export const DogmaSpecs = () => {
               {selectedCategory.components.map((comp, idx) => (
                 <div
                   key={idx}
-                  className="group relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0c1424]/90 border border-white/15 hover:border-[#00F0FF]/60 backdrop-blur-3xl transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_60px_rgba(0,240,255,0.25)]"
+                  className="group relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] hover:border-white/20 backdrop-blur-3xl transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                 >
                   {/* Visual Square Image Header (1:1 Ratio - Fully Fitted) */}
-                  <div className="relative w-full aspect-square bg-[#080d16] overflow-hidden flex items-center justify-center border-b border-white/10 group-hover:border-white/25 transition-colors">
+                  <div className="relative w-full aspect-square bg-[#0a0c10] overflow-hidden flex items-center justify-center border-b border-white/10 group-hover:border-white/25 transition-colors">
                     {comp.fit === 'cover' ? (
                       <img
                         src={comp.image}
@@ -469,7 +468,7 @@ export const DogmaSpecs = () => {
                         className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
                       />
                     ) : (
-                      <div className="w-full h-full p-6 sm:p-7 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-700/40 via-zinc-900/90 to-[#070d18]">
+                      <div className="w-full h-full p-6 sm:p-7 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-700/30 via-zinc-900/90 to-[#07080a]">
                         <img
                           src={comp.image}
                           alt={comp.name}
@@ -497,8 +496,8 @@ export const DogmaSpecs = () => {
 
                     {/* Bottom Technical Highlight Badge */}
                     <div className="absolute bottom-3 left-3.5 right-3.5 z-10">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/90 border border-cyan-500/40 text-cyan-300 font-mono text-[9px] sm:text-[9.5px] font-bold uppercase backdrop-blur-md shadow-lg truncate max-w-full">
-                        <Zap className="w-3 h-3 text-[#00F0FF] shrink-0" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/90 border border-white/20 text-zinc-200 font-mono text-[9px] sm:text-[9.5px] font-bold uppercase backdrop-blur-md shadow-lg truncate max-w-full">
+                        <Zap className="w-3 h-3 text-[#E4002B] shrink-0" />
                         <span className="truncate">{comp.highlight}</span>
                       </span>
                     </div>
@@ -507,10 +506,10 @@ export const DogmaSpecs = () => {
                   {/* Technical Details */}
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                      <div className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest mb-1 truncate font-bold">
+                      <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-1 truncate font-bold">
                         {comp.role}
                       </div>
-                      <h4 className="font-display text-base font-extrabold text-white uppercase group-hover:text-cyan-300 transition-colors leading-snug line-clamp-2">
+                      <h4 className="font-display text-base font-extrabold text-white uppercase group-hover:text-[#E4002B] transition-colors leading-snug line-clamp-2">
                         {comp.spec}
                       </h4>
                     </div>
@@ -528,7 +527,7 @@ export const DogmaSpecs = () => {
           /* --- WARRANTY, EXCLUSIONS & IMPORTER AUTHENTICITY SECTION --- */
           <div className="space-y-8">
             {/* Warranty Certificate Card */}
-            <div className="bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0c1424]/90 border border-white/15 rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
+            <div className="bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
               <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-white/10 gap-4 mb-6">
                 <div className="flex items-center gap-3">
                   <div className="p-3.5 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.3)]">

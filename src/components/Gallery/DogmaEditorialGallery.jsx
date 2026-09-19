@@ -96,34 +96,33 @@ export const DogmaEditorialGallery = () => {
   return (
     <section
       id="gallery"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#1a111a] via-[#1d1226] to-[#1b1410]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
     >
-      {/* 1. Volumetric Atmospheric Multi-tier Spotlights - Seamless Diffuse Blend */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1250px] h-[900px] bg-[#E4002B]/32 rounded-full blur-[200px] pointer-events-none aurora-blob-1" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[1150px] h-[1150px] bg-[#E5A93C]/28 rounded-full blur-[200px] pointer-events-none aurora-blob-2" />
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 w-[1050px] h-[1050px] bg-[#00F0FF]/18 rounded-full blur-[220px] pointer-events-none aurora-breathing" />
+      {/* 1. Refined Darkroom Lightbox Ambient Lighting */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[500px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
 
       {/* 2. Bespoke Editorial Darkroom Lightbox Guides & Viewfinder Targets */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-45">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50%" cy="50%" r="460" fill="none" stroke="rgba(229,169,60,0.12)" strokeWidth="1.5" strokeDasharray="4 8" />
-          <line x1="5%" y1="50%" x2="95%" y2="50%" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="8 16" />
-          <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="8 16" />
+          <circle cx="50%" cy="50%" r="460" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1.5" strokeDasharray="4 8" />
+          <line x1="5%" y1="50%" x2="95%" y2="50%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="8 16" />
+          <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="8 16" />
         </svg>
       </div>
 
       {/* --- INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-8 border-b border-white/15 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-8 border-b border-white/10 gap-8">
           <div>
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-[#E5A93C]/15 border border-[#E5A93C]/35 text-[#E5A93C] text-[11px] font-mono tracking-[0.2em] uppercase mb-4 backdrop-blur-md shadow-inner font-bold">
-              <Camera className="w-3.5 h-3.5 text-[#E5A93C]" />
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[11px] font-mono tracking-[0.2em] uppercase mb-4 backdrop-blur-md shadow-inner font-bold">
+              <Camera className="w-3.5 h-3.5 text-[#E4002B]" />
               <span>06 // EDITORIAL ARCHIVE // OFFICIAL DOGMA F ARCHIVE</span>
             </div>
             <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05]">
               EDITORIAL{' '}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E4002B] via-white via-40% to-[#E5A93C] mt-1 sm:mt-2">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] mt-1 sm:mt-2">
                 PHOTOGRAPHY
               </span>
             </h2>
@@ -161,7 +160,7 @@ export const DogmaEditorialGallery = () => {
         </div>
 
         {/* Main Big Feature Slide */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-[#120e17]/95 border border-white/20 shadow-[0_35px_100px_rgba(0,0,0,0.8)] group">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] shadow-[0_35px_100px_rgba(0,0,0,0.8)] group">
           <div className="relative w-full aspect-video sm:aspect-[21/9] overflow-hidden bg-black/90">
             <img
               src={currentSlide.imageUrl}
@@ -178,7 +177,7 @@ export const DogmaEditorialGallery = () => {
             {/* Top Tag & Fullscreen Action */}
             <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
               <span className="px-4 py-2 rounded-full bg-black/85 border border-white/25 text-white text-xs font-mono tracking-widest uppercase font-bold backdrop-blur-xl shadow-xl flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#E5A93C]" />
+                <Sparkles className="w-3.5 h-3.5 text-[#E4002B]" />
                 <span>{currentSlide.tag}</span>
               </span>
               <button
@@ -196,7 +195,7 @@ export const DogmaEditorialGallery = () => {
             {/* Bottom Captions Overlay */}
             <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="max-w-2xl">
-                <div className="font-mono text-xs text-[#00F0FF] uppercase tracking-wider mb-2 flex items-center gap-1.5 font-bold">
+                <div className="font-mono text-xs text-[#E4002B] uppercase tracking-wider mb-2 flex items-center gap-1.5 font-bold">
                   <Compass className="w-3.5 h-3.5" />
                   <span>{currentSlide.location}</span>
                 </div>
