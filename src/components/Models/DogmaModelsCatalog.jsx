@@ -532,14 +532,15 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
   return (
     <section
       id="models"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#0a0c10] to-[#07080a] border-t border-white/[0.04]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: CINEMATIC REFINED STUDIO BACKDROP --- */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-15 transition-all duration-1000 ease-out"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
         style={{ backgroundColor: currentColorway.colorHex || '#E4002B' }}
       />
-      <div className="absolute bottom-1/4 right-1/4 w-[750px] h-[500px] bg-white/[0.02] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Precision Telemetry Axis & Dynamic Flow Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">
@@ -711,7 +712,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
         </div>
 
         {/* --- MAIN CINEMATIC 3D SHOWCASE & TELEMETRY STAGE --- */}
-        <div className="relative z-10 bg-gradient-to-b from-[#0c0f16]/95 via-[#07080a]/98 to-[#030406] border border-white/15 rounded-3xl p-6 sm:p-10 lg:p-12 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.15)] overflow-hidden">
+        <div className="relative z-10 bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] rounded-3xl p-6 sm:p-10 lg:p-12 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)] overflow-hidden">
           {/* Subtle Engineering Grid Backdrop */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 

@@ -31,6 +31,7 @@ const ALL_SECTIONS = [
 ];
 
 export const Navbar = ({ onBookRideClick }) => {
+  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('3D AERO');
@@ -39,54 +40,105 @@ export const Navbar = ({ onBookRideClick }) => {
   const navContainerRef = useRef(null);
   const indicatorRef = useRef(null);
   const linksContainerRef = useRef(null);
+  const isInitialMount = useRef(true);
 
+  // Track scroll direction: Hide on scroll down, reveal on scroll up with sensitive trigger
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 20;
-      setIsScrolled(scrolled);
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScrollState = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show navbar at the top of the page
+      if (currentScrollY < 60) {
+        setIsVisible(true);
+        setIsScrolled(currentScrollY > 15);
+        lastScrollY = currentScrollY;
+        ticking = false;
+        return;
+      }
+
+      setIsScrolled(true);
+
+      const diff = currentScrollY - lastScrollY;
+
+      // Sensitive threshold: quick trigger on scroll up (>= 4px) and smooth hide on scroll down (>= 6px)
+      if (diff < -4) {
+        // Scrolling up -> smoothly reveal navbar
+        setIsVisible(true);
+        lastScrollY = currentScrollY;
+      } else if (diff > 6) {
+        // Scrolling down -> smoothly hide navbar
+        setIsVisible(false);
+        lastScrollY = currentScrollY;
+      }
+
+      ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleScrollSections = () => {
-      const scrollPos = window.scrollY + 180;
-      for (let i = ALL_SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(ALL_SECTIONS[i].id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const top = rect.top + window.scrollY;
-          if (scrollPos >= top) {
-            setActiveLink(ALL_SECTIONS[i].label);
-            break;
-          }
-        }
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScrollSections, { passive: true });
-    handleScrollSections();
-    return () => window.removeEventListener('scroll', handleScrollSections);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Also listen to Lenis smooth-scroll instance if available
+    let unbindLenis = null;
+    if (window.lenis) {
+      unbindLenis = window.lenis.on('scroll', handleScroll);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (typeof unbindLenis === 'function') {
+        unbindLenis();
+      }
+    };
   }, []);
 
+  // Animate navbar in/out smoothly when visibility changes using GSAP
   useEffect(() => {
     const nav = navContainerRef.current;
     if (!nav) return;
 
-    gsap.fromTo(
-      nav,
-      { y: -25, opacity: 0 },
-      {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      gsap.fromTo(
+        nav,
+        { y: -50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+          delay: 0.1,
+        }
+      );
+      return;
+    }
+
+    if (isVisible) {
+      gsap.to(nav, {
         y: 0,
         opacity: 1,
-        duration: 0.7,
-        ease: EASING.smooth,
-        delay: 0.1,
-      }
-    );
-  }, []);
+        duration: 0.35,
+        ease: 'power3.out',
+        overwrite: 'auto',
+      });
+    } else {
+      gsap.to(nav, {
+        y: -90,
+        opacity: 0,
+        duration: 0.28,
+        ease: 'power3.inOut',
+        overwrite: 'auto',
+      });
+    }
+  }, [isVisible]);
 
   const handleLinkHover = (targetElement) => {
     if (!indicatorRef.current || !targetElement || !linksContainerRef.current) return;
@@ -125,10 +177,12 @@ export const Navbar = ({ onBookRideClick }) => {
     <>
       <header
         ref={navContainerRef}
-        className="fixed top-0 left-0 right-0 z-50 pointer-events-none pt-2 sm:pt-2.5 px-3 sm:px-6 flex justify-center transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none pt-2 sm:pt-2.5 px-3 sm:px-6 flex justify-center will-change-transform"
       >
         <div
-          className={`w-full max-w-5xl pointer-events-auto transition-all duration-300 ease-out flex items-center justify-between rounded-full px-3 sm:px-4 py-1.5 gap-2 sm:gap-3 ${
+          className={`w-full max-w-5xl ${
+            isVisible ? 'pointer-events-auto' : 'pointer-events-none'
+          } transition-[background-color,border-color,box-shadow] duration-300 ease-out flex items-center justify-between rounded-full px-3 sm:px-4 py-1.5 gap-2 sm:gap-3 ${
             isScrolled ? 'glass-navbar-scrolled' : 'glass-navbar'
           }`}
         >

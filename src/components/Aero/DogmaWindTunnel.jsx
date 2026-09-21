@@ -251,11 +251,11 @@ export const DogmaWindTunnel = () => {
   return (
     <section
       id="windtunnel"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
     >
       {/* 1. Refined Luxury Studio Ambient Spotlights */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
 
       {/* 2. Bespoke Dynamic Aerodynamic Flow Curves & Telemetry Rings */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">

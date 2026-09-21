@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { EASING, sfx } from '../../utils/animations';
+import { lockScroll, unlockScroll } from '../../utils/scrollLock';
 import {
   X,
   MapPin,
@@ -27,7 +28,7 @@ export const BookingModal = ({ isOpen, onClose, initialData = {} }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
       setStep('form');
 
       gsap.killTweensOf([backdropRef.current, cardRef.current]);
@@ -45,7 +46,7 @@ export const BookingModal = ({ isOpen, onClose, initialData = {} }) => {
         { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: EASING.smooth }
       );
     } else if (modalRef.current) {
-      document.body.style.overflow = '';
+      unlockScroll();
 
       gsap.to(cardRef.current, {
         y: 20,

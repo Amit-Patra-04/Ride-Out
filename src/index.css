@@ -215,19 +215,46 @@ input[type=range]::-webkit-slider-runnable-track {
   border-radius: 9999px;
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle scrollbar (Vertical & Horizontal Side Scroll) */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #06070a;
+  background: rgba(6, 7, 10, 0.8);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #181d28;
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3348;
+  background: #E4002B;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(6, 7, 10, 0.8);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(6, 7, 10, 0.6);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #E4002B;
 }
 
 /* Wind Tunnel Aerodynamic Flow Animation */

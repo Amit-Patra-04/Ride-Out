@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Layers,
   Wind,
@@ -145,8 +145,30 @@ export const DogmaInnovations = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
+  const listRef = useRef(null);
+  const itemRefs = useRef([]);
 
   const activeItem = OFFICIAL_INNOVATIONS[activeIndex];
+
+  // Prevent Lenis smooth scroll interception and ensure smooth mouse wheel scrolling
+  useEffect(() => {
+    const listEl = listRef.current;
+    if (!listEl) return;
+
+    const onWheel = (e) => {
+      // Check if container has vertical scrollable space
+      const maxScroll = listEl.scrollHeight - listEl.clientHeight;
+      if (maxScroll > 0) {
+        e.stopPropagation();
+        listEl.scrollTop += e.deltaY;
+      }
+    };
+
+    listEl.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      listEl.removeEventListener('wheel', onWheel);
+    };
+  }, []);
 
   const handleSelectTab = (index) => {
     sfx.playClick();
@@ -155,6 +177,23 @@ export const DogmaInnovations = () => {
       videoRef.current.currentTime = 0;
       videoRef.current.play();
       setIsPlaying(true);
+    }
+    // Scroll active item smoothly into view within list container
+    if (itemRefs.current[index]) {
+      itemRefs.current[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  };
+
+  const handleScrollList = (direction) => {
+    if (listRef.current) {
+      listRef.current.scrollBy({
+        top: direction === 'up' ? -150 : 150,
+        behavior: 'smooth',
+      });
+      sfx.playHover();
     }
   };
 
@@ -179,17 +218,17 @@ export const DogmaInnovations = () => {
   return (
     <section
       id="innovations"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
-      <div className="absolute top-1/4 -right-20 w-[1000px] h-[600px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 w-[900px] h-[500px] bg-white/[0.02] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Dynamic Energy Streamlines & Precision Vector Guides */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-50">
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-40">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <path d="M-100,200 C300,100 800,300 1400,150 C1800,50 2100,250 2500,180" fill="none" stroke="rgba(228,0,43,0.35)" strokeWidth="2" className="aero-streamline" />
-          <path d="M-100,600 C400,500 900,700 1500,550 C1900,450 2200,650 2600,580" fill="none" stroke="rgba(0,240,255,0.35)" strokeWidth="2" className="aero-streamline-fast" />
+          <path d="M-100,600 C400,500 900,700 1500,550 C1900,450 2200,650 2600,580" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" className="aero-streamline-fast" />
           <circle cx="20%" cy="30%" r="320" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="4 8" />
           <circle cx="80%" cy="70%" r="360" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="6 12" />
         </svg>
@@ -205,8 +244,8 @@ export const DogmaInnovations = () => {
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)]">
                 03
               </span>
-              <span className="text-[#FF5E0E] font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#FF5E0E] animate-pulse" />
+              <span className="text-[#E4002B] font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
                 R&D BREAKTHROUGHS
               </span>
               <span className="text-zinc-500">//</span>
@@ -218,7 +257,7 @@ export const DogmaInnovations = () => {
                 INNOVATION 0{activeIndex + 1} / 09
               </span>
               <span className="text-zinc-500 hidden sm:inline">•</span>
-              <span className="text-[#00F0FF] font-bold hidden sm:inline">
+              <span className="text-zinc-300 font-bold hidden sm:inline">
                 TORAYCA M40X COMPOSITE
               </span>
             </div>
@@ -227,7 +266,7 @@ export const DogmaInnovations = () => {
           {/* Master Grand Headline & Editorial Description */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
             <div className="max-w-2xl xl:max-w-3xl space-y-3">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#E4002B] font-bold">
                 NINE REVOLUTIONARY ENGINEERING MILESTONES
               </span>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
@@ -258,7 +297,7 @@ export const DogmaInnovations = () => {
         </div>
 
         {/* --- MAIN INTERACTIVE INNOVATION STAGE --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-[#0c0e16]/90 border border-white/15 rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
           {/* Navigation Feature List (Left 4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-3 pr-0 lg:pr-6 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0">
             <div className="flex items-center justify-between font-mono text-[11px] text-zinc-300 uppercase tracking-widest pb-3 border-b border-white/10 font-bold">
@@ -266,12 +305,24 @@ export const DogmaInnovations = () => {
               <span className="text-[#00F0FF] font-black">0{activeIndex + 1}/09</span>
             </div>
 
-            <div className="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar">
+            {/* Scrollable Feature List with Mouse Wheel & Touch Support */}
+            <div
+              ref={listRef}
+              data-lenis-prevent="true"
+              data-lenis-prevent-wheel="true"
+              data-lenis-prevent-touch="true"
+              className="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar overscroll-contain"
+              style={{
+                overscrollBehavior: 'contain',
+                touchAction: 'pan-y',
+              }}
+            >
               {OFFICIAL_INNOVATIONS.map((item, idx) => {
                 const isSelected = activeIndex === idx;
                 return (
                   <button
                     key={item.id}
+                    ref={(el) => (itemRefs.current[idx] = el)}
                     onClick={() => handleSelectTab(idx)}
                     onMouseEnter={() => sfx.playHover()}
                     className={`w-full text-left p-3.5 sm:p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border backdrop-blur-md ${
@@ -313,7 +364,22 @@ export const DogmaInnovations = () => {
 
             <div className="pt-4 mt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-300 font-bold">
               <span>9 OFFICIAL PATENTS</span>
-              <span className="text-[#FF5E0E]">TORAYCA M40X</span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleScrollList('up')}
+                  className="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-[10px] text-zinc-300 hover:text-white transition-colors"
+                  title="Scroll List Up"
+                >
+                  ▲
+                </button>
+                <button
+                  onClick={() => handleScrollList('down')}
+                  className="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 border border-white/10 text-[10px] text-zinc-300 hover:text-white transition-colors"
+                  title="Scroll List Down"
+                >
+                  ▼
+                </button>
+              </div>
             </div>
           </div>
 

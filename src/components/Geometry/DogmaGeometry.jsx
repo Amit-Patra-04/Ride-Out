@@ -11,6 +11,7 @@ import {
   Layers,
   Zap,
 } from 'lucide-react';
+import { DogmaBlueprintCAD } from './DogmaBlueprintCAD';
 import { sfx } from '../../utils/animations';
 
 export const GEOMETRY_SIZES = [
@@ -72,11 +73,11 @@ export const DogmaGeometry = () => {
   return (
     <section
       id="geometry"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
-      <div className="absolute top-1/3 -left-20 w-[1000px] h-[600px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/3 -right-20 w-[900px] h-[550px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke CAD Frame Alignment Guides & Biomechanical Vectors */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
@@ -104,8 +105,8 @@ export const DogmaGeometry = () => {
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)]">
                 05
               </span>
-              <span className="text-[#FF5E0E] font-bold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5E0E] animate-pulse" />
+              <span className="text-[#E4002B] font-bold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E4002B] animate-pulse" />
                 PINARELLO FIT ENGINE
               </span>
               <span className="text-zinc-500">//</span>
@@ -286,29 +287,8 @@ export const DogmaGeometry = () => {
                 </div>
               </div>
 
-              {/* Visual Chassis Blueprint Diagram */}
-              <div className="relative my-6 rounded-2xl bg-[#0a0c10] border border-white/10 overflow-hidden flex flex-col items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
-                <img
-                  src="/assets/geometry/dogma_f_blueprint_53.jpg"
-                  alt={`Dogma F Size ${activeGeom.size} Engineering Blueprint`}
-                  className="w-full h-52 sm:h-64 md:h-72 object-contain filter drop-shadow-2xl transition-transform duration-500 hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07080a]/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-4 right-4 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] text-zinc-200">
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
-                    SELECTED SIZE: <strong className="text-[#E4002B]">{activeGeom.size}</strong>
-                  </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
-                    STACK: <strong className="text-white">{activeGeom.stack} mm</strong>
-                  </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/15 shadow backdrop-blur-md">
-                    REACH: <strong className="text-white">{activeGeom.reach} mm</strong>
-                  </span>
-                  <span className="bg-black/85 px-3.5 py-1 rounded-lg border border-white/20 text-zinc-200 shadow backdrop-blur-md">
-                    FORK RAKE: <strong>47 mm</strong>
-                  </span>
-                </div>
-              </div>
+              {/* Visual Dynamic CAD Chassis Blueprint Diagram */}
+              <DogmaBlueprintCAD geom={activeGeom} className="my-6" />
 
               {/* Metric Dimensions Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

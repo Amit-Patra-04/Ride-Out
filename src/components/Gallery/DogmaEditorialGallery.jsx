@@ -1,106 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import {
   Camera,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight,
   Maximize2,
   X,
-  ExternalLink,
   Compass,
   Aperture,
-  Film,
-  Eye,
 } from 'lucide-react';
 import { sfx } from '../../utils/animations';
+import { lockScroll, unlockScroll } from '../../utils/scrollLock';
+import AccordionGallery from './AccordionGallery';
+import { GALLERY_SLIDES } from './galleryData';
 
-export const GALLERY_SLIDES = [
-  {
-    id: 'slide-1',
-    title: 'Aero Headtube & TiCR Cockpit',
-    location: 'Pinarello Wind Tunnel Facility, Treviso',
-    caption:
-      'Streamlined 8mm narrower nose cone, elliptical steering tube, and MOST Talon Ultra Fast cockpit integration.',
-    imageUrl:
-      'https://pinarello.com/storage/ProductGallery/8e30f5a9c36350dc4f3c222446855c4b.jpg',
-    tag: 'STUDIO AERO FOCUS',
-    cameraSpec: 'Hasselblad H6D-100c • 100mm f/2.2 • 1/500s • ISO 64',
-  },
-  {
-    id: 'slide-2',
-    title: 'Alpine Descent Precision',
-    location: 'Passo dello Stelvio, Italian Alps',
-    caption:
-      'New Onda fork with 47mm rake provides razor-sharp high-speed stability and downhill tracking confidence.',
-    imageUrl:
-      'https://pinarello.com/storage/ProductGallery/3fe908c0936aaa74d1a46f442d24b09f.jpg',
-    tag: 'WORLDTOUR TESTING',
-    cameraSpec: 'Leica SL2 • 50mm Summilux f/1.4 • 1/4000s • ISO 100',
-  },
-  {
-    id: 'slide-3',
-    title: 'TorayCa M40X Monocoque Chassis',
-    location: 'Atelier Treviso Handcrafting',
-    caption:
-      'Nanoalloy composite matrix delivering unyielding lateral bottom bracket stiffness under explosive sprint surges.',
-    imageUrl:
-      'https://pinarello.com/storage/ProductGallery/c28dd5445845c28eeede36b44a5f61f9.jpg',
-    tag: 'CARBON ENGINEERING',
-    cameraSpec: 'Phase One IQ4 150MP • 80mm Schneider • 1/250s • ISO 50',
-  },
-  {
-    id: 'slide-4',
-    title: 'Aero-Keel BB & Asymmetric Stays',
-    location: 'Computational Fluid Dynamics Lab',
-    caption:
-      '3.5° rotated aero keel bottom bracket with integrated thru-axles eliminating drag-inducing external bolt holes.',
-    imageUrl:
-      'https://pinarello.com/storage/ProductGallery/aa365cb48c17536181742afbc801f4f0.jpg',
-    tag: 'HOUR RECORD TECH',
-    cameraSpec: 'Sony A1 • 24-70mm GM II f/2.8 • 1/1600s • ISO 160',
-  },
-  {
-    id: 'slide-5',
-    title: 'Grand Tour Racing Dominance',
-    location: 'Col du Tourmalet, Tour de France',
-    caption:
-      'Tested and proven across thousands of kilometers at the summit of elite international professional cycling.',
-    imageUrl:
-      'https://pinarello.com/storage/ProductGallery/15b2653fee8c3795c66ae4015284f92b.jpg',
-    tag: 'PALMARES DYNASTY',
-    cameraSpec: 'Canon EOS R3 • 70-200mm f/2.8L IS • 1/3200s • ISO 200',
-  },
-];
+export { GALLERY_SLIDES };
+
+const ACCORDION_ITEMS = GALLERY_SLIDES.map((slide) => ({
+  image: slide.imageUrl,
+  label: slide.title,
+  tag: slide.tag,
+  location: slide.location,
+  caption: slide.caption,
+  cameraSpec: slide.cameraSpec,
+}));
 
 export const DogmaEditorialGallery = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const currentSlide = GALLERY_SLIDES[currentSlideIndex];
+  const currentSlide = GALLERY_SLIDES[activeSlideIndex] || GALLERY_SLIDES[0];
 
-  const handleNext = () => {
-    sfx.playClick();
-    setCurrentSlideIndex((prev) => (prev + 1) % GALLERY_SLIDES.length);
-  };
+  useEffect(() => {
+    setMounted(true);
+    GALLERY_SLIDES.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.imageUrl;
+    });
+  }, []);
 
-  const handlePrev = () => {
-    sfx.playClick();
-    setCurrentSlideIndex((prev) => (prev - 1 + GALLERY_SLIDES.length) % GALLERY_SLIDES.length);
-  };
+  // Disable background scroll (Lenis + Native) when Fullscreen Inspection popup is open
+  useEffect(() => {
+    if (isLightboxOpen) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
+    return () => {
+      unlockScroll();
+    };
+  }, [isLightboxOpen]);
 
-  const handleThumbnailClick = (idx) => {
-    sfx.playClick();
-    setCurrentSlideIndex(idx);
-  };
+  // Keyboard navigation (Escape to close)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isLightboxOpen) return;
+      if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+        sfx.playClick();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen]);
 
   return (
     <section
       id="gallery"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#07080a] via-[#090b0f] to-[#07080a] border-t border-white/[0.04]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
     >
       {/* 1. Refined Darkroom Lightbox Ambient Lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-white/[0.025] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[500px] bg-[#E4002B]/[0.04] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
 
       {/* 2. Bespoke Editorial Darkroom Lightbox Guides & Viewfinder Targets */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
@@ -131,153 +101,165 @@ export const DogmaEditorialGallery = () => {
             </p>
           </div>
 
-          {/* Carousel Navigation Buttons */}
-          <div className="flex items-center gap-4 shrink-0">
-            <button
-              onClick={handlePrev}
-              onMouseEnter={() => sfx.playHover()}
-              className="w-14 h-14 rounded-2xl bg-gradient-to-b from-white/15 to-white/5 hover:from-white/25 hover:to-white/15 border border-white/20 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-lg backdrop-blur-md"
-              aria-label="Previous Slide"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <div className="font-mono text-sm px-5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white backdrop-blur-md font-bold">
-              <strong className="text-white text-base">0{currentSlideIndex + 1}</strong>
-              <span className="mx-1.5 text-zinc-400">/</span>
-              <span className="text-zinc-300">0{GALLERY_SLIDES.length}</span>
-            </div>
-
-            <button
-              onClick={handleNext}
-              onMouseEnter={() => sfx.playHover()}
-              className="w-14 h-14 rounded-2xl bg-gradient-to-b from-white/15 to-white/5 hover:from-white/25 hover:to-white/15 border border-white/20 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-lg backdrop-blur-md"
-              aria-label="Next Slide"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+          <div className="flex items-center gap-3 font-mono text-xs">
+            <span className="px-4 py-2 rounded-full bg-white/[0.06] border border-white/15 text-zinc-200 font-bold backdrop-blur-md">
+              07 PRO ARCHIVAL PLATES
+            </span>
           </div>
         </div>
 
-        {/* Main Big Feature Slide */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] shadow-[0_35px_100px_rgba(0,0,0,0.8)] group">
-          <div className="relative w-full aspect-video sm:aspect-[21/9] overflow-hidden bg-black/90">
-            <img
-              src={currentSlide.imageUrl}
-              alt={currentSlide.title}
-              key={currentSlide.imageUrl}
-              className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 cursor-pointer"
-              onClick={() => setIsLightboxOpen(true)}
-            />
+        {/* --- INTERACTIVE ACCORDION GALLERY --- */}
+        <div className="relative z-10">
+          <AccordionGallery
+            items={ACCORDION_ITEMS}
+            defaultIndex={0}
+            expandRatio={0.52}
+            trigger="hover"
+            accentColor="#E4002B"
+            overlayColor="#060010"
+            textColor="#ffffff"
+            grayscale={false}
+            showLabels={true}
+            duration={0.6}
+            ease="power3.out"
+            parallax={0.5}
+            tilt={8}
+            stagger={0.06}
+            height={520}
+            gap={12}
+            radius={24}
+            orientation="horizontal"
+            onActiveChange={(idx) => {
+              setActiveSlideIndex(idx);
+            }}
+          />
+        </div>
 
-            {/* Vignette Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40 pointer-events-none" />
-
-            {/* Top Tag & Fullscreen Action */}
-            <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
-              <span className="px-4 py-2 rounded-full bg-black/85 border border-white/25 text-white text-xs font-mono tracking-widest uppercase font-bold backdrop-blur-xl shadow-xl flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#E4002B]" />
-                <span>{currentSlide.tag}</span>
+        {/* --- ACTIVE SLIDE TELEMETRY & METADATA BAR --- */}
+        <div className="mt-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.18)] flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="max-w-3xl space-y-2">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
+              <span className="px-3 py-1 rounded-full bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#E4002B] font-bold uppercase tracking-wider">
+                {currentSlide.tag}
               </span>
-              <button
-                onClick={() => {
-                  sfx.playClick();
-                  setIsLightboxOpen(true);
-                }}
-                className="pointer-events-auto p-3 rounded-2xl bg-black/85 hover:bg-black border border-white/25 text-white backdrop-blur-xl transition-all hover:scale-110 shadow-xl"
-                title="Expand High-Resolution Image"
-              >
-                <Maximize2 className="w-5 h-5" />
-              </button>
+              <span className="text-zinc-400 flex items-center gap-1.5">
+                <Compass className="w-3.5 h-3.5 text-[#E4002B]" />
+                <span>{currentSlide.location}</span>
+              </span>
+            </div>
+            <h3 className="font-display text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              {currentSlide.title}
+            </h3>
+            <p className="text-sm text-zinc-300 font-sans leading-relaxed">
+              {currentSlide.caption}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
+            <div className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-black/60 border border-white/15 text-xs font-mono text-zinc-300">
+              <Aperture className="w-4 h-4 text-[#E4002B]" />
+              <span>{currentSlide.cameraSpec}</span>
             </div>
 
-            {/* Bottom Captions Overlay */}
-            <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 right-6 sm:right-8 z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div className="max-w-2xl">
-                <div className="font-mono text-xs text-[#E4002B] uppercase tracking-wider mb-2 flex items-center gap-1.5 font-bold">
-                  <Compass className="w-3.5 h-3.5" />
+            <button
+              onClick={() => {
+                sfx.playClick();
+                setIsLightboxOpen(true);
+              }}
+              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_25px_rgba(228,0,43,0.4)] hover:scale-105 transition-transform flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Maximize2 className="w-4 h-4" />
+              <span>FULLSCREEN INSPECTION</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* GLASSMORPHISM SINGLE-IMAGE FULLSCREEN INSPECTION MODAL       */}
+      {/* ============================================================ */}
+      {isLightboxOpen && mounted && createPortal(
+        <div
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/90 backdrop-blur-2xl backdrop-saturate-150 animate-fadeIn select-none"
+          onClick={() => {
+            sfx.playClick();
+            setIsLightboxOpen(false);
+          }}
+        >
+          {/* Ambient Background Spotlights */}
+          <div className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-[#E4002B]/15 rounded-full blur-[170px] pointer-events-none" />
+          <div className="absolute bottom-1/4 right-1/4 w-[550px] h-[550px] bg-white/[0.08] rounded-full blur-[190px] pointer-events-none" />
+
+          {/* Glassmorphic Modal Container Card */}
+          <div
+            className="relative w-full max-w-5xl h-[90vh] max-h-[820px] flex flex-col rounded-3xl bg-gradient-to-b from-white/[0.12] via-[#0c1017]/95 to-[#06080d]/98 border border-white/20 backdrop-blur-3xl shadow-[0_50px_140px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Top Glass Bar */}
+            <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 border-b border-white/15 bg-white/[0.04] backdrop-blur-md font-mono shrink-0">
+              <div className="flex items-center gap-3">
+                <span className="px-3.5 py-1 rounded-full bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#E4002B] text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+                  {currentSlide.tag}
+                </span>
+                <span className="text-zinc-300 text-xs hidden sm:flex items-center gap-1.5 font-medium">
+                  <Compass className="w-3.5 h-3.5 text-[#E4002B]" />
                   <span>{currentSlide.location}</span>
-                </div>
-                <h3 className="font-display text-2xl sm:text-4xl font-black text-white uppercase tracking-tight leading-tight">
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] font-mono text-zinc-300 font-bold px-3.5 py-1 rounded-full bg-white/5 border border-white/10">
+                  PLATE <strong className="text-white">{activeSlideIndex + 1}</strong> / {GALLERY_SLIDES.length}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    sfx.playClick();
+                    setIsLightboxOpen(false);
+                  }}
+                  className="p-2 rounded-full bg-white/10 hover:bg-[#E4002B] text-white border border-white/20 hover:border-[#E4002B] transition-all hover:scale-110 active:scale-95 shadow-md flex items-center justify-center cursor-pointer"
+                  aria-label="Close Fullscreen Inspection"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Main Single-Image Inspection Stage */}
+            <div className="relative flex-1 min-h-0 flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-black/75">
+              <img
+                src={currentSlide.imageUrl}
+                alt={currentSlide.title}
+                key={currentSlide.id}
+                className="max-w-full max-h-full object-contain rounded-2xl border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.98)] filter contrast-[1.02] brightness-[1.01] select-none animate-fadeIn"
+                draggable={false}
+              />
+            </div>
+
+            {/* Modal Bottom Archival Dossier Bar */}
+            <div className="p-5 sm:p-6 bg-gradient-to-r from-black/95 via-[#0c1017]/95 to-black/95 border-t border-white/15 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0">
+              <div className="max-w-3xl space-y-1">
+                <h4 className="font-display text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
                   {currentSlide.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-zinc-200 font-sans leading-relaxed font-normal">
+                </h4>
+                <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
                   {currentSlide.caption}
                 </p>
               </div>
 
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black/80 border border-white/20 text-[10px] font-mono text-zinc-300 backdrop-blur-md shrink-0 font-bold">
-                <Aperture className="w-3.5 h-3.5 text-[#E5A93C]" />
+              {/* Camera Optics Specs */}
+              <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/[0.06] border border-white/15 text-xs font-mono text-zinc-300 shrink-0">
+                <Aperture className="w-4 h-4 text-[#E4002B]" />
                 <span>{currentSlide.cameraSpec}</span>
               </div>
             </div>
           </div>
-
-          {/* Thumbnail Navigation Strip */}
-          <div className="p-4 sm:p-6 bg-black/80 border-t border-white/15 grid grid-cols-5 gap-3 sm:gap-4">
-            {GALLERY_SLIDES.map((slide, idx) => (
-              <button
-                key={slide.id}
-                onClick={() => handleThumbnailClick(idx)}
-                onMouseEnter={() => sfx.playHover()}
-                className={`relative rounded-2xl overflow-hidden aspect-video border-2 transition-all duration-300 ${
-                  currentSlideIndex === idx
-                    ? 'border-[#E4002B] scale-[1.03] shadow-[0_0_25px_rgba(228,0,43,0.5)] ring-2 ring-white/50'
-                    : 'border-white/15 hover:border-white/40 opacity-70 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={slide.imageUrl}
-                  alt={slide.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-1.5 left-2 font-mono text-[10px] text-white font-bold drop-shadow-md">
-                  0{idx + 1}
-                </div>
-                {currentSlideIndex === idx && (
-                  <div className="absolute inset-0 bg-[#E4002B]/15 pointer-events-none" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Lightbox Modal */}
-        {isLightboxOpen && (
-          <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-8 animate-fadeIn">
-            <button
-              onClick={() => {
-                sfx.playClick();
-                setIsLightboxOpen(false);
-              }}
-              className="absolute top-6 right-6 z-50 p-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/25 transition-all hover:scale-110 shadow-2xl"
-              aria-label="Close Lightbox"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            <div className="relative max-w-6xl max-h-[88vh] w-full flex flex-col items-center justify-center">
-              <img
-                src={currentSlide.imageUrl}
-                alt={currentSlide.title}
-                className="max-w-full max-h-[75vh] object-contain rounded-2xl border border-white/25 shadow-[0_0_80px_rgba(0,0,0,0.95)]"
-              />
-              <div className="mt-5 text-center">
-                <div className="font-display text-2xl font-black text-white uppercase tracking-wide">
-                  {currentSlide.title}
-                </div>
-                <div className="font-mono text-xs text-zinc-300 mt-1 flex items-center justify-center gap-2">
-                  <Compass className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>{currentSlide.location}</span>
-                  <span className="text-zinc-500">•</span>
-                  <span className="text-[#E5A93C] font-bold">{currentSlide.cameraSpec}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
+
+

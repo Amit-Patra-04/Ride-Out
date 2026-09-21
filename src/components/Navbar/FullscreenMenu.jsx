@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { EASING, sfx } from '../../utils/animations';
+import { lockScroll, unlockScroll } from '../../utils/scrollLock';
 import {
   X,
   ArrowUpRight,
@@ -116,7 +117,7 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
     if (!overlay || !path || !content) return;
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
 
       gsap.killTweensOf([overlay, path, content, links]);
       gsap.set(overlay, { display: 'block', pointerEvents: 'auto' });
@@ -157,7 +158,7 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
           '-=0.2'
         );
     } else {
-      document.body.style.overflow = '';
+      unlockScroll();
 
       const links = itemsRef.current.filter(Boolean);
       const tl = gsap.timeline({
