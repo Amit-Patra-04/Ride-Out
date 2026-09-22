@@ -15,13 +15,13 @@ export default function App() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.08,
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      syncTouch: false,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.8,
     });
 
     window.lenis = lenis;
@@ -33,7 +33,7 @@ export default function App() {
     };
 
     gsap.ticker.add(tickerCb);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(tickerCb);
@@ -55,7 +55,7 @@ export default function App() {
       sparkCount={8}
       duration={400}
     >
-      <div className="relative min-h-screen bg-[#0b0e14] text-zinc-100 selection:bg-[#E4002B] selection:text-white overflow-hidden font-sans">
+      <div className="relative min-h-screen bg-[#0b0f19] text-zinc-100 selection:bg-[#E4002B] selection:text-white overflow-hidden font-sans">
         {/* Dynamic Floating Italian Racing Header */}
         <Navbar onBookRideClick={() => handleOpenBooking({})} />
 

@@ -497,11 +497,11 @@ export const DogmaSpecs = () => {
   return (
     <section
       id="specifications"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0e1321] via-[#131a29] to-[#0d121f] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Blueprint Precision Calipers & Telemetry Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
@@ -697,10 +697,10 @@ export const DogmaSpecs = () => {
                     setSelectedCompModal(comp);
                     sfx.playClick();
                   }}
-                  className="group relative rounded-3xl overflow-hidden bg-gradient-to-b from-[#0c1018] via-[#080b10] to-[#040608] border border-white/[0.12] hover:border-cyan-500/50 backdrop-blur-3xl transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6)] cursor-pointer hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,240,255,0.15)]"
+                  className="group relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.06] via-[#131929]/90 to-[#0e1422]/95 border border-white/[0.12] hover:border-cyan-500/50 backdrop-blur-3xl transition-all duration-300 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6)] cursor-pointer hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,240,255,0.15)]"
                 >
                   {/* Visual Uncropped Component Canvas with Technical Blueprint Grid */}
-                  <div className="relative w-full aspect-[4/3] bg-[radial-gradient(ellipse_at_center,_#121824_0%,_#06080d_100%)] overflow-hidden flex items-center justify-center p-4 sm:p-5 border-b border-white/10 group-hover:border-cyan-500/30 transition-colors">
+                  <div className="relative w-full aspect-[4/3] bg-[radial-gradient(ellipse_at_center,_#182236_0%,_#0e1422_100%)] overflow-hidden flex items-center justify-center p-4 sm:p-5 border-b border-white/10 group-hover:border-cyan-500/30 transition-colors">
                     {/* Subtle CAD Blueprint Grid */}
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,240,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,240,255,0.05)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity" />
 

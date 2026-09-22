@@ -73,11 +73,11 @@ export const DogmaGeometry = () => {
   return (
     <section
       id="geometry"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0d121f] via-[#141b2c] to-[#0e1322] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke CAD Frame Alignment Guides & Biomechanical Vectors */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-30">
@@ -157,104 +157,155 @@ export const DogmaGeometry = () => {
         </div>
 
         {/* Main Two-Column Layout: Interactive Fit Calculator & Geometry Inspector */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
           {/* Left Column: Interactive Rider Fit Engine */}
-          <div className="lg:col-span-5 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
-            <div>
-              <div className="flex items-center gap-2.5 pb-4 border-b border-white/10 mb-6">
+          <div className="lg:col-span-5 bg-gradient-to-b from-white/[0.06] via-[#131929]/90 to-[#0e1422]/95 border border-white/[0.12] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6)] space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2.5">
                 <UserCheck className="w-5 h-5 text-[#E4002B]" />
-                <h3 className="font-display text-xl font-black uppercase text-white tracking-wider">
-                  Rider Biomechanical Sizing
-                </h3>
-              </div>
-
-              {/* Sliders */}
-              <div className="space-y-6">
                 <div>
-                  <div className="flex justify-between items-center text-xs font-mono mb-2">
-                    <span className="text-zinc-300 font-bold">RIDER TOTAL HEIGHT</span>
-                    <span className="text-white font-bold text-sm bg-white/10 px-3 py-0.5 rounded-lg border border-white/15">
-                      {heightCm} cm ({Math.floor(heightCm / 2.54 / 12)}&apos;{Math.round((heightCm / 2.54) % 12)}&quot;)
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="150"
-                    max="205"
-                    value={heightCm}
-                    onChange={(e) => {
-                      setHeightCm(Number(e.target.value));
-                      sfx.playHover();
-                    }}
-                    className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
-                  />
-                </div>
-
-                <div>
-                  <div className="flex justify-between items-center text-xs font-mono mb-2">
-                    <span className="text-zinc-300 font-bold">INSEAM LENGTH</span>
-                    <span className="text-white font-bold text-sm bg-white/10 px-3 py-0.5 rounded-lg border border-white/15">
-                      {inseamCm} cm
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="70"
-                    max="98"
-                    value={inseamCm}
-                    onChange={(e) => {
-                      setInseamCm(Number(e.target.value));
-                      sfx.playHover();
-                    }}
-                    className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
-                  />
+                  <h3 className="font-display text-xl font-black uppercase text-white tracking-wider">
+                    Rider Biomechanical Sizing
+                  </h3>
+                  <p className="text-[10px] font-mono text-zinc-400">PINARELLO TREVISO PRO ERGO-FIT LAB</p>
                 </div>
               </div>
+              <span className="px-2.5 py-1 rounded-md bg-[#E4002B]/15 border border-[#E4002B]/30 text-[#E4002B] font-mono text-[10px] font-bold">
+                ISO 4210
+              </span>
+            </div>
 
-              {/* Calculated Recommendation Card */}
-              <div className="mt-8 p-6 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md shadow-inner">
-                <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest mb-1.5 font-bold">
-                  OPTIMAL DOGMA F FRAME FITMENT
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="font-display text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B]">
-                    SIZE {fitResults.recSize}
-                  </span>
-                  <span className="text-xs font-mono text-white bg-white/10 px-3 py-1 rounded-full border border-white/20 font-black shadow-[0_0_12px_rgba(255,255,255,0.15)]">
-                    MATCH: 99.4%
+            {/* Sliders & Presets */}
+            <div className="space-y-5">
+              {/* Total Height */}
+              <div>
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-zinc-300 font-bold">RIDER TOTAL HEIGHT</span>
+                  <span className="text-white font-bold text-sm bg-white/10 px-3 py-0.5 rounded-lg border border-white/15">
+                    {heightCm} cm ({Math.floor(heightCm / 2.54 / 12)}&apos;{Math.round((heightCm / 2.54) % 12)}&quot;)
                   </span>
                 </div>
+                <input
+                  type="range"
+                  min="150"
+                  max="205"
+                  value={heightCm}
+                  onChange={(e) => {
+                    setHeightCm(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+                {/* Quick Height Presets */}
+                <div className="flex items-center justify-between gap-1.5 mt-2">
+                  {[160, 168, 175, 182, 190, 198].map((h) => (
+                    <button
+                      key={h}
+                      onClick={() => {
+                        setHeightCm(h);
+                        sfx.playClick();
+                      }}
+                      className={`flex-1 py-1 rounded-md text-[10px] font-mono transition-all ${
+                        heightCm === h
+                          ? 'bg-[#E4002B] text-white font-bold shadow-sm'
+                          : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5'
+                      }`}
+                    >
+                      {h}cm
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-                <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-white/10 text-center font-mono">
-                  <div className="p-2.5 rounded-xl bg-black/50 border border-white/5">
-                    <div className="text-[9.5px] text-zinc-400 uppercase font-bold">SADDLE HEIGHT</div>
-                    <div className="text-xs font-black text-white mt-0.5">{fitResults.targetSeatHeight} cm</div>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-black/50 border border-white/5">
-                    <div className="text-[9.5px] text-zinc-400 uppercase font-bold">CRANK ARM</div>
-                    <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.crankLength} mm</div>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-black/50 border border-white/5">
-                    <div className="text-[9.5px] text-zinc-400 uppercase font-bold">TALON STEM</div>
-                    <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.stemLength} mm</div>
-                  </div>
+              {/* Inseam Length */}
+              <div>
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-zinc-300 font-bold">INSEAM LENGTH</span>
+                  <span className="text-white font-bold text-sm bg-white/10 px-3 py-0.5 rounded-lg border border-white/15">
+                    {inseamCm} cm
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="70"
+                  max="98"
+                  value={inseamCm}
+                  onChange={(e) => {
+                    setInseamCm(Number(e.target.value));
+                    sfx.playHover();
+                  }}
+                  className="w-full accent-[#E4002B] bg-white/15 h-2.5 rounded-lg cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {/* Calculated Recommendation Card */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-black/45 border border-white/10 backdrop-blur-md shadow-inner">
+              <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 uppercase tracking-widest mb-2 font-bold">
+                <span>OPTIMAL DOGMA F FRAME FITMENT</span>
+                <span className="text-[#00F0FF]">AI MATCH: 99.4%</span>
+              </div>
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="font-display text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B]">
+                  SIZE {fitResults.recSize}
+                </span>
+                <span className="text-xs font-mono text-white bg-white/10 px-3 py-1 rounded-full border border-white/20 font-black shadow-[0_0_12px_rgba(255,255,255,0.15)]">
+                  {activeGeom.recHeight}
+                </span>
+              </div>
+
+              {/* Comprehensive 6-metric telemetry grid */}
+              <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-white/10 text-center font-mono">
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">SADDLE HEIGHT</div>
+                  <div className="text-xs font-black text-white mt-0.5">{fitResults.targetSeatHeight} cm</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">CRANK ARM</div>
+                  <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.crankLength} mm</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">TALON STEM</div>
+                  <div className="text-xs font-black text-zinc-200 mt-0.5">{fitResults.stemLength} mm</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">BAR WIDTH</div>
+                  <div className="text-xs font-black text-cyan-300 mt-0.5">420 mm</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">SETBACK</div>
+                  <div className="text-xs font-black text-zinc-200 mt-0.5">15 mm</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[9px] text-zinc-400 uppercase font-bold">BAR DROP</div>
+                  <div className="text-xs font-black text-[#FF5E0E] mt-0.5">~78 mm</div>
                 </div>
               </div>
             </div>
 
+            {/* Action Button Tightly Placed Directly Below Recommendation */}
             <button
               onClick={() => {
                 setSelectedSize(fitResults.recSize);
                 sfx.playClick();
               }}
-              className="mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_25px_rgba(228,0,43,0.4)] hover:scale-[1.02] transition-transform"
+              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase tracking-wider font-bold shadow-[0_0_25px_rgba(228,0,43,0.4)] hover:scale-[1.01] active:scale-[0.99] transition-transform flex items-center justify-center gap-2"
             >
-              Apply Recommended Size {fitResults.recSize} in Matrix
+              <span>Apply Recommended Size {fitResults.recSize} in Matrix</span>
+              <ChevronRight className="w-4 h-4" />
             </button>
+
+            {/* Pro-Fit Advisory Note */}
+            <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-start gap-3 text-xs text-zinc-300 font-sans">
+              <Sparkles className="w-4 h-4 text-[#E4002B] shrink-0 mt-0.5" />
+              <p className="text-[11.5px] leading-relaxed">
+                Pinarello&apos;s 9 discrete sizes ensure exact knee-over-pedal alignment and aerodynamic posture without excessive spacers.
+              </p>
+            </div>
           </div>
 
           {/* Right Column: Size Inspector Visual Card */}
-          <div className="lg:col-span-7 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 border border-white/[0.08] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
+          <div className="lg:col-span-7 bg-gradient-to-b from-white/[0.06] via-[#131929]/90 to-[#0e1422]/95 border border-white/[0.12] rounded-3xl p-6 sm:p-8 backdrop-blur-3xl flex flex-col justify-between shadow-[0_35px_100px_rgba(0,0,0,0.6)]">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-6">
                 <div>
@@ -344,7 +395,7 @@ export const DogmaGeometry = () => {
         </div>
 
         {/* Full 9-Size Master Geometry Table */}
-        <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.04] via-[#090b0f]/90 to-[#07080a]/95 backdrop-blur-3xl overflow-x-auto shadow-2xl p-1">
+        <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/[0.06] via-[#131929]/90 to-[#0e1422]/95 backdrop-blur-3xl overflow-x-auto shadow-2xl p-1">
           <table className="w-full text-left font-mono text-xs">
             <thead className="bg-white/10 border-b border-white/10 text-zinc-300 uppercase tracking-wider">
               <tr>

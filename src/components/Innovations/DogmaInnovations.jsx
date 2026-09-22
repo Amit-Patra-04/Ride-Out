@@ -150,21 +150,38 @@ export const DogmaInnovations = () => {
 
   const activeItem = OFFICIAL_INNOVATIONS[activeIndex];
 
-  // Prevent Lenis smooth scroll interception and ensure smooth mouse wheel scrolling
+  // Buttery-smooth mouse wheel scrolling with zero-lag dynamic boundary chaining
   useEffect(() => {
     const listEl = listRef.current;
     if (!listEl) return;
 
     const onWheel = (e) => {
-      // Check if container has vertical scrollable space
       const maxScroll = listEl.scrollHeight - listEl.clientHeight;
-      if (maxScroll > 0) {
-        e.stopPropagation();
-        listEl.scrollTop += e.deltaY;
+      if (maxScroll <= 0) {
+        listEl.setAttribute('data-lenis-prevent', 'false');
+        return;
+      }
+
+      const delta = e.deltaY;
+      if (delta === 0) return;
+
+      const currentScroll = listEl.scrollTop;
+      const isScrollingDown = delta > 0;
+      const isScrollingUp = delta < 0;
+
+      const atBottom = currentScroll >= maxScroll - 2;
+      const atTop = currentScroll <= 2;
+
+      // When reaching edge boundary in scroll direction, let Lenis scroll the main page
+      if ((isScrollingDown && atBottom) || (isScrollingUp && atTop)) {
+        listEl.setAttribute('data-lenis-prevent', 'false');
+      } else {
+        // Within internal list bounds, allow 120fps hardware-accelerated native list scroll
+        listEl.setAttribute('data-lenis-prevent', 'true');
       }
     };
 
-    listEl.addEventListener('wheel', onWheel, { passive: false });
+    listEl.addEventListener('wheel', onWheel, { passive: true });
     return () => {
       listEl.removeEventListener('wheel', onWheel);
     };
@@ -218,11 +235,11 @@ export const DogmaInnovations = () => {
   return (
     <section
       id="innovations"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0f1423] via-[#141b2c] to-[#0e1321] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: REFINED LUXURY AMBIENT BACKDROP --- */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Dynamic Energy Streamlines & Precision Vector Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-40">
@@ -297,7 +314,7 @@ export const DogmaInnovations = () => {
         </div>
 
         {/* --- MAIN INTERACTIVE INNOVATION STAGE --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-gradient-to-b from-white/[0.06] via-[#131929]/90 to-[#0e1422]/95 border border-white/[0.12] rounded-3xl p-6 sm:p-10 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
           {/* Navigation Feature List (Left 4 cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-3 pr-0 lg:pr-6 border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0">
             <div className="flex items-center justify-between font-mono text-[11px] text-zinc-300 uppercase tracking-widest pb-3 border-b border-white/10 font-bold">
@@ -309,11 +326,9 @@ export const DogmaInnovations = () => {
             <div
               ref={listRef}
               data-lenis-prevent="true"
-              data-lenis-prevent-wheel="true"
-              data-lenis-prevent-touch="true"
-              className="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar overscroll-contain"
+              className="space-y-2.5 max-h-[520px] overflow-y-auto pr-2 custom-scrollbar"
               style={{
-                overscrollBehavior: 'contain',
+                overscrollBehavior: 'auto',
                 touchAction: 'pan-y',
               }}
             >

@@ -71,19 +71,19 @@ export const HeroShowcase = ({ onOpenBooking }) => {
   };
 
   return (
-    <div ref={heroRef} className="relative w-full overflow-hidden bg-[#0b0e14]">
+    <div ref={heroRef} className="relative w-full overflow-hidden bg-[#0b0f19]">
       {/* --- HERO 3D SECTION (Full-Bleed 100vw Stage) --- */}
       <section
         id="hero-3d"
-        className="relative w-full min-h-screen overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-16 bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14]"
+        className="relative w-full min-h-screen overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-16 bg-gradient-to-b from-[#0b0f19] via-[#121828] to-[#0e1322]"
       >
         {/* Layer 1: Refined Luxury Studio Rim Light (Color-Responsive) */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full blur-[180px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full blur-[180px] pointer-events-none opacity-20 transition-all duration-1000 ease-out"
           style={{ backgroundColor: selectedColorway.primaryColor || '#E4002B' }}
         />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
 
         {/* Layer 2: Precision Engineering Telemetry & Aerodynamic Vector Guides */}
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-40">

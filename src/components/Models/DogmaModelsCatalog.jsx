@@ -121,10 +121,10 @@ export const PINARELLO_MODELS = [
       {
         name: 'INEOS Team WorldTour',
         code: 'E124',
-        swatchImg: 'https://pinarello.com/storage/Variant/6b721202ab0c4aae8912aade70116fd5.png',
-        colorHex: '#E4002B',
-        accentGlow: 'rgba(228, 0, 43, 0.55)',
-        swatchGradient: 'linear-gradient(135deg, #E4002B 0%, #FF5E0E 45%, #0A0C10 100%)',
+        swatchImg: null,
+        colorHex: '#9f8d5e',
+        accentGlow: 'rgba(159, 141, 94, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
       },
     ],
@@ -245,7 +245,7 @@ export const PINARELLO_MODELS = [
     priceEur: '€16,500',
     priceUsd: '$17,200',
     badge: 'GRAND TOUR CHAMPION',
-    badgeColor: '#E4002B',
+    badgeColor: '#9f8d5e',
     finishCode: 'DF-INEOS-WT',
     telemetry: {
       powerEfficiency: 99.8,
@@ -288,10 +288,10 @@ export const PINARELLO_MODELS = [
       {
         name: 'INEOS WorldTour Team',
         code: 'E124',
-        swatchImg: 'https://pinarello.com/storage/Variant/94f31784affde4307c160af60a57e597.png',
-        colorHex: '#E4002B',
-        accentGlow: 'rgba(228, 0, 43, 0.55)',
-        swatchGradient: 'linear-gradient(135deg, #E4002B 0%, #FF5E0E 45%, #0A0C10 100%)',
+        swatchImg: null,
+        colorHex: '#9f8d5e',
+        accentGlow: 'rgba(159, 141, 94, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
       },
       {
@@ -532,15 +532,15 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
   return (
     <section
       id="models"
-      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0b0e14] via-[#111622] to-[#0b0e14] border-t border-white/[0.08]"
+      className="relative w-full py-28 sm:py-36 overflow-hidden bg-gradient-to-b from-[#0e1322] via-[#151c2e] to-[#0f1423] border-t border-white/[0.08]"
     >
       {/* --- LAYER 1: CINEMATIC REFINED STUDIO BACKDROP --- */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-20 transition-all duration-1000 ease-out"
         style={{ backgroundColor: currentColorway.colorHex || '#E4002B' }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.04] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.05] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
 
       {/* Bespoke Precision Telemetry Axis & Dynamic Flow Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">
