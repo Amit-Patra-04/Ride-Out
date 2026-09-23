@@ -565,9 +565,9 @@ export const DogmaSpecs = () => {
 
         {/* --- SECTION HEADER: ARCHITECTURAL FLAGSHIP EDITORIAL --- */}
         <div className="relative z-10 mb-14 sm:mb-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-[10px] border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase text-center sm:text-left">
+            <div className="flex items-center justify-center gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-[10px] border border-cyan-500/40 shadow-[0_0_10px_rgba(0,240,255,0.3)] shrink-0">
                 04
               </span>
               <span className="text-[#00F0FF] font-bold flex items-center gap-1.5">
@@ -578,7 +578,7 @@ export const DogmaSpecs = () => {
               <span className="text-zinc-200">EXHAUSTIVE FRAME SPECIFICATIONS</span>
             </div>
 
-            <div className="flex items-center gap-4 text-zinc-300 font-mono text-[10px]">
+            <div className="flex items-center justify-center gap-4 text-zinc-300 font-mono text-[10px]">
               <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white font-bold backdrop-blur-md">
                 12 FACTORY CATEGORIES
               </span>
@@ -589,12 +589,12 @@ export const DogmaSpecs = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-2xl xl:max-w-3xl space-y-3">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#E4002B] font-bold">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-center lg:text-left items-center lg:items-start">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3 flex flex-col items-center lg:items-start w-full">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#E4002B] font-bold text-center lg:text-left">
                 FACTORY TOLERANCES & METRIC SPECIFICATIONS
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl text-center lg:text-left">
                 MINUTE SPECS &{' '}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] drop-shadow-lg mt-1">
                   ARCHITECTURE.
@@ -602,11 +602,11 @@ export const DogmaSpecs = () => {
               </h2>
             </div>
 
-            <div className="max-w-md lg:pb-2 space-y-4">
-              <p className="text-sm sm:text-base text-zinc-200 font-sans font-normal leading-relaxed">
+            <div className="max-w-md lg:pb-2 space-y-4 flex flex-col items-center lg:items-start w-full">
+              <p className="text-sm sm:text-base text-zinc-200 font-sans font-normal leading-relaxed text-center lg:text-left">
                 Explore complete mechanical specifications with uncropped visual component breakdowns, composite material layups, torque tolerances, and click-to-inspect blueprint telemetry.
               </p>
-              <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-zinc-300">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 font-mono text-[10px] text-zinc-300">
                 <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/15 font-semibold text-white">
                   SHIMANO DURA-ACE
                 </span>

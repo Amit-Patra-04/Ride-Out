@@ -401,19 +401,26 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
         {/* Footer */}
         <div className="pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-zinc-500">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-accent animate-pulse" />
-            <span>GLOBAL PROTOCOL 2026 // NOMINAL</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF] animate-pulse" />
+            <span>CICLI PINARELLO SRL // TREVISO, ITALIA // 1952</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">
-            {['TWITTER', 'DISCORD', 'GITHUB'].map((soc) => (
+            {[
+              { name: 'INSTAGRAM', href: 'https://www.instagram.com/pinarello_official/' },
+              { name: 'FACEBOOK', href: 'https://www.facebook.com/PinarelloBikes/' },
+              { name: 'STRAVA', href: 'https://www.strava.com/clubs/pinarelloofficial' },
+              { name: 'YOUTUBE', href: 'https://www.youtube.com/user/princeoftheroad' },
+            ].map((soc) => (
               <a
-                key={soc}
-                href={`#${soc.toLowerCase()}`}
+                key={soc.name}
+                href={soc.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-cursor="LINK"
-                className="hover:text-brand-accent transition-colors duration-200"
+                className="hover:text-white transition-colors duration-200"
               >
-                {soc}
+                {soc.name}
               </a>
             ))}
           </div>

@@ -29,19 +29,19 @@ export const PINARELLO_MODELS = [
     name: 'DOGMA F DURA ACE Di2',
     shortName: 'DURA-ACE Di2',
     brand: 'SHIMANO',
-    tagline: 'PEAK WORLDTOUR SUPREMACY',
+    tagline: 'DESIGN THE EXCEPTIONAL • WORLDTOUR SUPREMACY',
     description:
-      'The definitive benchmark of competitive road racing. Equipped with Shimano’s ultra-rapid 12-speed semi-wireless electronic transmission and Dura-Ace C50 carbon wheelset, engineered for instantaneous power response.',
-    groupset: 'Shimano Dura-Ace Di2 R9270 12S Wireless',
-    brakes: 'Hydraulic Disc Brake (Concealed Flat Mount)',
-    wheels: 'Shimano Dura-Ace C50 Tubeless Ready Carbon',
+      'The definitive benchmark of competitive road racing. Equipped with Shimano’s ultra-rapid 12-speed semi-wireless electronic transmission, FC-R9200-P integrated dual-sided power meter, and Princeton Peak 4550 / DT Swiss ARC 1400 carbon wheels, engineered for instantaneous power response.',
+    groupset: 'Shimano Dura-Ace Di2 R9270 12S Wireless + FC-R9200-P Power',
+    brakes: 'Shimano Dura-Ace BR-R9270 Hydraulic Flat Mount with Onda Flap™',
+    wheels: 'Princeton Peak 4550 DB / DT Swiss ARC 1400 50mm Carbon',
     cockpit: 'MOST Talon Ultra Fast Integrated Carbon 1K',
     saddle: 'MOST Lynx Ultrafast Carbon 145mm',
     weight: '6.77 kg',
     weightLbs: '14.92 lbs',
     priceEur: '€14,800',
     priceUsd: '$15,500',
-    badge: 'WORLDTOUR FLAGSHIP',
+    badge: 'DESIGN THE EXCEPTIONAL',
     badgeColor: '#00F0FF',
     finishCode: 'DF-SHI-9270',
     telemetry: {
@@ -80,67 +80,148 @@ export const PINARELLO_MODELS = [
         y: '68%',
       },
     ],
-    mainImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+    mainImage: 'https://pinarello.com/storage/Variant/4d02f3c52fbbb17f6bda27c7f732a754.png',
     colorways: [
+      {
+        name: 'Cobalt Phantom',
+        code: 'E122',
+        swatchImg: null,
+        colorHex: '#0B3C95',
+        accentGlow: 'rgba(11, 60, 149, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/4d02f3c52fbbb17f6bda27c7f732a754.png',
+      },
+      {
+        name: 'Luxter Blue Shiny',
+        code: 'E122-S',
+        swatchImg: null,
+        colorHex: '#1E40AF',
+        accentGlow: 'rgba(30, 64, 175, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #1E40AF 0%, #60A5FA 50%, #0F172A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/13276f1037ade22fed59c48b651dce60.png',
+      },
+      {
+        name: 'Phantom Ice',
+        code: 'E121-ICE',
+        swatchImg: null,
+        colorHex: '#E2E8F0',
+        accentGlow: 'rgba(226, 232, 240, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #1E293B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/9f976ca9146169c56fc5a16d5e880941.png',
+      },
+      {
+        name: 'Molten Sand',
+        code: 'E126',
+        swatchImg: null,
+        colorHex: '#C5832B',
+        accentGlow: 'rgba(197, 131, 43, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #C5832B 0%, #F59E0B 50%, #1C1917 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/91ffed894ed26265eacc590f1c413189.png',
+      },
+      {
+        name: 'Luxter Grey Matt',
+        code: 'E127',
+        swatchImg: null,
+        colorHex: '#8A8D91',
+        accentGlow: 'rgba(138, 141, 145, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #8A8D91 0%, #52525B 50%, #18181B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/824d5fa105e1bf4bf993c37ab08bac89.png',
+      },
+      {
+        name: 'Luxter Amber',
+        code: 'E128',
+        swatchImg: null,
+        colorHex: '#D97706',
+        accentGlow: 'rgba(217, 119, 6, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #D97706 0%, #FBBF24 50%, #292524 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/c1f7333957eae5fe6bef0c2dd6b13088.png',
+      },
+      {
+        name: 'Luxter Turquoise',
+        code: 'E129',
+        swatchImg: null,
+        colorHex: '#00A896',
+        accentGlow: 'rgba(0, 168, 150, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #00A896 0%, #06B6D4 50%, #083344 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/c2bb4d5c6af179c53c0de3d0b6d44859.png',
+      },
+      {
+        name: 'Starry Red',
+        code: 'E120-R',
+        swatchImg: null,
+        colorHex: '#DC2626',
+        accentGlow: 'rgba(220, 38, 38, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #450A0A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/be33d7bc2fefd4ffcad7c383b7253dcb.png',
+      },
+      {
+        name: 'Luxter Blue',
+        code: 'E122-B',
+        swatchImg: null,
+        colorHex: '#2563EB',
+        accentGlow: 'rgba(37, 99, 235, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #2563EB 0%, #38BDF8 50%, #0F172A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2e3e79a1fbe40a90f7c0f1e9d0a7827f.png',
+      },
       {
         name: 'Luxter Red Gold',
         code: 'E120',
-        swatchImg: 'https://pinarello.com/storage/Variant/d77b58f160312ec04b79445406ad6f35.png',
+        swatchImg: null,
         colorHex: '#9E0018',
-        accentGlow: 'rgba(158, 0, 24, 0.45)',
+        accentGlow: 'rgba(158, 0, 24, 0.55)',
         swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        bikeImage: 'https://pinarello.com/storage/Variant/9cb3b45127f236db100f6e774fee1655.png',
+      },
+      {
+        name: 'Luxter Venice',
+        code: 'E122-V',
+        swatchImg: null,
+        colorHex: '#1D3557',
+        accentGlow: 'rgba(29, 53, 87, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #1D3557 0%, #457B9D 50%, #0B132B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/31d2b1ac4cd5fd339fa27639fcbef8ba.png',
       },
       {
         name: 'Edge Crystal White',
         code: 'E121',
-        swatchImg: 'https://pinarello.com/storage/Variant/c5cd77a628a14f18680ca72f652a5da0.png',
-        colorHex: '#FFFFFF',
-        accentGlow: 'rgba(255, 255, 255, 0.35)',
-        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
-      },
-      {
-        name: 'Luxter Venice Blue',
-        code: 'E122',
-        swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
-        colorHex: '#0B3C95',
-        accentGlow: 'rgba(11, 60, 149, 0.5)',
-        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
-      },
-      {
-        name: 'Bob Black Stealth',
-        code: 'E123',
-        swatchImg: 'https://pinarello.com/storage/Variant/17db459feed7d8f6df8ed77e9ae51fde.png',
-        colorHex: '#27272A',
-        accentGlow: 'rgba(63, 63, 70, 0.4)',
-        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
-      },
-      {
-        name: 'INEOS Team WorldTour',
-        code: 'E124',
         swatchImg: null,
-        colorHex: '#9f8d5e',
-        accentGlow: 'rgba(159, 141, 94, 0.55)',
-        swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+        colorHex: '#FFFFFF',
+        accentGlow: 'rgba(255, 255, 255, 0.4)',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #0F1218 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/c5a5fa361adca9981bafc4510388c9d4.png',
+      },
+      {
+        name: 'Black on Black (BOB)',
+        code: 'E123',
+        swatchImg: null,
+        colorHex: '#27272A',
+        accentGlow: 'rgba(63, 63, 70, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/5f50df702e278da3f5a1bd91f81f7bdb.png',
+      },
+      {
+        name: 'Aurik Yellow',
+        code: 'E125',
+        swatchImg: null,
+        colorHex: '#EAB308',
+        accentGlow: 'rgba(234, 179, 8, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #EAB308 0%, #FDE047 50%, #1C1917 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/b996caf01dc7d017caa2895dbdf9b2bd.png',
       },
     ],
   },
   {
     id: 'sram-red-axs',
     index: '02',
-    name: 'DOGMA F SRAM RED AXS',
+    name: 'DOGMA F SRAM RED ETAP AXS',
     shortName: 'SRAM RED AXS',
     brand: 'SRAM',
-    tagline: 'PURE WIRELESS INTELLIGENCE',
+    tagline: 'PURE WIRELESS INTELLIGENCE • RAZOR-SHARP RESPONSE',
     description:
-      'Completely wireless electronic 12-speed perfection with intuitive eTap shift logic, paired with ultra-light DT Swiss ARC 1100 carbon aero wheels for razor-sharp acceleration and hill climbs.',
-    groupset: 'SRAM RED AXS E-Tap 12S Full Wireless',
-    brakes: 'Hydraulic Disc Brake (Integrated Caliper Mounts)',
-    wheels: 'DT Swiss ARC 1100 Dicut 50mm Carbon',
+      'Completely wireless electronic 12-speed perfection with intuitive eTap shift logic and Quarq DZero integrated power spider, paired with ultra-light Princeton Peak 4550 / DT Swiss ARC 1400 carbon wheels for hill climbs and high-wattage bunch sprints.',
+    groupset: 'SRAM RED AXS E-Tap 12S Wireless + Quarq DZero Power',
+    brakes: 'SRAM RED HRD Flat Mount Hydraulic Disc',
+    wheels: 'Princeton Peak 4550 DB / DT Swiss ARC 1400 50mm Carbon',
     cockpit: 'MOST Talon Ultra Fast Integrated Carbon 1K',
     saddle: 'MOST Lynx Ultrafast Carbon 145mm',
     weight: '6.71 kg',
@@ -159,68 +240,228 @@ export const PINARELLO_MODELS = [
     hotspots: [
       {
         id: 'fork',
-        title: 'ONDA FORK FLAP™ 47MM',
-        desc: 'Asymmetric aerofoil fork legs guide airflow seamlessly past the disc caliper assembly.',
+        title: 'ONDA FORK FLAP™ SRAM',
+        desc: 'Custom caliper shroud optimized for SRAM Red flat-mount hydraulic calipers to eliminate localized wake separation.',
         x: '20%',
         y: '58%',
       },
       {
         id: 'cockpit',
-        title: 'AXS WIRELESS COCKPIT',
-        desc: 'Zero wires or shift cables extending from the hoods—the cleanest aerodynamic frontal area in the pro peloton.',
+        title: 'WIRELESS COCKPIT BLIPS',
+        desc: 'Wireless satellite sprint shifters integrated into the drop bends of the Most Talon 1K handlebar.',
         x: '34%',
         y: '22%',
       },
       {
         id: 'frame',
-        title: 'FLATBACK AERO TUBE PROFILE',
-        desc: 'Truncated airfoil cross-sections adhere strictly to UCI regulations while maximizing crosswind stability.',
+        title: 'SLIMMER TOP TUBE (-8MM)',
+        desc: 'Narrowed head tube and nose profile reduces frontal area by 8mm, saving 0.2W per km at racing speeds.',
         x: '52%',
         y: '42%',
       },
       {
         id: 'bb',
-        title: 'CARBON ASYMMETRY',
-        desc: 'Differential carbon ply orientation balances asymmetric pedaling strain during maximal sprint efforts.',
+        title: 'AERO-KEEL 3.5° BB',
+        desc: 'Rotated aerodynamic bottom bracket keel cleans airflow around the front chainrings and power meter spider.',
         x: '56%',
         y: '68%',
       },
     ],
-    mainImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+    mainImage: 'https://pinarello.com/storage/Variant/e5063f1f8b57062e2c58d2bde7e61a4d.png',
     colorways: [
       {
-        name: 'Edge Crystal White',
-        code: 'E121',
-        swatchImg: 'https://pinarello.com/storage/Variant/5117db936fc89c5e8cc58dcc6cd6732e.png',
-        colorHex: '#FFFFFF',
-        accentGlow: 'rgba(255, 255, 255, 0.35)',
-        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+        name: 'Luxter Turquoise',
+        code: 'E129',
+        swatchImg: null,
+        colorHex: '#00A896',
+        accentGlow: 'rgba(0, 168, 150, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #00A896 0%, #06B6D4 50%, #083344 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/e5063f1f8b57062e2c58d2bde7e61a4d.png',
+      },
+      {
+        name: 'Luxter Blue Shiny',
+        code: 'E122-S',
+        swatchImg: null,
+        colorHex: '#1E40AF',
+        accentGlow: 'rgba(30, 64, 175, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #1E40AF 0%, #60A5FA 50%, #0F172A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/375894c215a3e5323c6eeaf9ab858caf.png',
+      },
+      {
+        name: 'Luxter Amber',
+        code: 'E128',
+        swatchImg: null,
+        colorHex: '#D97706',
+        accentGlow: 'rgba(217, 119, 6, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #D97706 0%, #FBBF24 50%, #292524 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2d862fe1d3682087fc9024f725292e4a.png',
+      },
+      {
+        name: 'Luxter Grey Matt',
+        code: 'E127',
+        swatchImg: null,
+        colorHex: '#8A8D91',
+        accentGlow: 'rgba(138, 141, 145, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #8A8D91 0%, #52525B 50%, #18181B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/26ebceacac61796c5dfa7da851818e16.png',
+      },
+      {
+        name: 'Obsidian Emerald',
+        code: 'E130',
+        swatchImg: null,
+        colorHex: '#0D5C3A',
+        accentGlow: 'rgba(13, 92, 58, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #0D5C3A 0%, #10B981 50%, #041F14 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/659c3cbc607d21ff2d8c5127b81c6a3d.png',
+      },
+      {
+        name: 'Molten Sand',
+        code: 'E126',
+        swatchImg: null,
+        colorHex: '#C5832B',
+        accentGlow: 'rgba(197, 131, 43, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #C5832B 0%, #F59E0B 50%, #1C1917 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/375f7fa9eb52806a77181d5512edb12c.png',
+      },
+      {
+        name: 'Cobalt Phantom',
+        code: 'E122',
+        swatchImg: null,
+        colorHex: '#0B3C95',
+        accentGlow: 'rgba(11, 60, 149, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/7840284bc77f656a1fd75efa969416c3.png',
+      },
+      {
+        name: 'Luxter Blue',
+        code: 'E122-B',
+        swatchImg: null,
+        colorHex: '#2563EB',
+        accentGlow: 'rgba(37, 99, 235, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #2563EB 0%, #38BDF8 50%, #0F172A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/5c88324eb5a5d97560ee550d1f9a36b0.png',
       },
       {
         name: 'Luxter Red Gold',
         code: 'E120',
-        swatchImg: 'https://pinarello.com/storage/Variant/03b1418abfed338beab8bf35420c0244.png',
+        swatchImg: null,
         colorHex: '#9E0018',
-        accentGlow: 'rgba(158, 0, 24, 0.45)',
+        accentGlow: 'rgba(158, 0, 24, 0.55)',
         swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        bikeImage: 'https://pinarello.com/storage/Variant/95b624eefcabdc9fba56e9bebd6bb931.png',
       },
       {
-        name: 'Luxter Venice Blue',
-        code: 'E122',
-        swatchImg: 'https://pinarello.com/storage/Variant/037cbd714e3db532413d5938c16af10e.png',
-        colorHex: '#0B3C95',
-        accentGlow: 'rgba(11, 60, 149, 0.5)',
-        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+        name: 'Luxter Venice',
+        code: 'E122-V',
+        swatchImg: null,
+        colorHex: '#1D3557',
+        accentGlow: 'rgba(29, 53, 87, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #1D3557 0%, #457B9D 50%, #0B132B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/7345d045ad7c6b13ea5457a1998ca5bc.png',
       },
       {
-        name: 'Bob Stealth Matt',
+        name: 'Edge Crystal White',
+        code: 'E121',
+        swatchImg: null,
+        colorHex: '#FFFFFF',
+        accentGlow: 'rgba(255, 255, 255, 0.4)',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #0F1218 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/e33a5b46c2fc41cc71bab31ad995aeee.png',
+      },
+      {
+        name: 'Black on Black (BOB)',
         code: 'E123',
-        swatchImg: 'https://pinarello.com/storage/Variant/df5eeaa085bb24be276d3d38207715cc.png',
+        swatchImg: null,
         colorHex: '#27272A',
-        accentGlow: 'rgba(63, 63, 70, 0.4)',
+        accentGlow: 'rgba(63, 63, 70, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/2a3ef84437955e23a663b502a7d4241f.png',
+      },
+      {
+        name: 'Aurik Yellow',
+        code: 'E125',
+        swatchImg: null,
+        colorHex: '#EAB308',
+        accentGlow: 'rgba(234, 179, 8, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #EAB308 0%, #FDE047 50%, #1C1917 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/7193066a2ccdf63fcf0a1649b2b8fdd4.png',
+      },
+    ],
+  },
+  {
+    id: 'pq3-replica',
+    index: '03',
+    name: 'DOGMA F PQ3 TEAM REPLICA',
+    shortName: 'PQ3 REPLICA',
+    brand: 'LIMITED ARCHIVE',
+    tagline: 'COMMEMORATIVE PODIUM RACING REPLICA • LIMITED EDITION',
+    description:
+      'Created in reverence to Treviso’s historic racing triumphs and WorldTour podium domination. Featuring custom stealth carbon raw weave aesthetics, MOST Ultrafast 45 carbon wheels, and bespoke titanium hardware accents.',
+    groupset: 'Shimano Dura-Ace Di2 R9270 12S Special Edition + Pro Telemetry',
+    brakes: 'Integrated Flat Mount Disc with Titanium Hardware & Onda Flap™',
+    wheels: 'MOST Ultrafast 45 Full Carbon / DT Swiss ARC 1100 Dicut 50',
+    cockpit: 'MOST Talon Ultra Fast Integrated Carbon 1K Custom PQ3',
+    saddle: 'MOST Lynx Carbon PQ3 Commemorative Edition',
+    weight: '6.78 kg',
+    weightLbs: '14.95 lbs',
+    priceEur: '€16,200',
+    priceUsd: '$16,900',
+    badge: 'LIMITED ARCHIVE',
+    badgeColor: '#00F0FF',
+    finishCode: 'DF-PQ3-LTD',
+    telemetry: {
+      powerEfficiency: 99.2,
+      aeroDelta: -4.9,
+      stiffness: 395,
+      lateralCompliance: 95.0,
+    },
+    hotspots: [
+      {
+        id: 'fork',
+        title: 'ONDA 47MM FORK PQ3',
+        desc: 'Aerodynamic cross-section matched to MOST 45mm wheel profile for unified flow laminar attachment.',
+        x: '20%',
+        y: '58%',
+      },
+      {
+        id: 'cockpit',
+        title: 'TICR™ STEALTH ROUTING',
+        desc: 'Concealed cockpit routing with titanium top cap and integrated out-front telemetry computer mount.',
+        x: '34%',
+        y: '22%',
+      },
+      {
+        id: 'frame',
+        title: 'RAW TORAYCA WEAVE',
+        desc: 'Ultra-thin transparent clear coat showcases the hand-laid carbon composite structure made in Italy.',
+        x: '52%',
+        y: '42%',
+      },
+      {
+        id: 'bb',
+        title: 'TORQUE DISPERSION BB',
+        desc: 'Widened asymmetric bottom bracket junctions disperse high-torque efforts during out-of-saddle climbs.',
+        x: '56%',
+        y: '68%',
+      },
+    ],
+    mainImage: 'https://pinarello.com/storage/Variant/192c9c133ebcd0197f2438f6e1574b84.png',
+    colorways: [
+      {
+        name: 'Team PQ3 Replica Livery',
+        code: 'PQ3-LTD',
+        swatchImg: null,
+        colorHex: '#00F0FF',
+        accentGlow: 'rgba(0, 240, 255, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #00F0FF 0%, #D4AF37 50%, #0A0C10 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/192c9c133ebcd0197f2438f6e1574b84.png',
+      },
+      {
+        name: 'PQ3 Bob Stealth Carbon',
+        code: 'PQ3-BOB',
+        swatchImg: null,
+        colorHex: '#27272A',
+        accentGlow: 'rgba(63, 63, 70, 0.45)',
         swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
       },
@@ -228,13 +469,13 @@ export const PINARELLO_MODELS = [
   },
   {
     id: 'ineos-replica',
-    index: '03',
-    name: 'DOGMA F INEOS GRENADIERS REPLICA',
+    index: '04',
+    name: 'DOGMA F INEOS TEAM REPLICA',
     shortName: 'INEOS REPLICA',
     brand: 'WORLDTOUR',
     tagline: 'OFFICIAL WORLDTOUR TEAM RACING SPEC',
     description:
-      'The identical machine ridden across the 21 stages of the Tour de France and Giro d’Italia. Complete with FC-R9200-P integrated dual-sided power meter and pro team livery graphics.',
+      'The identical machine ridden across the 21 stages of the Tour de France and Giro d’Italia. Complete with FC-R9200-P integrated dual-sided power meter, Shimano Dura-Ace C50 WorldTour wheels, and pro team livery graphics.',
     groupset: 'Shimano Dura-Ace Di2 + FC-R9200-P Dual Power',
     brakes: 'Hydraulic Disc Flat Mount with Onda Flap™',
     wheels: 'Shimano Dura-Ace C50 Pro WorldTour Spec',
@@ -283,118 +524,39 @@ export const PINARELLO_MODELS = [
         y: '68%',
       },
     ],
-    mainImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+    mainImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
     colorways: [
       {
-        name: 'INEOS WorldTour Team',
+        name: 'INEOS WorldTour Team Livery',
         code: 'E124',
         swatchImg: null,
         colorHex: '#9f8d5e',
         accentGlow: 'rgba(159, 141, 94, 0.55)',
         swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
-      },
-      {
-        name: 'Luxter Red Gold Edition',
-        code: 'E120',
-        swatchImg: 'https://pinarello.com/storage/Variant/d77b58f160312ec04b79445406ad6f35.png',
-        colorHex: '#9E0018',
-        accentGlow: 'rgba(158, 0, 24, 0.45)',
-        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
-      },
-    ],
-  },
-  {
-    id: 'pq3-replica',
-    index: '04',
-    name: 'DOGMA F PQ3 TEAM REPLICA',
-    shortName: 'PQ3 COMMEMORATIVE',
-    brand: 'SPECIAL EDITION',
-    tagline: 'LIMITED COMMEMORATIVE RACING BUILD',
-    description:
-      'Created in reverence to Treviso’s historic racing triumphs. Featuring custom stealth carbon raw weave aesthetics, MOST Ultrafast 45 carbon wheels, and bespoke titanium hardware accents.',
-    groupset: 'Shimano Dura-Ace Di2 R9270 12S Special Edition',
-    brakes: 'Integrated Aero Disc with Titanium Hardware',
-    wheels: 'MOST Ultrafast 45 Full Carbon Tubeless',
-    cockpit: 'MOST Talon Ultra Fast Integrated Carbon 1K',
-    saddle: 'MOST Lynx Carbon PQ3 Edition',
-    weight: '6.80 kg',
-    weightLbs: '14.99 lbs',
-    priceEur: '€15,900',
-    priceUsd: '$16,600',
-    badge: 'LIMITED ARCHIVE',
-    badgeColor: '#D4FF00',
-    finishCode: 'DF-PQ3-LTD',
-    telemetry: {
-      powerEfficiency: 99.1,
-      aeroDelta: -4.7,
-      stiffness: 392,
-      lateralCompliance: 94.8,
-    },
-    hotspots: [
-      {
-        id: 'fork',
-        title: 'ONDA 47MM FORK',
-        desc: 'Aerodynamic cross-section matched to MOST 45mm wheel profile for unified flow laminar attachment.',
-        x: '20%',
-        y: '58%',
-      },
-      {
-        id: 'cockpit',
-        title: 'TICR™ STEALTH ROUTING',
-        desc: 'Concealed cockpit routing with titanium top cap and integrated out-front telemetry computer mount.',
-        x: '34%',
-        y: '22%',
-      },
-      {
-        id: 'frame',
-        title: 'RAW TORAYCA WEAVE',
-        desc: 'Ultra-thin transparent clear coat showcases the hand-laid carbon composite structure made in Italy.',
-        x: '52%',
-        y: '42%',
-      },
-      {
-        id: 'bb',
-        title: 'TORQUE DISPERSION BB',
-        desc: 'Widened asymmetric bottom bracket junctions disperse high-torque efforts during out-of-saddle climbs.',
-        x: '56%',
-        y: '68%',
-      },
-    ],
-    mainImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
-    colorways: [
-      {
-        name: 'Team PQ3 Bob Edition',
-        code: 'E123',
-        swatchImg: 'https://pinarello.com/storage/Variant/4d11fb7aaf25c7f20cf5e68d8214b890.png',
-        colorHex: '#27272A',
-        accentGlow: 'rgba(63, 63, 70, 0.4)',
-        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
-      },
-      {
-        name: 'Luxter Venice Blue Edition',
-        code: 'E122',
-        swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
-        colorHex: '#0B3C95',
-        accentGlow: 'rgba(11, 60, 149, 0.5)',
-        swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
         bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+      },
+      {
+        name: 'INEOS Grand Tour Champion',
+        code: 'E124-GT',
+        swatchImg: null,
+        colorHex: '#9f8d5e',
+        accentGlow: 'rgba(159, 141, 94, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/94f31784affde4307c160af60a57e597.png',
       },
     ],
   },
   {
     id: 'super-record-13',
     index: '05',
-    name: 'DOGMA F SUPER RECORD WIRELESS',
+    name: 'DOGMA F SUPER RECORD 13',
     shortName: 'SUPER RECORD 13S',
     brand: 'CAMPAGNOLO',
-    tagline: 'ALL-ITALIAN HERITAGE & PERFECTION',
+    tagline: 'ALL-ITALIAN HERITAGE & 13-SPEED WIRELESS PERFECTION',
     description:
-      'The pure embodiment of Italian cycling aristocracy. Campagnolo Super Record Wireless 13-speed groupset harmonized with Campagnolo Bora Ultra WTO 45 carbon wheels for unmatched road acoustics and mechanical feel.',
-    groupset: 'Campagnolo Super Record Wireless 13S',
-    brakes: 'Campagnolo Hydraulic Ergopower 160mm/140mm',
+      'The pure embodiment of Italian cycling aristocracy. Campagnolo Super Record Wireless 13-speed groupset with HPPM spider power meter, harmonized with Campagnolo Bora Ultra WTO 45 carbon wheels for unmatched road acoustics and mechanical feel.',
+    groupset: 'Campagnolo Super Record Wireless 13S + HPPM Power',
+    brakes: 'Campagnolo Hydraulic Ergopower 160mm/140mm Disc',
     wheels: 'Campagnolo Bora Ultra WTO 45 DB Ceramic',
     cockpit: 'MOST Talon Ultra Fast Integrated Carbon 1K',
     saddle: 'MOST Lynx Carbon Super Record Custom',
@@ -441,43 +603,88 @@ export const PINARELLO_MODELS = [
         y: '68%',
       },
     ],
-    mainImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
+    mainImage: 'https://pinarello.com/storage/Variant/24bf579547d3dce4f708642ec7d1bb66.png',
     colorways: [
       {
-        name: 'Bob Stealth Carbon',
-        code: 'E123',
-        swatchImg: 'https://pinarello.com/storage/Variant/f3a1926a6e7015ea40b34125443c9a8a.png',
-        colorHex: '#27272A',
-        accentGlow: 'rgba(63, 63, 70, 0.4)',
-        swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
+        name: 'Gunmetal Black 2025',
+        code: 'E131',
+        swatchImg: null,
+        colorHex: '#4A4E54',
+        accentGlow: 'rgba(74, 78, 84, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #4A4E54 0%, #282A2E 50%, #0D0E10 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/24bf579547d3dce4f708642ec7d1bb66.png',
       },
       {
-        name: 'Edge Crystal White',
-        code: 'E121',
-        swatchImg: 'https://pinarello.com/storage/Variant/c192a5a1d4a6f6227ff8e791caf5c20a.png',
-        colorHex: '#FFFFFF',
-        accentGlow: 'rgba(255, 255, 255, 0.35)',
-        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+        name: 'Luxter Turquoise',
+        code: 'E129',
+        swatchImg: null,
+        colorHex: '#00A896',
+        accentGlow: 'rgba(0, 168, 150, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #00A896 0%, #06B6D4 50%, #083344 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/a5b19a120054562e75503897874c4333.png',
       },
       {
-        name: 'Luxter Venice Blue',
+        name: 'Luxter Blue Shiny',
+        code: 'E122-S',
+        swatchImg: null,
+        colorHex: '#1E40AF',
+        accentGlow: 'rgba(30, 64, 175, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #1E40AF 0%, #60A5FA 50%, #0F172A 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/0c010a81ecc9e935f8ff5b9dbbbf6609.png',
+      },
+      {
+        name: 'Luxter Amber',
+        code: 'E128',
+        swatchImg: null,
+        colorHex: '#D97706',
+        accentGlow: 'rgba(217, 119, 6, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #D97706 0%, #FBBF24 50%, #292524 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/c4d8dd9334d47f9f73e06d2751044475.png',
+      },
+      {
+        name: 'Luxter Grey Matt',
+        code: 'E127',
+        swatchImg: null,
+        colorHex: '#8A8D91',
+        accentGlow: 'rgba(138, 141, 145, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #8A8D91 0%, #52525B 50%, #18181B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/849377ea982b053de48d28411b5c9c51.png',
+      },
+      {
+        name: 'Obsidian Emerald',
+        code: 'E130',
+        swatchImg: null,
+        colorHex: '#0D5C3A',
+        accentGlow: 'rgba(13, 92, 58, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #0D5C3A 0%, #10B981 50%, #041F14 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/0c78019f73420d49cc040a8304e4d4ba.png',
+      },
+      {
+        name: 'Cobalt Phantom',
         code: 'E122',
-        swatchImg: 'https://pinarello.com/storage/Variant/55cf0e9736eb3f3f500f33e17b821c1c.png',
+        swatchImg: null,
         colorHex: '#0B3C95',
-        accentGlow: 'rgba(11, 60, 149, 0.5)',
+        accentGlow: 'rgba(11, 60, 149, 0.55)',
         swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+        bikeImage: 'https://pinarello.com/storage/Variant/10b7c6c252a8e588e985a9421c7ed4c7.png',
       },
       {
-        name: 'Luxter Red Gold',
-        code: 'E120',
-        swatchImg: 'https://pinarello.com/storage/Variant/e8f92cc34a0941669914faaebb6a0377.png',
-        colorHex: '#9E0018',
-        accentGlow: 'rgba(158, 0, 24, 0.45)',
-        swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-        bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+        name: 'Phantom Ice',
+        code: 'E121-ICE',
+        swatchImg: null,
+        colorHex: '#E2E8F0',
+        accentGlow: 'rgba(226, 232, 240, 0.45)',
+        swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #1E293B 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/0e76207b31aa172489d74686560bcebe.png',
+      },
+      {
+        name: 'Molten Sand',
+        code: 'E126',
+        swatchImg: null,
+        colorHex: '#C5832B',
+        accentGlow: 'rgba(197, 131, 43, 0.55)',
+        swatchGradient: 'linear-gradient(135deg, #C5832B 0%, #F59E0B 50%, #1C1917 100%)',
+        bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
       },
     ],
   },
@@ -537,10 +744,13 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
       {/* --- LAYER 1: CINEMATIC REFINED STUDIO BACKDROP --- */}
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-full blur-[180px] pointer-events-none opacity-20 transition-all duration-1000 ease-out"
-        style={{ backgroundColor: currentColorway.colorHex || '#E4002B' }}
+        style={{ backgroundColor: currentColorway.colorHex || '#9f8d5e' }}
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
+      <div
+        className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] rounded-full blur-[200px] pointer-events-none transition-all duration-1000 ease-out opacity-20"
+        style={{ backgroundColor: currentColorway.colorHex || '#9f8d5e' }}
+      />
 
       {/* Bespoke Precision Telemetry Axis & Dynamic Flow Guides */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">
@@ -580,9 +790,9 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
         {/* --- SECTION HEADER: ARCHITECTURAL FLAGSHIP EDITORIAL --- */}
         <div className="relative z-10 mb-14 sm:mb-16">
           {/* Top Kicker Registry Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-400 uppercase">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-white font-bold text-[10px] border border-white/15">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-400 uppercase text-center sm:text-left">
+            <div className="flex items-center justify-center gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 text-white font-bold text-[10px] border border-white/15 shrink-0">
                 02
               </span>
               <span className="text-[#00F0FF] font-semibold flex items-center gap-1.5">
@@ -593,7 +803,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               <span>TREVISO RACING DIVISION</span>
             </div>
 
-            <div className="flex items-center gap-4 text-zinc-400 font-mono text-[10px]">
+            <div className="flex items-center justify-center gap-4 text-zinc-400 font-mono text-[10px]">
               <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300">
                 EDITION 0{selectedModelIndex + 1} / 05
               </span>
@@ -605,12 +815,12 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
           </div>
 
           {/* Master Grand Headline & Editorial Description */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-2xl xl:max-w-3xl space-y-3">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-center lg:text-left items-center lg:items-start">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3 flex flex-col items-center lg:items-start w-full">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold text-center lg:text-left">
                 FIVE MASTERWORK RACING CONFIGURATIONS
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl text-center lg:text-left">
                 DISTINCTION IN{' '}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 via-40% to-[#FF5E0E] drop-shadow-lg mt-1">
                   EVERY BUILD.
@@ -618,11 +828,11 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               </h2>
             </div>
 
-            <div className="max-w-md lg:pb-2 space-y-4">
-              <p className="text-sm sm:text-base text-zinc-300 font-sans font-light leading-relaxed">
+            <div className="max-w-md lg:pb-2 space-y-4 flex flex-col items-center lg:items-start w-full">
+              <p className="text-sm sm:text-base text-zinc-300 font-sans font-light leading-relaxed text-center lg:text-left">
                 Every Dogma F model is configured with zero compromises. Select your electronic groupset tier to inspect race-calibrated chassis telemetry, aerodynamics, and official paint finishes.
               </p>
-              <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-zinc-400">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 font-mono text-[10px] text-zinc-400">
                 <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10">
                   TORAYCA® M40X
                 </span>
@@ -781,9 +991,9 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
             >
               {/* Dynamic Multi-Layer Backlight Aura */}
               <div
-                className="absolute w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full blur-[130px] transition-all duration-700 pointer-events-none opacity-40"
+                className="absolute w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full blur-[130px] transition-all duration-700 pointer-events-none opacity-45"
                 style={{
-                  backgroundColor: currentColorway.colorHex || '#E4002B',
+                  background: currentColorway.swatchGradient || currentColorway.colorHex || '#9f8d5e',
                   transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
                 }}
               />
@@ -889,7 +1099,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 </div>
 
                 {/* Swatch preview buttons */}
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-xl">
                   {currentModel.colorways.map((c, cIdx) => {
                     const isSelected = selectedColorwayIndex === cIdx;
                     return (
@@ -897,10 +1107,10 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                         key={cIdx}
                         onClick={() => handleSelectColorway(cIdx)}
                         onMouseEnter={() => sfx.playHover()}
-                        className={`relative group w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center ${
+                        className={`relative group w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center shrink-0 ${
                           isSelected
-                            ? 'scale-125 border-white ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(0,240,255,0.6)]'
-                            : 'border-white/25 opacity-70 hover:opacity-100 hover:scale-110 hover:border-white/60'
+                            ? 'scale-125 border-white ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(0,240,255,0.6)] z-10'
+                            : 'border-white/25 opacity-75 hover:opacity-100 hover:scale-115 hover:border-white/60'
                         }`}
                         style={{ background: c.swatchGradient || c.colorHex }}
                         title={`${c.name} (${c.code})`}
@@ -917,7 +1127,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                         )}
                         {isSelected && (
                           <span className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[1px]">
-                            <Check className="w-4 h-4 text-white stroke-[3]" />
+                            <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
                           </span>
                         )}
                       </button>

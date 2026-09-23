@@ -22,44 +22,44 @@ import { sfx } from '../../utils/animations';
 
 export const WIND_TUNNEL_LIVERIES = [
   {
-    id: 'luxter-red-gold',
-    name: 'Luxter Red Gold',
-    code: 'G110',
-    colorHex: '#9E0018',
-    swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
-    image: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+    id: 'ineos-grenadier',
+    name: 'INEOS Grenadiers WorldTour',
+    code: 'DF-E124',
+    colorHex: '#9f8d5e',
+    swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
+    image: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
   },
   {
-    id: 'edge-crystal-white',
-    name: 'Edge Crystal White',
-    code: 'E112',
-    colorHex: '#FFFFFF',
-    swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 50%, #0F1218 100%)',
-    image: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+    id: 'luxter-red-gold',
+    name: 'Luxter Red Gold',
+    code: 'DF-E120',
+    colorHex: '#9E0018',
+    swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
+    image: 'https://pinarello.com/storage/Variant/9cb3b45127f236db100f6e774fee1655.png',
   },
   {
     id: 'luxter-venice',
     name: 'Luxter Venice Blue',
-    code: 'G112',
+    code: 'DF-E122',
     colorHex: '#0B3C95',
     swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
-    image: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+    image: 'https://pinarello.com/storage/Variant/13276f1037ade22fed59c48b651dce60.png',
+  },
+  {
+    id: 'edge-crystal-white',
+    name: 'Edge Crystal White',
+    code: 'DF-E121',
+    colorHex: '#FFFFFF',
+    swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #0F1218 100%)',
+    image: 'https://pinarello.com/storage/Variant/9f976ca9146169c56fc5a16d5e880941.png',
   },
   {
     id: 'bob-stealth',
     name: 'Bob Black Stealth',
-    code: 'B110',
+    code: 'DF-E123',
     colorHex: '#27272A',
     swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
-    image: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
-  },
-  {
-    id: 'ineos-grenadier',
-    name: 'INEOS Grenadiers WorldTour',
-    code: 'W115',
-    colorHex: '#9f8d5e',
-    swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
-    image: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+    image: 'https://pinarello.com/storage/Variant/5f50df702e278da3f5a1bd91f81f7bdb.png',
   },
 ];
 
@@ -255,7 +255,10 @@ export const DogmaWindTunnel = () => {
     >
       {/* 1. Refined Luxury Studio Ambient Spotlights */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] bg-white/[0.035] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] bg-[#E4002B]/[0.035] rounded-full blur-[200px] pointer-events-none" />
+      <div
+        className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[900px] h-[550px] rounded-full blur-[200px] pointer-events-none transition-all duration-1000 ease-out opacity-20"
+        style={{ backgroundColor: activeLivery.colorHex || '#9f8d5e' }}
+      />
 
       {/* 2. Bespoke Dynamic Aerodynamic Flow Curves & Telemetry Rings */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none opacity-35">
@@ -308,8 +311,17 @@ export const DogmaWindTunnel = () => {
 
             {/* Ambient Lighting Gradients */}
             <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
-            <div className="absolute top-0 left-0 w-96 h-full bg-gradient-to-r from-[#00F0FF]/20 to-transparent pointer-events-none" />
-            <div className="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-[#E4002B]/20 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-96 h-full bg-gradient-to-r from-[#00F0FF]/15 to-transparent pointer-events-none" />
+            <div
+              className="absolute top-0 right-0 w-96 h-full pointer-events-none transition-colors duration-700 opacity-20"
+              style={{ background: `linear-gradient(to left, ${activeLivery.colorHex}66, transparent)` }}
+            />
+
+            {/* Dynamic Center Stage Livery Aura */}
+            <div
+              className="absolute w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full blur-[120px] pointer-events-none opacity-35 transition-all duration-700"
+              style={{ background: activeLivery.swatchGradient || activeLivery.colorHex }}
+            />
 
             {/* CFD Particles Canvas (Background Layer) */}
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />

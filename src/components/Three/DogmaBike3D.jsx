@@ -41,7 +41,7 @@ export const COLORWAYS = [
     swatchGradient: 'linear-gradient(135deg, #9f8d5e 0%, #989c98 50%, #2d2c2d 100%)',
     swatchImg: null,
     badge: 'GRAND TOUR CHAMPION',
-    bikeImage: 'https://pinarello.com/storage/Variant/73476156fb391a7b4fec83416ea95e26.png',
+    bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
   },
   {
     id: 'luxter-red-gold',
@@ -57,7 +57,7 @@ export const COLORWAYS = [
     swatchGradient: 'linear-gradient(135deg, #9E0018 0%, #D4AF37 50%, #07080A 100%)',
     swatchImg: 'https://pinarello.com/storage/Variant/d77b58f160312ec04b79445406ad6f35.png',
     badge: 'WORLDTOUR FLAGSHIP',
-    bikeImage: 'https://pinarello.com/storage/Variant/b5f62a38e44f3e7f4c2800fd49f5bc46.png',
+    bikeImage: 'https://pinarello.com/storage/Variant/9cb3b45127f236db100f6e774fee1655.png',
   },
   {
     id: 'luxter-blue',
@@ -73,7 +73,7 @@ export const COLORWAYS = [
     swatchGradient: 'linear-gradient(135deg, #0B3C95 0%, #00D2FF 50%, #06070A 100%)',
     swatchImg: 'https://pinarello.com/storage/Variant/9306bb0fc95a5d62a656d7ff96d8d944.png',
     badge: 'MY26 SPECIAL EDITION',
-    bikeImage: 'https://pinarello.com/storage/Variant/efc4353d2dac3a9f530ec465fb24fce3.png',
+    bikeImage: 'https://pinarello.com/storage/Variant/13276f1037ade22fed59c48b651dce60.png',
   },
   {
     id: 'phantom-ice',
@@ -89,7 +89,7 @@ export const COLORWAYS = [
     swatchGradient: 'linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #0F1218 100%)',
     swatchImg: 'https://pinarello.com/storage/Variant/c5cd77a628a14f18680ca72f652a5da0.png',
     badge: 'RAW TORAYCA MONOCOQUE',
-    bikeImage: 'https://pinarello.com/storage/Variant/dc764fa23aec829be6cf724d6012db5c.png',
+    bikeImage: 'https://pinarello.com/storage/Variant/9f976ca9146169c56fc5a16d5e880941.png',
   },
   {
     id: 'bob-stealth',
@@ -105,7 +105,39 @@ export const COLORWAYS = [
     swatchGradient: 'linear-gradient(135deg, #3F3F46 0%, #18181B 50%, #050507 100%)',
     swatchImg: 'https://pinarello.com/storage/Variant/17db459feed7d8f6df8ed77e9ae51fde.png',
     badge: 'SATIN STEALTH FINISH',
-    bikeImage: 'https://pinarello.com/storage/Variant/2512612cda2a7990b42cdbd74d6fd6fb.png',
+    bikeImage: 'https://pinarello.com/storage/Variant/5f50df702e278da3f5a1bd91f81f7bdb.png',
+  },
+  {
+    id: 'luxter-turquoise',
+    name: 'Luxter Turquoise',
+    edition: 'MY26 Special Metallic Cyan & Deep Teal',
+    code: 'DF-E129',
+    primaryColor: '#00A896',
+    secondaryColor: '#028090',
+    accentColor: '#00F0FF',
+    rearColor: '#051923',
+    decalColor: '#FFFFFF',
+    gradient: 'from-[#00A896] via-[#00F0FF] to-[#051923]',
+    swatchGradient: 'linear-gradient(135deg, #00A896 0%, #00F0FF 50%, #051923 100%)',
+    swatchImg: null,
+    badge: 'MY26 AERODYNAMIC METALLIC',
+    bikeImage: 'https://pinarello.com/storage/Variant/e5063f1f8b57062e2c58d2bde7e61a4d.png',
+  },
+  {
+    id: 'molten-sand',
+    name: 'Molten Sand',
+    edition: 'Signature Liquid Bronze & Desert Amber',
+    code: 'DF-E126',
+    primaryColor: '#C5832B',
+    secondaryColor: '#92400E',
+    accentColor: '#F59E0B',
+    rearColor: '#1C1917',
+    decalColor: '#FFFFFF',
+    gradient: 'from-[#C5832B] via-[#F59E0B] to-[#1C1917]',
+    swatchGradient: 'linear-gradient(135deg, #C5832B 0%, #F59E0B 50%, #1C1917 100%)',
+    swatchImg: null,
+    badge: 'LIQUID BRONZE RACING',
+    bikeImage: 'https://pinarello.com/storage/Variant/91ffed894ed26265eacc590f1c413189.png',
   },
 ];
 
@@ -569,7 +601,7 @@ export const DogmaBike3D = ({
       {/* --- LAYER 1: ATMOSPHERIC STUDIO LIGHTING & SPECULAR SHINE --- */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] pointer-events-none opacity-30 transition-all duration-1000 ease-out"
-        style={{ backgroundColor: activeLighting.ambient }}
+        style={{ backgroundColor: selectedColor.primaryColor || activeLighting.ambient }}
       />
       <div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full blur-[160px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
@@ -578,17 +610,17 @@ export const DogmaBike3D = ({
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
 
       {/* --- LAYER 2: 3D VOLUMETRIC STAGE WITH AUTHENTIC PINARELLO DOGMA F --- */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none pt-8 sm:pt-14 pb-20 sm:pb-24">
         {/* Dynamic Studio Stage Ground Reflection & Contact Shadow Disc */}
         <div
           ref={shadowRef}
-          className="absolute bottom-12 sm:bottom-16 w-[75%] sm:w-[68%] max-w-[850px] h-24 rounded-[100%] bg-gradient-to-r from-transparent via-black/90 to-transparent blur-xl pointer-events-none will-change-transform"
+          className="absolute bottom-16 sm:bottom-20 w-[75%] sm:w-[68%] max-w-[850px] h-24 rounded-[100%] bg-gradient-to-r from-transparent via-black/90 to-transparent blur-xl pointer-events-none will-change-transform"
         />
 
         {/* Dynamic Ground Ambient Ring */}
         <div
           ref={glowRef}
-          className="absolute bottom-14 sm:bottom-18 w-[65%] sm:w-[58%] max-w-[750px] h-16 rounded-[100%] blur-md pointer-events-none transition-colors duration-700 will-change-transform"
+          className="absolute bottom-18 sm:bottom-22 w-[65%] sm:w-[58%] max-w-[750px] h-16 rounded-[100%] blur-md pointer-events-none transition-colors duration-700 will-change-transform"
           style={{
             background: `radial-gradient(ellipse, ${selectedColor.accentColor}33 0%, transparent 75%)`,
           }}
@@ -596,7 +628,7 @@ export const DogmaBike3D = ({
 
         {/* 3D Photorealistic Pinarello Dogma F Model Assembly (Direct GPU Ref) */}
         <div
-          className="relative w-full max-w-5xl h-full flex items-center justify-center pointer-events-none"
+          className="relative w-full max-w-5xl h-full flex items-center justify-center pointer-events-none translate-y-2 sm:translate-y-4"
           style={{
             perspective: '1400px',
             transformStyle: 'preserve-3d',
@@ -644,142 +676,63 @@ export const DogmaBike3D = ({
         className="absolute inset-0 w-full h-full pointer-events-none z-20"
       />
 
-      {/* --- LAYER 4: TOP STUDIO DECK & LUXURY HUD HEADER --- */}
-      <div className="relative z-30 p-5 sm:p-7 flex flex-wrap items-start justify-between gap-4 pointer-events-none">
-        {/* Left: Atelier Treviso Live Badge */}
-        <div className="flex flex-col gap-2 pointer-events-auto">
-          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/75 border border-white/10 backdrop-blur-xl shadow-lg">
+      {/* --- LAYER 4: TOP STUDIO DECK & LUXURY STATUS BAR --- */}
+      <div className="relative z-30 p-4 sm:p-6 flex items-center justify-between gap-4 pointer-events-none">
+        {/* Left: Compact Atelier Treviso Live Badge */}
+        <div className="flex items-center gap-2 pointer-events-auto flex-wrap">
+          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg">
             <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
             <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-300 uppercase font-semibold">
-              ATELIER TREVISO • PINARELLO DOGMA F
+              ATELIER TREVISO • DOGMA F
             </span>
             <span className="text-zinc-600">|</span>
-            <span className="font-mono text-[10px] text-[#00F0FF]">{fps} FPS</span>
-            <span className="text-zinc-600">|</span>
-            <span className="font-mono text-[10px] text-[#FF5E0E]">360° MASTER</span>
-          </div>
-
-          <div className="px-4 py-2.5 rounded-2xl bg-black/60 border border-white/10 backdrop-blur-xl shadow-xl flex items-center gap-4">
-            <div>
-              <div className="font-display text-sm sm:text-base font-black text-white uppercase tracking-wider">
-                {selectedColor.name}
-              </div>
-              <div className="font-mono text-[10px] text-[#FF5E0E] uppercase font-bold flex items-center gap-2">
-                <span>{selectedColor.edition}</span>
-                <span className="text-zinc-600">•</span>
-                <span className="text-zinc-400">{selectedColor.code}</span>
-              </div>
-            </div>
-            <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-[#00F0FF] uppercase tracking-wider hidden sm:inline">
-              {selectedColor.badge}
-            </span>
+            <span className="font-mono text-[10px] text-white font-bold">{selectedColor.name}</span>
+            <span className="text-zinc-600 hidden sm:inline">|</span>
+            <span className="font-mono text-[10px] text-[#FF5E0E] hidden sm:inline">{selectedColor.code}</span>
+            <span className="text-zinc-600 hidden md:inline">|</span>
+            <span className="font-mono text-[10px] text-[#00F0FF] hidden md:inline">{fps} FPS</span>
           </div>
         </div>
 
-        {/* Center/Right: 4 Masterwork Studio Inspection Modes */}
-        <div className="flex flex-wrap items-center gap-2 pointer-events-auto">
-          <div className="flex items-center gap-1 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl">
-            <button
-              onClick={() => {
-                setActiveTab('360');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === '360'
-                  ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>360° ATELIER</span>
-            </button>
+        {/* Right: Quick Studio Toggles */}
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg pointer-events-auto">
+          {/* Auto-Spin Toggle */}
+          <button
+            onClick={() => {
+              setIsSpinning(!isSpinning);
+              sfx.playHover();
+            }}
+            className={`p-2 rounded-full transition-all ${
+              isSpinning
+                ? 'bg-[#D4FF00]/20 text-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]'
+                : 'text-zinc-400 hover:text-white'
+            }`}
+            title="Toggle Auto 360° Turntable"
+          >
+            <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
+          </button>
 
-            <button
-              onClick={() => {
-                setActiveTab('windtunnel');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'windtunnel'
-                  ? 'bg-[#00F0FF] text-black shadow-[0_0_20px_rgba(0,240,255,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Wind className="w-3.5 h-3.5" />
-              <span>CFD WIND TUNNEL</span>
-            </button>
+          {/* Reset Camera Stage */}
+          <button
+            onClick={resetStage}
+            className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
+            title="Reset Stage to 3/4 Hero"
+          >
+            <Compass className="w-3.5 h-3.5" />
+          </button>
 
-            <button
-              onClick={() => {
-                setActiveTab('xray');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'xray'
-                  ? 'bg-[#FF5E0E] text-black shadow-[0_0_20px_rgba(255,94,14,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>TORAYCA® R&D</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setActiveTab('telemetry');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'telemetry'
-                  ? 'bg-[#D4FF00] text-black shadow-[0_0_20px_rgba(212,255,0,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Gauge className="w-3.5 h-3.5" />
-              <span>TELEMETRY HUD</span>
-            </button>
-          </div>
-
-          {/* Quick Studio Toggles */}
-          <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/70 border border-white/10 backdrop-blur-xl">
-            {/* Auto-Spin Toggle */}
-            <button
-              onClick={() => {
-                setIsSpinning(!isSpinning);
-                sfx.playHover();
-              }}
-              className={`p-2 rounded-full transition-all ${
-                isSpinning
-                  ? 'bg-[#D4FF00]/20 text-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-              title="Toggle Auto 360° Turntable"
-            >
-              <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
-            </button>
-
-            {/* Reset Camera Stage */}
-            <button
-              onClick={resetStage}
-              className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
-              title="Reset Stage to 3/4 Hero"
-            >
-              <Compass className="w-3.5 h-3.5" />
-            </button>
-
-            {/* Fullscreen Stage */}
-            <button
-              onClick={toggleFullscreen}
-              className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
-              title="Toggle Fullscreen Virtual Atelier"
-            >
-              {isFullscreen ? (
-                <Minimize2 className="w-3.5 h-3.5" />
-              ) : (
-                <Maximize2 className="w-3.5 h-3.5" />
-              )}
-            </button>
-          </div>
+          {/* Fullscreen Stage */}
+          <button
+            onClick={toggleFullscreen}
+            className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
+            title="Toggle Fullscreen Virtual Atelier"
+          >
+            {isFullscreen ? (
+              <Minimize2 className="w-3.5 h-3.5" />
+            ) : (
+              <Maximize2 className="w-3.5 h-3.5" />
+            )}
+          </button>
         </div>
       </div>
 
@@ -859,7 +812,7 @@ export const DogmaBike3D = ({
 
       {/* --- OVERLAY MODE: CFD WIND TUNNEL CONTROLS & TELEMETRY --- */}
       {activeTab === 'windtunnel' && (
-        <div className="absolute top-20 right-4 sm:top-24 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-2xl space-y-4 pointer-events-auto">
+        <div className="absolute top-16 right-4 sm:top-18 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-2xl space-y-4 pointer-events-auto">
           <div className="flex items-center justify-between border-b border-white/10 pb-2">
             <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
               <Wind className="w-4 h-4" />
@@ -929,7 +882,7 @@ export const DogmaBike3D = ({
 
       {/* --- OVERLAY MODE: TORAYCA® M40X EXPLODED R&D MATRIX --- */}
       {activeTab === 'xray' && (
-        <div className="absolute top-20 left-4 sm:top-24 sm:left-6 z-30 w-80 sm:w-96 p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
+        <div className="absolute top-16 left-4 sm:top-18 sm:left-6 z-30 w-80 sm:w-96 p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
           <div className="flex items-center justify-between border-b border-white/10 pb-2">
             <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
               <Layers className="w-4 h-4" />
@@ -978,7 +931,7 @@ export const DogmaBike3D = ({
 
       {/* --- OVERLAY MODE: PRO-TOUR TELEMETRY HUD GAUGES --- */}
       {activeTab === 'telemetry' && (
-        <div className="absolute top-20 right-4 sm:top-24 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
+        <div className="absolute top-16 right-4 sm:top-18 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
           <div className="flex items-center justify-between border-b border-white/10 pb-2">
             <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
               <Gauge className="w-4 h-4" />
@@ -1028,14 +981,79 @@ export const DogmaBike3D = ({
       )}
 
       {/* --- LAYER 6: BOTTOM LUXURY CONTROL DOCK & SWATCH DECK --- */}
-      <div className="relative z-30 p-5 sm:p-7 pt-2 flex flex-col items-center gap-4 pointer-events-none">
+      <div className="relative z-30 p-4 sm:p-6 pt-2 flex flex-col items-center gap-3.5 pointer-events-none">
+        {/* Inspection Mode Tabs Bar (Relocated to bottom dock so upper bike model is 100% visible) */}
+        <div className="flex flex-wrap items-center justify-center gap-2 pointer-events-auto">
+          <div className="flex items-center gap-1 p-1 rounded-full bg-black/85 border border-white/20 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)]">
+            <button
+              onClick={() => {
+                setActiveTab('360');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === '360'
+                  ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>360° ATELIER</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('windtunnel');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'windtunnel'
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_20px_rgba(0,240,255,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Wind className="w-3.5 h-3.5" />
+              <span>CFD WIND TUNNEL</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('xray');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'xray'
+                  ? 'bg-[#FF5E0E] text-black shadow-[0_0_20px_rgba(255,94,14,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>TORAYCA® R&D</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setActiveTab('telemetry');
+                sfx.playClick();
+              }}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
+                activeTab === 'telemetry'
+                  ? 'bg-[#D4FF00] text-black shadow-[0_0_20px_rgba(212,255,0,0.5)] scale-105'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Gauge className="w-3.5 h-3.5" />
+              <span>TELEMETRY HUD</span>
+            </button>
+          </div>
+        </div>
+
         {/* Camera Focal View Presets */}
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-2xl overflow-x-auto max-w-full pointer-events-auto">
+        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-2xl shadow-xl overflow-x-auto max-w-full pointer-events-auto">
           {CAMERA_VIEWS.map((cam) => (
             <button
               key={cam.id}
               onClick={() => setCameraPreset(cam.id)}
-              className={`px-3.5 py-1.5 rounded-full text-[11px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 ${
+              className={`px-3 py-1 rounded-full text-[10.5px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 ${
                 activeCameraView === cam.id
                   ? 'bg-white text-black font-bold shadow-md scale-105'
                   : 'text-zinc-400 hover:text-white'
@@ -1110,7 +1128,10 @@ export const DogmaBike3D = ({
                     )}
                   </div>
                   {isSelected && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#00F0FF] rounded-full border-2 border-black" />
+                    <span
+                      className="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-black"
+                      style={{ backgroundColor: c.accentColor || '#00F0FF' }}
+                    />
                   )}
                 </button>
               );

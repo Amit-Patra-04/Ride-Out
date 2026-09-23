@@ -100,9 +100,9 @@ export const DogmaGeometry = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Section Header: Flagship Editorial */}
         <div className="relative z-10 mb-14 sm:mb-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)]">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 pb-4 border-b border-white/10 mb-8 font-mono text-[11px] tracking-[0.25em] text-zinc-300 uppercase text-center sm:text-left">
+            <div className="flex items-center justify-center gap-3">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-red-500/20 text-red-400 font-bold text-[10px] border border-red-500/40 shadow-[0_0_10px_rgba(228,0,43,0.3)] shrink-0">
                 05
               </span>
               <span className="text-[#E4002B] font-bold flex items-center gap-1.5">
@@ -113,7 +113,7 @@ export const DogmaGeometry = () => {
               <span className="text-zinc-200">BIOMECHANICAL CALIBRATION</span>
             </div>
 
-            <div className="flex items-center gap-4 text-zinc-300 font-mono text-[10px]">
+            <div className="flex items-center justify-center gap-4 text-zinc-300 font-mono text-[10px]">
               <span className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white font-bold backdrop-blur-md">
                 DISCRETE SIZES: 9
               </span>
@@ -124,12 +124,12 @@ export const DogmaGeometry = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-2xl xl:max-w-3xl space-y-3">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-center lg:text-left items-center lg:items-start">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3 flex flex-col items-center lg:items-start w-full">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold text-center lg:text-left">
                 NO GENERIC S/M/L COMPROMISES
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl text-center lg:text-left">
                 9-SIZE RACE{' '}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] drop-shadow-lg mt-1">
                   GEOMETRY MATRIX.
@@ -137,11 +137,11 @@ export const DogmaGeometry = () => {
               </h2>
             </div>
 
-            <div className="max-w-md lg:pb-2 space-y-4">
-              <p className="text-sm sm:text-base text-zinc-200 font-sans font-normal leading-relaxed">
+            <div className="max-w-md lg:pb-2 space-y-4 flex flex-col items-center lg:items-start w-full">
+              <p className="text-sm sm:text-base text-zinc-200 font-sans font-normal leading-relaxed text-center lg:text-left">
                 Pinarello provides 9 discrete frame sizes rather than generic Small/Medium/Large so every competitive rider achieves aerodynamic purity and handling balance.
               </p>
-              <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] text-zinc-300">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 font-mono text-[10px] text-zinc-300">
                 <span className="px-3 py-1 rounded-md bg-white/[0.08] border border-white/15 font-semibold text-white">
                   43.0 TO 62.0 CM
                 </span>
