@@ -209,7 +209,7 @@ export const HeroShowcase = ({ onOpenBooking }) => {
           </div>
 
           {/* --- INTERACTIVE 3D BIKE STAGE --- */}
-          <div className="relative z-10 my-4">
+          <div className="relative z-10 my-4 w-full">
             <DogmaBike3D
               activeColorway={selectedColorway}
               onColorChange={handleColorChange}
@@ -219,50 +219,50 @@ export const HeroShowcase = ({ onOpenBooking }) => {
           {/* --- GRAND ARCHITECTURAL SPEC RIBBON --- */}
           <div
             ref={hudRef}
-            className="relative z-10 mt-10 bg-obsidian-surface/85 border border-white/10 rounded-2xl backdrop-blur-2xl shadow-2xl overflow-hidden"
+            className="relative z-10 mt-6 sm:mt-10 bg-obsidian-surface/85 border border-white/10 rounded-2xl backdrop-blur-2xl shadow-2xl overflow-hidden w-full"
           >
             <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
               {/* Stat 1 */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
-                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+              <div className="p-4 sm:p-6 lg:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+                <div className="flex items-center justify-between font-mono text-[9.5px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">
                   <span>CHASSIS WEIGHT</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E4002B] group-hover:scale-150 transition-transform" />
                 </div>
-                <div className="mt-3">
-                  <div className="font-display text-3xl sm:text-4xl font-black text-white">
-                    6.77 <span className="text-sm font-mono text-[#FF5E0E]">KG</span>
+                <div className="mt-2.5 sm:mt-3">
+                  <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                    6.77 <span className="text-xs sm:text-sm font-mono text-[#FF5E0E]">KG</span>
                   </div>
-                  <div className="text-xs text-zinc-400 font-mono mt-1">
-                    Race-Ready Dura-Ace Spec (Size 53)
+                  <div className="text-[11px] sm:text-xs text-zinc-400 font-mono mt-1">
+                    Race-Ready Spec (Size 53)
                   </div>
                 </div>
               </div>
 
               {/* Stat 2 */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
-                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+              <div className="p-4 sm:p-6 lg:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+                <div className="flex items-center justify-between font-mono text-[9.5px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">
                   <span>AERO DRAG (CdA)</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] group-hover:scale-150 transition-transform" />
                 </div>
-                <div className="mt-3">
-                  <div className="font-display text-3xl sm:text-4xl font-black text-white">
-                    -4.8% <span className="text-sm font-mono text-[#00F0FF]">CdA</span>
+                <div className="mt-2.5 sm:mt-3">
+                  <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                    -4.8% <span className="text-xs sm:text-sm font-mono text-[#00F0FF]">CdA</span>
                   </div>
-                  <div className="text-xs text-zinc-400 font-mono mt-1">
+                  <div className="text-[11px] sm:text-xs text-zinc-400 font-mono mt-1">
                     -3.2 Watts Saved at 40 km/h
                   </div>
                 </div>
               </div>
 
               {/* Stat 3 */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
-                <div className="flex items-center justify-between font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+              <div className="p-4 sm:p-6 lg:p-7 flex flex-col justify-between hover:bg-white/[0.02] transition-colors group">
+                <div className="flex items-center justify-between font-mono text-[9.5px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">
                   <span>LATERAL STIFFNESS</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] group-hover:scale-150 transition-transform" />
                 </div>
-                <div className="mt-3">
-                  <div className="font-display text-3xl sm:text-4xl font-black text-white">
-                    392 <span className="text-sm font-mono text-[#D4FF00]">GPa</span>
+                <div className="mt-2.5 sm:mt-3">
+                  <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                    392 <span className="text-xs sm:text-sm font-mono text-[#D4FF00]">GPa</span>
                   </div>
                   <div className="text-xs text-zinc-400 font-mono mt-1">
                     TorayCa M40X Nanoalloy Carbon

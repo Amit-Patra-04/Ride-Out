@@ -581,496 +581,898 @@ export const DogmaBike3D = ({
   }, [aeroYawSlider]);
 
   return (
-    <div
-      ref={containerRef}
-      onMouseEnter={() => setIsHoveringStage(true)}
-      onMouseLeave={() => {
-        setIsHoveringStage(false);
-        stateRef.current.isDragging = false;
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      className={`relative w-full select-none overflow-hidden rounded-3xl border border-white/[0.14] bg-gradient-to-b from-[#0b0e17]/98 via-[#06080e]/98 to-[#020305] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-3xl min-h-[640px] sm:min-h-[720px] lg:min-h-[820px] flex flex-col justify-between cursor-grab active:cursor-grabbing ${
-        isFullscreen ? 'fixed inset-0 z-50 rounded-none h-screen min-h-screen' : ''
-      } ${className}`}
-    >
-      {/* --- LAYER 1: ATMOSPHERIC STUDIO LIGHTING & SPECULAR SHINE --- */}
+    <div className={`relative w-full flex flex-col gap-3.5 sm:gap-4 ${className}`}>
+      {/* ============================================================ */}
+      {/* 1. 3D VIRTUAL ATELIER STAGE BOX                             */}
+      {/* ============================================================ */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] pointer-events-none opacity-30 transition-all duration-1000 ease-out"
-        style={{ backgroundColor: selectedColor.primaryColor || activeLighting.ambient }}
-      />
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full blur-[160px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
-        style={{ backgroundColor: selectedColor.accentColor || activeLighting.underglow }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
-
-      {/* --- LAYER 2: 3D VOLUMETRIC STAGE WITH AUTHENTIC PINARELLO DOGMA F --- */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none pt-8 sm:pt-14 pb-20 sm:pb-24">
-        {/* Dynamic Studio Stage Ground Reflection & Contact Shadow Disc */}
+        ref={containerRef}
+        onMouseEnter={() => setIsHoveringStage(true)}
+        onMouseLeave={() => {
+          setIsHoveringStage(false);
+          stateRef.current.isDragging = false;
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        className={`relative w-full select-none overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.14] bg-gradient-to-b from-[#0b0e17]/98 via-[#06080e]/98 to-[#020305] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-3xl h-[340px] xs:h-[380px] sm:h-[460px] md:h-[680px] lg:h-[800px] flex flex-col justify-between cursor-grab active:cursor-grabbing ${
+          isFullscreen ? 'fixed inset-0 z-50 rounded-none h-screen min-h-screen' : ''
+        }`}
+      >
+        {/* --- LAYER 1: ATMOSPHERIC STUDIO LIGHTING & SPECULAR SHINE --- */}
         <div
-          ref={shadowRef}
-          className="absolute bottom-16 sm:bottom-20 w-[75%] sm:w-[68%] max-w-[850px] h-24 rounded-[100%] bg-gradient-to-r from-transparent via-black/90 to-transparent blur-xl pointer-events-none will-change-transform"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] pointer-events-none opacity-30 transition-all duration-1000 ease-out"
+          style={{ backgroundColor: selectedColor.primaryColor || activeLighting.ambient }}
         />
-
-        {/* Dynamic Ground Ambient Ring */}
         <div
-          ref={glowRef}
-          className="absolute bottom-18 sm:bottom-22 w-[65%] sm:w-[58%] max-w-[750px] h-16 rounded-[100%] blur-md pointer-events-none transition-colors duration-700 will-change-transform"
-          style={{
-            background: `radial-gradient(ellipse, ${selectedColor.accentColor}33 0%, transparent 75%)`,
-          }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] rounded-full blur-[160px] pointer-events-none opacity-25 transition-all duration-1000 ease-out"
+          style={{ backgroundColor: selectedColor.accentColor || activeLighting.underglow }}
         />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.85)_100%)] pointer-events-none" />
 
-        {/* 3D Photorealistic Pinarello Dogma F Model Assembly (Direct GPU Ref) */}
-        <div
-          className="relative w-full max-w-5xl h-full flex items-center justify-center pointer-events-none translate-y-2 sm:translate-y-4"
-          style={{
-            perspective: '1400px',
-            transformStyle: 'preserve-3d',
-          }}
-        >
+        {/* --- LAYER 2: 3D VOLUMETRIC STAGE WITH AUTHENTIC PINARELLO DOGMA F --- */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none pt-10 sm:pt-14 pb-10 sm:pb-16 md:pb-36">
+          {/* Dynamic Studio Stage Ground Reflection & Contact Shadow Disc */}
           <div
-            ref={bikeStageRef}
-            className="relative w-[90%] sm:w-[82%] max-w-4xl flex items-center justify-center will-change-transform bg-transparent"
-          >
-            {/* Authentic Master Pinarello Dogma F Monocoque Render (Zero square artifact) */}
-            <img
-              src={selectedColor.bikeImage}
-              alt={`${selectedColor.name} — Pinarello Dogma F`}
-              className="w-full h-auto object-contain pointer-events-none drop-shadow-[0_25px_45px_rgba(0,0,0,0.85)] filter contrast-[1.03] brightness-[1.02] select-none bg-transparent"
-              draggable={false}
-            />
+            ref={shadowRef}
+            className="absolute bottom-12 sm:bottom-16 md:bottom-24 w-[85%] sm:w-[75%] md:w-[68%] max-w-[850px] h-14 sm:h-20 md:h-24 rounded-[100%] bg-gradient-to-r from-transparent via-black/90 to-transparent blur-xl pointer-events-none will-change-transform"
+          />
 
-            {/* Aero Pressure Heatmap Overlay (in CFD mode only) */}
-            {activeTab === 'windtunnel' && isHeatmapOn && (
-              <div
-                className="absolute inset-0 pointer-events-none mix-blend-screen opacity-70 transition-opacity duration-300 rounded-full blur-xl"
-                style={{
-                  background:
-                    'radial-gradient(circle at 75% 55%, rgba(0,240,255,0.6) 0%, rgba(255,94,14,0.4) 40%, rgba(228,0,43,0.3) 70%, transparent 95%)',
-                }}
-              />
-            )}
-
-            {/* TorayCa X-Ray Dissection Glow (in X-Ray Mode only) */}
-            {activeTab === 'xray' && (
-              <div
-                className="absolute inset-0 pointer-events-none mix-blend-color-dodge opacity-60 animate-pulse transition-all duration-300 rounded-full blur-xl"
-                style={{
-                  background: `radial-gradient(ellipse at center, ${EXPLODED_LAYERS[selectedExplodedLayer].color}55 0%, transparent 75%)`,
-                }}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* --- LAYER 3: CFD AERODYNAMIC WIND STREAMLINES 2D OVERLAY --- */}
-      <canvas
-        ref={particleCanvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none z-20"
-      />
-
-      {/* --- LAYER 4: TOP STUDIO DECK & LUXURY STATUS BAR --- */}
-      <div className="relative z-30 p-4 sm:p-6 flex items-center justify-between gap-4 pointer-events-none">
-        {/* Left: Compact Atelier Treviso Live Badge */}
-        <div className="flex items-center gap-2 pointer-events-auto flex-wrap">
-          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse" />
-            <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-300 uppercase font-semibold">
-              ATELIER TREVISO • DOGMA F
-            </span>
-            <span className="text-zinc-600">|</span>
-            <span className="font-mono text-[10px] text-white font-bold">{selectedColor.name}</span>
-            <span className="text-zinc-600 hidden sm:inline">|</span>
-            <span className="font-mono text-[10px] text-[#FF5E0E] hidden sm:inline">{selectedColor.code}</span>
-            <span className="text-zinc-600 hidden md:inline">|</span>
-            <span className="font-mono text-[10px] text-[#00F0FF] hidden md:inline">{fps} FPS</span>
-          </div>
-        </div>
-
-        {/* Right: Quick Studio Toggles */}
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg pointer-events-auto">
-          {/* Auto-Spin Toggle */}
-          <button
-            onClick={() => {
-              setIsSpinning(!isSpinning);
-              sfx.playHover();
+          {/* Dynamic Ground Ambient Ring */}
+          <div
+            ref={glowRef}
+            className="absolute bottom-14 sm:bottom-18 md:bottom-26 w-[75%] sm:w-[65%] md:w-[58%] max-w-[750px] h-10 sm:h-14 md:h-16 rounded-[100%] blur-md pointer-events-none transition-colors duration-700 will-change-transform"
+            style={{
+              background: `radial-gradient(ellipse, ${selectedColor.accentColor}33 0%, transparent 75%)`,
             }}
-            className={`p-2 rounded-full transition-all ${
-              isSpinning
-                ? 'bg-[#D4FF00]/20 text-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]'
-                : 'text-zinc-400 hover:text-white'
-            }`}
-            title="Toggle Auto 360° Turntable"
+          />
+
+          {/* 3D Photorealistic Pinarello Dogma F Model Assembly (Direct GPU Ref) */}
+          <div
+            className="relative w-full max-w-5xl h-full flex items-center justify-center pointer-events-none translate-y-1 sm:translate-y-3"
+            style={{
+              perspective: '1400px',
+              transformStyle: 'preserve-3d',
+            }}
           >
-            <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
-          </button>
+            <div
+              ref={bikeStageRef}
+              className="relative w-[96%] xs:w-[90%] sm:w-[84%] max-w-4xl flex items-center justify-center will-change-transform bg-transparent"
+            >
+              {/* Authentic Master Pinarello Dogma F Monocoque Render */}
+              <img
+                src={selectedColor.bikeImage}
+                alt={`${selectedColor.name} — Pinarello Dogma F`}
+                className="w-full h-auto object-contain pointer-events-none drop-shadow-[0_25px_45px_rgba(0,0,0,0.85)] filter contrast-[1.03] brightness-[1.02] select-none bg-transparent"
+                draggable={false}
+              />
 
-          {/* Reset Camera Stage */}
-          <button
-            onClick={resetStage}
-            className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
-            title="Reset Stage to 3/4 Hero"
-          >
-            <Compass className="w-3.5 h-3.5" />
-          </button>
+              {/* Aero Pressure Heatmap Overlay (in CFD mode only) */}
+              {activeTab === 'windtunnel' && isHeatmapOn && (
+                <div
+                  className="absolute inset-0 pointer-events-none mix-blend-screen opacity-70 transition-opacity duration-300 rounded-full blur-xl"
+                  style={{
+                    background:
+                      'radial-gradient(circle at 75% 55%, rgba(0,240,255,0.6) 0%, rgba(255,94,14,0.4) 40%, rgba(228,0,43,0.3) 70%, transparent 95%)',
+                  }}
+                />
+              )}
 
-          {/* Fullscreen Stage */}
-          <button
-            onClick={toggleFullscreen}
-            className="p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110"
-            title="Toggle Fullscreen Virtual Atelier"
-          >
-            {isFullscreen ? (
-              <Minimize2 className="w-3.5 h-3.5" />
-            ) : (
-              <Maximize2 className="w-3.5 h-3.5" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* --- LAYER 5: 3D SPATIAL HOTSPOT OVERLAYS --- */}
-      {(activeTab === '360' || activeTab === 'telemetry') && (
-        <div className="absolute inset-0 z-30 pointer-events-none">
-          {HOTSPOTS.map((spot) => {
-            const isActive = activeHotspot?.id === spot.id;
-
-            return (
-              <div
-                key={spot.id}
-                ref={(el) => (hotspotRefs.current[spot.id] = el)}
-                className="absolute pointer-events-auto will-change-transform"
-                style={{
-                  transform: 'translate(-50%, -50%)',
-                }}
-              >
-                <div className="relative group">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveHotspot(isActive ? null : spot);
-                      sfx.playClick();
-                    }}
-                    onMouseEnter={() => sfx.playHover()}
-                    className={`relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full border transition-all duration-300 ${
-                      isActive
-                        ? 'bg-[#00F0FF] text-black border-white scale-125 shadow-[0_0_25px_#00F0FF]'
-                        : 'bg-black/80 text-white border-white/35 hover:border-white hover:scale-115 hover:bg-black/95 shadow-xl'
-                    }`}
-                    title={spot.title}
-                  >
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-35" />
-                    <span className="font-mono text-xs font-black">+</span>
-                  </button>
-
-                  {/* Interactive Engineering Spec Popover */}
-                  {isActive && (
-                    <div
-                      onClick={(e) => e.stopPropagation()}
-                      className="absolute left-1/2 -top-3 -translate-x-1/2 -translate-y-full w-64 sm:w-80 p-4 rounded-2xl bg-[#0b0e14]/95 border border-[#00F0FF]/40 text-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-50 animate-in fade-in zoom-in-95 duration-200"
-                    >
-                      <div className="flex items-center justify-between mb-1.5 pb-1.5 border-b border-white/10">
-                        <span className="font-mono text-[9px] text-[#00F0FF] font-bold tracking-widest uppercase">
-                          {spot.badge}
-                        </span>
-                        <span className="font-mono text-[9.5px] text-zinc-400 font-semibold">
-                          {spot.spec}
-                        </span>
-                      </div>
-                      <div className="font-display text-sm font-black uppercase tracking-tight text-white mb-1">
-                        {spot.title}
-                      </div>
-                      <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-                        {spot.desc}
-                      </p>
-                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
-                        <span className="font-mono text-[9px] text-zinc-500">
-                          TREVISO R&D LABS
-                        </span>
-                        <button
-                          onClick={() => setActiveHotspot(null)}
-                          className="text-[10px] font-mono text-zinc-400 hover:text-white font-bold"
-                        >
-                          CLOSE [✕]
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {/* --- OVERLAY MODE: CFD WIND TUNNEL CONTROLS & TELEMETRY --- */}
-      {activeTab === 'windtunnel' && (
-        <div className="absolute top-16 right-4 sm:top-18 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-2xl space-y-4 pointer-events-auto">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
-              <Wind className="w-4 h-4" />
-              <span>CFD Aero Dynamics</span>
+              {/* TorayCa X-Ray Dissection Glow (in X-Ray Mode only) */}
+              {activeTab === 'xray' && (
+                <div
+                  className="absolute inset-0 pointer-events-none mix-blend-color-dodge opacity-60 animate-pulse transition-all duration-300 rounded-full blur-xl"
+                  style={{
+                    background: `radial-gradient(ellipse at center, ${EXPLODED_LAYERS[selectedExplodedLayer].color}55 0%, transparent 75%)`,
+                  }}
+                />
+              )}
             </div>
-            <span className="text-[10px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
           </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-              <div className="text-[9px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
-              <div className="font-display text-xl font-black text-white mt-0.5">
-                {dynamicCdA} <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
-              </div>
-            </div>
+        {/* --- LAYER 3: CFD AERODYNAMIC WIND STREAMLINES 2D OVERLAY --- */}
+        <canvas
+          ref={particleCanvasRef}
+          className="absolute inset-0 w-full h-full pointer-events-none z-20"
+        />
 
-            <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-              <div className="text-[9px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
-              <div className="font-display text-xl font-black text-[#D4FF00] mt-0.5">
-                -{dynamicWattSaved} <span className="text-xs font-mono">W</span>
-              </div>
+        {/* --- LAYER 4: TOP STUDIO DECK & STATUS BAR --- */}
+        <div className="relative z-30 p-3 sm:p-5 md:p-6 flex items-center justify-between gap-2 sm:gap-4 pointer-events-none">
+          {/* Left: Compact Atelier Treviso Live Badge */}
+          <div className="flex items-center gap-2 pointer-events-auto min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 px-3 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg text-[10px] font-mono">
+              <span className="w-2 h-2 rounded-full bg-[#E4002B] animate-pulse shrink-0" />
+              <span className="tracking-[0.15em] sm:tracking-[0.2em] text-zinc-300 uppercase font-semibold shrink-0">
+                DOGMA F
+              </span>
+              <span className="text-zinc-600">|</span>
+              <span className="text-white font-bold truncate max-w-[100px] xs:max-w-[140px] sm:max-w-none">{selectedColor.name}</span>
+              <span className="text-zinc-600 hidden sm:inline">|</span>
+              <span className="text-[#FF5E0E] font-semibold hidden sm:inline">{selectedColor.code}</span>
+              <span className="text-zinc-600 hidden md:inline">|</span>
+              <span className="text-[#00F0FF] font-semibold hidden md:inline">{fps} FPS</span>
             </div>
           </div>
 
-          {/* Yaw Angle Interactive Slider */}
-          <div>
-            <div className="flex justify-between text-[10px] font-mono text-zinc-300 mb-1">
-              <span>WIND YAW ANGLE</span>
-              <span className="text-[#00F0FF] font-bold">{aeroYawSlider}°</span>
-            </div>
-            <input
-              type="range"
-              min="-20"
-              max="20"
-              step="1"
-              value={aeroYawSlider}
-              onChange={(e) => {
-                setAeroYawSlider(Number(e.target.value));
+          {/* Right: Quick Studio Toggles */}
+          <div className="flex items-center gap-1 p-1 rounded-full bg-black/80 border border-white/15 backdrop-blur-xl shadow-lg pointer-events-auto shrink-0">
+            <button
+              onClick={() => {
+                setIsSpinning(!isSpinning);
                 sfx.playHover();
               }}
-              className="w-full accent-[#00F0FF] cursor-pointer"
-            />
-            <div className="flex justify-between text-[8.5px] font-mono text-zinc-500 mt-1">
-              <span>-20° PORT</span>
-              <span>0° HEADWIND</span>
-              <span>+20° STARBOARD</span>
-            </div>
-          </div>
+              className={`p-1.5 sm:p-2 rounded-full transition-all cursor-pointer ${
+                isSpinning
+                  ? 'bg-[#D4FF00]/20 text-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.35)]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+              title="Toggle Auto 360° Turntable"
+            >
+              <RotateCcw className={`w-3.5 h-3.5 ${isSpinning ? 'animate-spin-slow' : ''}`} />
+            </button>
 
-          {/* Pressure Heatmap Toggle */}
-          <button
-            onClick={() => {
-              setIsHeatmapOn(!isHeatmapOn);
-              sfx.playClick();
-            }}
-            className={`w-full py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all ${
-              isHeatmapOn
-                ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_#00F0FF]'
-                : 'bg-white/10 text-white hover:bg-white/20'
-            }`}
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>{isHeatmapOn ? 'PRESSURE SPECTRUM: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
-          </button>
+            <button
+              onClick={resetStage}
+              className="p-1.5 sm:p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110 cursor-pointer"
+              title="Reset Stage to 3/4 Hero"
+            >
+              <Compass className="w-3.5 h-3.5" />
+            </button>
+
+            <button
+              onClick={toggleFullscreen}
+              className="p-1.5 sm:p-2 rounded-full text-zinc-400 hover:text-white transition-all hover:scale-110 cursor-pointer"
+              title="Toggle Fullscreen Virtual Atelier"
+            >
+              {isFullscreen ? (
+                <Minimize2 className="w-3.5 h-3.5" />
+              ) : (
+                <Maximize2 className="w-3.5 h-3.5" />
+              )}
+            </button>
+          </div>
         </div>
-      )}
 
-      {/* --- OVERLAY MODE: TORAYCA® M40X EXPLODED R&D MATRIX --- */}
-      {activeTab === 'xray' && (
-        <div className="absolute top-16 left-4 sm:top-18 sm:left-6 z-30 w-80 sm:w-96 p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
-              <Layers className="w-4 h-4" />
-              <span>TorayCa® Anatomical X-Ray</span>
-            </div>
-            <span className="text-[10px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
+        {/* --- LAYER 5: 3D SPATIAL HOTSPOT OVERLAYS --- */}
+        {(activeTab === '360' || activeTab === 'telemetry') && (
+          <div className="absolute inset-0 z-30 pointer-events-none">
+            {HOTSPOTS.map((spot) => {
+              const isActive = activeHotspot?.id === spot.id;
+
+              return (
+                <div
+                  key={spot.id}
+                  ref={(el) => (hotspotRefs.current[spot.id] = el)}
+                  className="absolute pointer-events-auto will-change-transform"
+                  style={{
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <div className="relative group">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveHotspot(isActive ? null : spot);
+                        sfx.playClick();
+                      }}
+                      onMouseEnter={() => sfx.playHover()}
+                      className={`relative flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full border transition-all duration-300 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#00F0FF] text-black border-white scale-125 shadow-[0_0_25px_#00F0FF]'
+                          : 'bg-black/80 text-white border-white/35 hover:border-white hover:scale-115 hover:bg-black/95 shadow-xl'
+                      }`}
+                      title={spot.title}
+                    >
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-35" />
+                      <span className="font-mono text-[10px] sm:text-xs font-black">+</span>
+                    </button>
+
+                    {/* Interactive Engineering Spec Popover */}
+                    {isActive && (
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="fixed sm:absolute bottom-6 left-4 right-4 sm:bottom-auto sm:left-1/2 sm:-top-3 sm:-translate-x-1/2 sm:-translate-y-full w-auto sm:w-80 max-w-sm mx-auto p-3.5 sm:p-4 rounded-2xl bg-[#0b0e14]/95 border border-[#00F0FF]/40 text-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] z-50 animate-fadeIn"
+                      >
+                        <div className="flex items-center justify-between mb-1.5 pb-1.5 border-b border-white/10">
+                          <span className="font-mono text-[9px] text-[#00F0FF] font-bold tracking-widest uppercase">
+                            {spot.badge}
+                          </span>
+                          <span className="font-mono text-[9.5px] text-zinc-400 font-semibold">
+                            {spot.spec}
+                          </span>
+                        </div>
+                        <div className="font-display text-xs sm:text-sm font-black uppercase tracking-tight text-white mb-1">
+                          {spot.title}
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-zinc-300 font-sans leading-relaxed">
+                          {spot.desc}
+                        </p>
+                        <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between">
+                          <span className="font-mono text-[9px] text-zinc-500">
+                            TREVISO R&D LABS
+                          </span>
+                          <button
+                            onClick={() => setActiveHotspot(null)}
+                            className="text-[10px] font-mono text-[#00F0FF] hover:text-white font-bold cursor-pointer"
+                          >
+                            CLOSE [✕]
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
+        )}
 
-          {/* Layer Selection Chips */}
-          <div className="grid grid-cols-2 gap-1.5">
-            {EXPLODED_LAYERS.map((layer, idx) => (
+        {/* --- DESKTOP OVERLAY MODES (Hidden on mobile, mobile renders outside) --- */}
+        {activeTab === 'windtunnel' && (
+          <div className="hidden md:block absolute top-18 right-6 z-30 w-80 p-4 rounded-2xl bg-black/90 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
+                <Wind className="w-4 h-4" />
+                <span>CFD Aero Dynamics</span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
+                <div className="font-display text-xl font-black text-white mt-0.5">
+                  {dynamicCdA} <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
+                </div>
+              </div>
+
+              <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
+                <div className="font-display text-xl font-black text-[#D4FF00] mt-0.5">
+                  -{dynamicWattSaved} <span className="text-xs font-mono">W</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[10px] font-mono text-zinc-300 mb-1">
+                <span>WIND YAW ANGLE</span>
+                <span className="text-[#00F0FF] font-bold">{aeroYawSlider}°</span>
+              </div>
+              <input
+                type="range"
+                min="-20"
+                max="20"
+                step="1"
+                value={aeroYawSlider}
+                onChange={(e) => {
+                  setAeroYawSlider(Number(e.target.value));
+                  sfx.playHover();
+                }}
+                className="w-full accent-[#00F0FF] cursor-pointer"
+              />
+              <div className="flex justify-between text-[8.5px] font-mono text-zinc-500 mt-1">
+                <span>-20° PORT</span>
+                <span>0° HEADWIND</span>
+                <span>+20° STARBOARD</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                setIsHeatmapOn(!isHeatmapOn);
+                sfx.playClick();
+              }}
+              className={`w-full py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                isHeatmapOn
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_#00F0FF]'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>{isHeatmapOn ? 'PRESSURE SPECTRUM: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
+            </button>
+          </div>
+        )}
+
+        {activeTab === 'xray' && (
+          <div className="hidden md:block absolute top-18 left-6 z-30 w-96 p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
+                <Layers className="w-4 h-4" />
+                <span>TorayCa® X-Ray</span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-1.5">
+              {EXPLODED_LAYERS.map((layer, idx) => (
+                <button
+                  key={layer.id}
+                  onClick={() => {
+                    setSelectedExplodedLayer(idx);
+                    sfx.playClick();
+                  }}
+                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold text-left transition-all cursor-pointer ${
+                    selectedExplodedLayer === idx
+                      ? 'bg-[#FF5E0E] text-black shadow-md'
+                      : 'bg-white/5 text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {layer.tag}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 space-y-1">
+              <div className="font-display text-xs font-black uppercase text-white tracking-wider">
+                {EXPLODED_LAYERS[selectedExplodedLayer].name}
+              </div>
+              <div className="font-mono text-[10px] text-[#FF5E0E] font-semibold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].subtitle}
+              </div>
+              <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
+                {EXPLODED_LAYERS[selectedExplodedLayer].desc}
+              </p>
+              <div className="pt-1.5 border-t border-white/10 text-[10px] font-mono text-[#D4FF00] font-bold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].stat}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'telemetry' && (
+          <div className="hidden md:block absolute top-18 right-6 z-30 w-80 p-4 rounded-2xl bg-black/90 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
+                <Gauge className="w-4 h-4" />
+                <span>Chassis Telemetry</span>
+              </div>
+              <span className="text-[10px] font-mono text-zinc-400 animate-pulse">LIVE SENSORS</span>
+            </div>
+
+            <div className="space-y-2 font-mono text-xs">
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>POWER TRANSFER EFFICIENCY</span>
+                  <span className="text-white font-bold">99.4%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#D4FF00] w-[99.4%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>LATERAL CHASSIS STIFFNESS</span>
+                  <span className="text-[#D4FF00] font-bold">392 GPa</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-[#D4FF00] w-[94%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>WEIGHT DISTRIBUTION (F/R)</span>
+                  <span className="text-[#00F0FF] font-bold">48% : 52%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden flex">
+                  <div className="h-full bg-[#00F0FF] w-[48%]" />
+                  <div className="h-full bg-[#FF5E0E] w-[52%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+              <span>WEIGHT: 865g FRAME</span>
+              <span className="text-white font-bold">TOTAL: 6.77 KG</span>
+            </div>
+          </div>
+        )}
+
+        {/* --- DESKTOP BOTTOM LUXURY CONTROL DOCK (Layer 6: Inside box on md+) --- */}
+        <div className="hidden md:flex relative z-30 p-4 lg:p-6 pt-1 flex-col items-center gap-3 pointer-events-none">
+          {/* Tier 1: Inspection Mode Tabs Bar */}
+          <div className="w-full flex items-center justify-center pointer-events-auto">
+            <div className="flex items-center gap-1 p-1 rounded-full bg-black/85 border border-white/20 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] shrink-0">
               <button
-                key={layer.id}
                 onClick={() => {
-                  setSelectedExplodedLayer(idx);
+                  setActiveTab('360');
                   sfx.playClick();
                 }}
-                className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold text-left transition-all ${
-                  selectedExplodedLayer === idx
-                    ? 'bg-[#FF5E0E] text-black shadow-md'
-                    : 'bg-white/5 text-zinc-400 hover:text-white'
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === '360'
+                    ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                {layer.tag}
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>360° ATELIER</span>
               </button>
-            ))}
+
+              <button
+                onClick={() => {
+                  setActiveTab('windtunnel');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'windtunnel'
+                    ? 'bg-[#00F0FF] text-black shadow-[0_0_20px_rgba(0,240,255,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Wind className="w-3.5 h-3.5" />
+                <span>CFD WIND TUNNEL</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab('xray');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'xray'
+                    ? 'bg-[#FF5E0E] text-black shadow-[0_0_20px_rgba(255,94,14,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>TORAYCA® R&D</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab('telemetry');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'telemetry'
+                    ? 'bg-[#D4FF00] text-black shadow-[0_0_20px_rgba(212,255,0,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Gauge className="w-3.5 h-3.5" />
+                <span>TELEMETRY HUD</span>
+              </button>
+            </div>
           </div>
 
-          {/* Active Layer Deep Dive Card */}
-          <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5">
-            <div className="font-display text-xs font-black uppercase text-white tracking-wider">
-              {EXPLODED_LAYERS[selectedExplodedLayer].name}
+          {/* Tier 2: Camera Focal View Presets */}
+          <div className="w-full flex items-center justify-center overflow-x-auto no-scrollbar py-0.5 pointer-events-auto">
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-2xl shadow-xl shrink-0">
+              {CAMERA_VIEWS.map((cam) => (
+                <button
+                  key={cam.id}
+                  onClick={() => setCameraPreset(cam.id)}
+                  className={`px-3 py-1 rounded-full text-[10.5px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                    activeCameraView === cam.id
+                      ? 'bg-white text-black font-bold shadow-md scale-105'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {cam.label}
+                </button>
+              ))}
             </div>
-            <div className="font-mono text-[10px] text-[#FF5E0E] font-semibold">
-              {EXPLODED_LAYERS[selectedExplodedLayer].subtitle}
+          </div>
+
+          {/* Tier 3: Swatches & Studio Atmosphere Deck */}
+          <div className="flex flex-wrap items-center justify-between gap-4 w-full max-w-5xl px-2 pointer-events-auto">
+            {/* Studio Lighting Mood Switcher */}
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden lg:inline">
+                ATMOSPHERE:
+              </span>
+              <div className="flex items-center gap-1 p-1 rounded-full bg-black/60 border border-white/10">
+                {STUDIO_LIGHTING_MODES.map((light) => (
+                  <button
+                    key={light.id}
+                    onClick={() => {
+                      setActiveLighting(light);
+                      sfx.playClick();
+                    }}
+                    className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono transition-all cursor-pointer ${
+                      activeLighting.id === light.id
+                        ? 'bg-white/20 text-white font-bold'
+                        : 'text-zinc-500 hover:text-zinc-300'
+                    }`}
+                    title={light.desc}
+                  >
+                    {light.name.split(' ')[0]}
+                  </button>
+                ))}
+              </div>
             </div>
-            <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
-              {EXPLODED_LAYERS[selectedExplodedLayer].desc}
-            </p>
-            <div className="pt-2 border-t border-white/10 text-[10px] font-mono text-[#D4FF00] font-bold">
-              {EXPLODED_LAYERS[selectedExplodedLayer].stat}
+
+            {/* Colorway Swatches */}
+            <div className="flex items-center gap-2.5 p-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-xl">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden sm:inline px-2">
+                FINISH:
+              </span>
+              {COLORWAYS.map((c) => {
+                const isSelected = selectedColor.id === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => handleSelectColorway(c)}
+                    onMouseEnter={() => sfx.playHover()}
+                    className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 shrink-0 cursor-pointer ${
+                      isSelected
+                        ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(255,255,255,0.5)]'
+                        : 'opacity-65 hover:opacity-100 hover:scale-110'
+                    }`}
+                    title={`${c.name} — ${c.edition}`}
+                    aria-label={`Select ${c.name} color`}
+                  >
+                    <div
+                      className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/40 shadow-inner overflow-hidden relative flex items-center justify-center"
+                      style={{
+                        background:
+                          c.swatchGradient ||
+                          `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+                      }}
+                    >
+                      {c.swatchImg && (
+                        <img
+                          src={c.swatchImg}
+                          alt={c.name}
+                          className="w-full h-full object-cover select-none pointer-events-none"
+                        />
+                      )}
+                    </div>
+                    {isSelected && (
+                      <span
+                        className="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-black"
+                        style={{ backgroundColor: c.accentColor || '#00F0FF' }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Stage Guidance */}
+            <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em] flex items-center gap-3">
+              <span>DRAG 360° ORBIT</span>
+              <span>•</span>
+              <span>TAP HOTSPOTS</span>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* --- OVERLAY MODE: PRO-TOUR TELEMETRY HUD GAUGES --- */}
-      {activeTab === 'telemetry' && (
-        <div className="absolute top-16 right-4 sm:top-18 sm:right-6 z-30 w-72 sm:w-80 p-4 rounded-2xl bg-black/85 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-2xl space-y-3 pointer-events-auto">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
-              <Gauge className="w-4 h-4" />
-              <span>Chassis Telemetry</span>
+      {/* ============================================================ */}
+      {/* 2. MOBILE-ONLY LUXURY CONTROL DECK (Placed OUTSIDE 3D Box)   */}
+      {/* ============================================================ */}
+      <div className="block md:hidden w-full space-y-3 pointer-events-auto">
+        {/* Mobile Active Mode Details Panel */}
+        {activeTab === 'windtunnel' && (
+          <div className="p-4 rounded-2xl bg-black/90 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
+                <Wind className="w-4 h-4" />
+                <span>CFD Aero Dynamics</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
+                <button
+                  onClick={() => setActiveTab('360')}
+                  className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
-            <span className="text-[10px] font-mono text-zinc-400 animate-pulse">LIVE SENSORS</span>
-          </div>
 
-          <div className="space-y-2 font-mono text-xs">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
+                <div className="font-display text-lg font-black text-white mt-0.5">
+                  {dynamicCdA} <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <div className="text-[9px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
+                <div className="font-display text-lg font-black text-[#D4FF00] mt-0.5">
+                  -{dynamicWattSaved} <span className="text-xs font-mono">W</span>
+                </div>
+              </div>
+            </div>
+
             <div>
-              <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                <span>POWER TRANSFER EFFICIENCY</span>
-                <span className="text-white font-bold">99.4%</span>
+              <div className="flex justify-between text-[10px] font-mono text-zinc-300 mb-1">
+                <span>WIND YAW ANGLE</span>
+                <span className="text-[#00F0FF] font-bold">{aeroYawSlider}°</span>
               </div>
-              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#D4FF00] w-[99.4%]" />
+              <input
+                type="range"
+                min="-20"
+                max="20"
+                step="1"
+                value={aeroYawSlider}
+                onChange={(e) => {
+                  setAeroYawSlider(Number(e.target.value));
+                  sfx.playHover();
+                }}
+                className="w-full accent-[#00F0FF] cursor-pointer"
+              />
+              <div className="flex justify-between text-[8.5px] font-mono text-zinc-500 mt-1">
+                <span>-20° PORT</span>
+                <span>0° HEADWIND</span>
+                <span>+20° STARBOARD</span>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                setIsHeatmapOn(!isHeatmapOn);
+                sfx.playClick();
+              }}
+              className={`w-full py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                isHeatmapOn
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_#00F0FF]'
+                  : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>{isHeatmapOn ? 'PRESSURE SPECTRUM: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
+            </button>
+          </div>
+        )}
+
+        {activeTab === 'xray' && (
+          <div className="p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
+                <Layers className="w-4 h-4" />
+                <span>TorayCa® Anatomical X-Ray</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
+                <button
+                  onClick={() => setActiveTab('360')}
+                  className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                >
+                  ✕
+                </button>
               </div>
             </div>
 
-            <div>
-              <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                <span>LATERAL CHASSIS STIFFNESS</span>
-                <span className="text-[#D4FF00] font-bold">392 GPa</span>
+            <div className="grid grid-cols-2 gap-1.5">
+              {EXPLODED_LAYERS.map((layer, idx) => (
+                <button
+                  key={layer.id}
+                  onClick={() => {
+                    setSelectedExplodedLayer(idx);
+                    sfx.playClick();
+                  }}
+                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold text-left transition-all cursor-pointer ${
+                    selectedExplodedLayer === idx
+                      ? 'bg-[#FF5E0E] text-black shadow-md'
+                      : 'bg-white/5 text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {layer.tag}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5">
+              <div className="font-display text-xs font-black uppercase text-white tracking-wider">
+                {EXPLODED_LAYERS[selectedExplodedLayer].name}
               </div>
-              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-                <div className="h-full bg-[#D4FF00] w-[94%]" />
+              <div className="font-mono text-[10px] text-[#FF5E0E] font-semibold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].subtitle}
+              </div>
+              <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
+                {EXPLODED_LAYERS[selectedExplodedLayer].desc}
+              </p>
+              <div className="pt-1.5 border-t border-white/10 text-[10px] font-mono text-[#D4FF00] font-bold">
+                {EXPLODED_LAYERS[selectedExplodedLayer].stat}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'telemetry' && (
+          <div className="p-4 rounded-2xl bg-black/90 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+              <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
+                <Gauge className="w-4 h-4" />
+                <span>Chassis Telemetry</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono text-zinc-400 animate-pulse">LIVE SENSORS</span>
+                <button
+                  onClick={() => setActiveTab('360')}
+                  className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                >
+                  ✕
+                </button>
               </div>
             </div>
 
-            <div>
-              <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                <span>WEIGHT DISTRIBUTION (F/R)</span>
-                <span className="text-[#00F0FF] font-bold">48% : 52%</span>
+            <div className="space-y-2 font-mono text-xs">
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>POWER TRANSFER EFFICIENCY</span>
+                  <span className="text-white font-bold">99.4%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#D4FF00] w-[99.4%]" />
+                </div>
               </div>
-              <div className="h-1.5 rounded-full bg-white/10 overflow-hidden flex">
-                <div className="h-full bg-[#00F0FF] w-[48%]" />
-                <div className="h-full bg-[#FF5E0E] w-[52%]" />
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>LATERAL CHASSIS STIFFNESS</span>
+                  <span className="text-[#D4FF00] font-bold">392 GPa</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="h-full bg-[#D4FF00] w-[94%]" />
+                </div>
               </div>
+
+              <div>
+                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
+                  <span>WEIGHT DISTRIBUTION (F/R)</span>
+                  <span className="text-[#00F0FF] font-bold">48% : 52%</span>
+                </div>
+                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden flex">
+                  <div className="h-full bg-[#00F0FF] w-[48%]" />
+                  <div className="h-full bg-[#FF5E0E] w-[52%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+              <span>WEIGHT: 865g FRAME</span>
+              <span className="text-white font-bold">TOTAL: 6.77 KG</span>
+            </div>
+          </div>
+        )}
+
+        {/* Main Mobile Controls Card */}
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.06] via-[#0e121b]/95 to-[#080b11]/98 border border-white/[0.12] backdrop-blur-3xl shadow-xl flex flex-col gap-3">
+          {/* Row 1: Mode Switcher Tabs */}
+          <div className="w-full flex items-center justify-start xs:justify-center overflow-x-auto no-scrollbar py-0.5">
+            <div className="flex items-center gap-1 p-1 rounded-full bg-black/85 border border-white/15 backdrop-blur-2xl shadow-md shrink-0">
+              <button
+                onClick={() => {
+                  setActiveTab('360');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === '360'
+                    ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.4)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>360°</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab('windtunnel');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'windtunnel'
+                    ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_rgba(0,240,255,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Wind className="w-3.5 h-3.5" />
+                <span>CFD AERO</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab('xray');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'xray'
+                    ? 'bg-[#FF5E0E] text-black shadow-[0_0_15px_rgba(255,94,14,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                <span>TORAYCA®</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveTab('telemetry');
+                  sfx.playClick();
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeTab === 'telemetry'
+                    ? 'bg-[#D4FF00] text-black shadow-[0_0_15px_rgba(212,255,0,0.5)] scale-105'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                <Gauge className="w-3.5 h-3.5" />
+                <span>TELEMETRY</span>
+              </button>
             </div>
           </div>
 
-          <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
-            <span>WEIGHT: 865g FRAME</span>
-            <span className="text-white font-bold">TOTAL: 6.77 KG</span>
+          {/* Row 2: Camera Angles Preset Chips */}
+          <div className="w-full flex items-center justify-start xs:justify-center overflow-x-auto no-scrollbar py-0.5">
+            <div className="flex items-center gap-1 p-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-2xl shrink-0">
+              {CAMERA_VIEWS.map((cam) => (
+                <button
+                  key={cam.id}
+                  onClick={() => setCameraPreset(cam.id)}
+                  className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
+                    activeCameraView === cam.id
+                      ? 'bg-white text-black font-bold shadow-md scale-105'
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  {cam.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* --- LAYER 6: BOTTOM LUXURY CONTROL DOCK & SWATCH DECK --- */}
-      <div className="relative z-30 p-4 sm:p-6 pt-2 flex flex-col items-center gap-3.5 pointer-events-none">
-        {/* Inspection Mode Tabs Bar (Relocated to bottom dock so upper bike model is 100% visible) */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pointer-events-auto">
-          <div className="flex items-center gap-1 p-1 rounded-full bg-black/85 border border-white/20 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)]">
-            <button
-              onClick={() => {
-                setActiveTab('360');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === '360'
-                  ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>360° ATELIER</span>
-            </button>
+          {/* Row 3: Colorway Finish Swatches & Lighting Atmosphere */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 pt-1 border-t border-white/10">
+            {/* Swatches */}
+            <div className="flex items-center gap-2 p-1.5 rounded-full bg-black/80 border border-white/15 overflow-x-auto no-scrollbar max-w-full justify-center">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 px-1 font-bold">
+                FINISH:
+              </span>
+              {COLORWAYS.map((c) => {
+                const isSelected = selectedColor.id === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => handleSelectColorway(c)}
+                    className={`relative flex items-center justify-center p-0.5 rounded-full transition-all duration-300 shrink-0 cursor-pointer ${
+                      isSelected
+                        ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_15px_rgba(255,255,255,0.5)]'
+                        : 'opacity-65 hover:opacity-100 hover:scale-110'
+                    }`}
+                    title={`${c.name} — ${c.edition}`}
+                    aria-label={`Select ${c.name} color`}
+                  >
+                    <div
+                      className="w-5 h-5 rounded-full border border-white/40 shadow-inner overflow-hidden relative flex items-center justify-center"
+                      style={{
+                        background:
+                          c.swatchGradient ||
+                          `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
+                      }}
+                    >
+                      {c.swatchImg && (
+                        <img
+                          src={c.swatchImg}
+                          alt={c.name}
+                          className="w-full h-full object-cover select-none pointer-events-none"
+                        />
+                      )}
+                    </div>
+                    {isSelected && (
+                      <span
+                        className="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-black"
+                        style={{ backgroundColor: c.accentColor || '#00F0FF' }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
 
-            <button
-              onClick={() => {
-                setActiveTab('windtunnel');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'windtunnel'
-                  ? 'bg-[#00F0FF] text-black shadow-[0_0_20px_rgba(0,240,255,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Wind className="w-3.5 h-3.5" />
-              <span>CFD WIND TUNNEL</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setActiveTab('xray');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'xray'
-                  ? 'bg-[#FF5E0E] text-black shadow-[0_0_20px_rgba(255,94,14,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>TORAYCA® R&D</span>
-            </button>
-
-            <button
-              onClick={() => {
-                setActiveTab('telemetry');
-                sfx.playClick();
-              }}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-300 ${
-                activeTab === 'telemetry'
-                  ? 'bg-[#D4FF00] text-black shadow-[0_0_20px_rgba(212,255,0,0.5)] scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              <Gauge className="w-3.5 h-3.5" />
-              <span>TELEMETRY HUD</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Camera Focal View Presets */}
-        <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-2xl shadow-xl overflow-x-auto max-w-full pointer-events-auto">
-          {CAMERA_VIEWS.map((cam) => (
-            <button
-              key={cam.id}
-              onClick={() => setCameraPreset(cam.id)}
-              className={`px-3 py-1 rounded-full text-[10.5px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 ${
-                activeCameraView === cam.id
-                  ? 'bg-white text-black font-bold shadow-md scale-105'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              {cam.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Swatches & Studio Atmosphere Selector */}
-        <div className="flex flex-wrap items-center justify-between gap-4 w-full max-w-5xl px-2 pointer-events-auto">
-          {/* Studio Lighting Mood Switcher */}
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden lg:inline">
-              ATMOSPHERE:
-            </span>
+            {/* Atmosphere Mood Buttons */}
             <div className="flex items-center gap-1 p-1 rounded-full bg-black/60 border border-white/10">
               {STUDIO_LIGHTING_MODES.map((light) => (
                 <button
@@ -1079,7 +1481,7 @@ export const DogmaBike3D = ({
                     setActiveLighting(light);
                     sfx.playClick();
                   }}
-                  className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono transition-all ${
+                  className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono transition-all cursor-pointer ${
                     activeLighting.id === light.id
                       ? 'bg-white/20 text-white font-bold'
                       : 'text-zinc-500 hover:text-zinc-300'
@@ -1091,61 +1493,9 @@ export const DogmaBike3D = ({
               ))}
             </div>
           </div>
-
-          {/* Colorway Swatches */}
-          <div className="flex items-center gap-2 sm:gap-2.5 p-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-2xl shadow-xl overflow-x-auto">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 hidden sm:inline px-2">
-              FINISH:
-            </span>
-            {COLORWAYS.map((c) => {
-              const isSelected = selectedColor.id === c.id;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => handleSelectColorway(c)}
-                  onMouseEnter={() => sfx.playHover()}
-                  className={`relative group flex items-center justify-center p-0.5 rounded-full transition-all duration-300 shrink-0 ${
-                    isSelected
-                      ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(255,255,255,0.5)]'
-                      : 'opacity-65 hover:opacity-100 hover:scale-110'
-                  }`}
-                  title={`${c.name} — ${c.edition}`}
-                >
-                  <div
-                    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-white/40 shadow-inner overflow-hidden relative flex items-center justify-center"
-                    style={{
-                      background:
-                        c.swatchGradient ||
-                        `linear-gradient(135deg, ${c.primaryColor} 0%, ${c.accentColor} 50%, ${c.rearColor} 100%)`,
-                    }}
-                  >
-                    {c.swatchImg && (
-                      <img
-                        src={c.swatchImg}
-                        alt={c.name}
-                        className="w-full h-full object-cover select-none pointer-events-none"
-                      />
-                    )}
-                  </div>
-                  {isSelected && (
-                    <span
-                      className="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-black"
-                      style={{ backgroundColor: c.accentColor || '#00F0FF' }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Stage Controls & Guidance */}
-          <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-[0.2em] flex items-center gap-3">
-            <span>DRAG 360° ORBIT</span>
-            <span>•</span>
-            <span>TAP HOTSPOTS</span>
-          </div>
         </div>
       </div>
     </div>
   );
 };
+
