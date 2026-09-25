@@ -142,13 +142,13 @@ export const COLORWAYS = [
 ];
 
 export const CAMERA_VIEWS = [
-  { id: 'hero', label: '3/4 Hero Profile', yaw: 18, pitch: 3, zoom: 1.02, focusX: 50, focusY: 50 },
-  { id: 'side', label: 'True Side View', yaw: 0, pitch: 0, zoom: 1.0, focusX: 50, focusY: 50 },
-  { id: 'onda', label: 'Onda Fork & Flap™', yaw: 24, pitch: -3, zoom: 1.6, focusX: 72, focusY: 62 },
-  { id: 'cockpit', label: 'MOST Talon Fast', yaw: 22, pitch: 8, zoom: 1.7, focusX: 65, focusY: 30 },
-  { id: 'keel', label: 'Aero-Keel 3.5° BB', yaw: 12, pitch: -6, zoom: 1.65, focusX: 47, focusY: 64 },
-  { id: 'duraace', label: 'Dura-Ace Di2 12S', yaw: 6, pitch: -4, zoom: 1.6, focusX: 43, focusY: 66 },
-  { id: 'rear', label: 'Asymmetric Stays', yaw: -22, pitch: 5, zoom: 1.5, focusX: 28, focusY: 52 },
+  { id: 'hero', label: '3/4 Hero Profile', shortLabel: '3/4 Hero', yaw: 18, pitch: 3, zoom: 1.02, focusX: 50, focusY: 50 },
+  { id: 'side', label: 'True Side View', shortLabel: 'Side', yaw: 0, pitch: 0, zoom: 1.0, focusX: 50, focusY: 50 },
+  { id: 'onda', label: 'Onda Fork & Flap™', shortLabel: 'Onda', yaw: 24, pitch: -3, zoom: 1.6, focusX: 72, focusY: 62 },
+  { id: 'cockpit', label: 'MOST Talon Fast', shortLabel: 'Cockpit', yaw: 22, pitch: 8, zoom: 1.7, focusX: 65, focusY: 30 },
+  { id: 'keel', label: 'Aero-Keel 3.5° BB', shortLabel: 'Keel BB', yaw: 12, pitch: -6, zoom: 1.65, focusX: 47, focusY: 64 },
+  { id: 'duraace', label: 'Dura-Ace Di2 12S', shortLabel: 'Di2', yaw: 6, pitch: -4, zoom: 1.6, focusX: 43, focusY: 66 },
+  { id: 'rear', label: 'Asymmetric Stays', shortLabel: 'Stays', yaw: -22, pitch: 5, zoom: 1.5, focusX: 28, focusY: 52 },
 ];
 
 export const HOTSPOTS = [
@@ -1149,17 +1149,17 @@ export const DogmaBike3D = ({
       {/* ============================================================ */}
       {/* 2. MOBILE-ONLY LUXURY CONTROL DECK (Placed OUTSIDE 3D Box)   */}
       {/* ============================================================ */}
-      <div className="block md:hidden w-full space-y-3 pointer-events-auto">
+      <div className="block md:hidden w-full space-y-2 pointer-events-auto">
         {/* Mobile Active Mode Details Panel */}
         {activeTab === 'windtunnel' && (
-          <div className="p-4 rounded-2xl bg-black/90 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <div className="flex items-center gap-2 text-[#00F0FF] font-mono text-xs font-bold uppercase">
-                <Wind className="w-4 h-4" />
+          <div className="p-3 rounded-xl bg-black/90 border border-[#00F0FF]/30 backdrop-blur-2xl shadow-xl space-y-2.5 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+              <div className="flex items-center gap-1.5 text-[#00F0FF] font-mono text-[11px] font-bold uppercase">
+                <Wind className="w-3.5 h-3.5" />
                 <span>CFD Aero Dynamics</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
+                <span className="text-[9px] font-mono text-zinc-400">40 KM/H AIRFLOW</span>
                 <button
                   onClick={() => setActiveTab('360')}
                   className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
@@ -1169,24 +1169,24 @@ export const DogmaBike3D = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[9px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
-                <div className="font-display text-lg font-black text-white mt-0.5">
-                  {dynamicCdA} <span className="text-xs font-mono text-[#00F0FF]">CdA</span>
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                <div className="text-[8.5px] font-mono text-zinc-400 uppercase">DRAG COEFFICIENT</div>
+                <div className="font-display text-base font-black text-white mt-0.5">
+                  {dynamicCdA} <span className="text-[10px] font-mono text-[#00F0FF]">CdA</span>
                 </div>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-[9px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
-                <div className="font-display text-lg font-black text-[#D4FF00] mt-0.5">
-                  -{dynamicWattSaved} <span className="text-xs font-mono">W</span>
+              <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+                <div className="text-[8.5px] font-mono text-zinc-400 uppercase">WATT SAVINGS</div>
+                <div className="font-display text-base font-black text-[#D4FF00] mt-0.5">
+                  -{dynamicWattSaved} <span className="text-[10px] font-mono">W</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className="flex justify-between text-[10px] font-mono text-zinc-300 mb-1">
+              <div className="flex justify-between text-[9px] font-mono text-zinc-300 mb-0.5">
                 <span>WIND YAW ANGLE</span>
                 <span className="text-[#00F0FF] font-bold">{aeroYawSlider}°</span>
               </div>
@@ -1200,9 +1200,9 @@ export const DogmaBike3D = ({
                   setAeroYawSlider(Number(e.target.value));
                   sfx.playHover();
                 }}
-                className="w-full accent-[#00F0FF] cursor-pointer"
+                className="w-full accent-[#00F0FF] cursor-pointer h-1"
               />
-              <div className="flex justify-between text-[8.5px] font-mono text-zinc-500 mt-1">
+              <div className="flex justify-between text-[7.5px] font-mono text-zinc-500 mt-0.5">
                 <span>-20° PORT</span>
                 <span>0° HEADWIND</span>
                 <span>+20° STARBOARD</span>
@@ -1214,27 +1214,27 @@ export const DogmaBike3D = ({
                 setIsHeatmapOn(!isHeatmapOn);
                 sfx.playClick();
               }}
-              className={`w-full py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`w-full py-1.5 rounded-lg text-[10px] font-mono font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 isHeatmapOn
-                  ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_#00F0FF]'
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_12px_#00F0FF]'
                   : 'bg-white/10 text-white hover:bg-white/20'
               }`}
             >
-              <Eye className="w-3.5 h-3.5" />
-              <span>{isHeatmapOn ? 'PRESSURE SPECTRUM: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
+              <Eye className="w-3 h-3" />
+              <span>{isHeatmapOn ? 'HEATMAP: ACTIVE' : 'TOGGLE AERO HEATMAP'}</span>
             </button>
           </div>
         )}
 
         {activeTab === 'xray' && (
-          <div className="p-4 rounded-2xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <div className="flex items-center gap-2 text-[#FF5E0E] font-mono text-xs font-bold uppercase">
-                <Layers className="w-4 h-4" />
-                <span>TorayCa® Anatomical X-Ray</span>
+          <div className="p-3 rounded-xl bg-black/90 border border-[#FF5E0E]/40 backdrop-blur-2xl shadow-xl space-y-2.5 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+              <div className="flex items-center gap-1.5 text-[#FF5E0E] font-mono text-[11px] font-bold uppercase">
+                <Layers className="w-3.5 h-3.5" />
+                <span>TorayCa® X-Ray</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
+                <span className="text-[9px] font-mono text-zinc-400">LAYER 0{selectedExplodedLayer + 1}/04</span>
                 <button
                   onClick={() => setActiveTab('360')}
                   className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
@@ -1244,7 +1244,7 @@ export const DogmaBike3D = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-1.5">
+            <div className="grid grid-cols-2 gap-1">
               {EXPLODED_LAYERS.map((layer, idx) => (
                 <button
                   key={layer.id}
@@ -1252,9 +1252,9 @@ export const DogmaBike3D = ({
                     setSelectedExplodedLayer(idx);
                     sfx.playClick();
                   }}
-                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-mono font-bold text-left transition-all cursor-pointer ${
+                  className={`px-2 py-1 rounded-md text-[9px] font-mono font-bold text-left transition-all cursor-pointer ${
                     selectedExplodedLayer === idx
-                      ? 'bg-[#FF5E0E] text-black shadow-md'
+                      ? 'bg-[#FF5E0E] text-black shadow-sm'
                       : 'bg-white/5 text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -1263,17 +1263,17 @@ export const DogmaBike3D = ({
               ))}
             </div>
 
-            <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5">
-              <div className="font-display text-xs font-black uppercase text-white tracking-wider">
+            <div className="p-2 rounded-lg bg-white/[0.04] border border-white/10 space-y-0.5">
+              <div className="font-display text-[11px] font-black uppercase text-white tracking-wider">
                 {EXPLODED_LAYERS[selectedExplodedLayer].name}
               </div>
-              <div className="font-mono text-[10px] text-[#FF5E0E] font-semibold">
+              <div className="font-mono text-[9px] text-[#FF5E0E] font-semibold">
                 {EXPLODED_LAYERS[selectedExplodedLayer].subtitle}
               </div>
-              <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
+              <p className="text-[10px] text-zinc-300 font-sans leading-relaxed line-clamp-2">
                 {EXPLODED_LAYERS[selectedExplodedLayer].desc}
               </p>
-              <div className="pt-1.5 border-t border-white/10 text-[10px] font-mono text-[#D4FF00] font-bold">
+              <div className="pt-1 border-t border-white/10 text-[9px] font-mono text-[#D4FF00] font-bold">
                 {EXPLODED_LAYERS[selectedExplodedLayer].stat}
               </div>
             </div>
@@ -1281,14 +1281,14 @@ export const DogmaBike3D = ({
         )}
 
         {activeTab === 'telemetry' && (
-          <div className="p-4 rounded-2xl bg-black/90 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-xl space-y-3 animate-fadeIn">
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <div className="flex items-center gap-2 text-[#D4FF00] font-mono text-xs font-bold uppercase">
-                <Gauge className="w-4 h-4" />
+          <div className="p-3 rounded-xl bg-black/90 border border-[#D4FF00]/30 backdrop-blur-2xl shadow-xl space-y-2 animate-fadeIn">
+            <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
+              <div className="flex items-center gap-1.5 text-[#D4FF00] font-mono text-[11px] font-bold uppercase">
+                <Gauge className="w-3.5 h-3.5" />
                 <span>Chassis Telemetry</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono text-zinc-400 animate-pulse">LIVE SENSORS</span>
+                <span className="text-[9px] font-mono text-zinc-400 animate-pulse">LIVE SENSORS</span>
                 <button
                   onClick={() => setActiveTab('360')}
                   className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
@@ -1298,40 +1298,40 @@ export const DogmaBike3D = ({
               </div>
             </div>
 
-            <div className="space-y-2 font-mono text-xs">
+            <div className="space-y-1.5 font-mono text-xs">
               <div>
-                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                  <span>POWER TRANSFER EFFICIENCY</span>
+                <div className="flex justify-between text-[9px] text-zinc-400 mb-0.5">
+                  <span>POWER TRANSFER</span>
                   <span className="text-white font-bold">99.4%</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div className="h-1 rounded-full bg-white/10 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#D4FF00] w-[99.4%]" />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                  <span>LATERAL CHASSIS STIFFNESS</span>
+                <div className="flex justify-between text-[9px] text-zinc-400 mb-0.5">
+                  <span>LATERAL STIFFNESS</span>
                   <span className="text-[#D4FF00] font-bold">392 GPa</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div className="h-1 rounded-full bg-white/10 overflow-hidden">
                   <div className="h-full bg-[#D4FF00] w-[94%]" />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between text-[10px] text-zinc-400 mb-1">
-                  <span>WEIGHT DISTRIBUTION (F/R)</span>
+                <div className="flex justify-between text-[9px] text-zinc-400 mb-0.5">
+                  <span>WEIGHT (F/R)</span>
                   <span className="text-[#00F0FF] font-bold">48% : 52%</span>
                 </div>
-                <div className="h-1.5 rounded-full bg-white/10 overflow-hidden flex">
+                <div className="h-1 rounded-full bg-white/10 overflow-hidden flex">
                   <div className="h-full bg-[#00F0FF] w-[48%]" />
                   <div className="h-full bg-[#FF5E0E] w-[52%]" />
                 </div>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+            <div className="pt-1.5 border-t border-white/10 flex items-center justify-between text-[8.5px] font-mono text-zinc-400">
               <span>WEIGHT: 865g FRAME</span>
               <span className="text-white font-bold">TOTAL: 6.77 KG</span>
             </div>
@@ -1339,96 +1339,92 @@ export const DogmaBike3D = ({
         )}
 
         {/* Main Mobile Controls Card */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-white/[0.06] via-[#0e121b]/95 to-[#080b11]/98 border border-white/[0.12] backdrop-blur-3xl shadow-xl flex flex-col gap-3">
-          {/* Row 1: Mode Switcher Tabs */}
-          <div className="w-full flex items-center justify-start xs:justify-center overflow-x-auto no-scrollbar py-0.5">
-            <div className="flex items-center gap-1 p-1 rounded-full bg-black/85 border border-white/15 backdrop-blur-2xl shadow-md shrink-0">
-              <button
-                onClick={() => {
-                  setActiveTab('360');
-                  sfx.playClick();
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-                  activeTab === '360'
-                    ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.4)] scale-105'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>360°</span>
-              </button>
+        <div className="p-2.5 xs:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/[0.06] via-[#0e121b]/95 to-[#080b11]/98 border border-white/[0.12] backdrop-blur-3xl shadow-xl flex flex-col gap-2">
+          {/* Row 1: Mode Switcher Tabs (4 equal columns, fits 100% width on any phone, zero scroll) */}
+          <div className="grid grid-cols-4 w-full gap-1 p-0.5 rounded-full bg-black/85 border border-white/15 backdrop-blur-2xl shadow-sm">
+            <button
+              onClick={() => {
+                setActiveTab('360');
+                sfx.playClick();
+              }}
+              className={`flex items-center justify-center gap-1 py-1 px-1 rounded-full text-[9px] xs:text-[10px] font-mono font-bold tracking-tight transition-all duration-300 cursor-pointer ${
+                activeTab === '360'
+                  ? 'bg-white text-black shadow-[0_0_10px_rgba(255,255,255,0.4)] scale-[1.02]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <RotateCcw className="w-2.5 h-2.5 xs:w-3 xs:h-3 shrink-0" />
+              <span>360°</span>
+            </button>
 
-              <button
-                onClick={() => {
-                  setActiveTab('windtunnel');
-                  sfx.playClick();
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-                  activeTab === 'windtunnel'
-                    ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_rgba(0,240,255,0.5)] scale-105'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Wind className="w-3.5 h-3.5" />
-                <span>CFD AERO</span>
-              </button>
+            <button
+              onClick={() => {
+                setActiveTab('windtunnel');
+                sfx.playClick();
+              }}
+              className={`flex items-center justify-center gap-1 py-1 px-1 rounded-full text-[9px] xs:text-[10px] font-mono font-bold tracking-tight transition-all duration-300 cursor-pointer ${
+                activeTab === 'windtunnel'
+                  ? 'bg-[#00F0FF] text-black shadow-[0_0_10px_rgba(0,240,255,0.5)] scale-[1.02]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Wind className="w-2.5 h-2.5 xs:w-3 xs:h-3 shrink-0" />
+              <span>AERO</span>
+            </button>
 
-              <button
-                onClick={() => {
-                  setActiveTab('xray');
-                  sfx.playClick();
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-                  activeTab === 'xray'
-                    ? 'bg-[#FF5E0E] text-black shadow-[0_0_15px_rgba(255,94,14,0.5)] scale-105'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>TORAYCA®</span>
-              </button>
+            <button
+              onClick={() => {
+                setActiveTab('xray');
+                sfx.playClick();
+              }}
+              className={`flex items-center justify-center gap-1 py-1 px-1 rounded-full text-[9px] xs:text-[10px] font-mono font-bold tracking-tight transition-all duration-300 cursor-pointer ${
+                activeTab === 'xray'
+                  ? 'bg-[#FF5E0E] text-black shadow-[0_0_10px_rgba(255,94,14,0.5)] scale-[1.02]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Layers className="w-2.5 h-2.5 xs:w-3 xs:h-3 shrink-0" />
+              <span>X-RAY</span>
+            </button>
 
-              <button
-                onClick={() => {
-                  setActiveTab('telemetry');
-                  sfx.playClick();
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-                  activeTab === 'telemetry'
-                    ? 'bg-[#D4FF00] text-black shadow-[0_0_15px_rgba(212,255,0,0.5)] scale-105'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Gauge className="w-3.5 h-3.5" />
-                <span>TELEMETRY</span>
-              </button>
-            </div>
+            <button
+              onClick={() => {
+                setActiveTab('telemetry');
+                sfx.playClick();
+              }}
+              className={`flex items-center justify-center gap-1 py-1 px-1 rounded-full text-[9px] xs:text-[10px] font-mono font-bold tracking-tight transition-all duration-300 cursor-pointer ${
+                activeTab === 'telemetry'
+                  ? 'bg-[#D4FF00] text-black shadow-[0_0_10px_rgba(212,255,0,0.5)] scale-[1.02]'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Gauge className="w-2.5 h-2.5 xs:w-3 xs:h-3 shrink-0" />
+              <span>HUD</span>
+            </button>
           </div>
 
-          {/* Row 2: Camera Angles Preset Chips */}
-          <div className="w-full flex items-center justify-start xs:justify-center overflow-x-auto no-scrollbar py-0.5">
-            <div className="flex items-center gap-1 p-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-2xl shrink-0">
-              {CAMERA_VIEWS.map((cam) => (
-                <button
-                  key={cam.id}
-                  onClick={() => setCameraPreset(cam.id)}
-                  className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
-                    activeCameraView === cam.id
-                      ? 'bg-white text-black font-bold shadow-md scale-105'
-                      : 'text-zinc-400 hover:text-white'
-                  }`}
-                >
-                  {cam.label}
-                </button>
-              ))}
-            </div>
+          {/* Row 2: Camera Angles Preset Chips (Flex-wrap, fits cleanly without horizontal scroll) */}
+          <div className="flex flex-wrap items-center justify-center gap-1 w-full py-0.5">
+            {CAMERA_VIEWS.map((cam) => (
+              <button
+                key={cam.id}
+                onClick={() => setCameraPreset(cam.id)}
+                className={`px-2 py-0.5 rounded-full text-[8.5px] xs:text-[9.5px] font-mono font-semibold tracking-tight transition-all duration-300 shrink-0 cursor-pointer ${
+                  activeCameraView === cam.id
+                    ? 'bg-white text-black font-bold shadow-sm scale-105'
+                    : 'bg-black/60 text-zinc-400 hover:text-white border border-white/10'
+                }`}
+              >
+                {cam.shortLabel || cam.label}
+              </button>
+            ))}
           </div>
 
           {/* Row 3: Colorway Finish Swatches & Lighting Atmosphere */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 pt-1 border-t border-white/10">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1.5 border-t border-white/10 w-full">
             {/* Swatches */}
-            <div className="flex items-center gap-2 p-1.5 rounded-full bg-black/80 border border-white/15 overflow-x-auto no-scrollbar max-w-full justify-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 px-1 font-bold">
+            <div className="flex items-center justify-center gap-1 xs:gap-1.5 p-1 rounded-full bg-black/80 border border-white/15">
+              <span className="font-mono text-[8.5px] xs:text-[9px] uppercase tracking-wider text-zinc-400 px-1 font-bold">
                 FINISH:
               </span>
               {COLORWAYS.map((c) => {
@@ -1439,14 +1435,14 @@ export const DogmaBike3D = ({
                     onClick={() => handleSelectColorway(c)}
                     className={`relative flex items-center justify-center p-0.5 rounded-full transition-all duration-300 shrink-0 cursor-pointer ${
                       isSelected
-                        ? 'scale-125 ring-2 ring-white ring-offset-2 ring-offset-black shadow-[0_0_15px_rgba(255,255,255,0.5)]'
+                        ? 'scale-125 ring-1.5 ring-white ring-offset-1 ring-offset-black shadow-[0_0_10px_rgba(255,255,255,0.5)]'
                         : 'opacity-65 hover:opacity-100 hover:scale-110'
                     }`}
                     title={`${c.name} — ${c.edition}`}
                     aria-label={`Select ${c.name} color`}
                   >
                     <div
-                      className="w-5 h-5 rounded-full border border-white/40 shadow-inner overflow-hidden relative flex items-center justify-center"
+                      className="w-4 h-4 xs:w-4.5 xs:h-4.5 rounded-full border border-white/40 shadow-inner overflow-hidden relative flex items-center justify-center"
                       style={{
                         background:
                           c.swatchGradient ||
@@ -1463,7 +1459,7 @@ export const DogmaBike3D = ({
                     </div>
                     {isSelected && (
                       <span
-                        className="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2 border-black"
+                        className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full border border-black"
                         style={{ backgroundColor: c.accentColor || '#00F0FF' }}
                       />
                     )}
@@ -1473,7 +1469,7 @@ export const DogmaBike3D = ({
             </div>
 
             {/* Atmosphere Mood Buttons */}
-            <div className="flex items-center gap-1 p-1 rounded-full bg-black/60 border border-white/10">
+            <div className="flex items-center justify-center gap-0.5 xs:gap-1 p-0.5 rounded-full bg-black/60 border border-white/10">
               {STUDIO_LIGHTING_MODES.map((light) => (
                 <button
                   key={light.id}
@@ -1481,7 +1477,7 @@ export const DogmaBike3D = ({
                     setActiveLighting(light);
                     sfx.playClick();
                   }}
-                  className={`px-2.5 py-1 rounded-full text-[9.5px] font-mono transition-all cursor-pointer ${
+                  className={`px-1.5 xs:px-2 py-0.5 rounded-full text-[8px] xs:text-[8.5px] font-mono transition-all cursor-pointer ${
                     activeLighting.id === light.id
                       ? 'bg-white/20 text-white font-bold'
                       : 'text-zinc-500 hover:text-zinc-300'
