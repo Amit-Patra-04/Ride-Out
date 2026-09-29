@@ -598,7 +598,7 @@ export const DogmaBike3D = ({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className={`relative w-full select-none overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.14] bg-gradient-to-b from-[#0b0e17]/98 via-[#06080e]/98 to-[#020305] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-3xl h-[340px] xs:h-[380px] sm:h-[460px] md:h-[680px] lg:h-[800px] flex flex-col justify-between cursor-grab active:cursor-grabbing ${
+        className={`relative w-full overflow-hidden rounded-2xl md:rounded-3xl border border-white/[0.14] bg-gradient-to-b from-[#0b0e17]/98 via-[#06080e]/98 to-[#020305] shadow-[0_35px_90px_-15px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-3xl h-[340px] xs:h-[380px] sm:h-[460px] md:h-[680px] lg:h-[800px] flex flex-col justify-between cursor-grab active:cursor-grabbing ${
           isFullscreen ? 'fixed inset-0 z-50 rounded-none h-screen min-h-screen' : ''
         }`}
       >

@@ -224,7 +224,7 @@ export const DogmaEditorialGallery = () => {
         <div className="block md:hidden relative z-10 space-y-3.5">
           {/* Main Hero Photo Container with Direction-Aware Swipe Gestures */}
           <div
-            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none group touch-pan-y"
+            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -400,7 +400,7 @@ export const DogmaEditorialGallery = () => {
       {/* ============================================================ */}
       {isLightboxOpen && mounted && createPortal(
         <div
-          className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-5 md:p-6 bg-black/90 backdrop-blur-2xl backdrop-saturate-150 animate-fadeIn select-none"
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-5 md:p-6 bg-black/90 backdrop-blur-2xl backdrop-saturate-150 animate-fadeIn"
           onClick={() => {
             sfx.playClick();
             setIsLightboxOpen(false);

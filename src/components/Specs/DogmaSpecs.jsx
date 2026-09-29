@@ -892,7 +892,7 @@ export const DogmaSpecs = () => {
       {/* FULLSCREEN BLUEPRINT TECHNICAL INSPECTION MODAL */}
       {/* ========================================================================= */}
       {selectedCompModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-2xl animate-fade-in select-none">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-2xl animate-fade-in">
           {/* Backdrop Click Close */}
           <div
             className="absolute inset-0 cursor-pointer"

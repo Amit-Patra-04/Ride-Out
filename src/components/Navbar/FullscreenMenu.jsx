@@ -227,7 +227,7 @@ export const FullscreenMenu = ({ isOpen, onClose }) => {
     <div
       ref={overlayRef}
       onMouseMove={handleMenuMouseMove}
-      className="fixed inset-0 z-[100] hidden overflow-hidden select-none"
+      className="fixed inset-0 z-[100] hidden overflow-hidden"
     >
       {/* SVG Morphing Canvas */}
       <svg

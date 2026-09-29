@@ -175,7 +175,7 @@ export const DogmaBlueprintCAD = ({ geom, className = '' }) => {
   const frontSinusoidalRimPath = generateSinusoidalRim(frontAxleX, frontAxleY, rimOuterRadius, rimInnerRadius);
 
   const renderBlueprintContent = (isModal = false) => (
-    <div className="relative w-full h-full flex flex-col justify-between bg-[#050811] select-none">
+    <div className="relative w-full h-full flex flex-col justify-between bg-[#050811]">
       {/* --- BLUEPRINT CAD CYAN TECHNICAL GRID BACKGROUND --- */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,240,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,240,255,0.05)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,240,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,240,255,0.1)_1px,transparent_1px)] bg-[size:120px_120px] pointer-events-none" />
@@ -976,14 +976,14 @@ export const DogmaBlueprintCAD = ({ geom, className = '' }) => {
   return (
     <>
       <div
-        className={`relative w-full rounded-2xl bg-[#050811] border border-cyan-500/25 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.85)] select-none ${className}`}
+        className={`relative w-full rounded-2xl bg-[#050811] border border-cyan-500/25 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.85)] ${className}`}
       >
         {renderBlueprintContent(false)}
       </div>
 
       {/* Fullscreen Blueprint CAD Inspection Modal */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/92 backdrop-blur-2xl animate-fade-in select-none">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/92 backdrop-blur-2xl animate-fade-in">
           <div className="relative w-full max-w-6xl max-h-[92vh] flex flex-col rounded-3xl bg-[#050811] border border-cyan-500/40 shadow-[0_0_80px_rgba(0,240,255,0.3)] overflow-hidden">
             <button
               onClick={() => setIsFullscreen(false)}

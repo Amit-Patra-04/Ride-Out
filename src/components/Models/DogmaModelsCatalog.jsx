@@ -856,7 +856,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 key={model.id}
                 onClick={() => handleSelectModel(idx)}
                 onMouseEnter={() => sfx.playHover()}
-                className={`relative text-left p-4 sm:p-5 rounded-2xl transition-all duration-300 group overflow-hidden border backdrop-blur-xl ${
+                className={`relative text-left p-4 sm:p-5 rounded-2xl transition-all duration-300 group overflow-hidden border backdrop-blur-xl cursor-pointer ${
                   isSelected
                     ? 'bg-gradient-to-b from-white/[0.12] via-white/[0.06] to-transparent border-white/35 shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_25px_rgba(255,255,255,0.12)] scale-[1.02]'
                     : 'bg-white/[0.02] border-white/8 hover:bg-white/[0.05] hover:border-white/20'
@@ -899,16 +899,16 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
 
                 {/* Bottom: Price & Badge */}
                 <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <div>
-                    <span className="font-mono text-xs sm:text-sm font-black text-white block">
+                  <div className="text-center sm:text-left flex-1">
+                    <span className="font-mono text-xs sm:text-sm font-black text-white block text-center sm:text-left">
                       {model.priceEur}
                     </span>
-                    <span className="font-mono text-[9px] text-zinc-400 block">
+                    <span className="font-mono text-[9px] text-zinc-400 block text-center sm:text-left">
                       {model.weight}
                     </span>
                   </div>
                   <span
-                    className="w-2 h-2 rounded-full transition-all duration-300"
+                    className="w-2 h-2 rounded-full transition-all duration-300 shrink-0"
                     style={{
                       backgroundColor: isSelected ? '#00F0FF' : 'rgba(255,255,255,0.2)',
                       transform: isSelected ? 'scale(1.4)' : 'scale(1)',
@@ -927,8 +927,8 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
           {/* Top Floating Stage HUD Status */}
-          <div className="relative z-20 flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
-            <div className="flex flex-wrap items-center gap-3">
+          <div className="relative z-20 flex flex-wrap items-center justify-center sm:justify-between gap-4 pb-6 border-b border-white/10">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
               <span
                 className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10.5px] font-mono font-bold tracking-widest uppercase border shadow-md"
                 style={{
@@ -941,7 +941,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 {currentModel.badge}
               </span>
 
-              <span className="font-mono text-xs text-zinc-400 hidden sm:inline">
+              <span className="font-mono text-xs text-zinc-400">
                 FINISH CODE: <strong className="text-white font-bold">{currentModel.finishCode}</strong>
               </span>
             </div>
@@ -953,7 +953,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                   setActiveTab('specs');
                   sfx.playClick();
                 }}
-                className={`px-4 py-2 rounded-xl transition-all duration-200 font-bold ${
+                className={`px-4 py-2 rounded-xl transition-all duration-200 font-bold cursor-pointer ${
                   activeTab === 'specs'
                     ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]'
                     : 'text-zinc-400 hover:text-white'
@@ -966,7 +966,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                   setActiveTab('telemetry');
                   sfx.playClick();
                 }}
-                className={`px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 font-bold ${
+                className={`px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 font-bold cursor-pointer ${
                   activeTab === 'telemetry'
                     ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                     : 'text-zinc-400 hover:text-white'
@@ -986,7 +986,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="lg:col-span-7 relative flex flex-col items-center justify-center min-h-[380px] sm:min-h-[480px] cursor-crosshair select-none"
+              className="lg:col-span-7 relative flex flex-col items-center justify-center min-h-[380px] sm:min-h-[480px] cursor-crosshair"
               style={{ perspective: 1200 }}
             >
               {/* Dynamic Multi-Layer Backlight Aura */}
@@ -1055,7 +1055,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                           sfx.playClick();
                         }}
                         onMouseEnter={() => sfx.playHover()}
-                        className={`relative group flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full border backdrop-blur-md transition-all duration-300 ${
+                        className={`relative group flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full border backdrop-blur-md transition-all duration-300 cursor-pointer ${
                           isActive
                             ? 'bg-[#00F0FF] text-black border-white scale-125 shadow-[0_0_20px_#00F0FF]'
                             : 'bg-black/75 text-white border-white/35 hover:border-white hover:scale-115 hover:bg-black/95 shadow-xl'
@@ -1107,7 +1107,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                         key={cIdx}
                         onClick={() => handleSelectColorway(cIdx)}
                         onMouseEnter={() => sfx.playHover()}
-                        className={`relative group w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center shrink-0 ${
+                        className={`relative group w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer ${
                           isSelected
                             ? 'scale-125 border-white ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(0,240,255,0.6)] z-10'
                             : 'border-white/25 opacity-75 hover:opacity-100 hover:scale-115 hover:border-white/60'
@@ -1140,18 +1140,18 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
             {/* --- RIGHT: SPECIFICATIONS MATRIX & TELEMETRY DECK (5 COLS) --- */}
             <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
               {/* Title & Tagline */}
-              <div>
-                <div className="flex items-center gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest mb-1.5">
+              <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
+                <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest mb-1.5">
                   <Compass className="w-3.5 h-3.5 text-[#00F0FF]" />
                   <span>SPECIFICATION DOSSIER</span>
                 </div>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white uppercase tracking-tight leading-tight">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white uppercase tracking-tight leading-tight text-center lg:text-left">
                   {currentModel.name}
                 </h3>
-                <p className="text-xs font-mono text-[#FF5E0E] uppercase tracking-widest mt-1.5 font-bold">
+                <p className="text-xs font-mono text-[#FF5E0E] uppercase tracking-widest mt-1.5 font-bold text-center lg:text-left">
                   {currentModel.tagline}
                 </p>
-                <p className="text-xs sm:text-sm text-zinc-300 font-sans mt-3 leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-zinc-300 font-sans mt-3 leading-relaxed font-light text-center lg:text-left">
                   {currentModel.description}
                 </p>
               </div>
@@ -1294,13 +1294,13 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 </div>
               )}
 
-              {/* Price & Action Terminal */}
+              {/* Price & Action Terminal (Centered on Phone View) */}
               <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-5">
-                <div>
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold">
+                <div className="text-center sm:text-left flex flex-col items-center sm:items-start w-full sm:w-auto">
+                  <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold text-center sm:text-left">
                     MSRP FACTORY DELIVERED
                   </div>
-                  <div className="font-display text-3xl sm:text-4xl font-black text-white flex items-baseline gap-2">
+                  <div className="font-display text-3xl sm:text-4xl font-black text-white flex items-baseline justify-center sm:justify-start gap-2">
                     <span>{currentModel.priceEur}</span>
                     <span className="text-xs font-mono text-zinc-400 font-normal">
                       / {currentModel.priceUsd}
@@ -1308,7 +1308,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-stretch gap-2.5">
+                <div className="flex flex-col sm:flex-row items-stretch gap-2.5 w-full sm:w-auto">
                   <a
                     href="#specifications"
                     onClick={() => sfx.playClick()}

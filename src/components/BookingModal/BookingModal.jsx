@@ -76,7 +76,7 @@ export const BookingModal = ({ isOpen, onClose, initialData = {} }) => {
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6 select-none"
+      className="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6"
     >
       {/* Backdrop */}
       <div
