@@ -12,6 +12,7 @@ const DEFAULT_ITEMS = [
 const AccordionGallery = ({
   items = DEFAULT_ITEMS,
   defaultIndex = 2,
+  activeIndex,
   accentColor = '#ffffff',
   overlayColor = '#060010',
   textColor = '#ffffff',
@@ -42,7 +43,17 @@ const AccordionGallery = ({
 
   const vertical = orientation === 'vertical';
   const count = items.length;
-  const [active, setActive] = useState(Math.min(Math.max(defaultIndex, 0), count - 1));
+  const [active, setActive] = useState(
+    typeof activeIndex === 'number'
+      ? Math.min(Math.max(activeIndex, 0), count - 1)
+      : Math.min(Math.max(defaultIndex, 0), count - 1)
+  );
+
+  useEffect(() => {
+    if (typeof activeIndex === 'number' && activeIndex >= 0 && activeIndex < count) {
+      setActive(activeIndex);
+    }
+  }, [activeIndex, count]);
 
   const prefersReduced =
     typeof window !== 'undefined' && window.matchMedia
@@ -201,6 +212,7 @@ const AccordionGallery = ({
             style={{ borderRadius: `${radius}px`, '--ag-accent': accentColor, willChange: 'flex-grow, transform' }}
             href={item.link || undefined}
             onClick={e => handleClick(i, e)}
+            onPointerDown={() => setActive(i)}
             onMouseEnter={() => handleEnter(i)}
             onFocus={() => setActive(i)}
             onKeyDown={e => handleKeyDown(i, e)}

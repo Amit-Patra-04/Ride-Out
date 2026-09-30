@@ -699,6 +699,26 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
   const [isHoveringStage, setIsHoveringStage] = useState(false);
   const stageRef = useRef(null);
 
+  // Preload all bike images across models and colorways for zero-lag instant switching
+  useEffect(() => {
+    PINARELLO_MODELS.forEach((model) => {
+      if (model.mainImage) {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = model.mainImage;
+      }
+      if (model.colorways) {
+        model.colorways.forEach((c) => {
+          if (c.bikeImage) {
+            const img = new Image();
+            img.decoding = 'async';
+            img.src = c.bikeImage;
+          }
+        });
+      }
+    });
+  }, []);
+
   const currentModel = PINARELLO_MODELS[selectedModelIndex];
   const currentColorway =
     currentModel.colorways[selectedColorwayIndex] || currentModel.colorways[0];
@@ -1020,7 +1040,13 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
 
               {/* Main Interactive High-Res Cutout Image with Gyro Parallax */}
               <div
-                className="relative z-10 w-full flex items-center justify-center transition-transform duration-300 ease-out"
+                onClick={() => {
+                  if (currentModel.colorways && currentModel.colorways.length > 1) {
+                    sfx.playClick();
+                    setSelectedColorwayIndex((prev) => (prev + 1) % currentModel.colorways.length);
+                  }
+                }}
+                className="relative z-10 w-full flex items-center justify-center transition-transform duration-300 ease-out cursor-pointer"
                 style={{
                   transform: isHoveringStage
                     ? `rotateX(${-mousePos.y * 8}deg) rotateY(${mousePos.x * 12}deg) scale(1.03)`
@@ -1031,8 +1057,8 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 <img
                   src={currentColorway.bikeImage || currentModel.mainImage}
                   alt={`${currentModel.name} - ${currentColorway.name}`}
-                  key={`${currentModel.id}-${currentColorway.name}-${selectedColorwayIndex}`}
-                  className="w-full max-w-2xl object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.95)] filter brightness-105 contrast-105 transition-all duration-500"
+                  decoding="async"
+                  className="w-full max-w-2xl object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.92)] pointer-events-none transition-opacity duration-150 will-change-transform"
                   loading="eager"
                 />
 

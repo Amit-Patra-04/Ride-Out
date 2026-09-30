@@ -46,6 +46,7 @@ export const DogmaEditorialGallery = () => {
     setMounted(true);
     GALLERY_SLIDES.forEach((slide) => {
       const img = new Image();
+      img.decoding = 'async';
       img.src = slide.imageUrl;
     });
   }, []);
@@ -65,6 +66,23 @@ export const DogmaEditorialGallery = () => {
     sfx.playClick();
     setActiveSlideIndex(index);
   }, []);
+
+  // Tap left/right half on main photo container to switch image
+  const handleImageClick = useCallback(
+    (e) => {
+      if (e.target.closest('button')) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+
+      if (clickX < width * 0.45) {
+        goToPrevSlide();
+      } else {
+        goToNextSlide();
+      }
+    },
+    [goToPrevSlide, goToNextSlide]
+  );
 
   // Auto-scroll filmstrip so active thumbnail is centered smoothly
   useEffect(() => {
@@ -101,7 +119,7 @@ export const DogmaEditorialGallery = () => {
     const deltaY = (touchStartY.current || 0) - (touchEndY.current || 0);
 
     // Only fire horizontal slide change if horizontal swipe dominates vertical scroll
-    if (Math.abs(deltaX) > 35 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+    if (Math.abs(deltaX) > 30 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
       if (deltaX > 0) {
         goToNextSlide();
       } else {
@@ -168,7 +186,7 @@ export const DogmaEditorialGallery = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14 pb-5 sm:pb-8 border-b border-white/10 gap-5 sm:gap-8 text-center md:text-left items-center md:items-start">
           <div className="flex flex-col items-center md:items-start w-full">
             <div className="inline-flex items-center gap-1.5 sm:gap-3 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[9.5px] xs:text-[10.5px] sm:text-[11px] font-mono tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-3 sm:mb-4 backdrop-blur-md shadow-inner font-bold text-center">
-              <Camera className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#E4002B]" />
+              <Camera className="w-3 sm:w-3.5 h-3 sm:w-3.5 text-[#E4002B]" />
               <span>06 // EDITORIAL ARCHIVE // OFFICIAL DOGMA F ARCHIVE</span>
             </div>
             <h2 className="font-display font-black text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05] text-center md:text-left">
@@ -196,6 +214,7 @@ export const DogmaEditorialGallery = () => {
           <AccordionGallery
             items={ACCORDION_ITEMS}
             defaultIndex={0}
+            activeIndex={activeSlideIndex}
             expandRatio={0.52}
             trigger="hover"
             accentColor="#E4002B"
@@ -222,9 +241,10 @@ export const DogmaEditorialGallery = () => {
         {/* 2. MOBILE & TABLET VIEW: TOUCH-SWIPE EDITORIAL CAROUSEL (< md) */}
         {/* ============================================================ */}
         <div className="block md:hidden relative z-10 space-y-3.5">
-          {/* Main Hero Photo Container with Direction-Aware Swipe Gestures */}
+          {/* Main Hero Photo Container with Direction-Aware Swipe Gestures & Tap Navigation */}
           <div
-            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group touch-pan-y"
+            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group touch-pan-y cursor-pointer select-none"
+            onClick={handleImageClick}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -232,12 +252,8 @@ export const DogmaEditorialGallery = () => {
             <img
               src={currentSlide.imageUrl}
               alt={currentSlide.title}
-              key={currentSlide.id}
-              onClick={() => {
-                sfx.playClick();
-                setIsLightboxOpen(true);
-              }}
-              className="w-full h-full object-cover transition-all duration-500 animate-fadeIn cursor-pointer"
+              decoding="async"
+              className="w-full h-full object-cover pointer-events-none select-none transition-opacity duration-150 will-change-transform"
               draggable={false}
             />
 
@@ -255,17 +271,17 @@ export const DogmaEditorialGallery = () => {
             </div>
 
             {/* Floating Touch Arrow Controls */}
-            <div className="absolute inset-y-0 left-2 right-2 flex items-center justify-between pointer-events-none z-10">
+            <div className="absolute inset-y-0 left-2 right-2 flex items-center justify-between pointer-events-none z-20">
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   goToPrevSlide();
                 }}
-                className="p-2 xs:p-2.5 rounded-full bg-black/80 hover:bg-[#E4002B] text-white border border-white/30 backdrop-blur-md pointer-events-auto transition-all active:scale-90 shadow-xl cursor-pointer"
+                className="w-10 h-10 xs:w-11 xs:h-11 rounded-full bg-black/80 hover:bg-[#E4002B] active:bg-[#E4002B] text-white border border-white/30 backdrop-blur-md pointer-events-auto transition-all active:scale-90 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5 pointer-events-none" />
               </button>
               <button
                 type="button"
@@ -273,15 +289,15 @@ export const DogmaEditorialGallery = () => {
                   e.stopPropagation();
                   goToNextSlide();
                 }}
-                className="p-2 xs:p-2.5 rounded-full bg-black/80 hover:bg-[#E4002B] text-white border border-white/30 backdrop-blur-md pointer-events-auto transition-all active:scale-90 shadow-xl cursor-pointer"
+                className="w-10 h-10 xs:w-11 xs:h-11 rounded-full bg-black/80 hover:bg-[#E4002B] active:bg-[#E4002B] text-white border border-white/30 backdrop-blur-md pointer-events-auto transition-all active:scale-90 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
                 aria-label="Next image"
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-5 h-5 pointer-events-none" />
               </button>
             </div>
 
             {/* Bottom Tap to Fullscreen Button Overlay */}
-            <div className="absolute bottom-2.5 right-2.5 z-10">
+            <div className="absolute bottom-2.5 right-2.5 z-20">
               <button
                 type="button"
                 onClick={(e) => {
@@ -289,16 +305,16 @@ export const DogmaEditorialGallery = () => {
                   sfx.playClick();
                   setIsLightboxOpen(true);
                 }}
-                className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-[#E4002B] border border-white/30 text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 transition-all cursor-pointer shadow-lg active:scale-95"
+                className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-[#E4002B] active:bg-[#E4002B] border border-white/30 text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 transition-all cursor-pointer shadow-lg active:scale-95 touch-manipulation"
               >
-                <Maximize2 className="w-3 h-3 text-[#E4002B]" />
-                <span>INSPECT</span>
+                <Maximize2 className="w-3 h-3 text-[#E4002B] pointer-events-none" />
+                <span className="pointer-events-none">INSPECT</span>
               </button>
             </div>
           </div>
 
           {/* Interactive Slide Pagination Dots for Mobile */}
-          <div className="flex items-center justify-center gap-1.5 py-1">
+          <div className="flex items-center justify-center gap-1 py-1">
             {GALLERY_SLIDES.map((_, idx) => {
               const isActive = idx === activeSlideIndex;
               return (
@@ -306,13 +322,17 @@ export const DogmaEditorialGallery = () => {
                   key={idx}
                   type="button"
                   onClick={() => selectSlide(idx)}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    isActive
-                      ? 'w-6 h-1.5 bg-[#E4002B] shadow-[0_0_8px_#E4002B]'
-                      : 'w-1.5 h-1.5 bg-white/25 hover:bg-white/50'
-                  }`}
+                  className="p-2 -m-1 flex items-center justify-center cursor-pointer touch-manipulation"
                   aria-label={`Go to slide ${idx + 1}`}
-                />
+                >
+                  <span
+                    className={`transition-all duration-300 rounded-full block pointer-events-none ${
+                      isActive
+                        ? 'w-7 h-2 bg-[#E4002B] shadow-[0_0_10px_#E4002B]'
+                        : 'w-2 h-2 bg-white/30 hover:bg-white/60'
+                    }`}
+                  />
+                </button>
               );
             })}
           </div>
@@ -320,7 +340,7 @@ export const DogmaEditorialGallery = () => {
           {/* Horizontal Thumbnails Filmstrip with Auto-scroll */}
           <div
             ref={filmstripRef}
-            className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 no-scrollbar scroll-smooth w-full px-1"
+            className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 no-scrollbar scroll-smooth w-full px-1 touch-pan-x"
           >
             {GALLERY_SLIDES.map((slide, idx) => {
               const isActive = idx === activeSlideIndex;
@@ -330,9 +350,9 @@ export const DogmaEditorialGallery = () => {
                   ref={(el) => (thumbnailRefs.current[idx] = el)}
                   type="button"
                   onClick={() => selectSlide(idx)}
-                  className={`relative flex-shrink-0 w-16 h-11 xs:w-20 xs:h-13 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                  className={`relative flex-shrink-0 w-16 h-11 xs:w-20 xs:h-13 rounded-xl overflow-hidden border-2 transition-all cursor-pointer touch-manipulation active:scale-95 ${
                     isActive
-                      ? 'border-[#E4002B] scale-105 shadow-[0_0_12px_rgba(228,0,43,0.7)]'
+                      ? 'border-[#E4002B] scale-105 shadow-[0_0_12px_rgba(228,0,43,0.7)] ring-1 ring-[#E4002B]'
                       : 'border-white/20 opacity-60 hover:opacity-100'
                   }`}
                   aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
@@ -340,10 +360,11 @@ export const DogmaEditorialGallery = () => {
                   <img
                     src={slide.imageUrl}
                     alt={slide.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover pointer-events-none select-none"
+                    draggable={false}
                   />
                   <span
-                    className={`absolute bottom-0.5 right-0.5 px-1 py-0.2 rounded text-[7.5px] font-mono font-bold leading-none ${
+                    className={`absolute bottom-0.5 right-0.5 px-1 py-0.2 rounded text-[7.5px] font-mono font-bold leading-none pointer-events-none select-none ${
                       isActive ? 'bg-[#E4002B] text-white' : 'bg-black/80 text-zinc-300'
                     }`}
                   >
@@ -453,32 +474,41 @@ export const DogmaEditorialGallery = () => {
             </div>
 
             {/* Main Single-Image Inspection Stage with Navigation */}
-            <div className="relative flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-6 overflow-hidden bg-black/75 touch-pan-y">
+            <div
+              className="relative flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-6 overflow-hidden bg-black/75 touch-pan-y cursor-pointer select-none"
+              onClick={handleImageClick}
+            >
               {/* Prev / Next Modal Arrows */}
               <button
                 type="button"
-                onClick={goToPrevSlide}
-                className="absolute left-2 sm:left-4 z-20 p-2 sm:p-3 rounded-full bg-black/65 hover:bg-[#E4002B] text-white border border-white/20 backdrop-blur-md transition-transform active:scale-90 cursor-pointer shadow-xl"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrevSlide();
+                }}
+                className="absolute left-2 sm:left-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-[#E4002B] active:bg-[#E4002B] text-white border border-white/20 backdrop-blur-md transition-transform active:scale-90 cursor-pointer shadow-xl flex items-center justify-center touch-manipulation"
                 aria-label="Previous plate"
               >
-                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 pointer-events-none" />
               </button>
 
               <img
                 src={currentSlide.imageUrl}
                 alt={currentSlide.title}
-                key={currentSlide.id}
-                className="max-w-full max-h-full object-contain rounded-xl sm:rounded-2xl border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.98)] filter contrast-[1.02] brightness-[1.01] select-none animate-fadeIn"
+                decoding="async"
+                className="max-w-full max-h-full object-contain rounded-xl sm:rounded-2xl border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.98)] pointer-events-none select-none transition-opacity duration-150 will-change-transform"
                 draggable={false}
               />
 
               <button
                 type="button"
-                onClick={goToNextSlide}
-                className="absolute right-2 sm:right-4 z-20 p-2 sm:p-3 rounded-full bg-black/65 hover:bg-[#E4002B] text-white border border-white/20 backdrop-blur-md transition-transform active:scale-90 cursor-pointer shadow-xl"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextSlide();
+                }}
+                className="absolute right-2 sm:right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-[#E4002B] active:bg-[#E4002B] text-white border border-white/20 backdrop-blur-md transition-transform active:scale-90 cursor-pointer shadow-xl flex items-center justify-center touch-manipulation"
                 aria-label="Next plate"
               >
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 pointer-events-none" />
               </button>
             </div>
 

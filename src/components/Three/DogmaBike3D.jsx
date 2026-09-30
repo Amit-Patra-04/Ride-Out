@@ -646,6 +646,7 @@ export const DogmaBike3D = ({
               <img
                 src={selectedColor.bikeImage}
                 alt={`${selectedColor.name} — Pinarello Dogma F`}
+                decoding="async"
                 className="w-full h-auto object-contain pointer-events-none drop-shadow-[0_25px_45px_rgba(0,0,0,0.85)] filter contrast-[1.03] brightness-[1.02] select-none bg-transparent"
                 draggable={false}
               />
