@@ -183,24 +183,24 @@ export const DogmaEditorialGallery = () => {
       {/* --- INNER CENTERED CONTAINER --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-14 pb-5 sm:pb-8 border-b border-white/10 gap-5 sm:gap-8 text-center md:text-left items-center md:items-start">
-          <div className="flex flex-col items-center md:items-start w-full">
-            <div className="inline-flex items-center gap-1.5 sm:gap-3 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[9.5px] xs:text-[10.5px] sm:text-[11px] font-mono tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-3 sm:mb-4 backdrop-blur-md shadow-inner font-bold text-center">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-14 pb-5 sm:pb-8 border-b border-white/10 gap-5 sm:gap-8 text-center lg:text-left items-center lg:items-start">
+          <div className="flex flex-col items-center lg:items-start w-full">
+            <div className="inline-flex items-center justify-center gap-1.5 sm:gap-3 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-[9.5px] xs:text-[10.5px] sm:text-[11px] font-mono tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-3 sm:mb-4 backdrop-blur-md shadow-inner font-bold text-center">
               <Camera className="w-3 sm:w-3.5 h-3 sm:w-3.5 text-[#E4002B]" />
               <span>06 // EDITORIAL ARCHIVE // OFFICIAL DOGMA F ARCHIVE</span>
             </div>
-            <h2 className="font-display font-black text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05] text-center md:text-left">
+            <h2 className="font-display font-black text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.05] text-center lg:text-left">
               EDITORIAL{' '}
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-[#E4002B] mt-1 sm:mt-2">
                 PHOTOGRAPHY
               </span>
             </h2>
-            <p className="mt-2.5 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-zinc-200 max-w-2xl font-sans leading-relaxed font-normal text-center md:text-left mx-auto md:mx-0">
+            <p className="mt-2.5 sm:mt-4 text-xs xs:text-sm sm:text-base md:text-lg text-zinc-200 max-w-2xl font-sans leading-relaxed font-normal text-center lg:text-left mx-auto lg:mx-0">
               High-resolution photography showcasing the Dogma F in its element—from the design studio in Treviso to iconic Alpine mountain passes.
             </p>
           </div>
 
-          <div className="flex items-center justify-center md:justify-end gap-3 font-mono text-xs shrink-0">
+          <div className="flex items-center justify-center lg:justify-end gap-3 font-mono text-xs shrink-0">
             <span className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/[0.06] border border-white/15 text-zinc-200 font-bold backdrop-blur-md text-[10px] sm:text-xs">
               07 PRO ARCHIVAL PLATES
             </span>
@@ -377,9 +377,9 @@ export const DogmaEditorialGallery = () => {
         </div>
 
         {/* --- ACTIVE SLIDE TELEMETRY & METADATA BAR --- */}
-        <div className="mt-5 sm:mt-8 p-4 xs:p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.18)] flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
-          <div className="max-w-3xl space-y-1.5 sm:space-y-2 text-center md:text-left flex flex-col items-center md:items-start">
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs">
+        <div className="mt-5 sm:mt-8 p-4 xs:p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.18)] flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6 text-center lg:text-left items-center lg:items-start">
+          <div className="max-w-3xl space-y-1.5 sm:space-y-2 text-center lg:text-left flex flex-col items-center lg:items-start mx-auto lg:mx-0 w-full">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs">
               <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#E4002B] font-bold uppercase tracking-wider">
                 {currentSlide.tag}
               </span>
@@ -388,16 +388,16 @@ export const DogmaEditorialGallery = () => {
                 <span>{currentSlide.location}</span>
               </span>
             </div>
-            <h3 className="font-display text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-tight">
+            <h3 className="font-display text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-tight text-center lg:text-left">
               {currentSlide.title}
             </h3>
-            <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
               {currentSlide.caption}
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 shrink-0 w-full md:w-auto">
-            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl sm:rounded-2xl bg-black/60 border border-white/15 text-[10px] sm:text-xs font-mono text-zinc-300 text-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 shrink-0 w-full lg:w-auto">
+            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl sm:rounded-2xl bg-black/60 border border-white/15 text-[10px] sm:text-xs font-mono text-zinc-300 text-center w-full sm:w-auto">
               <Aperture className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E4002B] shrink-0" />
               <span className="truncate max-w-[280px] sm:max-w-none">{currentSlide.cameraSpec}</span>
             </div>
