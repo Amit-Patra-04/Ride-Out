@@ -379,20 +379,20 @@ export const DogmaWindTunnel = () => {
                 })}
             </div>
 
-            {/* Mobile Top Controls Bar (Clean single non-intrusive strip) */}
-            <div className="md:hidden absolute top-2.5 inset-x-2.5 z-20 flex items-center justify-between pointer-events-auto">
+            {/* Tablet & Mobile Top Controls Bar (< lg: Clean non-intrusive strip) */}
+            <div className="lg:hidden absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-20 flex items-center justify-between pointer-events-auto gap-2">
               {/* Left: CFD Status & Pins toggle */}
-              <div className="flex items-center gap-1.5">
-                <div className="flex items-center gap-1.5 bg-black/85 border border-cyan-500/40 px-2.5 py-1 rounded-full backdrop-blur-md">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] animate-pulse shadow-[0_0_8px_#00F0FF]" />
-                  <span className="text-white text-[9px] font-mono font-bold">CFD ACTIVE</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1.5 bg-black/85 border border-cyan-500/40 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md shadow-md">
+                  <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#00F0FF] animate-pulse shadow-[0_0_8px_#00F0FF]" />
+                  <span className="text-white text-[9px] sm:text-[10px] font-mono font-bold">CFD ACTIVE</span>
                 </div>
                 <button
                   onClick={() => {
                     setShowHotspots(!showHotspots);
                     sfx.playClick();
                   }}
-                  className={`px-2 py-1 rounded-full border text-[9px] font-mono font-bold transition-colors shadow-sm backdrop-blur-md cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border text-[9px] sm:text-[10px] font-mono font-bold transition-colors shadow-sm backdrop-blur-md cursor-pointer ${
                     showHotspots
                       ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
                       : 'bg-white/10 border-white/20 text-zinc-400 hover:text-white'
@@ -403,7 +403,7 @@ export const DogmaWindTunnel = () => {
               </div>
 
               {/* Right: Livery Swatches */}
-              <div className="flex items-center gap-1 bg-black/85 border border-white/20 p-1 rounded-full backdrop-blur-md shadow-lg">
+              <div className="flex items-center gap-1 sm:gap-1.5 bg-black/85 border border-white/20 p-1 sm:p-1.5 rounded-full backdrop-blur-md shadow-lg">
                 {WIND_TUNNEL_LIVERIES.map((liv) => (
                   <button
                     key={liv.id}
@@ -411,9 +411,9 @@ export const DogmaWindTunnel = () => {
                       setActiveLivery(liv);
                       sfx.playClick();
                     }}
-                    className={`w-4 h-4 xs:w-5 xs:h-5 rounded-full border transition-all duration-300 cursor-pointer ${
+                    className={`w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 rounded-full border transition-all duration-300 cursor-pointer ${
                       activeLivery.id === liv.id
-                        ? 'scale-110 border-white ring-1.5 ring-[#00F0FF] shadow-[0_0_8px_rgba(255,255,255,0.8)]'
+                        ? 'scale-110 border-white ring-1.5 sm:ring-2 ring-[#00F0FF] shadow-[0_0_8px_rgba(255,255,255,0.8)]'
                         : 'border-white/20 opacity-70 hover:opacity-100'
                     }`}
                     style={{ background: liv.swatchGradient || liv.colorHex }}
@@ -423,8 +423,8 @@ export const DogmaWindTunnel = () => {
               </div>
             </div>
 
-            {/* Desktop Top-Left Telemetry Badges */}
-            <div className="hidden md:flex absolute top-6 left-6 z-20 items-center gap-2 font-mono text-xs">
+            {/* Desktop Top-Left Telemetry Badges (>= lg) */}
+            <div className="hidden lg:flex absolute top-6 left-6 z-20 items-center gap-2 font-mono text-xs">
               <div className="flex items-center gap-2 bg-black/90 border border-cyan-500/40 px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] animate-pulse shadow-[0_0_10px_#00F0FF]" />
                 <span className="text-white text-[11px] font-bold">CFD: Laminar Flow Active</span>
@@ -441,8 +441,8 @@ export const DogmaWindTunnel = () => {
               </button>
             </div>
 
-            {/* Desktop Top-Right Livery Quick Switcher */}
-            <div className="hidden md:flex absolute top-6 right-6 z-20 items-center gap-2 bg-black/90 border border-white/25 p-2 rounded-full backdrop-blur-md shadow-2xl">
+            {/* Desktop Top-Right Livery Quick Switcher (>= lg) */}
+            <div className="hidden lg:flex absolute top-6 right-6 z-20 items-center gap-2 bg-black/90 border border-white/25 p-2 rounded-full backdrop-blur-md shadow-2xl">
               {WIND_TUNNEL_LIVERIES.map((liv) => (
                 <button
                   key={liv.id}
@@ -461,9 +461,9 @@ export const DogmaWindTunnel = () => {
               ))}
             </div>
 
-            {/* Desktop Selected Hotspot Detail Overlay Card */}
+            {/* Desktop Selected Hotspot Detail Overlay Card (>= lg) */}
             {selectedHotspot && showHotspots && (
-              <div className="hidden md:block absolute bottom-32 left-6 z-20 max-w-sm p-5 rounded-2xl bg-black/90 border border-cyan-500/40 backdrop-blur-2xl shadow-2xl transition-all animate-fadeIn">
+              <div className="hidden lg:block absolute bottom-36 left-6 z-20 max-w-sm p-5 rounded-2xl bg-black/90 border border-cyan-500/40 backdrop-blur-2xl shadow-2xl transition-all animate-fadeIn">
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="flex flex-col">
                     <span className="text-[9.5px] font-mono text-cyan-300 font-bold tracking-wider uppercase">
@@ -483,8 +483,8 @@ export const DogmaWindTunnel = () => {
               </div>
             )}
 
-            {/* Desktop Bottom Speed & Telemetry Summary Strip */}
-            <div className="hidden md:flex absolute bottom-6 left-6 right-6 z-20 items-center justify-between gap-4 bg-gradient-to-r from-black/95 via-zinc-950/95 to-black/95 border border-white/20 p-5 rounded-2xl backdrop-blur-2xl shadow-2xl">
+            {/* Desktop Bottom Speed & Telemetry Summary Strip (>= lg) */}
+            <div className="hidden lg:flex absolute bottom-6 left-6 right-6 z-20 items-center justify-between gap-4 bg-gradient-to-r from-black/95 via-zinc-950/95 to-black/95 border border-white/20 p-5 rounded-2xl backdrop-blur-2xl shadow-2xl">
               <div>
                 <div className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
                   <Activity className="w-3.5 h-3.5 text-cyan-400" />
@@ -522,74 +522,79 @@ export const DogmaWindTunnel = () => {
             </div>
           </div>
 
-          {/* Mobile Hotspot Active Detail Panel (Rendered cleanly below the chamber on mobile) */}
+          {/* Tablet & Mobile Hotspot Active Detail Panel (< lg: Cleanly placed below chamber) */}
           {selectedHotspot && showHotspots && (
-            <div className="md:hidden p-3 xs:p-3.5 bg-black/90 border-b border-cyan-500/30 backdrop-blur-2xl animate-fadeIn space-y-1">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-[8.5px] font-mono text-cyan-300 font-bold uppercase tracking-wider">
+            <div className="lg:hidden p-3.5 sm:p-5 bg-gradient-to-r from-black/95 via-[#071320]/95 to-black/95 border-b border-cyan-500/30 backdrop-blur-2xl animate-fadeIn space-y-1.5">
+              <div className="flex items-center justify-between gap-2.5">
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  <span className="text-[8.5px] sm:text-[9.5px] font-mono text-cyan-300 font-bold uppercase tracking-wider px-2 sm:px-2.5 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30">
                     {selectedHotspot.category}
                   </span>
-                  <span className="font-display text-xs xs:text-sm font-black text-white uppercase">
+                  <span className="font-display text-xs xs:text-sm sm:text-base font-black text-white uppercase">
                     {selectedHotspot.title}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="px-2 py-0.5 rounded-full bg-[#00F0FF]/20 border border-[#00F0FF]/50 text-[#00F0FF] font-mono text-[10px] font-black">
+                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                  <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#00F0FF]/20 border border-[#00F0FF]/50 text-[#00F0FF] font-mono text-[10px] sm:text-xs font-black shadow-[0_0_10px_rgba(0,240,255,0.3)]">
                     {selectedHotspot.saving}
                   </span>
                   <button
                     onClick={() => setSelectedHotspot(null)}
-                    className="p-1 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                    className="p-1 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
                     aria-label="Close hotspot info"
                   >
                     ✕
                   </button>
                 </div>
               </div>
-              <p className="text-[11px] text-zinc-300 font-sans leading-relaxed">
+              <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed">
                 {selectedHotspot.desc}
               </p>
             </div>
           )}
 
-          {/* Mobile Dedicated Speed & Telemetry Summary Card (Uncluttered, placed below chamber) */}
-          <div className="md:hidden p-3 xs:p-4 bg-gradient-to-b from-black/95 to-zinc-950/95 border-b border-white/15 space-y-2.5">
+          {/* Tablet & Mobile Speed & Telemetry Summary Dashboard (< lg: Cleanly placed below chamber) */}
+          <div className="lg:hidden p-4 sm:p-6 bg-gradient-to-b from-black/95 via-zinc-950/95 to-[#060e18] border-b border-white/15 space-y-3 sm:space-y-4">
             {/* Speed Row */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-b border-white/10 pb-3">
               <div>
-                <div className="text-[8.5px] font-mono text-zinc-400 uppercase tracking-wider flex items-center gap-1 font-bold">
-                  <Activity className="w-3 h-3 text-cyan-400" />
-                  <span>SIMULATED SPEED</span>
+                <div className="text-[8.5px] sm:text-[10px] font-mono text-zinc-400 uppercase tracking-wider flex items-center gap-1.5 font-bold">
+                  <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>SIMULATED DOGMA F SPEED</span>
                 </div>
-                <div className="font-display text-xl xs:text-2xl font-black text-white mt-0.5">
+                <div className="font-display text-2xl sm:text-3xl font-black text-white mt-0.5">
                   {dogmaSpeed.toFixed(1)}{' '}
-                  <span className="text-xs font-mono text-[#00F0FF]">KM/H</span>
-                  <span className="text-[10px] font-mono text-zinc-400 ml-1.5 font-normal">
+                  <span className="text-xs sm:text-sm font-mono text-[#00F0FF]">KM/H</span>
+                  <span className="text-[10px] sm:text-xs font-mono text-zinc-400 ml-2 font-semibold">
                     ({(dogmaSpeed * 0.621371).toFixed(1)} MPH)
                   </span>
                 </div>
               </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 sm:px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-[9.5px] sm:text-xs font-bold">
+                  LAMINAR CFD ACTIVE
+                </span>
+              </div>
             </div>
 
             {/* 3-Column Delta Grid */}
-            <div className="grid grid-cols-3 gap-1.5 text-center font-mono">
-              <div className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10">
-                <div className="text-[7.5px] xs:text-[8px] text-zinc-400 uppercase tracking-wider">SPEED DELTA</div>
-                <div className="text-xs xs:text-sm font-black text-[#D4FF00] mt-0.5">
-                  +{speedDelta} <span className="text-[8px] font-normal">KM/H</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center font-mono">
+              <div className="p-2 sm:p-3 rounded-xl bg-white/[0.04] border border-white/10">
+                <div className="text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">SPEED DELTA</div>
+                <div className="text-xs xs:text-sm sm:text-base font-black text-[#D4FF00] mt-0.5 sm:mt-1">
+                  +{speedDelta} <span className="text-[8px] sm:text-[10px] font-normal">KM/H</span>
                 </div>
               </div>
-              <div className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10">
-                <div className="text-[7.5px] xs:text-[8px] text-zinc-400 uppercase tracking-wider">TIME / 40KM</div>
-                <div className="text-xs xs:text-sm font-black text-[#FF5E0E] mt-0.5">
-                  -{timeSavedSec} <span className="text-[8px] font-normal">SEC</span>
+              <div className="p-2 sm:p-3 rounded-xl bg-white/[0.04] border border-white/10">
+                <div className="text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">TIME / 40KM</div>
+                <div className="text-xs xs:text-sm sm:text-base font-black text-[#FF5E0E] mt-0.5 sm:mt-1">
+                  -{timeSavedSec} <span className="text-[8px] sm:text-[10px] font-normal">SEC</span>
                 </div>
               </div>
-              <div className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10">
-                <div className="text-[7.5px] xs:text-[8px] text-zinc-400 uppercase tracking-wider">WATT SAVING</div>
-                <div className="text-xs xs:text-sm font-black text-[#00F0FF] mt-0.5">
-                  -{wattsSaved} <span className="text-[8px] font-normal">W</span>
+              <div className="p-2 sm:p-3 rounded-xl bg-white/[0.04] border border-white/10">
+                <div className="text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] text-zinc-400 uppercase tracking-wider font-bold">WATT SAVING @ 40KM/H</div>
+                <div className="text-xs xs:text-sm sm:text-base font-black text-[#00F0FF] mt-0.5 sm:mt-1">
+                  -{wattsSaved} <span className="text-[8px] sm:text-[10px] font-normal">W</span>
                 </div>
               </div>
             </div>
