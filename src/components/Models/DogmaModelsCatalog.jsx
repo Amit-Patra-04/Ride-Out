@@ -19,6 +19,7 @@ import {
   Flame,
   Radio,
   Maximize2,
+  X,
 } from 'lucide-react';
 import { sfx } from '../../utils/animations';
 
@@ -835,12 +836,12 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
           </div>
 
           {/* Master Grand Headline & Editorial Description */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-center lg:text-left items-center lg:items-start">
-            <div className="max-w-2xl xl:max-w-3xl space-y-3 flex flex-col items-center lg:items-start w-full">
-              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold text-center lg:text-left">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 text-center md:text-left items-center md:items-start">
+            <div className="max-w-2xl xl:max-w-3xl space-y-3 flex flex-col items-center md:items-start w-full">
+              <span className="block font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-[#FF5E0E] font-bold text-center md:text-left">
                 FIVE MASTERWORK RACING CONFIGURATIONS
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl text-center lg:text-left">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.05] drop-shadow-2xl text-center md:text-left">
                 DISTINCTION IN{' '}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 via-40% to-[#FF5E0E] drop-shadow-lg mt-1">
                   EVERY BUILD.
@@ -848,11 +849,11 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               </h2>
             </div>
 
-            <div className="max-w-md lg:pb-2 space-y-4 flex flex-col items-center lg:items-start w-full">
-              <p className="text-sm sm:text-base text-zinc-300 font-sans font-light leading-relaxed text-center lg:text-left">
+            <div className="max-w-md md:pb-2 space-y-4 flex flex-col items-center md:items-start w-full">
+              <p className="text-sm sm:text-base text-zinc-300 font-sans font-light leading-relaxed text-center md:text-left">
                 Every Dogma F model is configured with zero compromises. Select your electronic groupset tier to inspect race-calibrated chassis telemetry, aerodynamics, and official paint finishes.
               </p>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 font-mono text-[10px] text-zinc-400">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 font-mono text-[10px] text-zinc-400">
                 <span className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10">
                   TORAYCA® M40X
                 </span>
@@ -868,7 +869,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
         </div>
 
         {/* --- GRAND ARCHITECTURAL MODEL SELECTOR DECK --- */}
-        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10">
+        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 md:gap-3 lg:gap-4 mb-8 sm:mb-10">
           {PINARELLO_MODELS.map((model, idx) => {
             const isSelected = selectedModelIndex === idx;
             return (
@@ -876,7 +877,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 key={model.id}
                 onClick={() => handleSelectModel(idx)}
                 onMouseEnter={() => sfx.playHover()}
-                className={`relative text-left p-4 sm:p-5 rounded-2xl transition-all duration-300 group overflow-hidden border backdrop-blur-xl cursor-pointer ${
+                className={`relative text-left p-3.5 sm:p-4 md:p-3.5 lg:p-5 rounded-2xl transition-all duration-300 group overflow-hidden border backdrop-blur-xl cursor-pointer ${
                   isSelected
                     ? 'bg-gradient-to-b from-white/[0.12] via-white/[0.06] to-transparent border-white/35 shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_25px_rgba(255,255,255,0.12)] scale-[1.02]'
                     : 'bg-white/[0.02] border-white/8 hover:bg-white/[0.05] hover:border-white/20'
@@ -893,7 +894,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 )}
 
                 {/* Top Row: Index & Brand */}
-                <div className="flex items-center justify-between font-mono text-[10px] tracking-widest uppercase mb-3">
+                <div className="flex items-center justify-between font-mono text-[9px] sm:text-[10px] tracking-widest uppercase mb-2 sm:mb-3">
                   <span
                     className={`font-bold transition-colors ${
                       isSelected ? 'text-[#00F0FF]' : 'text-zinc-500 group-hover:text-zinc-300'
@@ -902,7 +903,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                     // {model.index}
                   </span>
                   <span
-                    className={`px-2 py-0.5 rounded text-[9px] font-semibold tracking-wider ${
+                    className={`px-1.5 sm:px-2 py-0.5 rounded text-[8.5px] sm:text-[9px] font-semibold tracking-wider ${
                       isSelected
                         ? 'bg-white/15 text-white border border-white/20'
                         : 'bg-white/5 text-zinc-400'
@@ -913,22 +914,22 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 </div>
 
                 {/* Middle: Short Name */}
-                <div className="font-display text-sm sm:text-base font-black text-white tracking-tight uppercase leading-tight line-clamp-2 min-h-[2.5rem]">
+                <div className="font-display text-xs sm:text-sm md:text-xs lg:text-base font-black text-white tracking-tight uppercase leading-tight line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem]">
                   {model.shortName}
                 </div>
 
                 {/* Bottom: Price & Badge */}
-                <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                  <div className="text-center sm:text-left flex-1">
-                    <span className="font-mono text-xs sm:text-sm font-black text-white block text-center sm:text-left">
+                <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-white/10 flex items-center justify-between">
+                  <div className="text-left flex-1 min-w-0">
+                    <span className="font-mono text-xs sm:text-xs md:text-xs lg:text-sm font-black text-white block truncate">
                       {model.priceEur}
                     </span>
-                    <span className="font-mono text-[9px] text-zinc-400 block text-center sm:text-left">
+                    <span className="font-mono text-[8.5px] sm:text-[9px] text-zinc-400 block truncate">
                       {model.weight}
                     </span>
                   </div>
                   <span
-                    className="w-2 h-2 rounded-full transition-all duration-300 shrink-0"
+                    className="w-2 h-2 rounded-full transition-all duration-300 shrink-0 ml-1.5"
                     style={{
                       backgroundColor: isSelected ? '#00F0FF' : 'rgba(255,255,255,0.2)',
                       transform: isSelected ? 'scale(1.4)' : 'scale(1)',
@@ -942,15 +943,15 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
         </div>
 
         {/* --- MAIN CINEMATIC 3D SHOWCASE & TELEMETRY STAGE --- */}
-        <div className="relative z-10 bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] rounded-3xl p-6 sm:p-10 lg:p-12 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)] overflow-hidden">
+        <div className="relative z-10 bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-8 lg:p-10 xl:p-12 backdrop-blur-3xl shadow-[0_35px_100px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.18)] overflow-hidden">
           {/* Subtle Engineering Grid Backdrop */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
           {/* Top Floating Stage HUD Status */}
-          <div className="relative z-20 flex flex-wrap items-center justify-center sm:justify-between gap-4 pb-6 border-b border-white/10">
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+          <div className="relative z-20 flex flex-wrap items-center justify-center sm:justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-white/10">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
               <span
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10.5px] font-mono font-bold tracking-widest uppercase border shadow-md"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[9.5px] sm:text-[10.5px] font-mono font-bold tracking-widest uppercase border shadow-md"
                 style={{
                   backgroundColor: `${currentModel.badgeColor}15`,
                   borderColor: `${currentModel.badgeColor}40`,
@@ -961,19 +962,19 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 {currentModel.badge}
               </span>
 
-              <span className="font-mono text-xs text-zinc-400">
+              <span className="font-mono text-[11px] sm:text-xs text-zinc-400">
                 FINISH CODE: <strong className="text-white font-bold">{currentModel.finishCode}</strong>
               </span>
             </div>
 
             {/* Interactive Mode Toggles */}
-            <div className="flex items-center bg-black/60 p-1.5 rounded-2xl border border-white/15 font-mono text-[11px] uppercase shadow-lg">
+            <div className="flex items-center bg-black/60 p-1 sm:p-1.5 rounded-2xl border border-white/15 font-mono text-[10px] sm:text-[11px] uppercase shadow-lg shrink-0">
               <button
                 onClick={() => {
                   setActiveTab('specs');
                   sfx.playClick();
                 }}
-                className={`px-4 py-2 rounded-xl transition-all duration-200 font-bold cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-all duration-200 font-bold cursor-pointer ${
                   activeTab === 'specs'
                     ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]'
                     : 'text-zinc-400 hover:text-white'
@@ -986,7 +987,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                   setActiveTab('telemetry');
                   sfx.playClick();
                 }}
-                className={`px-4 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 font-bold cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 font-bold cursor-pointer ${
                   activeTab === 'telemetry'
                     ? 'bg-[#00F0FF] text-black shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                     : 'text-zinc-400 hover:text-white'
@@ -999,19 +1000,19 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
           </div>
 
           {/* Core Stage Split: Bike Spotlight & Interactive Specs Matrix */}
-          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8">
+          <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center mt-6 sm:mt-8">
             {/* --- LEFT: HIGH-RES 3D PARALLAX BIKE STAGE (7 COLS) --- */}
             <div
               ref={stageRef}
               onMouseMove={handleMouseMove}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="lg:col-span-7 relative flex flex-col items-center justify-center min-h-[380px] sm:min-h-[480px] cursor-crosshair"
+              className="lg:col-span-7 relative flex flex-col items-center justify-center min-h-[340px] sm:min-h-[440px] lg:min-h-[480px] cursor-crosshair w-full"
               style={{ perspective: 1200 }}
             >
               {/* Dynamic Multi-Layer Backlight Aura */}
               <div
-                className="absolute w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full blur-[130px] transition-all duration-700 pointer-events-none opacity-45"
+                className="absolute w-72 sm:w-[440px] lg:w-[480px] h-72 sm:h-[440px] lg:h-[480px] rounded-full blur-[130px] transition-all duration-700 pointer-events-none opacity-45"
                 style={{
                   background: currentColorway.swatchGradient || currentColorway.colorHex || '#9f8d5e',
                   transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`,
@@ -1040,7 +1041,8 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
 
               {/* Main Interactive High-Res Cutout Image with Gyro Parallax */}
               <div
-                onClick={() => {
+                onClick={(e) => {
+                  if (e.target.closest('button') || e.target.closest('[role="dialog"]')) return;
                   if (currentModel.colorways && currentModel.colorways.length > 1) {
                     sfx.playClick();
                     setSelectedColorwayIndex((prev) => (prev + 1) % currentModel.colorways.length);
@@ -1074,9 +1076,13 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                         top: spot.y,
                         transform: 'translate(-50%, -50%)',
                       }}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <button
-                        onClick={() => {
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
                           setActiveHotspot(isActive ? null : spot);
                           sfx.playClick();
                         }}
@@ -1087,6 +1093,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                             : 'bg-black/75 text-white border-white/35 hover:border-white hover:scale-115 hover:bg-black/95 shadow-xl'
                         }`}
                         title={spot.title}
+                        aria-label={`Inspect ${spot.title}`}
                       >
                         <span className="absolute inset-0 rounded-full animate-ping opacity-35 bg-[#00F0FF]" />
                         <Info className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -1094,12 +1101,28 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
 
                       {/* Active Hotspot Glass Popover Card */}
                       {isActive && (
-                        <div className="absolute left-1/2 -top-3 -translate-x-1/2 -translate-y-full w-64 sm:w-76 p-4 rounded-2xl bg-[#0b0e14]/95 border border-[#00F0FF]/40 text-white backdrop-blur-2xl shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-200">
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          className="absolute left-1/2 -top-3 -translate-x-1/2 -translate-y-full w-64 sm:w-76 p-4 rounded-2xl bg-[#0b0e14]/95 border border-[#00F0FF]/40 text-white backdrop-blur-2xl shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-200 cursor-default"
+                          role="dialog"
+                          aria-label={spot.title}
+                        >
                           <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-white/10">
                             <span className="font-mono text-[9px] text-[#00F0FF] font-bold tracking-widest uppercase">
                               PATENTED INNOVATION
                             </span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" />
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveHotspot(null);
+                                sfx.playClick();
+                              }}
+                              className="p-1 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                              aria-label="Close hotspot info"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                           <div className="font-display text-xs sm:text-sm font-black uppercase tracking-tight text-white mb-1">
                             {spot.title}
@@ -1115,8 +1138,8 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               </div>
 
               {/* --- FLOATING LUXURY LIVERY SWATCH DOCK --- */}
-              <div className="relative z-20 mt-8 flex flex-col items-center gap-3 bg-[#0B0D12]/95 border border-white/15 px-6 py-3.5 rounded-2xl backdrop-blur-2xl shadow-2xl">
-                <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+              <div className="relative z-20 mt-6 sm:mt-8 flex flex-col items-center gap-2.5 sm:gap-3 bg-[#0B0D12]/95 border border-white/15 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl backdrop-blur-2xl shadow-2xl max-w-full w-full sm:w-auto">
+                <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-zinc-400 text-center">
                   <span className="text-zinc-500">OFFICIAL FINISH:</span>
                   <strong className="text-white font-bold">{currentColorway.name}</strong>
                   <span className="px-2 py-0.5 rounded bg-white/10 text-[9.5px] text-[#00F0FF] font-bold">
@@ -1125,7 +1148,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 </div>
 
                 {/* Swatch preview buttons */}
-                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-xl">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-xl">
                   {currentModel.colorways.map((c, cIdx) => {
                     const isSelected = selectedColorwayIndex === cIdx;
                     return (
@@ -1133,7 +1156,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                         key={cIdx}
                         onClick={() => handleSelectColorway(cIdx)}
                         onMouseEnter={() => sfx.playHover()}
-                        className={`relative group w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer ${
+                        className={`relative group w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden border transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer ${
                           isSelected
                             ? 'scale-125 border-white ring-2 ring-[#00F0FF] ring-offset-2 ring-offset-black shadow-[0_0_20px_rgba(0,240,255,0.6)] z-10'
                             : 'border-white/25 opacity-75 hover:opacity-100 hover:scale-115 hover:border-white/60'
@@ -1164,7 +1187,7 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
             </div>
 
             {/* --- RIGHT: SPECIFICATIONS MATRIX & TELEMETRY DECK (5 COLS) --- */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 w-full min-w-0">
               {/* Title & Tagline */}
               <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
                 <div className="flex items-center justify-center lg:justify-start gap-2 font-mono text-xs text-zinc-500 uppercase tracking-widest mb-1.5">
@@ -1186,45 +1209,45 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
               {activeTab === 'specs' && (
                 <div className="space-y-2.5 font-mono text-xs animate-in fade-in duration-300">
                   {/* Groupset */}
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group">
-                    <div className="flex items-center gap-2 text-zinc-400">
+                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group gap-2">
+                    <div className="flex items-center gap-2 text-zinc-400 shrink-0">
                       <Zap className="w-3.5 h-3.5 text-[#00F0FF]" />
                       <span>GROUPSET</span>
                     </div>
-                    <span className="text-white font-semibold text-right max-w-[210px] truncate">
+                    <span className="text-white font-semibold text-right truncate max-w-[180px] sm:max-w-[280px] lg:max-w-[200px] xl:max-w-[280px]">
                       {currentModel.groupset}
                     </span>
                   </div>
 
                   {/* Wheelset */}
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group">
-                    <div className="flex items-center gap-2 text-zinc-400">
+                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group gap-2">
+                    <div className="flex items-center gap-2 text-zinc-400 shrink-0">
                       <Gauge className="w-3.5 h-3.5 text-[#FF5E0E]" />
                       <span>WHEELSET</span>
                     </div>
-                    <span className="text-white font-semibold text-right max-w-[210px] truncate">
+                    <span className="text-white font-semibold text-right truncate max-w-[180px] sm:max-w-[280px] lg:max-w-[200px] xl:max-w-[280px]">
                       {currentModel.wheels}
                     </span>
                   </div>
 
                   {/* Integrated Cockpit */}
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group">
-                    <div className="flex items-center gap-2 text-zinc-400">
+                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group gap-2">
+                    <div className="flex items-center gap-2 text-zinc-400 shrink-0">
                       <Layers className="w-3.5 h-3.5 text-[#D4FF00]" />
                       <span>COCKPIT</span>
                     </div>
-                    <span className="text-white font-semibold text-right max-w-[210px] truncate">
+                    <span className="text-white font-semibold text-right truncate max-w-[180px] sm:max-w-[280px] lg:max-w-[200px] xl:max-w-[280px]">
                       {currentModel.cockpit}
                     </span>
                   </div>
 
                   {/* Braking System */}
-                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group">
-                    <div className="flex items-center gap-2 text-zinc-400">
+                  <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.1] hover:border-white/20 transition-colors flex justify-between items-center group gap-2">
+                    <div className="flex items-center gap-2 text-zinc-400 shrink-0">
                       <ShieldCheck className="w-3.5 h-3.5 text-zinc-300" />
                       <span>BRAKING</span>
                     </div>
-                    <span className="text-white font-semibold text-right max-w-[210px] truncate">
+                    <span className="text-white font-semibold text-right truncate max-w-[180px] sm:max-w-[280px] lg:max-w-[200px] xl:max-w-[280px]">
                       {currentModel.brakes}
                     </span>
                   </div>
@@ -1320,13 +1343,13 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                 </div>
               )}
 
-              {/* Price & Action Terminal (Centered on Phone View) */}
-              <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-5">
-                <div className="text-center sm:text-left flex flex-col items-center sm:items-start w-full sm:w-auto">
-                  <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold text-center sm:text-left">
+              {/* Price & Action Terminal (Responsive for Phone, Tablet & Desktop) */}
+              <div className="pt-5 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center justify-between gap-4 sm:gap-5">
+                <div className="text-center sm:text-left lg:text-center xl:text-left flex flex-col items-center sm:items-start lg:items-center xl:items-start w-full sm:w-auto">
+                  <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest font-bold">
                     MSRP FACTORY DELIVERED
                   </div>
-                  <div className="font-display text-3xl sm:text-4xl font-black text-white flex items-baseline justify-center sm:justify-start gap-2">
+                  <div className="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-black text-white flex items-baseline justify-center sm:justify-start lg:justify-center xl:justify-start gap-2">
                     <span>{currentModel.priceEur}</span>
                     <span className="text-xs font-mono text-zinc-400 font-normal">
                       / {currentModel.priceUsd}
@@ -1334,24 +1357,24 @@ export const DogmaModelsCatalog = ({ onOpenBooking }) => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-stretch gap-2.5 w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center lg:items-stretch xl:items-center gap-2.5 w-full sm:w-auto lg:w-full xl:w-auto shrink-0">
                   <a
                     href="#specifications"
                     onClick={() => sfx.playClick()}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-200 hover:text-white font-mono text-xs uppercase font-bold transition-all hover:scale-105 shadow-md"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-zinc-200 hover:text-white font-mono text-xs uppercase font-bold transition-all hover:scale-[1.02] sm:hover:scale-105 shadow-md w-full sm:w-auto text-center shrink-0"
                   >
-                    <Eye className="w-3.5 h-3.5" />
+                    <Eye className="w-3.5 h-3.5 shrink-0" />
                     <span>VIEW DOSSIER</span>
                   </a>
 
                   <a
                     href="#configurator"
                     onClick={() => sfx.playClick()}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase font-bold shadow-[0_0_25px_rgba(228,0,43,0.45)] hover:shadow-[0_0_35px_rgba(228,0,43,0.7)] hover:scale-105 transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs uppercase font-bold shadow-[0_0_25px_rgba(228,0,43,0.45)] hover:shadow-[0_0_35px_rgba(228,0,43,0.7)] hover:scale-[1.02] sm:hover:scale-105 transition-all duration-300 w-full sm:w-auto text-center shrink-0 whitespace-nowrap"
                   >
-                    <Sliders className="w-3.5 h-3.5 text-white" />
+                    <Sliders className="w-3.5 h-3.5 text-white shrink-0" />
                     <span>CUSTOMIZE IN ATELIER</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                   </a>
                 </div>
               </div>

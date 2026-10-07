@@ -32,11 +32,15 @@ export const DogmaEditorialGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Touch Swipe Gesture State with Direction Awareness
+  // Touch Swipe Gesture State with Non-Passive Native Listeners
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const carouselContainerRef = useRef(null);
   const touchStartX = useRef(null);
   const touchStartY = useRef(null);
-  const touchEndX = useRef(null);
-  const touchEndY = useRef(null);
+  const isHorizontalSwipe = useRef(null);
+  const dragOffsetRef = useRef(0);
+  const isDraggingRef = useRef(false);
   const thumbnailRefs = useRef([]);
   const filmstripRef = useRef(null);
 
@@ -67,23 +71,6 @@ export const DogmaEditorialGallery = () => {
     setActiveSlideIndex(index);
   }, []);
 
-  // Tap left/right half on main photo container to switch image
-  const handleImageClick = useCallback(
-    (e) => {
-      if (e.target.closest('button')) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-
-      if (clickX < width * 0.45) {
-        goToPrevSlide();
-      } else {
-        goToNextSlide();
-      }
-    },
-    [goToPrevSlide, goToNextSlide]
-  );
-
   // Auto-scroll filmstrip so active thumbnail is centered smoothly
   useEffect(() => {
     const el = thumbnailRefs.current[activeSlideIndex];
@@ -96,42 +83,94 @@ export const DogmaEditorialGallery = () => {
     }
   }, [activeSlideIndex]);
 
-  // Direction-Aware Touch Handling (preserves native vertical page scrolling)
-  const handleTouchStart = (e) => {
-    if (e.touches && e.touches.length === 1) {
-      touchStartX.current = e.touches[0].clientX;
-      touchStartY.current = e.touches[0].clientY;
-      touchEndX.current = e.touches[0].clientX;
-      touchEndY.current = e.touches[0].clientY;
-    }
-  };
+  // Native non-passive Touch Gesture handlers for mobile carousel (prevents window/screen sliding when swiping)
+  useEffect(() => {
+    const container = carouselContainerRef.current;
+    if (!container) return;
 
-  const handleTouchMove = (e) => {
-    if (e.touches && e.touches.length === 1) {
-      touchEndX.current = e.touches[0].clientX;
-      touchEndY.current = e.touches[0].clientY;
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current === null || touchEndX.current === null) return;
-    const deltaX = touchStartX.current - touchEndX.current;
-    const deltaY = (touchStartY.current || 0) - (touchEndY.current || 0);
-
-    // Only fire horizontal slide change if horizontal swipe dominates vertical scroll
-    if (Math.abs(deltaX) > 30 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-      if (deltaX > 0) {
-        goToNextSlide();
-      } else {
-        goToPrevSlide();
+    const onTouchStart = (e) => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+        isHorizontalSwipe.current = null;
+        dragOffsetRef.current = 0;
+        isDraggingRef.current = true;
       }
-    }
+    };
 
-    touchStartX.current = null;
-    touchStartY.current = null;
-    touchEndX.current = null;
-    touchEndY.current = null;
-  };
+    const onTouchMove = (e) => {
+      if (!isDraggingRef.current || touchStartX.current === null || !e.touches || e.touches.length !== 1) return;
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const diffX = currentX - touchStartX.current;
+      const diffY = currentY - touchStartY.current;
+
+      // Determine intent early
+      if (isHorizontalSwipe.current === null) {
+        if (Math.abs(diffX) > 7 || Math.abs(diffY) > 7) {
+          isHorizontalSwipe.current = Math.abs(diffX) >= Math.abs(diffY);
+          if (isHorizontalSwipe.current) {
+            setIsDragging(true);
+          }
+        }
+      }
+
+      // If horizontal swipe, prevent browser from panning/scrolling the screen or page
+      if (isHorizontalSwipe.current === true) {
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+        e.stopPropagation();
+
+        // Elastic dampening at boundaries
+        let offset = diffX;
+        if (
+          (activeSlideIndex === 0 && diffX > 0) ||
+          (activeSlideIndex === GALLERY_SLIDES.length - 1 && diffX < 0)
+        ) {
+          offset = diffX * 0.25;
+        }
+        dragOffsetRef.current = offset;
+        setDragOffset(offset);
+      }
+    };
+
+    const onTouchEnd = (e) => {
+      if (!isDraggingRef.current) return;
+      const offset = dragOffsetRef.current;
+      const wasHorizontal = isHorizontalSwipe.current;
+
+      isDraggingRef.current = false;
+      touchStartX.current = null;
+      touchStartY.current = null;
+      isHorizontalSwipe.current = null;
+      dragOffsetRef.current = 0;
+      setIsDragging(false);
+      setDragOffset(0);
+
+      if (wasHorizontal) {
+        if (e && e.cancelable) e.preventDefault();
+        const threshold = 40;
+        if (offset < -threshold) {
+          goToNextSlide();
+        } else if (offset > threshold) {
+          goToPrevSlide();
+        }
+      }
+    };
+
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    container.addEventListener('touchend', onTouchEnd, { passive: false });
+    container.addEventListener('touchcancel', onTouchEnd, { passive: false });
+
+    return () => {
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchmove', onTouchMove);
+      container.removeEventListener('touchend', onTouchEnd);
+      container.removeEventListener('touchcancel', onTouchEnd);
+    };
+  }, [activeSlideIndex, goToNextSlide, goToPrevSlide]);
 
   // Disable background scroll (Lenis + Native) when Fullscreen Inspection popup is open
   useEffect(() => {
@@ -231,9 +270,7 @@ export const DogmaEditorialGallery = () => {
             gap={12}
             radius={24}
             orientation="horizontal"
-            onActiveChange={(idx) => {
-              setActiveSlideIndex(idx);
-            }}
+            onActiveChange={selectSlide}
           />
         </div>
 
@@ -241,27 +278,46 @@ export const DogmaEditorialGallery = () => {
         {/* 2. MOBILE & TABLET VIEW: TOUCH-SWIPE EDITORIAL CAROUSEL (< md) */}
         {/* ============================================================ */}
         <div className="block md:hidden relative z-10 space-y-3.5">
-          {/* Main Hero Photo Container with Direction-Aware Swipe Gestures & Tap Navigation */}
+          {/* Main Hero Photo Container with Swipe Gestures */}
           <div
-            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group touch-pan-y cursor-pointer select-none"
-            onClick={handleImageClick}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            ref={carouselContainerRef}
+            data-lenis-prevent="true"
+            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group select-none touch-pan-y"
+            style={{
+              touchAction: 'pan-y',
+              overscrollBehaviorX: 'contain',
+              overscrollBehaviorY: 'auto',
+            }}
           >
-            <img
-              src={currentSlide.imageUrl}
-              alt={currentSlide.title}
-              decoding="async"
-              className="w-full h-full object-cover pointer-events-none select-none transition-opacity duration-150 will-change-transform"
-              draggable={false}
-            />
-
-            {/* High-end Atelier Vignette Gradients */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/60" />
+            {/* Sliding Multi-Image Carousel Track */}
+            <div
+              className="flex w-full h-full will-change-transform select-none"
+              style={{
+                transform: isDragging
+                  ? `translateX(calc(-${activeSlideIndex * 100}% + ${dragOffset}px))`
+                  : `translateX(-${activeSlideIndex * 100}%)`,
+                transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
+                touchAction: 'pan-y',
+              }}
+            >
+              {GALLERY_SLIDES.map((slide, idx) => (
+                <div key={slide.id} className="w-full h-full flex-shrink-0 relative overflow-hidden select-none">
+                  <img
+                    src={slide.imageUrl}
+                    alt={slide.title}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    className="w-full h-full object-cover pointer-events-none select-none [-webkit-user-drag:none]"
+                    draggable={false}
+                  />
+                  {/* High-end Atelier Vignette Gradients */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/60" />
+                </div>
+              ))}
+            </div>
 
             {/* Top Floating Badge Bar */}
-            <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between pointer-events-none z-10">
+            <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between pointer-events-none z-20">
               <span className="px-2.5 py-1 rounded-full bg-black/80 border border-white/20 text-[#E4002B] text-[9.5px] font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-md">
                 {currentSlide.tag}
               </span>
@@ -270,10 +326,12 @@ export const DogmaEditorialGallery = () => {
               </span>
             </div>
 
-            {/* Floating Touch Arrow Controls */}
+            {/* Floating Touch Arrow Controls (Touch-isolated) */}
             <div className="absolute inset-y-0 left-2 right-2 flex items-center justify-between pointer-events-none z-20">
               <button
                 type="button"
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   goToPrevSlide();
@@ -285,6 +343,8 @@ export const DogmaEditorialGallery = () => {
               </button>
               <button
                 type="button"
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   goToNextSlide();
@@ -300,12 +360,14 @@ export const DogmaEditorialGallery = () => {
             <div className="absolute bottom-2.5 right-2.5 z-20">
               <button
                 type="button"
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   sfx.playClick();
                   setIsLightboxOpen(true);
                 }}
-                className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-[#E4002B] active:bg-[#E4002B] border border-white/30 text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 transition-all cursor-pointer shadow-lg active:scale-95 touch-manipulation"
+                className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-[#E4002B] active:bg-[#E4002B] border border-white/30 text-white text-[10px] xs:text-[11px] font-mono font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 transition-all cursor-pointer shadow-lg active:scale-95 touch-manipulation pointer-events-auto"
               >
                 <Maximize2 className="w-3 h-3 text-[#E4002B] pointer-events-none" />
                 <span className="pointer-events-none">INSPECT</span>
@@ -321,6 +383,8 @@ export const DogmaEditorialGallery = () => {
                 <button
                   key={idx}
                   type="button"
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
                   onClick={() => selectSlide(idx)}
                   className="p-2 -m-1 flex items-center justify-center cursor-pointer touch-manipulation"
                   aria-label={`Go to slide ${idx + 1}`}
@@ -340,7 +404,12 @@ export const DogmaEditorialGallery = () => {
           {/* Horizontal Thumbnails Filmstrip with Auto-scroll */}
           <div
             ref={filmstripRef}
+            data-lenis-prevent="true"
             className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 no-scrollbar scroll-smooth w-full px-1 touch-pan-x"
+            style={{
+              touchAction: 'pan-x',
+              overscrollBehaviorX: 'contain',
+            }}
           >
             {GALLERY_SLIDES.map((slide, idx) => {
               const isActive = idx === activeSlideIndex;
@@ -349,6 +418,8 @@ export const DogmaEditorialGallery = () => {
                   key={slide.id}
                   ref={(el) => (thumbnailRefs.current[idx] = el)}
                   type="button"
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
                   onClick={() => selectSlide(idx)}
                   className={`relative flex-shrink-0 w-16 h-11 xs:w-20 xs:h-13 rounded-xl overflow-hidden border-2 transition-all cursor-pointer touch-manipulation active:scale-95 ${
                     isActive
@@ -377,29 +448,29 @@ export const DogmaEditorialGallery = () => {
         </div>
 
         {/* --- ACTIVE SLIDE TELEMETRY & METADATA BAR --- */}
-        <div className="mt-5 sm:mt-8 p-4 xs:p-5 sm:p-6 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.18)] flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6 text-center md:text-left items-center md:items-start">
-          <div className="max-w-2xl lg:max-w-3xl space-y-1.5 sm:space-y-2 text-center md:text-left flex flex-col items-center md:items-start mx-auto md:mx-0 w-full md:w-auto">
+        <div className="mt-5 sm:mt-8 p-4 xs:p-5 sm:p-6 md:p-7 lg:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/[0.05] via-[#10141e]/95 to-[#0b0e14]/98 border border-white/[0.12] backdrop-blur-3xl shadow-[0_30px_90px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.18)] flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+          <div className="flex-1 space-y-2 text-center md:text-left flex flex-col items-center md:items-start w-full">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs">
               <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-[#E4002B]/20 border border-[#E4002B]/40 text-[#E4002B] font-bold uppercase tracking-wider">
                 {currentSlide.tag}
               </span>
               <span className="text-zinc-400 flex items-center gap-1.5">
-                <Compass className="w-3.5 h-3.5 text-[#E4002B]" />
+                <Compass className="w-3.5 h-3.5 text-[#E4002B] shrink-0" />
                 <span>{currentSlide.location}</span>
               </span>
             </div>
             <h3 className="font-display text-lg xs:text-xl sm:text-2xl md:text-2xl lg:text-3xl font-black text-white uppercase tracking-tight text-center md:text-left">
               {currentSlide.title}
             </h3>
-            <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed text-center md:text-left max-w-xl md:max-w-2xl mx-auto md:mx-0">
+            <p className="text-xs sm:text-sm text-zinc-300 font-sans leading-relaxed text-center md:text-left max-w-3xl">
               {currentSlide.caption}
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center md:items-end lg:items-center justify-center md:justify-end gap-2.5 sm:gap-3 md:gap-3 lg:gap-4 shrink-0 w-full md:w-auto">
-            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl sm:rounded-2xl bg-black/60 border border-white/15 text-[10px] sm:text-xs font-mono text-zinc-300 text-center w-full sm:w-auto md:w-full lg:w-auto">
+          <div className="flex flex-col sm:flex-row md:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center md:items-center lg:items-end xl:items-center justify-center md:justify-between lg:justify-end gap-2.5 sm:gap-3 md:gap-3.5 shrink-0 w-full lg:w-auto pt-3.5 sm:pt-4 md:pt-4 lg:pt-0 border-t sm:border-t md:border-t lg:border-t-0 border-white/10">
+            <div className="flex items-center justify-center md:justify-start gap-2 px-3.5 sm:px-4 py-2 rounded-xl sm:rounded-2xl bg-black/60 border border-white/15 text-[10.5px] sm:text-xs font-mono text-zinc-300 text-center md:text-left w-full sm:w-auto shrink-0">
               <Aperture className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E4002B] shrink-0" />
-              <span className="truncate max-w-[280px] sm:max-w-none md:max-w-[220px] lg:max-w-none">{currentSlide.cameraSpec}</span>
+              <span className="whitespace-normal sm:whitespace-nowrap">{currentSlide.cameraSpec}</span>
             </div>
 
             <button
@@ -407,9 +478,9 @@ export const DogmaEditorialGallery = () => {
                 sfx.playClick();
                 setIsLightboxOpen(true);
               }}
-              className="px-4 sm:px-6 md:px-5 lg:px-6 py-2.5 sm:py-3.5 md:py-2.5 lg:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(228,0,43,0.4)] hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto md:w-full lg:w-auto whitespace-nowrap"
+              className="px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#E4002B] via-[#FF5E0E] to-[#E4002B] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(228,0,43,0.4)] hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto shrink-0 whitespace-nowrap"
             >
-              <Maximize2 className="w-3.5 h-3.5" />
+              <Maximize2 className="w-3.5 h-3.5 shrink-0" />
               <span>FULLSCREEN INSPECTION</span>
             </button>
           </div>
@@ -421,14 +492,12 @@ export const DogmaEditorialGallery = () => {
       {/* ============================================================ */}
       {isLightboxOpen && mounted && createPortal(
         <div
+          data-lenis-prevent="true"
           className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-5 md:p-6 bg-black/90 backdrop-blur-2xl backdrop-saturate-150 animate-fadeIn"
           onClick={() => {
             sfx.playClick();
             setIsLightboxOpen(false);
           }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
         >
           {/* Ambient Background Spotlights */}
           <div className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-[#E4002B]/15 rounded-full blur-[170px] pointer-events-none" />
@@ -438,9 +507,6 @@ export const DogmaEditorialGallery = () => {
           <div
             className="relative w-full max-w-5xl h-[92vh] max-h-[840px] flex flex-col rounded-2xl sm:rounded-3xl bg-gradient-to-b from-white/[0.12] via-[#0c1017]/95 to-[#06080d]/98 border border-white/20 backdrop-blur-3xl shadow-[0_50px_140px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           >
             {/* Modal Top Glass Bar */}
             <div className="flex items-center justify-between px-3.5 sm:px-7 py-2.5 sm:py-3.5 border-b border-white/15 bg-white/[0.04] backdrop-blur-md font-mono shrink-0">
@@ -475,8 +541,7 @@ export const DogmaEditorialGallery = () => {
 
             {/* Main Single-Image Inspection Stage with Navigation */}
             <div
-              className="relative flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-6 overflow-hidden bg-black/75 touch-pan-y cursor-pointer select-none"
-              onClick={handleImageClick}
+              className="relative flex-1 min-h-0 flex items-center justify-center p-2.5 sm:p-6 overflow-hidden bg-black/75 touch-pan-y select-none"
             >
               {/* Prev / Next Modal Arrows */}
               <button
@@ -513,20 +578,20 @@ export const DogmaEditorialGallery = () => {
             </div>
 
             {/* Modal Bottom Archival Dossier Bar */}
-            <div className="p-3.5 sm:p-6 bg-gradient-to-r from-black/95 via-[#0c1017]/95 to-black/95 border-t border-white/15 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-4 shrink-0 max-h-[30vh] overflow-y-auto">
+            <div className="p-3.5 sm:p-5 md:p-6 bg-gradient-to-r from-black/95 via-[#0c1017]/95 to-black/95 border-t border-white/15 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-4 shrink-0 max-h-[30vh] overflow-y-auto">
               <div className="max-w-3xl space-y-1 text-left">
-                <h4 className="font-display text-base sm:text-2xl font-black text-white uppercase tracking-tight">
+                <h4 className="font-display text-base sm:text-xl md:text-2xl font-black text-white uppercase tracking-tight">
                   {currentSlide.title}
                 </h4>
-                <p className="text-[11px] sm:text-sm text-zinc-300 font-sans leading-relaxed line-clamp-2 sm:line-clamp-none">
+                <p className="text-[11px] sm:text-xs md:text-sm text-zinc-300 font-sans leading-relaxed line-clamp-2 sm:line-clamp-none">
                   {currentSlide.caption}
                 </p>
               </div>
 
               {/* Camera Optics Specs */}
-              <div className="flex items-center gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-xl bg-white/[0.06] border border-white/15 text-[10px] sm:text-xs font-mono text-zinc-300 shrink-0 self-start md:self-auto">
+              <div className="flex items-center gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/[0.06] border border-white/15 text-[10px] sm:text-xs font-mono text-zinc-300 shrink-0 self-start md:self-auto">
                 <Aperture className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E4002B] shrink-0" />
-                <span className="truncate max-w-[260px] sm:max-w-none">{currentSlide.cameraSpec}</span>
+                <span className="whitespace-normal sm:whitespace-nowrap">{currentSlide.cameraSpec}</span>
               </div>
             </div>
           </div>

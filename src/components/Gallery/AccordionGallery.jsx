@@ -159,11 +159,20 @@ const AccordionGallery = ({
     firstRunRef.current = false;
   }, [applyLayout]);
 
+  const onActiveChangeRef = useRef(onActiveChange);
   useEffect(() => {
-    if (onActiveChange) {
-      onActiveChange(active);
+    onActiveChangeRef.current = onActiveChange;
+  }, [onActiveChange]);
+
+  const lastNotifiedActive = useRef(active);
+  useEffect(() => {
+    if (lastNotifiedActive.current !== active) {
+      lastNotifiedActive.current = active;
+      if (onActiveChangeRef.current) {
+        onActiveChangeRef.current(active);
+      }
     }
-  }, [active, onActiveChange]);
+  }, [active]);
 
   useEffect(
     () => () => {
