@@ -71,104 +71,128 @@ export const DogmaEditorialGallery = () => {
     setActiveSlideIndex(index);
   }, []);
 
-  // Auto-scroll filmstrip so active thumbnail is centered smoothly
+  // Auto-scroll ONLY the filmstrip container so active thumbnail is centered without scrolling the window/page
   useEffect(() => {
+    const container = filmstripRef.current;
     const el = thumbnailRefs.current[activeSlideIndex];
-    if (el && filmstripRef.current) {
-      el.scrollIntoView({
+    if (container && el) {
+      const containerRect = container.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const currentScroll = container.scrollLeft;
+      const targetScroll = currentScroll + (elRect.left - containerRect.left) - (container.clientWidth / 2) + (el.clientWidth / 2);
+
+      container.scrollTo({
+        left: Math.max(0, targetScroll),
         behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
       });
     }
   }, [activeSlideIndex]);
 
-  // Native non-passive Touch Gesture handlers for mobile carousel (prevents window/screen sliding when swiping)
+  // Pointer & Touch handlers with touch-action: none to strictly prevent page scrolling during carousel interactions
   useEffect(() => {
     const container = carouselContainerRef.current;
     if (!container) return;
 
-    const onTouchStart = (e) => {
-      if (e.touches && e.touches.length === 1) {
-        touchStartX.current = e.touches[0].clientX;
-        touchStartY.current = e.touches[0].clientY;
-        isHorizontalSwipe.current = null;
-        dragOffsetRef.current = 0;
-        isDraggingRef.current = true;
-      }
-    };
+    let isPointerDown = false;
+    let startX = 0;
+    let currentDragOffset = 0;
 
-    const onTouchMove = (e) => {
-      if (!isDraggingRef.current || touchStartX.current === null || !e.touches || e.touches.length !== 1) return;
-      const currentX = e.touches[0].clientX;
-      const currentY = e.touches[0].clientY;
-      const diffX = currentX - touchStartX.current;
-      const diffY = currentY - touchStartY.current;
-
-      // Determine intent early
-      if (isHorizontalSwipe.current === null) {
-        if (Math.abs(diffX) > 7 || Math.abs(diffY) > 7) {
-          isHorizontalSwipe.current = Math.abs(diffX) >= Math.abs(diffY);
-          if (isHorizontalSwipe.current) {
-            setIsDragging(true);
-          }
-        }
-      }
-
-      // If horizontal swipe, prevent browser from panning/scrolling the screen or page
-      if (isHorizontalSwipe.current === true) {
-        if (e.cancelable) {
-          e.preventDefault();
-        }
-        e.stopPropagation();
-
-        // Elastic dampening at boundaries
-        let offset = diffX;
-        if (
-          (activeSlideIndex === 0 && diffX > 0) ||
-          (activeSlideIndex === GALLERY_SLIDES.length - 1 && diffX < 0)
-        ) {
-          offset = diffX * 0.25;
-        }
-        dragOffsetRef.current = offset;
-        setDragOffset(offset);
-      }
-    };
-
-    const onTouchEnd = (e) => {
-      if (!isDraggingRef.current) return;
-      const offset = dragOffsetRef.current;
-      const wasHorizontal = isHorizontalSwipe.current;
-
-      isDraggingRef.current = false;
-      touchStartX.current = null;
-      touchStartY.current = null;
-      isHorizontalSwipe.current = null;
+    const onPointerDown = (e) => {
+      // Allow primary touch / pen / left-click only
+      if (e.button !== undefined && e.button !== 0) return;
+      isPointerDown = true;
+      startX = e.clientX;
+      currentDragOffset = 0;
       dragOffsetRef.current = 0;
+      isDraggingRef.current = true;
+      setIsDragging(true);
+      setDragOffset(0);
+
+      try {
+        container.setPointerCapture(e.pointerId);
+      } catch (_) {}
+    };
+
+    const onPointerMove = (e) => {
+      if (!isPointerDown) return;
+      const diffX = e.clientX - startX;
+
+      // Elastic resistance at boundaries
+      let offset = diffX;
+      if (
+        (activeSlideIndex === 0 && diffX > 0) ||
+        (activeSlideIndex === GALLERY_SLIDES.length - 1 && diffX < 0)
+      ) {
+        offset = diffX * 0.25;
+      }
+      currentDragOffset = offset;
+      dragOffsetRef.current = offset;
+      setDragOffset(offset);
+    };
+
+    const onPointerUp = (e) => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      isDraggingRef.current = false;
       setIsDragging(false);
       setDragOffset(0);
 
-      if (wasHorizontal) {
-        if (e && e.cancelable) e.preventDefault();
-        const threshold = 40;
-        if (offset < -threshold) {
-          goToNextSlide();
-        } else if (offset > threshold) {
-          goToPrevSlide();
+      try {
+        if (container.hasPointerCapture(e.pointerId)) {
+          container.releasePointerCapture(e.pointerId);
         }
+      } catch (_) {}
+
+      const threshold = 35;
+      if (currentDragOffset < -threshold) {
+        goToNextSlide();
+      } else if (currentDragOffset > threshold) {
+        goToPrevSlide();
       }
+      currentDragOffset = 0;
+      dragOffsetRef.current = 0;
     };
 
-    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    const onPointerCancel = (e) => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      setDragOffset(0);
+
+      try {
+        if (container.hasPointerCapture(e.pointerId)) {
+          container.releasePointerCapture(e.pointerId);
+        }
+      } catch (_) {}
+      currentDragOffset = 0;
+      dragOffsetRef.current = 0;
+    };
+
+    // Prevent any native browser scroll gestures inside the carousel
+    const onTouchStart = (e) => {
+      if (e.cancelable) e.preventDefault();
+    };
+
+    const onTouchMove = (e) => {
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+    };
+
+    container.addEventListener('pointerdown', onPointerDown);
+    container.addEventListener('pointermove', onPointerMove);
+    container.addEventListener('pointerup', onPointerUp);
+    container.addEventListener('pointercancel', onPointerCancel);
+    container.addEventListener('touchstart', onTouchStart, { passive: false });
     container.addEventListener('touchmove', onTouchMove, { passive: false });
-    container.addEventListener('touchend', onTouchEnd, { passive: false });
-    container.addEventListener('touchcancel', onTouchEnd, { passive: false });
 
     return () => {
+      container.removeEventListener('pointerdown', onPointerDown);
+      container.removeEventListener('pointermove', onPointerMove);
+      container.removeEventListener('pointerup', onPointerUp);
+      container.removeEventListener('pointercancel', onPointerCancel);
       container.removeEventListener('touchstart', onTouchStart);
       container.removeEventListener('touchmove', onTouchMove);
-      container.removeEventListener('touchend', onTouchEnd);
-      container.removeEventListener('touchcancel', onTouchEnd);
     };
   }, [activeSlideIndex, goToNextSlide, goToPrevSlide]);
 
@@ -282,22 +306,23 @@ export const DogmaEditorialGallery = () => {
           <div
             ref={carouselContainerRef}
             data-lenis-prevent="true"
-            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group select-none touch-pan-y"
+            className="relative w-full aspect-[4/3] xs:aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#0a0d14] border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group select-none touch-none cursor-grab active:cursor-grabbing"
             style={{
-              touchAction: 'pan-y',
-              overscrollBehaviorX: 'contain',
-              overscrollBehaviorY: 'auto',
+              touchAction: 'none',
+              overscrollBehavior: 'none',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
             }}
           >
             {/* Sliding Multi-Image Carousel Track */}
             <div
-              className="flex w-full h-full will-change-transform select-none"
+              className="flex w-full h-full will-change-transform select-none pointer-events-none"
               style={{
                 transform: isDragging
                   ? `translateX(calc(-${activeSlideIndex * 100}% + ${dragOffset}px))`
                   : `translateX(-${activeSlideIndex * 100}%)`,
                 transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
-                touchAction: 'pan-y',
+                touchAction: 'none',
               }}
             >
               {GALLERY_SLIDES.map((slide, idx) => (
